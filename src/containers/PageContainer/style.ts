@@ -13,7 +13,7 @@ const style = css`
         z-index: 10;
     }
     .site__main {
-        background: lightgray;
+        background: black;
         position: relative;
         z-index: 20;
     }

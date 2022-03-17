@@ -15,7 +15,10 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'NeuePlak', // specifying a new font
+        fontFamily: 'NeuePlak', // specifying a new font'
+        button: {
+            textTransform: 'none',
+        },
     },
 });
 
