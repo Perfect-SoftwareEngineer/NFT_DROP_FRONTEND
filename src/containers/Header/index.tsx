@@ -1,11 +1,14 @@
 import React from 'react';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Box, Typography, IconButton } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
 import LogoImg from '../../assets/curry-logo.png';
-import { HeaderMenuBtn } from './styles';
+import { HeaderMenuBtn, ConnectWalletBtn } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import OpenseaIcon from '../../assets/opensea.svg';
+import DiscordIcon from '../../assets/discord.svg';
+import TwitterIcon from '../../assets/twitter.svg';
 
 type ComponentProps = {};
 
@@ -24,7 +27,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
     return (
         <Box sx={{ background: '#1B1C22' }}>
             <Container>
-                <Stack height={72} direction="row" alignItems="center">
+                <Stack height={72} direction="row" alignItems="center" justifyContent="space-between">
                     <Stack direction="row" alignItems="center" spacing={5}>
                         <Image src={LogoImg} width={40} height={40} alt="Logo" />
                         <Stack direction="row" spacing={2}>
@@ -36,6 +39,18 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                 </Link>
                             ))}
                         </Stack>
+                    </Stack>
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                        <IconButton>
+                            <OpenseaIcon />
+                        </IconButton>
+                        <IconButton>
+                            <DiscordIcon />
+                        </IconButton>
+                        <IconButton>
+                            <TwitterIcon />
+                        </IconButton>
+                        <ConnectWalletBtn>CONNECT WALLET</ConnectWalletBtn>
                     </Stack>
                 </Stack>
             </Container>
