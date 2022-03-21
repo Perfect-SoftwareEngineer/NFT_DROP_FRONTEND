@@ -1,21 +1,23 @@
 import React, { createContext, useState, useContext } from 'react';
 
-interface State {}
+interface AppState {
+    mixologyCurStep: number;
+}
 
-const defaultState: State = {};
+const defaultState: AppState = { mixologyCurStep: 0 };
 
 type ContextType<TValue> = [TValue, (newValue: TValue) => void];
 
-const defaultContextValue: ContextType<State> = [defaultState, () => {}];
+const defaultContextValue: ContextType<AppState> = [defaultState, () => {}];
 
 export const AppContext = createContext(defaultContextValue);
 
 export const AppContextProvider: React.FC = ({ children, ...props }) => {
-    const [contextState, setContextState] = useState<State>(defaultState);
+    const [contextState, setContextState] = useState<AppState>(defaultState);
 
-    const ctxValue: ContextType<State> = [
+    const ctxValue: ContextType<AppState> = [
         contextState,
-        (value: State) => {
+        (value: AppState) => {
             setContextState(value);
         },
     ];
