@@ -3,10 +3,11 @@ import { Stack, Grid, Typography, Link } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import StepBox from '../../components/Mixology/StepBox';
-import NotOwnBasketball from './NotOwnBasketball';
-import { BackBtn, NextBtn } from './styles';
-import SelectBasketball from './SelectBasketball';
 import { useAppContext } from '../../context/AppContext';
+import MixologyNavBar from './Navbar';
+import NotOwnBasketball from './NotOwnBasketball';
+import SelectBasketball from './SelectBasketball';
+import NotOwnSerum from './NotOwnSerum';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -36,24 +37,13 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Grid>
                     <Grid item xs={8}>
-                        {appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />}
+                        {appState.mixologyCurStep === 0 &&
+                            (appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />)}
+                        {appState.mixologyCurStep === 1 && <NotOwnSerum />}
                     </Grid>
                 </Grid>
             </Container>
-            <Stack
-                position="fixed"
-                bottom={0}
-                width="100%"
-                height={120}
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                spacing={2}
-                sx={{ background: '#1B1C22' }}
-            >
-                <BackBtn>Back</BackBtn>
-                <NextBtn disabled>Next</NextBtn>
-            </Stack>
+            <MixologyNavBar />
         </>
     );
 };

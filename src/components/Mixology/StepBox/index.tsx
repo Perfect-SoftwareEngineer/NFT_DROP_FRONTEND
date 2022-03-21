@@ -19,7 +19,7 @@ const stepsList = [
 const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
-    let processed = step <= appState.mixologyCurStep;
+    let selected = step === appState.mixologyCurStep;
 
     return (
         <Stack
@@ -28,16 +28,16 @@ const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
             padding={2}
             spacing={3}
             borderRadius={2}
-            sx={{ background: processed ? '#FFCA21' : '#1B1C22' }}
+            sx={{ background: selected ? '#FFCA21' : '#1B1C22' }}
         >
             <Box width={80} height={80} borderRadius={2} overflow="hidden">
                 <Image src={stepsList[step].img} width={80} height={80} alt="" />
             </Box>
             <Stack>
-                <Typography fontSize={16} fontWeight={400} color={processed ? 'black' : 'white'}>
+                <Typography fontSize={16} fontWeight={400} color={selected ? 'black' : 'white'}>
                     {`STEP ${step + 1}`}
                 </Typography>
-                <Typography fontSize={16} fontWeight={700} color={processed ? 'black' : 'white'}>
+                <Typography fontSize={16} fontWeight={700} color={selected ? 'black' : 'white'}>
                     {stepsList[step].title}
                 </Typography>
             </Stack>
