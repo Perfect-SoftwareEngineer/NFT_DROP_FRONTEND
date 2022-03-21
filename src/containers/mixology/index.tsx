@@ -5,9 +5,11 @@ import CounterBox from '../../components/CounterBox';
 import StepBox from '../../components/Mixology/StepBox';
 import NotOwnBasketball from './NotOwnBasketball';
 import { BackBtn, NextBtn } from './styles';
+import SelectBasketball from './SelectBasketball';
+import { useAppContext } from '../../context/AppContext';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
-    const [step, setStep] = useState<number>(1);
+    const [appState, setAppState] = useAppContext();
 
     return (
         <>
@@ -34,7 +36,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Grid>
                     <Grid item xs={8}>
-                        <NotOwnBasketball />
+                        {appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />}
                     </Grid>
                 </Grid>
             </Container>
