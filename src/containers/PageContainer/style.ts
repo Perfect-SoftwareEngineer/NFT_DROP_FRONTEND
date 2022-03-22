@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css';
-import { styled, Box } from '@mui/material';
+import { styled, Stack } from '@mui/material';
 
-export const PageWrapper = styled('div')`
+export const PageWrapper = styled(Stack)`
     min-height: 100vh;
     position: relative;
 `;
