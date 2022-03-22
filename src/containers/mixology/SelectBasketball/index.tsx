@@ -13,7 +13,7 @@ const SelectBasketball: React.FC = (): JSX.Element => {
             </Typography>
             <Stack direction="row" spacing={3}>
                 {appState.basketballsList.map((item) => (
-                    <BasketballBox item={item} />
+                    <BasketballBox item={item} selectable />
                 ))}
             </Stack>
         </Stack>

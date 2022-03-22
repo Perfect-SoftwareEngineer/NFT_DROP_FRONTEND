@@ -9,6 +9,7 @@ import NotOwnBasketball from './NotOwnBasketball';
 import SelectBasketball from './SelectBasketball';
 import NotOwnSerum from './NotOwnSerum';
 import SelectSerum from './SelectSerum';
+import FuseEvolve from './FuseEvolve';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -42,6 +43,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             (appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />)}
                         {appState.mixologyCurStep === 1 &&
                             (appState.serumsList.length > 0 ? <SelectSerum /> : <NotOwnSerum />)}
+                        {appState.mixologyCurStep === 2 && <FuseEvolve />}
                     </Grid>
                 </Grid>
             </Container>

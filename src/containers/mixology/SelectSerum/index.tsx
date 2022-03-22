@@ -30,7 +30,7 @@ const SelectSerum: React.FC = (): JSX.Element => {
                 </Typography>
                 <Stack direction="row" spacing={3}>
                     {appState.serumsList.map((item) => (
-                        <SerumBox item={item} />
+                        <SerumBox item={item} selectable />
                     ))}
                 </Stack>
             </Stack>
