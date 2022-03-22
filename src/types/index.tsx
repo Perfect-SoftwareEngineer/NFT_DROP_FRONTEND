@@ -3,3 +3,9 @@ export type BasketballItemType = {
     title: string;
     traits: Array<any>;
 };
+
+export type SerumItemType = {
+    id: number;
+    title: string;
+    desc: string;
+};

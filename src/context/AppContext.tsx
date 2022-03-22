@@ -1,10 +1,12 @@
 import React, { createContext, useState, useContext } from 'react';
-import { BasketballItemType } from '../types';
+import { BasketballItemType, SerumItemType } from '../types';
 
 interface AppState {
     mixologyCurStep: number;
     basketballsList: Array<BasketballItemType>;
     selectedBasketballId: number;
+    serumsList: Array<SerumItemType>;
+    selectedSerumId: Array<number>;
 }
 
 const defaultState: AppState = {
@@ -15,6 +17,13 @@ const defaultState: AppState = {
         { id: 2, title: 'UA Basketball #10925', traits: [] },
     ],
     selectedBasketballId: -1,
+    serumsList: [
+        { id: 0, title: 'Serum #10923', desc: 'Sesame Street' },
+        { id: 1, title: 'Serum #10924', desc: 'Sesame Street' },
+        { id: 2, title: 'Serum #10925', desc: 'Sesame Street' },
+        { id: 3, title: 'Serum #10926', desc: 'Sesame Street' },
+    ],
+    selectedSerumId: [],
 };
 
 type ContextType<TValue> = [TValue, (newValue: TValue) => void];

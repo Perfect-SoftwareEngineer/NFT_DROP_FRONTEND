@@ -8,6 +8,7 @@ import MixologyNavBar from './Navbar';
 import NotOwnBasketball from './NotOwnBasketball';
 import SelectBasketball from './SelectBasketball';
 import NotOwnSerum from './NotOwnSerum';
+import SelectSerum from './SelectSerum';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -39,7 +40,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     <Grid item xs={8}>
                         {appState.mixologyCurStep === 0 &&
                             (appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />)}
-                        {appState.mixologyCurStep === 1 && <NotOwnSerum />}
+                        {appState.mixologyCurStep === 1 &&
+                            (appState.serumsList.length > 0 ? <SelectSerum /> : <NotOwnSerum />)}
                     </Grid>
                 </Grid>
             </Container>
