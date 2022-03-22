@@ -22,9 +22,11 @@ const FuseEvolve: React.FC = (): JSX.Element => {
             </Stack>
             <Stack direction="row" spacing={3}>
                 <BasketballBox item={appState.basketballsList[appState.selectedBasketballId]} />
-                {appState.selectedSerumId.map((item) => (
-                    <SerumBox item={appState.serumsList[item]} />
-                ))}
+                {appState.selectedSerumId
+                    .sort((a, b) => a - b)
+                    .map((item) => (
+                        <SerumBox item={appState.serumsList[item]} />
+                    ))}
             </Stack>
         </Stack>
     );
