@@ -5,12 +5,21 @@ import { CurryShopBtn, CurryCounterBtn } from './styles';
 const NotOwnSerum: React.FC = (): JSX.Element => {
     return (
         <Stack spacing={4}>
-            <Typography fontSize={48} fontWeight={700}>
-                Select up to 3 Serums
-            </Typography>
+            <Stack spacing={2}>
+                <Typography fontSize={48} fontWeight={700}>
+                    Select up to 3 Serums
+                </Typography>
+                <Typography fontSize={16} fontWeight={500} width="70%">
+                    <Typography fontSize={16} fontWeight={700} display="inline">
+                        Note:
+                    </Typography>{' '}
+                    Every Serum selected guarentees you 2 traits of the Serum Type you select. So if you select 3
+                    serums, you get 6 traits.
+                </Typography>
+            </Stack>
             <Stack spacing={2}>
                 <Typography fontSize={32} fontWeight={700} color="#FFCA21">
-                    You currently do not own any Basketballs.
+                    You currently do not own any Serums.
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} width="70%">
                     You cannot start the Mixology process without owning a Basketball or Serum. You can either mint a
