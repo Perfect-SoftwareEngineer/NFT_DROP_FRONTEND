@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Stack, Grid, Typography, Link } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import StepBox from '../../components/Mixology/StepBox';
 import { useAppContext } from '../../context/AppContext';
 import MixologyNavBar from './Navbar';
+import NotWalletConnect from './NotWalletConnect';
 import NotOwnBasketball from './NotOwnBasketball';
 import SelectBasketball from './SelectBasketball';
 import NotOwnSerum from './NotOwnSerum';
 import SelectSerum from './SelectSerum';
 import FuseEvolve from './FuseEvolve';
 import FuseSuccess from './FuseSuccess';
+import { useWeb3React } from '@web3-react/core';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
+    const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
     return (
         <>
-            {appState.mixologyCurStep < 3 ? (
+            {!account ? (
+                <NotWalletConnect sx={{ marginTop: 10 }} />
+            ) : appState.mixologyCurStep < 3 ? (
                 <>
                     <Container sx={{ paddingY: 5 }}>
                         <Stack direction="row" spacing={2}>
