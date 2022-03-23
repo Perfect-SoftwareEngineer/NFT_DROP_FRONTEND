@@ -11,6 +11,7 @@ import DiscordIcon from '../../assets/discord.svg';
 import TwitterIcon from '../../assets/twitter.svg';
 import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
+import { injected } from '../../web3/Connector';
 
 type ComponentProps = {};
 
@@ -27,6 +28,53 @@ const Header: React.FC<ComponentProps> = ({}) => {
     const router = useRouter();
     const [openConnectWalletDlg, setOpenConnectWalletDlg] = useState(false);
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
+
+    async function connect() {
+        try {
+            const w: any = window;
+            await w.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [
+                    {
+                        chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x89' : '0x13881',
+                        chainName: process.env.NEXT_PUBLIC_ENV == 'production' ? 'Polygon' : 'Mumbai Testnet',
+                        nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+                        rpcUrls:
+                            process.env.NEXT_PUBLIC_ENV == 'production'
+                                ? ['https://rpc-mainnet.matic.network']
+                                : ['https://rpc-mumbai.maticvigil.com/'],
+                    },
+                ],
+            });
+
+            await w.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x89' : '0x13881' }],
+            });
+
+            await w.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x89' : '0x13881' }],
+            });
+
+            await activate(injected);
+        } catch (ex: Error | any) {
+            throw new Error(ex.message);
+        }
+    }
+
+    const onConnect = (data: any) => {
+        if (data.type === 'Metamask') {
+            connect()
+                .then(() => {
+                    setOpenConnectWalletDlg(false);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setOpenConnectWalletDlg(false);
+                });
+        }
+    };
 
     return (
         <>
@@ -60,7 +108,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     if (!active) setOpenConnectWalletDlg(true);
                                 }}
                             >
-                                CONNECT WALLET
+                                {active ? 'CONNECTED' : 'CONNECT WALLET'}
                             </ConnectWalletBtn>
                         </Stack>
                     </Stack>
@@ -79,7 +127,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                     </Typography>
                 </DialogTitle>
                 <DialogContent sx={{ width: 640 }}>
-                    <WalletConnectDlg onChange={() => {}} />
+                    <WalletConnectDlg onChange={onConnect} />
                 </DialogContent>
             </Dialog>
         </>
