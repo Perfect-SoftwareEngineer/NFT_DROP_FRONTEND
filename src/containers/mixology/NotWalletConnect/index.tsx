@@ -4,12 +4,20 @@ import { ConnectMetamaskBtn } from './styles';
 import Image from 'next/image';
 import { SxProps } from '@mui/system';
 import MetamaskImg from '../../../assets/metamask.png';
+import { useWeb3React } from '@web3-react/core';
+import { connect } from '../../../web3/connect';
 
 export interface ComponentProps {
     sx?: SxProps;
 }
 
 const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
+    const { active, account, library, connector, activate, deactivate } = useWeb3React();
+
+    const onConnect = () => {
+        connect(activate);
+    };
+
     return (
         <Stack alignItems="center" sx={{ ...sx }}>
             <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
@@ -24,7 +32,7 @@ const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                     wallet.
                 </Typography>
             </Box>
-            <ConnectMetamaskBtn sx={{ marginTop: 5 }}>
+            <ConnectMetamaskBtn sx={{ marginTop: 5 }} onClick={onConnect}>
                 <Image src={MetamaskImg} width={56} height={56} />
                 <Typography fontSize={32} fontWeight={600} marginLeft={4} sx={{ padding: '0 0 8px' }}>
                     Connect Metamask

@@ -18,6 +18,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
+    console.log('account:', account);
+
     return (
         <>
             {!account ? (
