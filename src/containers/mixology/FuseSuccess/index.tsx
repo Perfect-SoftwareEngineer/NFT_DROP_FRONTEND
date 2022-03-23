@@ -1,6 +1,9 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useAppContext } from '../../../context/AppContext';
+import { MutantImgBox, GotoLabBtn, BackToMixRoom } from './styles';
+import Image from 'next/image';
+import MutantImg from '../../../assets/items/mutant.png';
 
 const FuseSuccess: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -13,6 +16,13 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                     Mutant Basketball
                 </Typography>
             </Typography>
+            <MutantImgBox marginTop={6}>
+                <Image src={MutantImg} width={360} height={360} alt="" className="mutant_img" />
+            </MutantImgBox>
+            <Stack direction="row" spacing={2} marginTop={3.5}>
+                <GotoLabBtn>Go to The Lab</GotoLabBtn>
+                <BackToMixRoom>Back to the Mixology Room</BackToMixRoom>
+            </Stack>
         </Stack>
     );
 };

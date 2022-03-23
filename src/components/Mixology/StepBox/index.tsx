@@ -3,7 +3,7 @@ import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import BasketballImg from '../../../assets/items/basketball.png';
 import SerumImg from '../../../assets/items/serum.png';
-import FusedImg from '../../../assets/items/fused.png';
+import MutantImg from '../../../assets/items/mutant.png';
 import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
@@ -13,7 +13,7 @@ type ComponentProps = {
 const stepsList = [
     { img: BasketballImg, title: 'Select a Basketball' },
     { img: SerumImg, title: 'Select up to 3 Serums' },
-    { img: FusedImg, title: 'Fuse to Evolve' },
+    { img: MutantImg, title: 'Fuse to Evolve' },
 ];
 
 const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
