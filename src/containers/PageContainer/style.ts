@@ -16,6 +16,7 @@ const style = css`
         background: black;
         position: relative;
         z-index: 20;
+        min-height: calc(100vh - 222px);
     }
     .site__footer {
         /* background: gray; */

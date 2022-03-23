@@ -60,7 +60,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     <MixologyNavBar />
                 </>
             ) : (
-                <FuseSuccess />
+                <FuseSuccess sx={{ marginTop: 10 }} />
             )}
         </>
     );

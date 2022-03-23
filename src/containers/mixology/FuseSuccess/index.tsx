@@ -4,12 +4,17 @@ import { useAppContext } from '../../../context/AppContext';
 import { MutantImgBox, GotoLabBtn, BackToMixRoom } from './styles';
 import Image from 'next/image';
 import MutantImg from '../../../assets/items/mutant.png';
+import { SxProps } from '@mui/system';
 
-const FuseSuccess: React.FC = (): JSX.Element => {
+export interface ComponentProps {
+    sx?: SxProps;
+}
+
+const FuseSuccess: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     return (
-        <Stack justifyContent="center" alignItems="center" minHeight="calc(100vh - 72px)">
+        <Stack alignItems="center" sx={{ ...sx }}>
             <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
                 You have successfully fused here is your{' '}
                 <Typography fontSize={48} fontWeight={700} lineHeight={1.1} color="#FFCA21">
