@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import Head from 'next/head';
 import PageContainer from '../containers/PageContainer';
-import MixologyPageContainer from '../containers/Mixology';
+import MixologyPageContainer from '../containers/Mixology/Main';
 
 interface ComponentProps {}
 
