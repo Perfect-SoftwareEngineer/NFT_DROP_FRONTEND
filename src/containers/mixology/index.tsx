@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Stack, Grid, Typography, Link } from '@mui/material';
-import Container from '../../Container';
-import CounterBox from '../../../components/CounterBox';
-import StepBox from '../../../components/Mixology/StepBox';
-import { useAppContext } from '../../../context/AppContext';
-import MixologyNavBar from '../Navbar';
-import NotWalletConnect from '../NotWalletConnect';
-import NotOwnBasketball from '../NotOwnBasketball';
-import SelectBasketball from '../SelectBasketball';
-import NotOwnSerum from '../NotOwnSerum';
-import SelectSerum from '../SelectSerum';
-import FuseEvolve from '../FuseEvolve';
-import FuseSuccess from '../FuseSuccess';
+import Container from '../Container';
+import CounterBox from '../../components/CounterBox';
+import StepBox from '../../components/Mixology/StepBox';
+import { useAppContext } from '../../context/AppContext';
+import MixologyNavBar from './Navbar';
+import NotWalletConnect from './NotWalletConnect';
+import NotOwnBasketball from './NotOwnBasketball';
+import SelectBasketball from './SelectBasketball';
+import NotOwnSerum from './NotOwnSerum';
+import SelectSerum from './SelectSerum';
+import FuseEvolve from './FuseEvolve';
+import FuseSuccess from './FuseSuccess';
 import { useWeb3React } from '@web3-react/core';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
