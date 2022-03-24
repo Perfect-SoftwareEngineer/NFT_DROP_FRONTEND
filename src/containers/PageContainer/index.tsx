@@ -3,10 +3,17 @@ import { Box } from '@mui/material';
 import Header from '../Header';
 import Footer from '../Footer';
 import style, { PageWrapper } from './style';
+import { useWeb3React } from '@web3-react/core';
+import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {};
 
 const PageContainer: FC<PropsWithChildren<ComponentProps>> = ({ children }): JSX.Element => {
+    const { active, account, library, connector, activate, deactivate } = useWeb3React();
+    const [appState, setAppState] = useAppContext();
+
+    let footerHidden: boolean = !!account && appState.mixologyCurStep < 3;
+
     return (
         <>
             <PageWrapper>
@@ -14,9 +21,7 @@ const PageContainer: FC<PropsWithChildren<ComponentProps>> = ({ children }): JSX
                     <Header />
                 </div>
                 <div className="site__main">{children}</div>
-                <div className="site__footer">
-                    <Footer />
-                </div>
+                <div className="site__footer">{!footerHidden && <Footer />}</div>
             </PageWrapper>
             <style jsx>{style}</style>
         </>

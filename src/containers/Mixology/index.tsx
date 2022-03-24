@@ -60,7 +60,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     <MixologyNavBar />
                 </>
             ) : (
-                <FuseSuccess sx={{ marginTop: 10 }} />
+                <Stack height="calc(100vh - 222px)" justifyContent="center">
+                    <FuseSuccess />
+                </Stack>
             )}
         </>
     );
