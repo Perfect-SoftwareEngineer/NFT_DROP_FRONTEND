@@ -4,6 +4,7 @@ import Image from 'next/image';
 import BasketballImg from '../../../assets/items/basketball.png';
 import SerumImg from '../../../assets/items/serum.png';
 import MutantImg from '../../../assets/items/mutant.png';
+import StepCompleteIcon from '../../../assets/mixology/step-complete.svg';
 import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
@@ -20,12 +21,14 @@ const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     let selected = step === appState.mixologyCurStep;
+    let showCompleteIcon = step < 2 && step < appState.mixologyCurStep;
 
     return (
         <Stack
             direction="row"
             alignItems="center"
             padding={2}
+            paddingRight={4}
             spacing={3}
             borderRadius={2}
             sx={{ background: selected ? '#FFCA21' : '#1B1C22' }}
@@ -33,7 +36,7 @@ const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
             <Box width={80} height={80} borderRadius={2} overflow="hidden">
                 <Image src={stepsList[step].img} width={80} height={80} alt="" />
             </Box>
-            <Stack>
+            <Stack flexGrow={1}>
                 <Typography fontSize={16} fontWeight={400} color={selected ? 'black' : 'white'}>
                     {`STEP ${step + 1}`}
                 </Typography>
@@ -41,6 +44,9 @@ const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
                     {stepsList[step].title}
                 </Typography>
             </Stack>
+            <Box display={showCompleteIcon ? 'block' : 'none'}>
+                <StepCompleteIcon />
+            </Box>
         </Stack>
     );
 };

@@ -8,6 +8,10 @@ import MutantImg from '../../../assets/items/mutant.png';
 const FuseSuccess: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
+    const onBackToMixologyRoom = () => {
+        setAppState({ ...appState, mixologyCurStep: 0, selectedBasketballId: -1, selectedSerumId: [] });
+    };
+
     return (
         <Stack alignItems="center">
             <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
@@ -21,7 +25,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
             </MutantImgBox>
             <Stack direction="row" spacing={2} marginTop={3.5}>
                 <GotoLabBtn>Go to The Lab</GotoLabBtn>
-                <BackToMixRoom>Back to the Mixology Room</BackToMixRoom>
+                <BackToMixRoom onClick={onBackToMixologyRoom}>Back to the Mixology Room</BackToMixRoom>
             </Stack>
         </Stack>
     );
