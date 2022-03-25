@@ -1,21 +1,21 @@
 import React, { PropsWithChildren } from 'react';
 import Head from 'next/head';
 import PageContainer from '../containers/PageContainer';
-import MixologyPageContainer from '../containers/Mixology';
+import CurryShopPageContainer from '../containers/CurryShop';
 
 interface ComponentProps {}
 
-const MixologyPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
+const CurryShopPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     return (
         <>
             <Head>
-                <title>Curry Part 2 - Mixology</title>
+                <title>Curry Part 2 - CurryShop</title>
             </Head>
             <PageContainer>
-                <MixologyPageContainer />
+                <CurryShopPageContainer />
             </PageContainer>
         </>
     );
 };
 
-export default MixologyPage;
+export default CurryShopPage;

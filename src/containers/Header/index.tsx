@@ -17,7 +17,7 @@ type ComponentProps = {};
 
 const menuList = [
     { title: 'Home', url: '/' },
-    { title: 'Curry Shop', url: '#' },
+    { title: 'Curry Shop', url: '/curryshop' },
     { title: 'Mixology Room', url: '/mixology' },
     { title: 'The Lab', url: '#' },
     { title: 'Curry Counter', url: '#' },
