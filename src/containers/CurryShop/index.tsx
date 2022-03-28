@@ -3,6 +3,10 @@ import { Stack, Box, Typography } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
+import ItemBox from '../../components/CurryShop/ItemBox';
+import BasketballImg from '../../assets/curryshop/basketball.png';
+import SerumImg from '../../assets/curryshop/serum.png';
+import GenersisCurryFlowImg from '../../assets/curryshop/genesis-curry-flow.png';
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     return (
@@ -20,7 +24,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Box>
-            <Container sx={{ marginTop: 4 }}>
+            <Container sx={{ marginY: 4 }}>
                 <Stack direction="row" spacing={2}>
                     <CounterBox title="MY BASKETBALLS" value={0} />
                     <CounterBox title="MY SERUMS" value={0} />
@@ -37,6 +41,16 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             ° You can burn your Genesis Curry Flow NFT for a special Basketball.
                         </Typography>
                     </Stack>
+                </Stack>
+                <Stack direction="row" spacing={4} marginTop={6}>
+                    <ItemBox type={0} title="Mint a Basketball" amountLeft={4000} img={BasketballImg} />
+                    <ItemBox type={1} title="Mint a Serum" amountLeft={1000} img={SerumImg} />
+                    <ItemBox
+                        type={2}
+                        title="Claim your Genesis Curry Flow Seru,"
+                        amountLeft={2974}
+                        img={GenersisCurryFlowImg}
+                    />
                 </Stack>
             </Container>
         </>
