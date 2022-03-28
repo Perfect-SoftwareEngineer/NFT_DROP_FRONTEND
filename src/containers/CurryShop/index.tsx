@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
+import CounterBox from '../../components/CounterBox';
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     return (
@@ -19,6 +20,25 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Box>
+            <Container sx={{ marginTop: 4 }}>
+                <Stack direction="row" spacing={2}>
+                    <CounterBox title="MY BASKETBALLS" value={0} />
+                    <CounterBox title="MY SERUMS" value={0} />
+                </Stack>
+                <Stack marginTop={4} spacing={3}>
+                    <Typography fontSize={48} fontWeight={700} color="white">
+                        Get a Basketball or Serum
+                    </Typography>
+                    <Stack>
+                        <Typography fontSize={16} fontWeight={400} color="white">
+                            ° Mint a Basketball or Serum, make sure you have a Metamask ready.
+                        </Typography>
+                        <Typography fontSize={16} fontWeight={400} color="white">
+                            ° You can burn your Genesis Curry Flow NFT for a special Basketball.
+                        </Typography>
+                    </Stack>
+                </Stack>
+            </Container>
         </>
     );
 };
