@@ -20,7 +20,7 @@ const menuList = [
     { title: 'Curry Shop', url: '/curryshop' },
     { title: 'Mixology Room', url: '/mixology' },
     { title: 'The Lab', url: '#' },
-    { title: 'Curry Counter', url: '#' },
+    { title: 'Curry Counter', url: '/currycounter' },
     { title: 'FAQ', url: '#' },
 ];
 

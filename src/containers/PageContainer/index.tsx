@@ -5,14 +5,18 @@ import Footer from '../Footer';
 import style, { PageWrapper } from './style';
 import { useWeb3React } from '@web3-react/core';
 import { useAppContext } from '../../context/AppContext';
+import { useRouter } from 'next/router';
 
 type ComponentProps = {};
 
 const PageContainer: FC<PropsWithChildren<ComponentProps>> = ({ children }): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
     const [appState, setAppState] = useAppContext();
+    const router = useRouter();
 
-    let footerHidden: boolean = !!account && appState.mixologyCurStep < 3;
+    let footerHidden: boolean =
+        (router.pathname === '/mixology' && !!account && appState.mixologyCurStep < 3) ||
+        router.pathname === '/currycounter';
 
     return (
         <>

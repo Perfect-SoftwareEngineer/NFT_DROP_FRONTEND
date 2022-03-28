@@ -18,8 +18,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             Currently available
                         </Typography>
                         <Stack direction="row" spacing={2}>
-                            <SupplyBox type={0} amount={10000} />
-                            <SupplyBox type={1} amount={30000} />
+                            <SupplyBox amount={10000} label="Basketballs supply" headColor="#FFCA21" />
+                            <SupplyBox amount={30000} label="Serum supply" headColor="#B8FF97" />
                         </Stack>
                     </Stack>
                 </Container>
