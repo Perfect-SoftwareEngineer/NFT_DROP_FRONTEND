@@ -9,3 +9,13 @@ export type SerumItemType = {
     title: string;
     desc: string;
 };
+
+export type CurryCounterItemType = {
+    name: string;
+    label: string;
+    opponentTeamLogo: StaticImageData;
+    opponentTeam: string;
+    date: string;
+    cost: number;
+    reserveDisabled: boolean;
+};

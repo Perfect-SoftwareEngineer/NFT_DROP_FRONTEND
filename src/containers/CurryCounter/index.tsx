@@ -1,10 +1,53 @@
 import React from 'react';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
 import BannerImg from '../../assets/currycounter/banner.png';
 import { LeftGradientBox } from './styles';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
+import BostonCelticsLogo from '../../assets/teams/boston-celtics.png';
+import ChicagoBullsLogo from '../../assets/teams/chicago-bulls.png';
+import CurryCounterItem from '../../components/CurryCounter/ItemBox';
+import { CurryCounterItemType } from '../../types';
+
+const curryCounterList: Array<CurryCounterItemType> = [
+    {
+        name: 'Stephen Curry',
+        label: 'Golden State Warriors',
+        opponentTeamLogo: BostonCelticsLogo,
+        opponentTeam: 'Boston Celtics',
+        date: '03/04/22',
+        cost: 0,
+        reserveDisabled: false,
+    },
+    {
+        name: 'Stephen Curry',
+        label: 'Golden State Warriors',
+        opponentTeamLogo: ChicagoBullsLogo,
+        opponentTeam: 'Chicago Bulls',
+        date: '03/07/22',
+        cost: 1,
+        reserveDisabled: true,
+    },
+    {
+        name: 'Stephen Curry',
+        label: 'Golden State Warriors',
+        opponentTeamLogo: BostonCelticsLogo,
+        opponentTeam: 'Boston Celtics',
+        date: '03/10/22',
+        cost: 4,
+        reserveDisabled: false,
+    },
+    {
+        name: 'Stephen Curry',
+        label: 'Golden State Warriors',
+        opponentTeamLogo: ChicagoBullsLogo,
+        opponentTeam: 'Chicago Bulls',
+        date: '03/13/22',
+        cost: 2.3,
+        reserveDisabled: true,
+    },
+];
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     return (
@@ -36,6 +79,40 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Box>
+            <Container sx={{ marginY: 5 }}>
+                <Grid container rowGap={2}>
+                    <Grid item container columns={24} columnSpacing={2} paddingX={2}>
+                        <Grid item xs={9}>
+                            <Typography fontSize={16} fontWeight={600} color="#979797">
+                                Basketball Head
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography fontSize={16} fontWeight={600} color="#979797">
+                                Opponent Team
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <Typography fontSize={16} fontWeight={600} color="#979797" textAlign="right">
+                                Date
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <Typography fontSize={16} fontWeight={600} color="#979797" textAlign="right">
+                                Cost
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography fontSize={16} fontWeight={600} color="#979797" textAlign="right">
+                                Reserve Mint
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    {curryCounterList.map((item, index) => (
+                        <CurryCounterItem data={item} key={`curry-counter-item-${index}`} />
+                    ))}
+                </Grid>
+            </Container>
         </>
     );
 };
