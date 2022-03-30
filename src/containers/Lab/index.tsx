@@ -3,6 +3,9 @@ import { Stack, Box, Typography } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import { CategoryBtn } from './styles';
+import { useAppContext } from '../../context/AppContext';
+import BasketballBox from '../../components/BasketballBox';
+import SerumBox from '../../components/SerumBox';
 
 export enum Categories {
     ALL,
@@ -15,6 +18,7 @@ export enum Categories {
 const categoryButtonsList = ['ALL', 'MUTANTS', 'BASKETBALLS', 'SERUMS', 'WEARABLES'];
 
 const LabPageContainer: React.FC = (): JSX.Element => {
+    const [appState, setAppState] = useAppContext();
     const [category, setCategory] = useState<Categories>(Categories.ALL);
 
     return (
@@ -38,6 +42,26 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             {item}
                         </CategoryBtn>
                     ))}
+                </Stack>
+                <Stack spacing={3}>
+                    <Typography fontSize={32} fontWeight={700} color="white">
+                        Basketballs
+                    </Typography>
+                    <Stack direction="row" spacing={4}>
+                        {appState.basketballsList.map((item) => (
+                            <BasketballBox item={item} selectable />
+                        ))}
+                    </Stack>
+                </Stack>
+                <Stack spacing={3}>
+                    <Typography fontSize={32} fontWeight={700} color="white">
+                        Serums
+                    </Typography>
+                    <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
+                        {appState.serumsList.map((item) => (
+                            <SerumBox item={item} selectable />
+                        ))}
+                    </Stack>
                 </Stack>
             </Stack>
         </Container>

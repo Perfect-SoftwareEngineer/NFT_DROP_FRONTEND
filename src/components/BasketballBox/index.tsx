@@ -32,7 +32,7 @@ const BasketballBox: React.FC<ComponentProps> = ({ item, selectable = false }): 
                 <Typography fontSize={16} fontWeight={700}>
                     {item.title}
                 </Typography>
-                <Typography fontSize={16} fontWeight={400}>
+                <Typography fontSize={16} fontWeight={400} color="#979797">
                     No traits
                 </Typography>
             </Stack>
