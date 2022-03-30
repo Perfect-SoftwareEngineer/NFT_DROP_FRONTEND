@@ -19,7 +19,7 @@ const menuList = [
     { title: 'Home', url: '/' },
     { title: 'Curry Shop', url: '/curryshop' },
     { title: 'Mixology Room', url: '/mixology' },
-    { title: 'The Lab', url: '#' },
+    { title: 'The Lab', url: '/lab' },
     { title: 'Curry Counter', url: '/currycounter' },
     { title: 'FAQ', url: '#' },
 ];
@@ -51,7 +51,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                             <Image src={LogoImg} width={40} height={40} alt="Logo" />
                             <Stack direction="row" spacing={2}>
                                 {menuList.map((item, index) => (
-                                    <Link href={item.url} passHref>
+                                    <Link href={item.url} passHref key={`menu-link-${index}`}>
                                         <HeaderMenuBtn selected={router.pathname === item.url}>
                                             <Typography>{item.title}</Typography>
                                         </HeaderMenuBtn>
