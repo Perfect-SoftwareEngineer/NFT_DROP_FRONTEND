@@ -8,23 +8,24 @@ import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {
     item: BasketballItemType;
+    selected?: boolean;
     selectable?: boolean;
+    onSelect?: (id: number) => void;
 };
 
-const BasketballBox: React.FC<ComponentProps> = ({ item, selectable = false }): JSX.Element => {
+const BasketballBox: React.FC<ComponentProps> = ({
+    item,
+    selected = false,
+    selectable = false,
+    onSelect,
+}): JSX.Element => {
     const [appState, setAppState] = useAppContext();
-
-    const onItemselect = () => {
-        let selectedId = item.id;
-        if (appState.selectedBasketballId === item.id) selectedId = -1;
-        setAppState({ ...appState, selectedBasketballId: selectedId });
-    };
 
     return (
         <Container
             spacing={2}
-            selected={appState.selectedBasketballId === item.id}
-            onClick={selectable ? onItemselect : undefined}
+            selected={selected}
+            onClick={selectable && onSelect ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
             <Image src={BasketballImg} width={166} height={166} alt="" className="basketball_img" />

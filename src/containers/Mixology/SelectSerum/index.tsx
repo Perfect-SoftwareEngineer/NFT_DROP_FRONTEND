@@ -6,6 +6,15 @@ import SerumBox from '../../../components/SerumBox';
 const SelectSerum: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
+    const onItemSelect = (id: number) => {
+        let selectedId = [...appState.selectedSerumId];
+        const index = selectedId.indexOf(id);
+        if (index > -1) selectedId.splice(index, 1);
+        else selectedId.push(id);
+
+        if (selectedId.length <= 3) setAppState({ ...appState, selectedSerumId: selectedId });
+    };
+
     return (
         <Stack spacing={3}>
             <Stack spacing={2}>
@@ -30,7 +39,12 @@ const SelectSerum: React.FC = (): JSX.Element => {
                 </Typography>
                 <Stack direction="row" spacing={3}>
                     {appState.serumsList.map((item) => (
-                        <SerumBox item={item} selectable />
+                        <SerumBox
+                            item={item}
+                            selected={appState.selectedSerumId.includes(item.id)}
+                            selectable
+                            onSelect={onItemSelect}
+                        />
                     ))}
                 </Stack>
             </Stack>

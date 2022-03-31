@@ -8,10 +8,12 @@ import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {
     item: SerumItemType;
+    selected?: boolean;
     selectable?: boolean;
+    onSelect?: (id: number) => void;
 };
 
-const SerumBox: React.FC<ComponentProps> = ({ item, selectable = false }): JSX.Element => {
+const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, selectable = false, onSelect }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     const onItemselect = () => {
@@ -26,8 +28,8 @@ const SerumBox: React.FC<ComponentProps> = ({ item, selectable = false }): JSX.E
     return (
         <Container
             spacing={2}
-            selected={appState.selectedSerumId.includes(item.id)}
-            onClick={selectable ? onItemselect : undefined}
+            selected={selected}
+            onClick={selectable && onSelect ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
             <Image src={SerumImg} width={166} height={166} alt="" className="basketball_img" />
