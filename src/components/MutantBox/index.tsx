@@ -2,20 +2,17 @@ import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Container } from './styles';
-import SerumImg from '../../assets/items/serum.png';
-import { SerumItemType } from '../../types';
-import { useAppContext } from '../../context/AppContext';
+import MutantImg from '../../assets/items/mutant.png';
+import { MutantItemType } from '../../types';
 
 type ComponentProps = {
-    item: SerumItemType;
+    item: MutantItemType;
     selected?: boolean;
     selectable?: boolean;
     onSelect?: (id: number) => void;
 };
 
-const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, selectable = false, onSelect }): JSX.Element => {
-    const [appState, setAppState] = useAppContext();
-
+const MutantBox: React.FC<ComponentProps> = ({ item, selected = false, selectable = false, onSelect }): JSX.Element => {
     return (
         <Container
             spacing={2}
@@ -23,7 +20,7 @@ const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, selectable
             onClick={selectable && onSelect ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
-            <Image src={SerumImg} width={166} height={166} alt="" className="serum_img" />
+            <Image src={MutantImg} width={166} height={166} alt="" className="mutant_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
                     {item.title}
@@ -36,4 +33,4 @@ const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, selectable
     );
 };
 
-export default SerumBox;
+export default MutantBox;

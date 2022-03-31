@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import { CategoryBtn } from './styles';
 import { useAppContext } from '../../context/AppContext';
+import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/BasketballBox';
 import SerumBox from '../../components/SerumBox';
 
@@ -42,6 +43,16 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             {item}
                         </CategoryBtn>
                     ))}
+                </Stack>
+                <Stack spacing={3}>
+                    <Typography fontSize={32} fontWeight={700} color="white">
+                        Mutants
+                    </Typography>
+                    <Stack direction="row" spacing={4}>
+                        {appState.mutantsList.map((item) => (
+                            <MutantBox item={item} selectable />
+                        ))}
+                    </Stack>
                 </Stack>
                 <Stack spacing={3}>
                     <Typography fontSize={32} fontWeight={700} color="white">

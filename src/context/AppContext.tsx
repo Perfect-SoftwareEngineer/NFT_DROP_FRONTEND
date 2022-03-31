@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import { BasketballItemType, SerumItemType } from '../types';
+import { BasketballItemType, SerumItemType, MutantItemType } from '../types';
 
 interface AppState {
     mixologyCurStep: number;
@@ -7,6 +7,7 @@ interface AppState {
     selectedBasketballId: number;
     serumsList: Array<SerumItemType>;
     selectedSerumId: Array<number>;
+    mutantsList: Array<MutantItemType>;
 }
 
 const defaultState: AppState = {
@@ -29,6 +30,10 @@ const defaultState: AppState = {
         // { id: 8, title: 'Serum #10931', desc: 'Sesame Street' },
     ],
     selectedSerumId: [],
+    mutantsList: [
+        { id: 0, title: 'Mutant #10923', desc: '3 Sesame Street Traits' },
+        { id: 1, title: 'Mutant #10924', desc: '3 Sesame Street Traits' },
+    ],
 };
 
 type ContextType<TValue> = [TValue, (newValue: TValue) => void];

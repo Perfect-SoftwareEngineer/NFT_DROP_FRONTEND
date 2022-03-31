@@ -10,6 +10,12 @@ export type SerumItemType = {
     desc: string;
 };
 
+export type MutantItemType = {
+    id: number;
+    title: string;
+    desc: string;
+};
+
 export type CurryCounterItemType = {
     name: string;
     label: string;
