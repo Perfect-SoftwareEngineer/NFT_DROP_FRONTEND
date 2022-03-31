@@ -22,6 +22,20 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const [category, setCategory] = useState<Categories>(Categories.ALL);
 
+    const [selectedProductId, setSelectedProductId] = useState<number>();
+
+    const onMutantItemSelect = (id: number) => {
+        setSelectedProductId(id);
+    };
+
+    const onBasketballItemSelect = (id: number) => {
+        setSelectedProductId(id);
+    };
+
+    const onSerumItemSelect = (id: number) => {
+        setSelectedProductId(id);
+    };
+
     return (
         <Container sx={{ paddingY: 5, overflow: 'visible' }}>
             <Stack spacing={5}>
@@ -50,7 +64,12 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                     <Stack direction="row" spacing={4}>
                         {appState.mutantsList.map((item) => (
-                            <MutantBox item={item} selectable />
+                            <MutantBox
+                                item={item}
+                                selected={selectedProductId === item.id}
+                                selectable
+                                onSelect={onMutantItemSelect}
+                            />
                         ))}
                     </Stack>
                 </Stack>
@@ -60,7 +79,12 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                     <Stack direction="row" spacing={4}>
                         {appState.basketballsList.map((item) => (
-                            <BasketballBox item={item} selectable />
+                            <BasketballBox
+                                item={item}
+                                selected={selectedProductId === item.id}
+                                selectable
+                                onSelect={onBasketballItemSelect}
+                            />
                         ))}
                     </Stack>
                 </Stack>
@@ -70,7 +94,12 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                     <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
                         {appState.serumsList.map((item) => (
-                            <SerumBox item={item} selectable />
+                            <SerumBox
+                                item={item}
+                                selected={selectedProductId === item.id}
+                                selectable
+                                onSelect={onSerumItemSelect}
+                            />
                         ))}
                     </Stack>
                 </Stack>

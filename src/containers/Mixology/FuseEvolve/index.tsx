@@ -21,11 +21,14 @@ const FuseEvolve: React.FC = (): JSX.Element => {
                 </Typography>
             </Stack>
             <Stack direction="row" spacing={3}>
-                <BasketballBox item={appState.basketballsList[appState.selectedBasketballId]} selected={true} />
+                <BasketballBox
+                    item={appState.basketballsList.find((item) => item.id === appState.selectedBasketballId)}
+                    selected={true}
+                />
                 {appState.selectedSerumId
                     .sort((a, b) => a - b)
-                    .map((item) => (
-                        <SerumBox item={appState.serumsList[item]} selected={true} />
+                    .map((serumId) => (
+                        <SerumBox item={appState.serumsList.find((item) => item.id === serumId)} selected={true} />
                     ))}
             </Stack>
         </Stack>

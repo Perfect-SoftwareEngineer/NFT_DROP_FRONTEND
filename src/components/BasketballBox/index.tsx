@@ -7,7 +7,7 @@ import { BasketballItemType } from '../../types';
 import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {
-    item: BasketballItemType;
+    item?: BasketballItemType;
     selected?: boolean;
     selectable?: boolean;
     onSelect?: (id: number) => void;
@@ -25,13 +25,13 @@ const BasketballBox: React.FC<ComponentProps> = ({
         <Container
             spacing={2}
             selected={selected}
-            onClick={selectable && onSelect ? () => onSelect(item.id) : undefined}
+            onClick={selectable && onSelect && item ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
             <Image src={BasketballImg} width={166} height={166} alt="" className="basketball_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
-                    {item.title}
+                    {item?.title}
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#979797">
                     No traits
