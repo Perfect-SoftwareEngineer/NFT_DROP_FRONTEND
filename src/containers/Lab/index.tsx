@@ -58,51 +58,57 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                         </CategoryBtn>
                     ))}
                 </Stack>
-                <Stack spacing={3}>
-                    <Typography fontSize={32} fontWeight={700} color="white">
-                        Mutants
-                    </Typography>
-                    <Stack direction="row" spacing={4}>
-                        {appState.mutantsList.map((item) => (
-                            <MutantBox
-                                item={item}
-                                selected={selectedProductId === item.id}
-                                selectable
-                                onSelect={onMutantItemSelect}
-                            />
-                        ))}
+                {(category === Categories.ALL || category === Categories.MUTANTS) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            Mutants
+                        </Typography>
+                        <Stack direction="row" spacing={4}>
+                            {appState.mutantsList.map((item) => (
+                                <MutantBox
+                                    item={item}
+                                    selected={selectedProductId === item.id}
+                                    selectable
+                                    onSelect={onMutantItemSelect}
+                                />
+                            ))}
+                        </Stack>
                     </Stack>
-                </Stack>
-                <Stack spacing={3}>
-                    <Typography fontSize={32} fontWeight={700} color="white">
-                        Basketballs
-                    </Typography>
-                    <Stack direction="row" spacing={4}>
-                        {appState.basketballsList.map((item) => (
-                            <BasketballBox
-                                item={item}
-                                selected={selectedProductId === item.id}
-                                selectable
-                                onSelect={onBasketballItemSelect}
-                            />
-                        ))}
+                )}
+                {(category === Categories.ALL || category === Categories.BASKETBALLS) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            Basketballs
+                        </Typography>
+                        <Stack direction="row" spacing={4}>
+                            {appState.basketballsList.map((item) => (
+                                <BasketballBox
+                                    item={item}
+                                    selected={selectedProductId === item.id}
+                                    selectable
+                                    onSelect={onBasketballItemSelect}
+                                />
+                            ))}
+                        </Stack>
                     </Stack>
-                </Stack>
-                <Stack spacing={3}>
-                    <Typography fontSize={32} fontWeight={700} color="white">
-                        Serums
-                    </Typography>
-                    <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
-                        {appState.serumsList.map((item) => (
-                            <SerumBox
-                                item={item}
-                                selected={selectedProductId === item.id}
-                                selectable
-                                onSelect={onSerumItemSelect}
-                            />
-                        ))}
+                )}
+                {(category === Categories.ALL || category === Categories.SERUMS) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            Serums
+                        </Typography>
+                        <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
+                            {appState.serumsList.map((item) => (
+                                <SerumBox
+                                    item={item}
+                                    selected={selectedProductId === item.id}
+                                    selectable
+                                    onSelect={onSerumItemSelect}
+                                />
+                            ))}
+                        </Stack>
                     </Stack>
-                </Stack>
+                )}
             </Stack>
         </Container>
     );
