@@ -115,7 +115,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             ) : (
-                <ProductDetails />
+                <ProductDetails id={selectedProductId} />
             )}
         </>
     );
