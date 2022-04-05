@@ -36,6 +36,10 @@ export const MintBtn = styled(Button)`
     &:hover {
         background: #ffda31;
     }
+    &:disabled {
+        background: #969aa1;
+        color: black;
+    }
 `;
 
 export const ReserveBtn = styled(Button)`
@@ -47,6 +51,10 @@ export const ReserveBtn = styled(Button)`
     color: #ffca21;
     border: 1px solid #ffca21;
     border-radius: 4px;
+    &:disabled {
+        color: #969aa1;
+        border-color: #969aa1;
+    }
 `;
 
 export const ClaimBtn = styled(Button)`

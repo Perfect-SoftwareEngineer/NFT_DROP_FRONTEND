@@ -6,12 +6,21 @@ import InfoIcon from '../../../assets/curryshop/info.svg';
 
 type ComponentProps = {
     type: number;
+    disabled?: boolean;
     title: string;
     amountLeft: number;
+    inputFieldTitle?: string;
     img: StaticImageData;
 };
 
-const ItemBox: React.FC<ComponentProps> = ({ type, title, amountLeft, img }): JSX.Element => {
+const ItemBox: React.FC<ComponentProps> = ({
+    type,
+    disabled = false,
+    title,
+    amountLeft,
+    inputFieldTitle = '',
+    img,
+}): JSX.Element => {
     return (
         <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
@@ -20,15 +29,22 @@ const ItemBox: React.FC<ComponentProps> = ({ type, title, amountLeft, img }): JS
             <Stack direction="row" justifyContent="space-between">
                 <Typography fontSize={16} fontWeight={700} color="white">
                     {title}
+                    {disabled && (
+                        <Typography fontSize={16} fontWeight={700} color="#FFCA21" display="inline">
+                            {` (Coming Soon)`}
+                        </Typography>
+                    )}
                 </Typography>
-                <Typography fontSize={16} fontWeight={700} color="white">
-                    {`${amountLeft.toLocaleString()} left`}
-                </Typography>
+                <Box>
+                    <Typography fontSize={16} fontWeight={700} color="white">
+                        {`${amountLeft.toLocaleString()} left`}
+                    </Typography>
+                </Box>
             </Stack>
             {(type === 0 || type === 1) && (
                 <Stack spacing={1} marginTop={3}>
                     <Typography fontSize={14} fontWeight={400} color="white">
-                        # of Serums (Max 6)
+                        {inputFieldTitle}
                     </Typography>
                     <AmountInputWrapper sx={{ width: 184 }}>
                         <AmountInputTextField />
@@ -37,7 +53,7 @@ const ItemBox: React.FC<ComponentProps> = ({ type, title, amountLeft, img }): JS
                             fontWeight={400}
                             padding="0 2px 2px"
                             color="black"
-                            borderRadius={0.5}
+                            borderRadius={1}
                             sx={{ background: '#F3F3F3' }}
                         >
                             Max
@@ -47,14 +63,14 @@ const ItemBox: React.FC<ComponentProps> = ({ type, title, amountLeft, img }): JS
             )}
             <Stack spacing={1} marginTop={type === 2 ? 5 : 2}>
                 <Typography fontSize={16} fontWeight={700} color="white">
-                    You have 10/10 reserve mints
+                    {disabled ? 'Currently Unavailable' : 'You have 10/10 reserve mints'}
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={2}>
                     {(type === 0 || type === 1) && (
                         <>
                             <Stack direction="row" alignItems="center" spacing={1}>
-                                <MintBtn>Mint</MintBtn>
-                                <ReserveBtn>Reserve</ReserveBtn>
+                                <MintBtn disabled={disabled}>Mint</MintBtn>
+                                <ReserveBtn disabled={disabled}>Reserve</ReserveBtn>
                             </Stack>
                             <InfoIcon />
                         </>

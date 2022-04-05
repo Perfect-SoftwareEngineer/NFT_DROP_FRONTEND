@@ -43,11 +43,24 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Stack>
                 <Stack direction="row" spacing={4} marginTop={6}>
-                    <ItemBox type={0} title="Mint a Basketball" amountLeft={4000} img={BasketballImg} />
-                    <ItemBox type={1} title="Mint a Serum" amountLeft={1000} img={SerumImg} />
+                    <ItemBox
+                        type={0}
+                        title="Mint or Reserve a Basketball"
+                        amountLeft={4000}
+                        inputFieldTitle="# of Basketball Heads (Max 3)"
+                        img={BasketballImg}
+                    />
+                    <ItemBox
+                        type={1}
+                        disabled
+                        title="Mint or Reserve a Serum"
+                        amountLeft={1000}
+                        inputFieldTitle="# of Serums (Max 6)"
+                        img={SerumImg}
+                    />
                     <ItemBox
                         type={2}
-                        title="Claim your Genesis Curry Flow Seru,"
+                        title="Claim your Genesis Curry Flow Serum"
                         amountLeft={2974}
                         img={GenersisCurryFlowImg}
                     />
