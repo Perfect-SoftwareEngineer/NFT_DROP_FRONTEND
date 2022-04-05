@@ -1,4 +1,29 @@
-import { styled, Stack, Button } from '@mui/material';
+import { styled, Box, Button, TextField } from '@mui/material';
+
+export const AmountInputWrapper = styled(Box)`
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #979797;
+    padding-right: 12px;
+`;
+
+export const AmountInputTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+        height: 40,
+        '& input': {
+            color: 'white',
+            paddingTop: 0,
+            paddingBottom: 2,
+        },
+        '& fieldset': {
+            borderWidth: 0,
+        },
+        '&.Mui-focused fieldset': {
+            borderWidth: 0,
+        },
+    },
+});
 
 export const MintBtn = styled(Button)`
     width: 60px;
