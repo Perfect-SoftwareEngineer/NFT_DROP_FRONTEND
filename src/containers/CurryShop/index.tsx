@@ -3,7 +3,6 @@ import { Stack, Box, Typography } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
-import ItemBox from '../../components/CurryShop/ItemBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import CurryFlowClaimBox from '../../components/CurryShop/CurryFlowClaimBox';
@@ -46,27 +45,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <BasketballMintBox amountLeft={4000} />
                     <SerumMintBox amountLeft={1000} disabled />
                     <CurryFlowClaimBox amountLeft={2974} disabled />
-                    {/* <ItemBox
-                        type={0}
-                        title="Mint or Reserve a Basketball"
-                        amountLeft={4000}
-                        inputFieldTitle="# of Basketball Heads (Max 3)"
-                        img={BasketballImg}
-                    />
-                    <ItemBox
-                        type={1}
-                        disabled
-                        title="Mint or Reserve a Serum"
-                        amountLeft={1000}
-                        inputFieldTitle="# of Serums (Max 6)"
-                        img={SerumImg}
-                    />
-                    <ItemBox
-                        type={2}
-                        title="Claim your Genesis Curry Flow Serum"
-                        amountLeft={2974}
-                        img={GenersisCurryFlowImg}
-                    /> */}
                 </Stack>
             </Container>
         </>
