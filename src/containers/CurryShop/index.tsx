@@ -5,7 +5,7 @@ import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
 import ItemBox from '../../components/CurryShop/ItemBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
-import SerumImg from '../../assets/curryshop/serum.png';
+import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import GenersisCurryFlowImg from '../../assets/curryshop/genesis-curry-flow.png';
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
@@ -44,6 +44,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 </Stack>
                 <Stack direction="row" spacing={4} marginTop={6}>
                     <BasketballMintBox amountLeft={4000} />
+                    <SerumMintBox amountLeft={1000} disabled />
                     {/* <ItemBox
                         type={0}
                         title="Mint or Reserve a Basketball"

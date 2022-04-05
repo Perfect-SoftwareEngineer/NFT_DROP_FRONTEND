@@ -3,22 +3,22 @@ import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MintBtn, ReserveBtn } from './styles';
 import InfoIcon from '../../../assets/curryshop/info.svg';
-import BasketballImg from '../../../assets/curryshop/basketball.png';
+import SerumImg from '../../../assets/curryshop/serum.png';
 
 type ComponentProps = {
     amountLeft: number;
     disabled?: boolean;
 };
 
-const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
+const SerumMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
     return (
         <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
-                <Image src={BasketballImg} layout="responsive" alt="" />
+                <Image src={SerumImg} layout="responsive" alt="" />
             </Box>
             <Stack direction="row" justifyContent="space-between" marginTop={2}>
                 <Typography fontSize={16} fontWeight={700} color="white">
-                    Mint or Reserve a Basketball
+                    Mint or Reserve a Serum
                     {disabled && (
                         <Typography fontSize={16} fontWeight={700} color="#FFCA21" display="inline">
                             {` (Coming Soon)`}
@@ -33,7 +33,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
             </Stack>
             <Stack spacing={1} marginTop={3}>
                 <Typography fontSize={14} fontWeight={400} color="white">
-                    # of Basketball Heads (Max 3)
+                    # of Serums (Max 6)
                 </Typography>
                 <AmountInputWrapper sx={{ width: 184 }}>
                     <AmountInputTextField />
@@ -65,4 +65,4 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     );
 };
 
-export default BasketballMintBox;
+export default SerumMintBox;
