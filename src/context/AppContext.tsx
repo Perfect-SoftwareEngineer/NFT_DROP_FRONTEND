@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import { BasketballItemType, SerumItemType, MutantItemType } from '../types';
+import { BasketballItemType, SerumItemType, MutantItemType, WearableItemType } from '../types';
 
 interface AppState {
     mixologyCurStep: number;
@@ -8,6 +8,7 @@ interface AppState {
     serumsList: Array<SerumItemType>;
     selectedSerumId: Array<number>;
     mutantsList: Array<MutantItemType>;
+    wearablesList: Array<WearableItemType>;
 }
 
 const defaultState: AppState = {
@@ -33,6 +34,12 @@ const defaultState: AppState = {
     mutantsList: [
         { id: 300, title: 'Mutant #10923', desc: '3 Sesame Street Traits' },
         { id: 301, title: 'Mutant #10924', desc: '3 Sesame Street Traits' },
+    ],
+    wearablesList: [
+        { id: 400, url: '/assets/nft-items/sandbox.png', title: 'Genesis Curry Flow', desc: 'Sandbox' },
+        { id: 401, url: '/assets/nft-items/galagames.png', title: 'Genesis Curry Flow', desc: 'Galagames' },
+        { id: 402, url: '/assets/nft-items/decentraland.png', title: 'Genesis Curry Flow', desc: 'Decentraland' },
+        { id: 403, url: '/assets/nft-items/rkl.png', title: 'Genesis Curry Flow', desc: 'RKL' },
     ],
 };
 

@@ -16,6 +16,13 @@ export type MutantItemType = {
     desc: string;
 };
 
+export type WearableItemType = {
+    id: number;
+    url: string;
+    title: string;
+    desc: string;
+};
+
 export type CurryCounterItemType = {
     name: string;
     label: string;

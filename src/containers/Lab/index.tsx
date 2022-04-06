@@ -68,12 +68,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     Mutants
                                 </Typography>
                                 <Stack direction="row" spacing={4}>
-                                    {appState.mutantsList.map((item) => (
+                                    {appState.mutantsList.map((item, index) => (
                                         <MutantBox
                                             item={item}
                                             selected={selectedProductId === item.id}
                                             selectable
                                             onSelect={onMutantItemSelect}
+                                            key={`mutant_box_${index}`}
                                         />
                                     ))}
                                 </Stack>
@@ -85,12 +86,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     Basketballs
                                 </Typography>
                                 <Stack direction="row" spacing={4}>
-                                    {appState.basketballsList.map((item) => (
+                                    {appState.basketballsList.map((item, index) => (
                                         <BasketballBox
                                             item={item}
                                             selected={selectedProductId === item.id}
                                             selectable
                                             onSelect={onBasketballItemSelect}
+                                            key={`basketball_box_${index}`}
                                         />
                                     ))}
                                 </Stack>
@@ -102,20 +104,30 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     Serums
                                 </Typography>
                                 <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
-                                    {appState.serumsList.map((item) => (
+                                    {appState.serumsList.map((item, index) => (
                                         <SerumBox
                                             item={item}
                                             selected={selectedProductId === item.id}
                                             selectable
                                             onSelect={onSerumItemSelect}
+                                            key={`serum_box_${index}`}
                                         />
                                     ))}
                                 </Stack>
                             </Stack>
                         )}
-                        <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
-                            <WearableBox />
-                        </Stack>
+                        {(category === Categories.ALL || category === Categories.WEARABLES) && (
+                            <Stack spacing={3}>
+                                <Typography fontSize={32} fontWeight={700} color="white">
+                                    Wearables
+                                </Typography>
+                                <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
+                                    {appState.wearablesList.map((item, index) => (
+                                        <WearableBox item={item} selectable key={`wearable_box_${index}`} />
+                                    ))}
+                                </Stack>
+                            </Stack>
+                        )}
                     </Stack>
                 </Container>
             ) : (

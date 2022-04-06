@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Container } from './styles';
-import { SerumItemType } from '../../types';
+import { WearableItemType } from '../../types';
 import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {
-    item?: SerumItemType;
+    item: WearableItemType;
     selected?: boolean;
     selectable?: boolean;
     onSelect?: (id: number) => void;
@@ -27,13 +27,13 @@ const WearableBox: React.FC<ComponentProps> = ({
             onClick={selectable && onSelect && item ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
-            <Image src="/assets/nft-items/decentraland.png" width={166} height={166} alt="" className="wearable_img" />
+            <Image src={item.url} width={166} height={166} alt="" className="wearable_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
-                    Genesis Curry Flow
+                    {item.title}
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#979797">
-                    Sandbox
+                    {item.desc}
                 </Typography>
             </Stack>
         </Container>
