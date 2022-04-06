@@ -7,6 +7,7 @@ import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/BasketballBox';
 import SerumBox from '../../components/SerumBox';
+import WearableBox from '../../components/WearableBox';
 import ProductDetails from './ProductDetails';
 
 export enum Categories {
@@ -112,6 +113,9 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </Stack>
                             </Stack>
                         )}
+                        <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
+                            <WearableBox />
+                        </Stack>
                     </Stack>
                 </Container>
             ) : (
