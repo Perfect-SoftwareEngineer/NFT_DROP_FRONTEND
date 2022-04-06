@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MintBtn, ReserveBtn } from './styles';
@@ -11,6 +11,13 @@ type ComponentProps = {
 };
 
 const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
+    const [mintAmount, setMintAmount] = useState<string>('');
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        if (!isNaN(Number(value))) setMintAmount(value);
+    };
+
     return (
         <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
@@ -36,7 +43,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
                     # of Basketball Heads (Max 3)
                 </Typography>
                 <AmountInputWrapper sx={{ width: 184 }}>
-                    <AmountInputTextField />
+                    <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
                     <Typography
                         fontSize={12}
                         fontWeight={400}
