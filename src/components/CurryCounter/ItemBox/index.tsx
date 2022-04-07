@@ -1,7 +1,7 @@
 import React from 'react';
-import { Stack, Box, Grid, Typography } from '@mui/material';
+import { Stack, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
-import { ReserveBtn } from './styles';
+import { ImageBox, ReserveBtn } from './styles';
 import InfoIcon from '../../../assets/currycounter/info.svg';
 import { CurryCounterItemType } from '../../../types';
 
@@ -23,9 +23,9 @@ const CurryCounterItem: React.FC<ComponentProps> = ({ data }): JSX.Element => {
         >
             <Grid item xs={9}>
                 <Stack direction="row" alignItems="center" spacing={3}>
-                    <Box width={80} height={80} borderRadius={2} position="relative" overflow="hidden">
-                        <Image src="/assets/nft-items/basketball.png" layout="fill" alt="" />
-                    </Box>
+                    <ImageBox>
+                        <Image src="/assets/nft-items/basketball.png" width={80} height={80} className="img" alt="" />
+                    </ImageBox>
                     <Stack spacing={0.5}>
                         <Typography fontSize={16} fontWeight={600} color="white">
                             {data.name}
