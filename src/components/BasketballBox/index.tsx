@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Container } from './styles';
-import BasketballImg from '../../assets/items/basketball.png';
 import { BasketballItemType } from '../../types';
 import { useAppContext } from '../../context/AppContext';
 
@@ -28,7 +27,7 @@ const BasketballBox: React.FC<ComponentProps> = ({
             onClick={selectable && onSelect && item ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
-            <Image src={BasketballImg} width={166} height={166} alt="" className="basketball_img" />
+            <Image src="/assets/nft-items/basketball.png" width={166} height={166} alt="" className="basketball_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
                     {item?.title}

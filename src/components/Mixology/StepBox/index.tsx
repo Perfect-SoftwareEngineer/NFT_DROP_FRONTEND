@@ -1,9 +1,6 @@
 import React from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import BasketballImg from '../../../assets/items/basketball.png';
-import SerumImg from '../../../assets/items/serum.png';
-import MutantImg from '../../../assets/items/mutant.png';
 import StepCompleteIcon from '../../../assets/mixology/step-complete.svg';
 import { useAppContext } from '../../../context/AppContext';
 
@@ -12,9 +9,9 @@ type ComponentProps = {
 };
 
 const stepsList = [
-    { img: BasketballImg, title: 'Select a Basketball' },
-    { img: SerumImg, title: 'Select up to 3 Serums' },
-    { img: MutantImg, title: 'Fuse to Evolve' },
+    { img: "/assets/nft-items/basketball.png", title: 'Select a Basketball' },
+    { img: "/assets/nft-items/serum.png", title: 'Select up to 3 Serums' },
+    { img: "/assets/nft-items/mutant.png", title: 'Fuse to Evolve' },
 ];
 
 const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {

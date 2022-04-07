@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Container } from './styles';
-import SerumImg from '../../assets/items/serum.png';
 import { SerumItemType } from '../../types';
 import { useAppContext } from '../../context/AppContext';
 
@@ -23,7 +22,7 @@ const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, selectable
             onClick={selectable && onSelect && item ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
-            <Image src={SerumImg} width={166} height={166} alt="" className="serum_img" />
+            <Image src="/assets/nft-items/serum.png" width={166} height={166} alt="" className="serum_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
                     {item?.title}

@@ -3,9 +3,6 @@ import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Container from '../../Container';
 import { ImageBox } from './styles';
-import BasketballImg from '../../../assets/items/basketball.png';
-import SerumImg from '../../../assets/items/serum.png';
-import MutantImg from '../../../assets/items/mutant.png';
 import UserIcon from '../../../assets/thelabs/user.svg';
 import TotalCountIcon from '../../../assets/thelabs/totalcount.svg';
 import { useAppContext } from '../../../context/AppContext';
@@ -19,9 +16,9 @@ export enum Categories {
 }
 
 const categoryInfoList = [
-    { img: MutantImg, title: 'Mutant' },
-    { img: BasketballImg, title: 'Basketball' },
-    { img: SerumImg, title: 'Serum' },
+    { img: '/assets/nft-items/mutant.png', title: 'Mutant' },
+    { img: '/assets/nft-items/basketball.png', title: 'Basketball' },
+    { img: '/assets/nft-items/serum.png', title: 'Serum' },
 ];
 
 type ComponentProps = {

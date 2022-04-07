@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Container } from './styles';
-import MutantImg from '../../assets/items/mutant.png';
 import { MutantItemType } from '../../types';
 
 type ComponentProps = {
@@ -20,7 +19,7 @@ const MutantBox: React.FC<ComponentProps> = ({ item, selected = false, selectabl
             onClick={selectable && onSelect ? () => onSelect(item.id) : undefined}
             selectable={selectable}
         >
-            <Image src={MutantImg} width={166} height={166} alt="" className="mutant_img" />
+            <Image src="/assets/nft-items/mutant.png" width={166} height={166} alt="" className="mutant_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
                     {item.title}
