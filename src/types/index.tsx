@@ -27,7 +27,7 @@ export type WearableItemType = {
 export type CurryCounterItemType = {
     name: string;
     label: string;
-    opponentTeamLogo: StaticImageData;
+    opponentTeamLogo: string;
     opponentTeam: string;
     date: string;
     cost: number;

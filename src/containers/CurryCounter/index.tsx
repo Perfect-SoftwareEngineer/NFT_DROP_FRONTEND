@@ -5,8 +5,6 @@ import Image from 'next/image';
 import BannerImg from '../../assets/currycounter/banner.png';
 import { LeftGradientBox } from './styles';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
-import BostonCelticsLogo from '../../assets/teams/boston-celtics.png';
-import ChicagoBullsLogo from '../../assets/teams/chicago-bulls.png';
 import CurryCounterItem from '../../components/CurryCounter/ItemBox';
 import { CurryCounterItemType } from '../../types';
 
@@ -14,7 +12,7 @@ const curryCounterList: Array<CurryCounterItemType> = [
     {
         name: 'Stephen Curry',
         label: 'Golden State Warriors',
-        opponentTeamLogo: BostonCelticsLogo,
+        opponentTeamLogo: '/assets/teams/boston-celtics.png',
         opponentTeam: 'Boston Celtics',
         date: '03/04/22',
         cost: 0,
@@ -23,7 +21,7 @@ const curryCounterList: Array<CurryCounterItemType> = [
     {
         name: 'Stephen Curry',
         label: 'Golden State Warriors',
-        opponentTeamLogo: ChicagoBullsLogo,
+        opponentTeamLogo: '/assets/teams/chicago-bulls.png',
         opponentTeam: 'Chicago Bulls',
         date: '03/07/22',
         cost: 1,
@@ -32,7 +30,7 @@ const curryCounterList: Array<CurryCounterItemType> = [
     {
         name: 'Stephen Curry',
         label: 'Golden State Warriors',
-        opponentTeamLogo: BostonCelticsLogo,
+        opponentTeamLogo: '/assets/teams/boston-celtics.png',
         opponentTeam: 'Boston Celtics',
         date: '03/10/22',
         cost: 4,
@@ -41,7 +39,7 @@ const curryCounterList: Array<CurryCounterItemType> = [
     {
         name: 'Stephen Curry',
         label: 'Golden State Warriors',
-        opponentTeamLogo: ChicagoBullsLogo,
+        opponentTeamLogo: '/assets/teams/chicago-bulls.png',
         opponentTeam: 'Chicago Bulls',
         date: '03/13/22',
         cost: 2.3,
