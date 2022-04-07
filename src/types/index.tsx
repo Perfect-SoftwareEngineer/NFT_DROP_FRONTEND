@@ -18,6 +18,7 @@ export type MutantItemType = {
 
 export type WearableItemType = {
     id: number;
+    type: number;
     url: string;
     title: string;
     desc: string;

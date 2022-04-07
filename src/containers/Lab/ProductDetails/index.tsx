@@ -19,6 +19,10 @@ const categoryInfoList = [
     { img: '/assets/nft-items/mutant.png', title: 'Mutant' },
     { img: '/assets/nft-items/basketball.png', title: 'Basketball' },
     { img: '/assets/nft-items/serum.png', title: 'Serum' },
+    { img: '/assets/nft-items/sandbox.png', title: 'Genesis Curry Flow' },
+    { img: '/assets/nft-items/galagames.png', title: 'Genesis Curry Flow' },
+    { img: '/assets/nft-items/decentraland.png', title: 'Genesis Curry Flow' },
+    { img: '/assets/nft-items/rkl.png', title: 'Genesis Curry Flow' },
 ];
 
 type ComponentProps = {
@@ -39,6 +43,13 @@ const ProductDetails: React.FC<ComponentProps> = ({ id }): JSX.Element => {
 
         index = appState.serumsList.findIndex((item) => item.id === id);
         if (index !== -1) return { type: Categories.SERUMS, title: appState.serumsList[index].title };
+
+        index = appState.wearablesList.findIndex((item) => item.id === id);
+        if (index !== -1)
+            return {
+                type: Categories.WEARABLES + appState.wearablesList[index].type,
+                title: appState.wearablesList[index].title,
+            };
 
         return { type: Categories.NONE, title: '' };
     };

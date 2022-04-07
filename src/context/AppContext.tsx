@@ -36,10 +36,34 @@ const defaultState: AppState = {
         { id: 301, title: 'Mutant #10924', desc: '3 Sesame Street Traits' },
     ],
     wearablesList: [
-        { id: 400, url: '/assets/nft-items/sandbox.png', title: 'Genesis Curry Flow', desc: 'Sandbox' },
-        { id: 401, url: '/assets/nft-items/galagames.png', title: 'Genesis Curry Flow', desc: 'Galagames' },
-        { id: 402, url: '/assets/nft-items/decentraland.png', title: 'Genesis Curry Flow', desc: 'Decentraland' },
-        { id: 403, url: '/assets/nft-items/rkl.png', title: 'Genesis Curry Flow', desc: 'RKL' },
+        {
+            id: 400,
+            type: 0,
+            url: '/assets/nft-items/sandbox.png',
+            title: 'Genesis Curry Flow',
+            desc: 'Sandbox',
+        },
+        {
+            id: 401,
+            type: 1,
+            url: '/assets/nft-items/galagames.png',
+            title: 'Genesis Curry Flow',
+            desc: 'Galagames',
+        },
+        {
+            id: 402,
+            type: 2,
+            url: '/assets/nft-items/decentraland.png',
+            title: 'Genesis Curry Flow',
+            desc: 'Decentraland',
+        },
+        {
+            id: 403,
+            type: 3,
+            url: '/assets/nft-items/rkl.png',
+            title: 'Genesis Curry Flow',
+            desc: 'RKL',
+        },
     ],
 };
 

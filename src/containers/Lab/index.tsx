@@ -38,6 +38,10 @@ const LabPageContainer: React.FC = (): JSX.Element => {
         setSelectedProductId(id);
     };
 
+    const onWearableItemSelect = (id: number) => {
+        setSelectedProductId(id);
+    };
+
     return (
         <>
             {selectedProductId === -1 ? (
@@ -123,7 +127,12 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                                 <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
                                     {appState.wearablesList.map((item, index) => (
-                                        <WearableBox item={item} selectable key={`wearable_box_${index}`} />
+                                        <WearableBox
+                                            item={item}
+                                            selectable
+                                            onSelect={onWearableItemSelect}
+                                            key={`wearable_box_${index}`}
+                                        />
                                     ))}
                                 </Stack>
                             </Stack>
