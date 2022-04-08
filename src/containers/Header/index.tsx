@@ -15,13 +15,19 @@ import { connect } from '../../web3/connect';
 
 type ComponentProps = {};
 
-const menuList = [
+const appMenuList = [
     { title: 'Home', url: '/' },
     { title: 'Curry Shop', url: '/curryshop' },
     { title: 'Mixology Room', url: '/mixology' },
     { title: 'The Lab', url: '/lab' },
     { title: 'Curry Counter', url: '/currycounter' },
     { title: 'FAQ', url: '#' },
+];
+
+const externalLinksList = [
+    { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
+    { title: 'Discord', url: '#', icon: <DiscordIcon /> },
+    { title: 'Twitter', url: '#', icon: <TwitterIcon /> },
 ];
 
 const Header: React.FC<ComponentProps> = ({}) => {
@@ -58,8 +64,8 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         <Stack direction="row" alignItems="center" spacing={5}>
                             <Image src={LogoImg} width={40} height={40} alt="Logo" />
                             <Stack direction="row" spacing={2}>
-                                {menuList.map((item, index) => (
-                                    <Link href={item.url} passHref key={`menu-link-${index}`}>
+                                {appMenuList.map((item, index) => (
+                                    <Link href={item.url} passHref key={`app-menu-link-${index}`}>
                                         <HeaderMenuBtn selected={router.pathname === item.url}>
                                             <Typography>{item.title}</Typography>
                                         </HeaderMenuBtn>
@@ -68,15 +74,13 @@ const Header: React.FC<ComponentProps> = ({}) => {
                             </Stack>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={2}>
-                            <IconButton>
-                                <OpenseaIcon />
-                            </IconButton>
-                            <IconButton>
-                                <DiscordIcon />
-                            </IconButton>
-                            <IconButton>
-                                <TwitterIcon />
-                            </IconButton>
+                            {externalLinksList.map((item, index) => (
+                                <Link href={item.url} passHref key={`external-link-${index}`}>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <IconButton>{item.icon}</IconButton>
+                                    </a>
+                                </Link>
+                            ))}
                             <ConnectWalletBtn
                                 onClick={() => {
                                     if (!active) setOpenConnectWalletDlg(true);
@@ -91,13 +95,38 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         direction="row"
                         alignItems="center"
                         justifyContent="flex-end"
+                        spacing={2.5}
                         display={{ xs: 'flex', md: 'none' }}
                     >
+                        <ConnectWalletBtn
+                            onClick={() => {
+                                if (!active) setOpenConnectWalletDlg(true);
+                            }}
+                        >
+                            {active ? 'CONNECTED' : 'CONNECT WALLET'}
+                        </ConnectWalletBtn>
                         <StyledBurger open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
                             <div className="menu_line" />
                             <div className="menu_line" />
                             <div className="menu_line" />
-                            <BurgerMenuBox spacing={2} open={menuOpen}></BurgerMenuBox>
+                            <BurgerMenuBox spacing={2} open={menuOpen}>
+                                {appMenuList.map((item, index) => (
+                                    <Link href={item.url} passHref key={`app-menu-link-${index}`}>
+                                        <Typography fontSize={14} fontWeight={500}>
+                                            {item.title}
+                                        </Typography>
+                                    </Link>
+                                ))}
+                                {externalLinksList.map((item, index) => (
+                                    <Link href={item.url} passHref key={`external-link-${index}`}>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography fontSize={14} fontWeight={500}>
+                                                {item.title}
+                                            </Typography>
+                                        </a>
+                                    </Link>
+                                ))}
+                            </BurgerMenuBox>
                         </StyledBurger>
                     </Stack>
                 </Container>

@@ -38,7 +38,6 @@ export const StyledBurger = styled('div')<{ open: boolean }>`
         display: flex;
         justify-content: space-around;
         flex-flow: column nowrap;
-        margin-left: 20px;
     }
 
     div.menu_line {
@@ -65,10 +64,10 @@ export const StyledBurger = styled('div')<{ open: boolean }>`
 `;
 
 export const BurgerMenuBox = styled(Stack)<{ open: boolean }>`
-    width: 240px;
+    width: 160px;
     padding: 16px;
     position: absolute;
-    top: 100%;
+    top: 120%;
     right: 0;
     border-radius: 8px;
     background: #161819;
