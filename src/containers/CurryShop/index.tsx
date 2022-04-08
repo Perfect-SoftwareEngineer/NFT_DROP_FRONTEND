@@ -41,7 +41,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         </Typography>
                     </Stack>
                 </Stack>
-                <Stack direction="row" spacing={4} marginTop={6}>
+                <Stack direction="row" alignItems="flex-start" spacing={4} marginTop={6}>
                     <BasketballMintBox amountLeft={4000} />
                     <SerumMintBox amountLeft={1000} disabled />
                     <CurryFlowClaimBox amountLeft={2974} disabled />

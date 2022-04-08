@@ -58,7 +58,7 @@ const SerumMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }
             </Stack>
             <Stack spacing={1} marginTop={2}>
                 <Typography fontSize={16} fontWeight={700} color="white">
-                    {disabled ? 'Currently Unavailable' : 'You have 10/10 reserve mints'}
+                    {disabled ? 'Coming soon' : 'You have 10/10 reserve mints'}
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={2}>
                     <Stack direction="row" alignItems="center" spacing={1}>
