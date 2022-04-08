@@ -3,7 +3,7 @@ import { Stack, Box, Typography, IconButton, Dialog, DialogTitle, DialogContent 
 import Container from '../Container';
 import Image from 'next/image';
 import LogoImg from '../../assets/curry-logo.png';
-import { HeaderMenuBtn, ConnectWalletBtn } from './styles';
+import { HeaderMenuBtn, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import OpenseaIcon from '../../assets/opensea.svg';
@@ -29,6 +29,8 @@ const Header: React.FC<ComponentProps> = ({}) => {
     const [openConnectWalletDlg, setOpenConnectWalletDlg] = useState(false);
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
+    const [menuOpen, setMenuOpen] = useState(false);
+
     const onConnect = (data: any) => {
         if (data.type === 'Metamask') {
             connect(activate)
@@ -45,8 +47,14 @@ const Header: React.FC<ComponentProps> = ({}) => {
     return (
         <>
             <Box sx={{ background: '#1B1C22' }}>
-                <Container>
-                    <Stack height={72} direction="row" alignItems="center" justifyContent="space-between">
+                <Container sx={{ overflow: 'visible' }}>
+                    <Stack
+                        height={72}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        display={{ xs: 'none', md: 'flex' }}
+                    >
                         <Stack direction="row" alignItems="center" spacing={5}>
                             <Image src={LogoImg} width={40} height={40} alt="Logo" />
                             <Stack direction="row" spacing={2}>
@@ -77,6 +85,20 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                 {active ? 'CONNECTED' : 'CONNECT WALLET'}
                             </ConnectWalletBtn>
                         </Stack>
+                    </Stack>
+                    <Stack
+                        height={72}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="flex-end"
+                        display={{ xs: 'flex', md: 'none' }}
+                    >
+                        <StyledBurger open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+                            <div className="menu_line" />
+                            <div className="menu_line" />
+                            <div className="menu_line" />
+                            <BurgerMenuBox spacing={2} open={menuOpen}></BurgerMenuBox>
+                        </StyledBurger>
                     </Stack>
                 </Container>
             </Box>
