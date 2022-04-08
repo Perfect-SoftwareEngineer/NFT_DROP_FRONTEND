@@ -25,6 +25,19 @@ export const AmountInputTextField = styled(TextField)({
     },
 });
 
+export const MaxBtn = styled(Button)`
+    min-width: 0;
+    width: 32px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+    background: white;
+    &:hover {
+        background: #f0f0f0;
+    }
+`;
+
 export const MintBtn = styled(Button)`
     width: 60px;
     height: 36px;

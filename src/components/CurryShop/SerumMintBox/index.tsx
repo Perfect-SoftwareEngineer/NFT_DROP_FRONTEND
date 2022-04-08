@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import { AmountInputWrapper, AmountInputTextField, MintBtn, ReserveBtn } from './styles';
+import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../styles';
 import InfoIcon from '../../../assets/curryshop/info.svg';
 import SerumImg from '../../../assets/curryshop/serum.png';
 
@@ -10,12 +10,14 @@ type ComponentProps = {
     disabled?: boolean;
 };
 
+const MAX_VAL = 6;
+
 const SerumMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
     const [mintAmount, setMintAmount] = useState<string>('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        if (!isNaN(Number(value))) setMintAmount(value);
+        if (!isNaN(Number(value)) && Number(value) <= MAX_VAL) setMintAmount(value);
     };
 
     return (
@@ -44,16 +46,7 @@ const SerumMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }
                 </Typography>
                 <AmountInputWrapper sx={{ width: 184 }}>
                     <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
-                    <Typography
-                        fontSize={12}
-                        fontWeight={400}
-                        padding="0 2px 2px"
-                        color="black"
-                        borderRadius={1}
-                        sx={{ background: '#F3F3F3' }}
-                    >
-                        Max
-                    </Typography>
+                    <MaxBtn onClick={() => setMintAmount(MAX_VAL.toString())}>Max</MaxBtn>
                 </AmountInputWrapper>
             </Stack>
             <Stack spacing={1} marginTop={2}>
