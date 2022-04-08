@@ -20,7 +20,7 @@ const FuseEvolve: React.FC = (): JSX.Element => {
                     </Typography>
                 </Typography>
             </Stack>
-            <Stack direction="row" spacing={3}>
+            <Stack direction="row" paddingBottom={20} spacing={3}>
                 <BasketballBox
                     item={appState.basketballsList.find((item) => item.id === appState.selectedBasketballId)}
                     selected={true}
