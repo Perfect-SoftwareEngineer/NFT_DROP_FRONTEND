@@ -47,7 +47,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
             {selectedProductId === -1 ? (
                 <Container sx={{ paddingY: 5, overflow: 'visible' }}>
                     <Stack spacing={5}>
-                        <Stack direction="row" spacing={2}>
+                        <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
                             <CounterBox title="MY BASKETBALLS" value={3} />
                             <CounterBox title="MY SERUMS" value={9} />
                             <CounterBox title="MUTANT BASKETBALLS" value={1} />
@@ -55,7 +55,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                         <Typography fontSize={48} fontWeight={700} color="white">
                             The Lab
                         </Typography>
-                        <Stack direction="row" spacing={2}>
+                        <Stack
+                            direction="row"
+                            flexWrap="wrap"
+                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                            columnGap={2}
+                            rowGap={2}
+                        >
                             {categoryButtonsList.map((item, index) => (
                                 <CategoryBtn
                                     key={`category-btn-${index}`}
@@ -71,7 +77,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={32} fontWeight={700} color="white">
                                     Mutants
                                 </Typography>
-                                <Stack direction="row" spacing={4}>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
                                     {appState.mutantsList.map((item, index) => (
                                         <MutantBox
                                             item={item}
@@ -89,7 +101,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={32} fontWeight={700} color="white">
                                     Basketballs
                                 </Typography>
-                                <Stack direction="row" spacing={4}>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
                                     {appState.basketballsList.map((item, index) => (
                                         <BasketballBox
                                             item={item}
@@ -107,7 +125,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={32} fontWeight={700} color="white">
                                     Serums
                                 </Typography>
-                                <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
                                     {appState.serumsList.map((item, index) => (
                                         <SerumBox
                                             item={item}
@@ -125,7 +149,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={32} fontWeight={700} color="white">
                                     Wearables
                                 </Typography>
-                                <Stack direction="row" flexWrap="wrap" columnGap={4} rowGap={4}>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
                                     {appState.wearablesList.map((item, index) => (
                                         <WearableBox
                                             item={item}
