@@ -58,7 +58,7 @@ const ProductDetails: React.FC<ComponentProps> = ({ id }): JSX.Element => {
 
     return (
         <Container sx={{ paddingY: 8 }}>
-            <Stack direction="row" justifyContent="center" spacing={6}>
+            <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="center" spacing={6}>
                 <ImageBox>
                     <Image
                         src={categoryInfoList[categoryInfo.type].img}
@@ -72,7 +72,7 @@ const ProductDetails: React.FC<ComponentProps> = ({ id }): JSX.Element => {
                     <Typography fontSize={16} fontWeight={600} color="white">
                         Curry Brand
                     </Typography>
-                    <Typography fontSize={48} fontWeight={700} color="white" marginTop={1}>
+                    <Typography fontSize={48} fontWeight={700} lineHeight={1} color="white" marginTop={1}>
                         {categoryInfo.title}
                     </Typography>
                     <Stack direction="row" alignItems="center" spacing={3.5} marginTop={3}>
