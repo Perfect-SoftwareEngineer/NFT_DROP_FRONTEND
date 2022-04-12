@@ -56,7 +56,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <CounterBox title="MY SERUMS" value={0} />
                 </Stack>
                 <Stack marginTop={4} spacing={3}>
-                    <Typography fontSize={48} fontWeight={700} color="white">
+                    <Typography fontSize={48} fontWeight={700} lineHeight={1} color="white">
                         Get a Basketball or Serum
                     </Typography>
                     <Stack>
@@ -68,7 +68,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         </Typography>
                     </Stack>
                 </Stack>
-                <Stack direction="row" alignItems="flex-start" spacing={4} marginTop={6}>
+                <Stack direction={{ xs: 'column', md: 'row' }} alignItems="flex-start" spacing={4} marginTop={6}>
                     <BasketballMintBox amountLeft={supplyLeft} />
                     <SerumMintBox amountLeft={1000} disabled />
                     <CurryFlowClaimBox amountLeft={2974} disabled />
