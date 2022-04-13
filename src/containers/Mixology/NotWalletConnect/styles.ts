@@ -12,4 +12,11 @@ export const ConnectMetamaskBtn = styled(Button)`
     &:hover {
         background: #dddddd;
     }
+    ${(props) => props.theme.breakpoints.down('md')} {
+        width: 60%;
+    }
+    ${(props) => props.theme.breakpoints.down('sm')} {
+        width: 80%;
+    height: 72px;
+    }
 `;
