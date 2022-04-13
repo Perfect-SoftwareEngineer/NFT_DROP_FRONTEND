@@ -51,14 +51,16 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     return (
         <>
             <Box position="relative">
-                <Image src={BannerImg} layout="responsive" alt="" />
+                <Box height={{ xs: 240, md: 300 }}>
+                    <Image src={BannerImg} layout="fill" objectFit="cover" alt="" />
+                </Box>
                 <LeftGradientBox />
                 <Stack position="absolute" justifyContent="center" sx={{ inset: 0 }}>
                     <Container>
                         <Typography fontSize={48} fontWeight={700}>
                             Curry Counter
                         </Typography>
-                        <Typography fontSize={16} fontWeight={400} width="40%" marginTop={1}>
+                        <Typography width={{ xs: '100%', md: '40%' }} fontSize={16} fontWeight={400} marginTop={1}>
                             For every 3 point shot Stephen Curry makes in the NBA Playoffs, a new Basketball mint is
                             created.
                         </Typography>
