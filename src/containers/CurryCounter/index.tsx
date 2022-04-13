@@ -87,7 +87,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         columns={24}
                         columnSpacing={2}
                         paddingX={2}
-                        display={{ xs: 'none', md: 'block' }}
+                        display={{ xs: 'none', md: 'flex' }}
                     >
                         <Grid item xs={9}>
                             <Typography fontSize={16} fontWeight={600} color="#979797">

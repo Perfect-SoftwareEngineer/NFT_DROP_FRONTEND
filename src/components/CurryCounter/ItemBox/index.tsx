@@ -16,7 +16,6 @@ const CurryCounterItem: React.FC<ComponentProps> = ({ data }): JSX.Element => {
             container
             columns={{ xs: 12, md: 24 }}
             alignItems="center"
-            columnSpacing={2}
             rowGap={3}
             padding={2}
             borderRadius={2}
@@ -78,7 +77,7 @@ const CurryCounterItem: React.FC<ComponentProps> = ({ data }): JSX.Element => {
             <Grid item xs={3} display="flex" flexDirection="row" justifyContent={{ xs: 'auto', md: 'flex-end' }}>
                 <ReserveBtn disabled={data.reserveDisabled}>RESERVE</ReserveBtn>
             </Grid>
-            <Grid item xs={2} md={1} display="flex" flexDirection="row" justifyContent={{ xs: 'auto', md: 'flex-end' }}>
+            <Grid item xs={2} md={1} display="flex" flexDirection="row" justifyContent="center">
                 <InfoIcon />
             </Grid>
         </Grid>
