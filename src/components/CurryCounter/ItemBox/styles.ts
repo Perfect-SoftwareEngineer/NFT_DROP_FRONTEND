@@ -1,10 +1,5 @@
 import { styled, Box, Button } from '@mui/material';
 
-export const ImageBox = styled(Box)`
-    .img {
-        border-radius: 8px;
-    }
-`;
 export const ReserveBtn = styled(Button)`
     width: 92px;
     height: 34px;

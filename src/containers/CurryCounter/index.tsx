@@ -72,7 +72,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     <Typography fontSize={16} fontWeight={600}>
                         Overview
                     </Typography>
-                    <Stack direction="row" marginTop={2} spacing={2}>
+                    <Stack direction="row" marginTop={2} spacing={2} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>
                         <SupplyBox amount={10003} label="Basketballs supply" headColor="#FFCA21" />
                         <SupplyBox amount={3} label="Three Points Scored" headColor="#FFCA21" />
                         <SupplyBox amount={1} label="Unclaimed Mints" headColor="#979797" />
@@ -81,7 +81,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             </Box>
             <Container sx={{ marginY: 5 }}>
                 <Grid container rowGap={2}>
-                    <Grid item container columns={24} columnSpacing={2} paddingX={2}>
+                    <Grid
+                        item
+                        container
+                        columns={24}
+                        columnSpacing={2}
+                        paddingX={2}
+                        display={{ xs: 'none', md: 'block' }}
+                    >
                         <Grid item xs={9}>
                             <Typography fontSize={16} fontWeight={600} color="#979797">
                                 Basketball Head
@@ -102,7 +109,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 Cost
                             </Typography>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <Typography fontSize={16} fontWeight={600} color="#979797" textAlign="right">
                                 Reserve Mint
                             </Typography>
