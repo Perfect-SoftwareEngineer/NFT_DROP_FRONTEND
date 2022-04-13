@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
+import { useWeb3React } from '@web3-react/core';
+import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json'
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../styles';
 import InfoIcon from '../../../assets/curryshop/info.svg';
 import BasketballImg from '../../../assets/curryshop/basketball.png';
+import Web3 from 'web3';
+
 
 type ComponentProps = {
     amountLeft: number;
@@ -13,12 +17,71 @@ type ComponentProps = {
 const MAX_VAL = 3;
 
 const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
+    const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
+    const [mintPrice, setMintPrice] = useState<number>(0);
+    const [reservedAmount, setReservedAmount] = useState<string>('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         if (!isNaN(Number(value)) && Number(value) <= MAX_VAL) setMintAmount(value);
     };
+
+    const mint = async () => {
+        const nftContract = new library.eth.Contract(
+            BasketballHeadABI,
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x3671512788EDad8030B25D3d597dF8a831f633Df'
+        );
+
+        try {
+            let reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
+            if(parseInt(reservedCount)) {
+                await nftContract.methods.mint(mintAmount).send({ from: account, value: 0 });
+                reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
+                setReservedAmount(reservedCount);
+            } else {
+                await nftContract.methods.mint(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            }
+        } catch (err: any) {   
+            console.error(err);
+            return;
+        }
+
+    };
+
+    const reserve = async () => {
+        const nftContract = new library.eth.Contract(
+            BasketballHeadABI,
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x3671512788EDad8030B25D3d597dF8a831f633Df'
+        );
+
+        try {
+            await nftContract.methods.reserve(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            const reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
+            setReservedAmount(reservedCount);
+        } catch (err: any) {   
+            console.error(err);
+            return;
+        }
+
+    };
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            const nftContract = new library.eth.Contract(
+                BasketballHeadABI,
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0xEAE623fc7c98a15ddB372d951355d68BE8134B83'
+            );
+
+            const reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
+            const mPrice = await nftContract.methods.mintprice().call({ from: account });
+            setReservedAmount(reservedCount);
+            setMintPrice(parseInt(mPrice));
+        }
+        if(account) {
+            updateAppState();
+        }
+    }, [account]);
 
     return (
         <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
@@ -51,12 +114,12 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
             </Stack>
             <Stack spacing={1} marginTop={2}>
                 <Typography fontSize={16} fontWeight={700} color="white">
-                    {disabled ? 'Currently Unavailable' : 'You have 10/10 reserve mints'}
+                    {disabled ? 'Currently Unavailable' : 'You have ' + reservedAmount + ' reserve mints'}
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={2}>
                     <Stack direction="row" alignItems="center" spacing={1}>
-                        <MintBtn disabled={disabled}>Mint</MintBtn>
-                        <ReserveBtn disabled={disabled}>Reserve</ReserveBtn>
+                        <MintBtn disabled={disabled} onClick={mint}>Mint</MintBtn>
+                        <ReserveBtn disabled={disabled} onClick={reserve}>Reserve</ReserveBtn>
                     </Stack>
                     <InfoIcon />
                 </Stack>
