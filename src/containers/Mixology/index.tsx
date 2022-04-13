@@ -3,6 +3,7 @@ import { Stack, Grid, Typography, Link } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import StepBox from '../../components/Mixology/StepBox';
+import StepBoxMobile from '../../components/Mixology/StepBox/Mobile';
 import { useAppContext } from '../../context/AppContext';
 import MixologyNavBar from './Navbar';
 import NotWalletConnect from './NotWalletConnect';
@@ -32,17 +33,24 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             <CounterBox title="MY SERUMS" value={0} />
                         </Stack>
                         <Stack marginTop={4}>
-                            <Typography fontSize={48} fontWeight={700}>
+                            <Typography fontSize={{ xs: 42, sm: 48 }} fontWeight={700}>
                                 Mixology Room
                             </Typography>
-                            <Typography fontSize={16} fontWeight={400} width={432}>
+                            <Typography fontSize={16} fontWeight={400} width={{ xs: '90%', md: '30%' }} marginTop={2}>
                                 Select 1 Basketball and 3 Serums to create a new NFT. The fiinal product will look
                                 different depending on selected items.
                             </Typography>
                         </Stack>
                         <Grid container marginTop={5} columnSpacing={8} rowGap={4}>
                             <Grid item xs={12} md={4}>
-                                <Stack spacing={2} paddingBottom={{ xs: 0, md: 20 }}>
+                                <Stack direction="row" marginBottom={8} display={{ xs: 'flex', md: 'none' }}>
+                                    <StepBoxMobile step={0} />
+                                </Stack>
+                                <Stack
+                                    spacing={2}
+                                    paddingBottom={{ xs: 0, md: 20 }}
+                                    display={{ xs: 'none', md: 'flex' }}
+                                >
                                     <StepBox step={0} />
                                     <StepBox step={1} />
                                     <StepBox step={2} />
