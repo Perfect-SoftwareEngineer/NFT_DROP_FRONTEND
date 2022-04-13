@@ -4,15 +4,15 @@ import { CurryShopBtn, CurryCounterBtn } from './styles';
 
 const NotOwnBasketball: React.FC = (): JSX.Element => {
     return (
-        <Stack spacing={4}>
-            <Typography fontSize={48} fontWeight={700}>
+        <Stack spacing={{ xs: 3, sm: 4 }} paddingBottom={15}>
+            <Typography fontSize={48} fontWeight={700} lineHeight={1.1}>
                 Select a Basketball
             </Typography>
             <Stack spacing={2}>
-                <Typography fontSize={32} fontWeight={700} color="#FFCA21">
+                <Typography fontSize={32} fontWeight={700} lineHeight={1.1} color="#FFCA21">
                     You currently do not own any Basketballs.
                 </Typography>
-                <Typography fontSize={16} fontWeight={400} width="70%">
+                <Typography fontSize={16} fontWeight={400} width={{ xs: '100%', sm: '85%', md: '70%' }}>
                     You cannot start the Mixology process without owning a Basketball or Serum. You can either mint a
                     Basketball or Serum, mint after every 3 point shot Stephen Curry makes, or buy them off the
                     secondary market in{' '}

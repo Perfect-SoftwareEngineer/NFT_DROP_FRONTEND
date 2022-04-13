@@ -40,15 +40,15 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                                 different depending on selected items.
                             </Typography>
                         </Stack>
-                        <Grid container marginTop={5} columnSpacing={8}>
-                            <Grid item xs={4}>
-                                <Stack spacing={2}>
+                        <Grid container marginTop={5} columnSpacing={8} rowGap={4}>
+                            <Grid item xs={12} md={4}>
+                                <Stack spacing={2} paddingBottom={{ xs: 0, md: 20 }}>
                                     <StepBox step={0} />
                                     <StepBox step={1} />
                                     <StepBox step={2} />
                                 </Stack>
                             </Grid>
-                            <Grid item xs={8}>
+                            <Grid item xs={12} md={8}>
                                 {appState.mixologyCurStep === 0 &&
                                     (appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />)}
                                 {appState.mixologyCurStep === 1 &&

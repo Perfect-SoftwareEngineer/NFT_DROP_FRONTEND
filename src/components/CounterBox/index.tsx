@@ -12,14 +12,15 @@ const CounterBox: React.FC<ComponentProps> = ({ title, value }): JSX.Element => 
             direction="row"
             width={265}
             height={38}
-            padding="4px 16px 8px"
+            padding="0 16px"
             justifyContent="space-between"
+            alignItems="center"
             sx={{ background: '#32343F' }}
         >
-            <Typography fontSize={16} fontWeight={400}>
+            <Typography fontSize={{ xs: 14, sm: 16 }} fontWeight={400}>
                 {title}
             </Typography>
-            <Typography fontSize={16} fontWeight={700}>
+            <Typography fontSize={{ xs: 14, sm: 16 }} fontWeight={700}>
                 {value}
             </Typography>
         </Stack>
