@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Stack, Grid, Typography, Link } from '@mui/material';
+import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import StepBox from '../../components/Mixology/StepBox';
@@ -42,9 +42,20 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                         </Stack>
                         <Grid container marginTop={5} columnSpacing={8} rowGap={4}>
-                            <Grid item xs={12} md={4}>
-                                <Stack direction="row" marginBottom={8} display={{ xs: 'flex', md: 'none' }}>
+                            <Grid item xs={12} md={4} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>
+                                <Stack
+                                    direction="row"
+                                    alignItems="center"
+                                    spacing={2}
+                                    paddingBottom={3}
+                                    marginBottom={8}
+                                    display={{ xs: 'flex', md: 'none' }}
+                                >
                                     <StepBoxMobile step={0} />
+                                    <Box width="100%" height={2} sx={{ background: '#A5A5A5' }}></Box>
+                                    <StepBoxMobile step={1} />
+                                    <Box width="100%" height={2} sx={{ background: '#A5A5A5' }}></Box>
+                                    <StepBoxMobile step={2} />
                                 </Stack>
                                 <Stack
                                     spacing={2}

@@ -26,8 +26,16 @@ const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {
     let showCompleteIcon = step < 2 && step < appState.mixologyCurStep;
 
     return (
-        <Box position="relative" width={32} height={32}>
-            <Image src="/assets/mixology/mobile/step-non-complete.svg" layout="fill" alt="" />
+        <Box position="relative" minWidth={32} height={32}>
+            <Image
+                src={
+                    showCompleteIcon
+                        ? '/assets/mixology/mobile/step-complete.svg'
+                        : '/assets/mixology/mobile/step-non-complete.svg'
+                }
+                layout="fill"
+                alt=""
+            />
             <Stack position="absolute" spacing={1} sx={{ left: 0, top: 48 }}>
                 <Typography fontSize={16} fontWeight={400}>
                     {`STEP ${step + 1}`}

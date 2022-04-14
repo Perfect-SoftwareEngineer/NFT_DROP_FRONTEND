@@ -17,7 +17,14 @@ const SelectBasketball: React.FC = (): JSX.Element => {
             <Typography fontSize={48} fontWeight={700}>
                 Select a Basketball
             </Typography>
-            <Stack direction="row" paddingBottom={20} spacing={3}>
+            <Stack
+                direction="row"
+                flexWrap="wrap"
+                justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                paddingBottom={20}
+                columnGap={4}
+                rowGap={4}
+            >
                 {appState.basketballsList.map((item) => (
                     <BasketballBox
                         item={item}
