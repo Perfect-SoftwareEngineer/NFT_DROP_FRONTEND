@@ -37,7 +37,14 @@ const SelectSerum: React.FC = (): JSX.Element => {
                     </Typography>{' '}
                     selected.
                 </Typography>
-                <Stack direction="row" flexWrap="wrap" paddingBottom={20}  columnGap={3} rowGap={3}>
+                <Stack
+                    direction="row"
+                    flexWrap="wrap"
+                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                    paddingBottom={20}
+                    columnGap={3}
+                    rowGap={3}
+                >
                     {appState.serumsList.map((item) => (
                         <SerumBox
                             item={item}

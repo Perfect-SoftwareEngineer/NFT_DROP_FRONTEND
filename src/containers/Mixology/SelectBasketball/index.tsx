@@ -22,8 +22,8 @@ const SelectBasketball: React.FC = (): JSX.Element => {
                 flexWrap="wrap"
                 justifyContent={{ xs: 'center', sm: 'flex-start' }}
                 paddingBottom={20}
-                columnGap={4}
-                rowGap={4}
+                columnGap={3}
+                rowGap={3}
             >
                 {appState.basketballsList.map((item) => (
                     <BasketballBox
