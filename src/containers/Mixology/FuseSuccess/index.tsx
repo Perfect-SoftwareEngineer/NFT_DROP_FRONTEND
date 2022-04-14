@@ -12,10 +12,10 @@ const FuseSuccess: React.FC = (): JSX.Element => {
     };
 
     return (
-        <Stack alignItems="center" paddingY={10}>
-            <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
+        <Stack alignItems="center" paddingY={10} marginX={4}>
+            <Typography fontSize={48} fontWeight={700} lineHeight={1} textAlign="center">
                 You have successfully fused here is your{' '}
-                <Typography fontSize={48} fontWeight={700} lineHeight={1.1} color="#FFCA21">
+                <Typography fontSize={48} fontWeight={700} lineHeight={1} color="#FFCA21">
                     Mutant Basketball
                 </Typography>
             </Typography>
