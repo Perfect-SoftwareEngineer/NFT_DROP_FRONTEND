@@ -5,7 +5,7 @@ import { CurryShopBtn, CurryCounterBtn } from './styles';
 const NotOwnBasketball: React.FC = (): JSX.Element => {
     return (
         <Stack spacing={{ xs: 3, sm: 4 }} paddingBottom={15}>
-            <Typography fontSize={48} fontWeight={700} lineHeight={1.1}>
+            <Typography fontSize={48} fontWeight={700} lineHeight={1}>
                 Select a Basketball
             </Typography>
             <Stack spacing={2}>
