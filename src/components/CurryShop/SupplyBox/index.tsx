@@ -4,10 +4,11 @@ import { Stack, Box, Typography } from '@mui/material';
 type ComponentProps = {
     amount: number;
     label: string;
+    bgColor?: string;
     headColor: string;
 };
 
-const SupplyBox: React.FC<ComponentProps> = ({ amount, label, headColor }): JSX.Element => {
+const SupplyBox: React.FC<ComponentProps> = ({ amount, label, bgColor = 'black', headColor }): JSX.Element => {
     return (
         <Stack
             width={256}
@@ -17,7 +18,7 @@ const SupplyBox: React.FC<ComponentProps> = ({ amount, label, headColor }): JSX.
             spacing={{ xs: 3, sm: 4, md: 5 }}
             borderRadius={2}
             overflow="hidden"
-            sx={{ flexShrink: 0, background: 'black' }}
+            sx={{ flexShrink: 0, background: bgColor }}
         >
             <Box width={8} height="100%" sx={{ background: headColor }}></Box>
             <Stack>
