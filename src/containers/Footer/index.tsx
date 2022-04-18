@@ -2,7 +2,6 @@ import React from 'react';
 import { Stack, Box, Typography, IconButton } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
-import LogoImg from '../../assets/curry-logo.png';
 import OpenseaIcon from '../../assets/opensea.svg';
 import DiscordIcon from '../../assets/discord.svg';
 import TwitterIcon from '../../assets/twitter.svg';
@@ -25,7 +24,7 @@ const Footer: React.FC<ComponentProps> = ({}) => {
                 <Container>
                     <Stack height={72} direction="row" alignItems="center" justifyContent="space-between">
                         <Stack direction="row" alignItems="center" spacing={5}>
-                            <Image src={LogoImg} width={40} height={40} alt="Logo" />
+                            <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
                             <Stack direction="row" spacing={2}>
                                 {menuList.map((item, index) => (
                                     <Link href={item.url} passHref>

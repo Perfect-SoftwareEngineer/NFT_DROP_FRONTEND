@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Stack, Box, Typography, IconButton, Dialog, DialogTitle, DialogContent } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
-import LogoImg from '../../assets/curry-logo.png';
 import { HeaderMenuBtn, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -62,7 +61,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         display={{ xs: 'none', md: 'flex' }}
                     >
                         <Stack direction="row" alignItems="center" spacing={5}>
-                            <Image src={LogoImg} width={40} height={40} alt="Logo" />
+                            <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
                             <Stack direction="row" spacing={2}>
                                 {appMenuList.map((item, index) => (
                                     <Link href={item.url} passHref key={`app-menu-link-${index}`}>

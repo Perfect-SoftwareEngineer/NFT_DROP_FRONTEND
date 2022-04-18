@@ -80,6 +80,36 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Container>
                 </Box>
             </Box>
+            <Box paddingY={10} sx={{ background: 'black' }}>
+                <Container>
+                    <Grid container columnSpacing={14}>
+                        <Grid item xs={6} display="flex" flexDirection="row" justifyContent="center">
+                            <Stack borderRadius={4} padding={3} spacing={3} sx={{ background: '#1B1C22' }}>
+                                <Stack direction="row" alignItems="center" spacing={2}>
+                                    <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
+                                    <Typography fontSize={20} fontWeight={600} color="white">
+                                        Curry Brand
+                                    </Typography>
+                                </Stack>
+                                <Box width={400} height={400} position="relative">
+                                    <Image src="/assets/currycounter/curry-brand.png" layout="fill" />
+                                </Box>
+                                <Stack spacing={1}>
+                                    <Typography fontSize={16} fontWeight={600} color="white">
+                                        UA Basketball
+                                    </Typography>
+                                    <Typography fontSize={14} fontWeight={400} color="white">
+                                        Golden State Warriors
+                                    </Typography>
+                                </Stack>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={6}>
+                            afafsadf
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
         </>
     );
 };
