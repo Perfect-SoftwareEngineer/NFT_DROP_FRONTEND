@@ -1,10 +1,9 @@
 import { styled, Box } from '@mui/material';
 
-export const LeftGradientBox = styled(Box)`
-    width: 55%;
+export const GradientBox = styled(Box)`
+    width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(27, 28, 34, 0) 0.01%, #000000 100%);
 `;
