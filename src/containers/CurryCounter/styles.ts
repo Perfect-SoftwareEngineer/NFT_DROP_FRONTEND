@@ -34,6 +34,19 @@ export const ReserveBtn = styled(Button)`
     }
 `;
 
+export const UnavailableBtn = styled(Button)`
+    width: 284px;
+    height: 64px;
+    padding: 4px 0 12px;
+    font-size: 32px;
+    font-weight: 600;
+    background: #969aa1;
+    color: #202230;
+    &:hover {
+        background: #969aa1;
+    }
+`;
+
 export const TblHeaderCellTypo = styled(Typography)`
     font-size: 16px;
     font-weight: 600;

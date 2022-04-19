@@ -3,7 +3,7 @@ import { Stack, Box, Grid, Button, Typography, IconButton } from '@mui/material'
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
-import { GradientBox, ConnectWalletBtn, ReserveBtn, TblHeaderCellTypo } from './styles';
+import { GradientBox, ConnectWalletBtn, ReserveBtn, UnavailableBtn, TblHeaderCellTypo } from './styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
@@ -18,6 +18,7 @@ import Checkbox from '@mui/material/Checkbox';
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
+    const [reserveAvailable, setReserveAvailable] = React.useState(true);
 
     const onConnect = () => {
         connect(activate);
@@ -131,32 +132,48 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 {reduceHexAddress('0x3acedf55a03877c7561830238f0adb9e24090fbd', 4)}
                                             </Typography>
                                         </Stack>
-                                        <Stack direction="row" alignItems="center" marginTop={3}>
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={agreeTermsConditions}
-                                                        onChange={handleAgreeTermsConditions}
-                                                        inputProps={{ 'aria-label': 'controlled' }}
-                                                        sx={{ color: '#9E9E9E' }}
+                                        {reserveAvailable ? (
+                                            <>
+                                                <Stack direction="row" alignItems="center" marginTop={3}>
+                                                    <FormControlLabel
+                                                        control={
+                                                            <Checkbox
+                                                                checked={agreeTermsConditions}
+                                                                onChange={handleAgreeTermsConditions}
+                                                                inputProps={{ 'aria-label': 'controlled' }}
+                                                                sx={{ color: '#9E9E9E' }}
+                                                            />
+                                                        }
+                                                        label={
+                                                            <Typography marginBottom="6px">
+                                                                {`I agree that checking this box, I agree to Under Armours's `}
+                                                                <Typography
+                                                                    color="#FFCA21"
+                                                                    display="inline"
+                                                                >{`Terms & Conditions.`}</Typography>
+                                                            </Typography>
+                                                        }
                                                     />
-                                                }
-                                                label={
-                                                    <Typography marginBottom="6px">
-                                                        {`I agree that checking this box, I agree to Under Armours's `}
-                                                        <Typography
-                                                            color="#FFCA21"
-                                                            display="inline"
-                                                        >{`Terms & Conditions.`}</Typography>
-                                                    </Typography>
-                                                }
-                                            />
-                                        </Stack>
-                                        <ReserveBtn sx={{ marginTop: 2.5 }}>Reserve</ReserveBtn>
-                                        <Typography width={480} color="#FFCA21" textAlign="center" marginTop={3}>
-                                            Reserve Completed. Check back after the game to claim basketball. Keep in
-                                            mind there might be delays in allowing minting.
-                                        </Typography>
+                                                </Stack>
+                                                <ReserveBtn sx={{ marginTop: 2.5 }}>Reserve</ReserveBtn>
+                                                <Typography
+                                                    width={480}
+                                                    color="#FFCA21"
+                                                    textAlign="center"
+                                                    marginTop={3}
+                                                >
+                                                    Reserve Completed. Check back after the game to claim basketball.
+                                                    Keep in mind there might be delays in allowing minting.
+                                                </Typography>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <UnavailableBtn sx={{ marginTop: 4 }}>Unavailable</UnavailableBtn>
+                                                <Typography color="#FFCA21" marginTop={2}>
+                                                    Sorry, no reserves available
+                                                </Typography>
+                                            </>
+                                        )}
                                     </>
                                 ) : (
                                     <ConnectWalletBtn sx={{ marginTop: 4 }} onClick={onConnect}>
