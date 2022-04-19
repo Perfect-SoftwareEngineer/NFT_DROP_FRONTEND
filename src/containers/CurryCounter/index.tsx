@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import RaffleWinerItem from '../../components/CurryCounter/RaffleWinerItem';
+import { raffleWinnersList } from '../../constants/dummyData';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     return (
@@ -162,7 +163,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Grid item xs={12}>
                                 <Box width="100%" height="1px" sx={{ background: '#32343F' }}></Box>
                             </Grid>
-                            <RaffleWinerItem />
+                            {raffleWinnersList.map((item, index) => (
+                                <RaffleWinerItem data={item} key={`raffle-winner-key${index}`} />
+                            ))}
                         </Grid>
                     </Stack>
                 </Container>

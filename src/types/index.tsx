@@ -25,9 +25,10 @@ export type WearableItemType = {
 };
 
 export type RaffleWinnerItemType = {
+    id: number;
     name: string;
     url: string;
     date: string;
-    address: string;
+    address?: string;
     status: string;
 };
