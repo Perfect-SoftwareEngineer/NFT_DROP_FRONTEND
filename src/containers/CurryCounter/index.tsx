@@ -43,28 +43,55 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </IconButton>
                             </Stack>
                             <Stack marginX="auto" alignItems="center" spacing={5}>
-                                <Stack direction="row" spacing={5}>
-                                    <Stack spacing={3} alignItems="center">
-                                        <Typography fontSize={16} fontWeight={600} color="#979797">
+                                <Stack direction="row" spacing={2}>
+                                    <Stack
+                                        width={192}
+                                        height={84}
+                                        justifyContent="center"
+                                        alignItems="flex-start"
+                                        spacing={1}
+                                        paddingX={2}
+                                        borderRadius={2}
+                                        sx={{ background: '#1B1C22' }}
+                                    >
+                                        <Typography fontSize={16} fontWeight={700} color="white">
                                             Opponent Team
                                         </Typography>
-                                        <Typography fontSize={20} fontWeight={600} color="white">
+                                        <Typography fontSize={16} fontWeight={400} color="#979797">
                                             Boston Celtics
                                         </Typography>
                                     </Stack>
-                                    <Stack spacing={3} alignItems="center">
-                                        <Typography fontSize={16} fontWeight={600} color="#979797">
+                                    <Stack
+                                        width={192}
+                                        height={84}
+                                        justifyContent="center"
+                                        alignItems="flex-start"
+                                        spacing={1}
+                                        paddingX={2}
+                                        borderRadius={2}
+                                        sx={{ background: '#1B1C22' }}
+                                    >
+                                        <Typography fontSize={16} fontWeight={700} color="white">
                                             Cost
                                         </Typography>
-                                        <Typography fontSize={20} fontWeight={600} color="white">
+                                        <Typography fontSize={16} fontWeight={400} color="#979797">
                                             Free
                                         </Typography>
                                     </Stack>
-                                    <Stack spacing={3} alignItems="center">
-                                        <Typography fontSize={16} fontWeight={600} color="#979797">
-                                            3-Points Scored
+                                    <Stack
+                                        width={192}
+                                        height={84}
+                                        justifyContent="center"
+                                        alignItems="flex-start"
+                                        spacing={1}
+                                        paddingX={2}
+                                        borderRadius={2}
+                                        sx={{ background: '#1B1C22' }}
+                                    >
+                                        <Typography fontSize={16} fontWeight={700} color="white">
+                                            Available Mints
                                         </Typography>
-                                        <Typography fontSize={20} fontWeight={600} color="white">
+                                        <Typography fontSize={16} fontWeight={400} color="#979797">
                                             5 Basketballs
                                         </Typography>
                                     </Stack>
@@ -85,7 +112,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             </Box>
             <Box paddingY={10} sx={{ background: 'black' }}>
                 <Container>
-                    <Stack direction="row" justifyContent="center" spacing={14}>
+                    <Stack direction="row" justifyContent="center" alignItems="flex-start" spacing={14}>
                         <Stack borderRadius={4} padding={3} spacing={3} sx={{ background: '#1B1C22' }}>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
@@ -93,7 +120,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     Curry Brand
                                 </Typography>
                             </Stack>
-                            <Box width={400} height={400} position="relative">
+                            <Box width={464} height={464} position="relative">
                                 <Image src="/assets/currycounter/curry-brand.png" layout="fill" />
                             </Box>
                             <Stack spacing={1}>
@@ -113,7 +140,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 For every 3 point shot Stephen Curry makes in the NBA Playoffs, a new Basketball mint is
                                 created.
                             </Typography>
-                            <Stack direction="row" spacing={2} marginTop={5}>
+                            <Stack direction="row" spacing={2} marginTop={6}>
                                 <SupplyBox
                                     amount={5}
                                     label="Three Points Scored"
@@ -133,7 +160,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <li>Winners Claim Basketball</li>
                                 </ol>
                             </Stack>
-                            <ConnectWalletBtn sx={{ height: 34, fontSize: 14, padding: '2px 16px 6px' }}>
+                            <ConnectWalletBtn sx={{ height: 34, marginTop: 5, fontSize: 14, padding: '2px 16px 6px' }}>
                                 CONNECT WALLET
                             </ConnectWalletBtn>
                         </Stack>
