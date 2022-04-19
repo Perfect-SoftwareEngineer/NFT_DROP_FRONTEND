@@ -19,6 +19,10 @@ export const ConnectWalletBtn = styled(Button)`
     &:hover {
         background: #ffca21;
     }
+    &:disabled {
+        background: #969aa1;
+        color: #202230;
+    }
 `;
 
 export const ReserveBtn = styled(Button)`

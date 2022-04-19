@@ -18,7 +18,7 @@ import Checkbox from '@mui/material/Checkbox';
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
-    const [reserveAvailable, setReserveAvailable] = React.useState(true);
+    const [reserveAvailable, setReserveAvailable] = React.useState(false);
 
     const onConnect = () => {
         connect(activate);
@@ -243,12 +243,30 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <li>Winners Claim Basketball</li>
                                 </ol>
                             </Stack>
-                            <ConnectWalletBtn
-                                sx={{ height: 34, marginTop: 5, fontSize: 14, padding: '2px 16px 6px' }}
-                                onClick={onConnect}
-                            >
-                                CONNECT WALLET
-                            </ConnectWalletBtn>
+                            <Stack marginTop={5} spacing={1}>
+                                {account ? (
+                                    <>
+                                        <ConnectWalletBtn
+                                            disabled={!reserveAvailable}
+                                            sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
+                                        >
+                                            CLAIM
+                                        </ConnectWalletBtn>
+                                        <Typography fontSize={16} fontWeight={600}>
+                                            {reserveAvailable
+                                                ? 'You have 1 unclaimed mint'
+                                                : 'You do not have any claims'}
+                                        </Typography>
+                                    </>
+                                ) : (
+                                    <ConnectWalletBtn
+                                        sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
+                                        onClick={onConnect}
+                                    >
+                                        CONNECT WALLET
+                                    </ConnectWalletBtn>
+                                )}
+                            </Stack>
                         </Stack>
                     </Stack>
                     <Stack marginTop={9} spacing={4}>
