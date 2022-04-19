@@ -9,8 +9,22 @@ export const GradientBox = styled(Box)`
 `;
 
 export const ConnectWalletBtn = styled(Button)`
+    width: 284px;
     height: 64px;
-    padding: 4px 32px 12px;
+    padding: 4px 0 12px;
+    font-size: 32px;
+    font-weight: 600;
+    background: #ffca21;
+    color: #202230;
+    &:hover {
+        background: #ffca21;
+    }
+`;
+
+export const ReserveBtn = styled(Button)`
+    width: 284px;
+    height: 64px;
+    padding: 4px 0 12px;
     font-size: 32px;
     font-weight: 600;
     background: #ffca21;

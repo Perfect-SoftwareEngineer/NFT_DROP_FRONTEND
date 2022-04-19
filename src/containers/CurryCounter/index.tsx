@@ -3,14 +3,30 @@ import { Stack, Box, Grid, Button, Typography, IconButton } from '@mui/material'
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
-import { GradientBox, ConnectWalletBtn, TblHeaderCellTypo } from './styles';
+import { GradientBox, ConnectWalletBtn, ReserveBtn, TblHeaderCellTypo } from './styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import RaffleWinerItem from '../../components/CurryCounter/RaffleWinerItem';
 import { raffleWinnersList } from '../../constants/dummyData';
+import { useWeb3React } from '@web3-react/core';
+import { connect } from '../../web3/connect';
+import { reduceHexAddress } from '../../services/common';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
+    const { active, account, library, connector, activate, deactivate } = useWeb3React();
+    const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
+
+    const onConnect = () => {
+        connect(activate);
+    };
+
+    const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAgreeTermsConditions(event.target.checked);
+    };
+
     return (
         <>
             <Box position="relative">
@@ -30,10 +46,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             >
                                 <img src="/assets/metamask.png" width={56} height={56} alt="" />
                                 <Stack spacing={1}>
-                                    <Typography fontSize={14} fontWeight={500} color="white">
+                                    <Typography fontSize={14} fontWeight={500}>
                                         MetaMask
                                     </Typography>
-                                    <Typography width={320} fontSize={12} fontWeight={400} color="white">
+                                    <Typography width={320} fontSize={12} fontWeight={400}>
                                         Make sure you download Metamask and connect your account prior to minting. You
                                         will need MetaMask compatibility to mint your Intel Cryptex.
                                     </Typography>
@@ -42,7 +58,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <CloseIcon />
                                 </IconButton>
                             </Stack>
-                            <Stack marginX="auto" alignItems="center" spacing={5}>
+                            <Stack marginX="auto" alignItems="center">
                                 <Stack direction="row" spacing={2}>
                                     <Stack
                                         width={192}
@@ -96,8 +112,58 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         </Typography>
                                     </Stack>
                                 </Stack>
-                                <ConnectWalletBtn>Connect Wallet</ConnectWalletBtn>
-                                <Stack>
+                                {account ? (
+                                    <>
+                                        <Stack
+                                            direction="row"
+                                            width="100%"
+                                            justifyContent="space-between"
+                                            paddingX={3}
+                                            paddingY={1}
+                                            borderRadius="100px"
+                                            marginTop={3}
+                                            sx={{ background: '#1B1C22' }}
+                                        >
+                                            <Typography fontSize={16} fontWeight={400}>
+                                                MY WALLET ADDRESS:
+                                            </Typography>
+                                            <Typography fontSize={16} fontWeight={800}>
+                                                {reduceHexAddress('0x3acedf55a03877c7561830238f0adb9e24090fbd', 4)}
+                                            </Typography>
+                                        </Stack>
+                                        <Stack direction="row" alignItems="center" marginTop={3}>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        checked={agreeTermsConditions}
+                                                        onChange={handleAgreeTermsConditions}
+                                                        inputProps={{ 'aria-label': 'controlled' }}
+                                                        sx={{ color: '#9E9E9E' }}
+                                                    />
+                                                }
+                                                label={
+                                                    <Typography marginBottom="6px">
+                                                        {`I agree that checking this box, I agree to Under Armours's `}
+                                                        <Typography
+                                                            color="#FFCA21"
+                                                            display="inline"
+                                                        >{`Terms & Conditions.`}</Typography>
+                                                    </Typography>
+                                                }
+                                            />
+                                        </Stack>
+                                        <ReserveBtn sx={{ marginTop: 2.5 }}>Reserve</ReserveBtn>
+                                        <Typography width={480} color="#FFCA21" textAlign="center" marginTop={3}>
+                                            Reserve Completed. Check back after the game to claim basketball. Keep in
+                                            mind there might be delays in allowing minting.
+                                        </Typography>
+                                    </>
+                                ) : (
+                                    <ConnectWalletBtn sx={{ marginTop: 4 }} onClick={onConnect}>
+                                        Connect Wallet
+                                    </ConnectWalletBtn>
+                                )}
+                                <Stack marginTop={5}>
                                     <Typography fontSize={14} fontWeight={600} color="#979797">
                                         LEARN MORE
                                     </Typography>
@@ -160,7 +226,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <li>Winners Claim Basketball</li>
                                 </ol>
                             </Stack>
-                            <ConnectWalletBtn sx={{ height: 34, marginTop: 5, fontSize: 14, padding: '2px 16px 6px' }}>
+                            <ConnectWalletBtn
+                                sx={{ height: 34, marginTop: 5, fontSize: 14, padding: '2px 16px 6px' }}
+                                onClick={onConnect}
+                            >
                                 CONNECT WALLET
                             </ConnectWalletBtn>
                         </Stack>
