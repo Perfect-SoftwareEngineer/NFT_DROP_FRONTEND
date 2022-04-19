@@ -1,4 +1,4 @@
-import { styled, Box, Button } from '@mui/material';
+import { styled, Box, Button, Typography } from '@mui/material';
 
 export const GradientBox = styled(Box)`
     width: 100%;
@@ -18,4 +18,10 @@ export const ConnectWalletBtn = styled(Button)`
     &:hover {
         background: #ffca21;
     }
+`;
+
+export const TblHeaderCellTypo = styled(Typography)`
+    font-size: 16px;
+    font-weight: 600;
+    color: #979797;
 `;

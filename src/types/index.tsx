@@ -24,12 +24,10 @@ export type WearableItemType = {
     desc: string;
 };
 
-export type CurryCounterItemType = {
+export type RaffleWinnerItemType = {
     name: string;
-    label: string;
-    opponentTeamLogo: string;
-    opponentTeam: string;
+    url: string;
     date: string;
-    cost: number;
-    reserveDisabled: boolean;
+    address: string;
+    status: string;
 };
