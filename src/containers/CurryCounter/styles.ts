@@ -8,7 +8,7 @@ export const GradientBox = styled(Box)`
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(27, 28, 34, 0) 0.01%, #000000 100%);
 `;
 
-export const ConnectWalletBtn = styled(Button)`
+export const PrimaryBtn = styled(Button)`
     width: 284px;
     height: 64px;
     padding: 4px 0 12px;
@@ -22,32 +22,6 @@ export const ConnectWalletBtn = styled(Button)`
     &:disabled {
         background: #969aa1;
         color: #202230;
-    }
-`;
-
-export const ReserveBtn = styled(Button)`
-    width: 284px;
-    height: 64px;
-    padding: 4px 0 12px;
-    font-size: 32px;
-    font-weight: 600;
-    background: #ffca21;
-    color: #202230;
-    &:hover {
-        background: #ffca21;
-    }
-`;
-
-export const UnavailableBtn = styled(Button)`
-    width: 284px;
-    height: 64px;
-    padding: 4px 0 12px;
-    font-size: 32px;
-    font-weight: 600;
-    background: #969aa1;
-    color: #202230;
-    &:hover {
-        background: #969aa1;
     }
 `;
 

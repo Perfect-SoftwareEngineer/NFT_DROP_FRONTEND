@@ -3,7 +3,7 @@ import { Stack, Box, Grid, Button, Typography, IconButton } from '@mui/material'
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
-import { GradientBox, ConnectWalletBtn, ReserveBtn, UnavailableBtn, TblHeaderCellTypo } from './styles';
+import { GradientBox, PrimaryBtn, TblHeaderCellTypo } from './styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
@@ -18,7 +18,7 @@ import Checkbox from '@mui/material/Checkbox';
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
-    const [reserveAvailable, setReserveAvailable] = React.useState(false);
+    const [reserveAvailable, setReserveAvailable] = React.useState(true);
 
     const onConnect = () => {
         connect(activate);
@@ -155,7 +155,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                         }
                                                     />
                                                 </Stack>
-                                                <ReserveBtn sx={{ marginTop: 2.5 }}>Reserve</ReserveBtn>
+                                                <PrimaryBtn sx={{ marginTop: 2.5 }}>Reserve</PrimaryBtn>
                                                 <Typography
                                                     width={480}
                                                     color="#FFCA21"
@@ -168,7 +168,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             </>
                                         ) : (
                                             <>
-                                                <UnavailableBtn sx={{ marginTop: 4 }}>Unavailable</UnavailableBtn>
+                                                <PrimaryBtn disabled sx={{ marginTop: 4 }}>Unavailable</PrimaryBtn>
                                                 <Typography color="#FFCA21" marginTop={2}>
                                                     Sorry, no reserves available
                                                 </Typography>
@@ -176,9 +176,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         )}
                                     </>
                                 ) : (
-                                    <ConnectWalletBtn sx={{ marginTop: 4 }} onClick={onConnect}>
+                                    <PrimaryBtn sx={{ marginTop: 4 }} onClick={onConnect}>
                                         Connect Wallet
-                                    </ConnectWalletBtn>
+                                    </PrimaryBtn>
                                 )}
                                 <Stack marginTop={5}>
                                     <Typography fontSize={14} fontWeight={600} color="#979797">
@@ -246,12 +246,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Stack marginTop={5} spacing={1}>
                                 {account ? (
                                     <>
-                                        <ConnectWalletBtn
+                                        <PrimaryBtn
                                             disabled={!reserveAvailable}
                                             sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
                                         >
                                             CLAIM
-                                        </ConnectWalletBtn>
+                                        </PrimaryBtn>
                                         <Typography fontSize={16} fontWeight={600}>
                                             {reserveAvailable
                                                 ? 'You have 1 unclaimed mint'
@@ -259,12 +259,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         </Typography>
                                     </>
                                 ) : (
-                                    <ConnectWalletBtn
+                                    <PrimaryBtn
                                         sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
                                         onClick={onConnect}
                                     >
                                         CONNECT WALLET
-                                    </ConnectWalletBtn>
+                                    </PrimaryBtn>
                                 )}
                             </Stack>
                         </Stack>
