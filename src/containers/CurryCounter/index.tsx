@@ -3,7 +3,7 @@ import { Stack, Box, Grid, Button, Typography, IconButton } from '@mui/material'
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
-import { GradientBox, PrimaryBtn, TblHeaderCellTypo } from './styles';
+import { GradientBox, MetamaskNotifBox, PrimaryBtn, TblHeaderCellTypo } from './styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
@@ -35,16 +35,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 <GradientBox />
                 <Box position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%', paddingY: 5 }}>
-                        <Stack height="100%" justifyContent="space-between">
-                            <Stack
-                                direction="row"
-                                alignItems="flex-start"
-                                marginLeft="auto"
-                                borderRadius={2}
-                                padding={3}
-                                spacing={2}
-                                sx={{ background: 'rgba(0, 0, 0, 0.75)' }}
-                            >
+                        <Stack height="100%" justifyContent="flex-end" position="relative">
+                            <MetamaskNotifBox direction="row" spacing={2}>
                                 <img src="/assets/metamask.png" width={56} height={56} alt="" />
                                 <Stack spacing={1}>
                                     <Typography fontSize={14} fontWeight={500}>
@@ -58,7 +50,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <IconButton sx={{ color: 'white' }}>
                                     <CloseIcon />
                                 </IconButton>
-                            </Stack>
+                            </MetamaskNotifBox>
                             <Stack marginX="auto" alignItems="center">
                                 <Stack direction="row" spacing={2}>
                                     <Stack
@@ -168,7 +160,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             </>
                                         ) : (
                                             <>
-                                                <PrimaryBtn disabled sx={{ marginTop: 4 }}>Unavailable</PrimaryBtn>
+                                                <PrimaryBtn disabled sx={{ marginTop: 4 }}>
+                                                    Unavailable
+                                                </PrimaryBtn>
                                                 <Typography color="#FFCA21" marginTop={2}>
                                                     Sorry, no reserves available
                                                 </Typography>

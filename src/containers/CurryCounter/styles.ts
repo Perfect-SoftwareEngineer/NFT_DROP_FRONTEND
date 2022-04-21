@@ -1,4 +1,4 @@
-import { styled, Box, Button, Typography } from '@mui/material';
+import { styled, Stack, Box, Button, Typography } from '@mui/material';
 
 export const GradientBox = styled(Box)`
     width: 100%;
@@ -6,6 +6,16 @@ export const GradientBox = styled(Box)`
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(27, 28, 34, 0) 0.01%, #000000 100%);
+`;
+
+export const MetamaskNotifBox = styled(Stack)`
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 24px;
+    border-radius: 8px;
 `;
 
 export const PrimaryBtn = styled(Button)`
