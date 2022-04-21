@@ -296,29 +296,29 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Stack>
                         </Stack>
                     </Stack>
-                    <Stack marginTop={9} spacing={4}>
+                    <Stack marginTop={{ xs: 6, md: 9 }} spacing={4}>
                         <Typography fontSize={32} fontWeight={600}>
                             Raffle Winners
                         </Typography>
                         <Grid container rowGap={3}>
-                            <Grid item container columns={14}>
+                            <Grid item container columns={{ xs: 7, md: 14 }}>
                                 <Grid item xs={1}>
                                     <TblHeaderCellTypo>#</TblHeaderCellTypo>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <TblHeaderCellTypo>NFT Name</TblHeaderCellTypo>
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={3} display={{ xs: 'none', md: 'block' }}>
                                     <TblHeaderCellTypo>Date Created</TblHeaderCellTypo>
                                 </Grid>
-                                <Grid item xs={5}>
+                                <Grid item xs={3} md={5}>
                                     <TblHeaderCellTypo>Wallet Address</TblHeaderCellTypo>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={2} display={{ xs: 'none', md: 'block' }}>
                                     <TblHeaderCellTypo>Status</TblHeaderCellTypo>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={14}>
                                 <Box width="100%" height="1px" sx={{ background: '#32343F' }}></Box>
                             </Grid>
                             {raffleWinnersList.map((item, index) => (

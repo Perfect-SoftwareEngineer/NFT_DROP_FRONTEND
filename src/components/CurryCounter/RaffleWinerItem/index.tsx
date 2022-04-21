@@ -11,7 +11,7 @@ type ComponentProps = {
 
 const RaffleWinnerItem: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     return (
-        <Grid item container columns={14} alignItems="center">
+        <Grid item container columns={{ xs: 7, md: 14 }} alignItems="center">
             <Grid item xs={1}>
                 <Typo>{data.id}</Typo>
             </Grid>
@@ -21,13 +21,13 @@ const RaffleWinnerItem: React.FC<ComponentProps> = ({ data }): JSX.Element => {
                     <Typo>{data.name}</Typo>
                 </Stack>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} display={{ xs: 'none', md: 'block' }}>
                 <Typo>{data.date}</Typo>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={3} md={5}>
                 {data.address ? <AddressTypo>{reduceHexAddress(data.address, 4)}</AddressTypo> : <Typo>-</Typo>}
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={2} display={{ xs: 'none', md: 'block' }}>
                 <Typo>{data.status}</Typo>
             </Grid>
         </Grid>
