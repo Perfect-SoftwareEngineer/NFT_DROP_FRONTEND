@@ -41,7 +41,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 </Box>
                 <GradientBox />
                 <Box position="absolute" sx={{ inset: 0 }}>
-                    <Container sx={{ height: '100%', paddingY: 5 }}>
+                    <Container sx={{ height: '100%', paddingY: { xs: 2, md: 5 } }}>
                         <Stack height="100%" justifyContent="flex-end" position="relative">
                             <MetamaskNotifBox direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
                                 <img src="/assets/metamask.png" width={56} height={56} alt="" />
@@ -133,7 +133,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         </Stack>
                                         {reserveAvailable ? (
                                             <>
-                                                <Stack direction="row" alignItems="center" marginTop={3}>
+                                                <Stack direction="row" alignItems="center" marginTop={{ xs: 1, md: 3 }}>
                                                     <FormControlLabel
                                                         control={
                                                             <Checkbox
@@ -154,12 +154,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                         }
                                                     />
                                                 </Stack>
-                                                <PrimaryBtn sx={{ marginTop: 2.5 }}>Reserve</PrimaryBtn>
+                                                <PrimaryBtn sx={{ marginTop: { xs: 1, md: 2.5 } }}>Reserve</PrimaryBtn>
                                                 <Typography
-                                                    width={480}
+                                                    width={{ xs: '90%', md: 480 }}
                                                     color="#FFCA21"
                                                     textAlign="center"
-                                                    marginTop={3}
+                                                    marginTop={{ xs: 1, md: 3 }}
                                                 >
                                                     Reserve Completed. Check back after the game to claim basketball.
                                                     Keep in mind there might be delays in allowing minting.
@@ -167,7 +167,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             </>
                                         ) : (
                                             <>
-                                                <PrimaryBtn disabled sx={{ marginTop: 4 }}>
+                                                <PrimaryBtn disabled sx={{ marginTop: { xs: 2, md: 4 } }}>
                                                     Unavailable
                                                 </PrimaryBtn>
                                                 <Typography color="#FFCA21" marginTop={2}>
@@ -181,7 +181,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         Connect Wallet
                                     </PrimaryBtn>
                                 )}
-                                <Stack marginTop={5}>
+                                <Stack marginTop={{ xs: 2, sm: 3.5, md: 5 }}>
                                     <Typography fontSize={14} fontWeight={600} color="#979797">
                                         LEARN MORE
                                     </Typography>
@@ -215,7 +215,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     Curry Brand
                                 </Typography>
                             </Stack>
-                            <Box width={{ xs: 320, sm: 464 }} height={{ xs: 320, sm: 464 }} position="relative">
+                            <Box width={{ xs: 300, sm: 464 }} height={{ xs: 300, sm: 464 }} position="relative">
                                 <Image src="/assets/currycounter/curry-brand.png" layout="fill" />
                             </Box>
                             <Stack spacing={1}>
