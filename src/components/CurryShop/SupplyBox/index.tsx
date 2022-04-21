@@ -11,14 +11,13 @@ type ComponentProps = {
 const SupplyBox: React.FC<ComponentProps> = ({ amount, label, bgColor = 'black', headColor }): JSX.Element => {
     return (
         <Stack
-            width={256}
             height={102}
             direction="row"
             alignItems="center"
             spacing={{ xs: 3, sm: 4, md: 5 }}
             borderRadius={2}
             overflow="hidden"
-            sx={{ flexShrink: 0, background: bgColor }}
+            sx={{ flexGrow: 1, background: bgColor }}
         >
             <Box width={8} height="100%" sx={{ background: headColor }}></Box>
             <Stack>

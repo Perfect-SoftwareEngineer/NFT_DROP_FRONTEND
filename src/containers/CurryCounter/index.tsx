@@ -14,11 +14,16 @@ import { connect } from '../../web3/connect';
 import { reduceHexAddress } from '../../services/common';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
     const [reserveAvailable, setReserveAvailable] = React.useState(true);
+
+    const theme = useTheme();
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
     const onConnect = () => {
         connect(activate);
@@ -31,12 +36,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     return (
         <>
             <Box position="relative">
-                <Image src={BackgroundImg} layout="responsive" alt="" />
+                <Box height={{ xs: 640, md: '100%' }}>
+                    <Image src={BackgroundImg} layout={matchDownMd ? 'fill' : 'responsive'} objectFit="cover" alt="" />
+                </Box>
                 <GradientBox />
                 <Box position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%', paddingY: 5 }}>
                         <Stack height="100%" justifyContent="flex-end" position="relative">
-                            <MetamaskNotifBox direction="row" spacing={2}>
+                            <MetamaskNotifBox direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
                                 <img src="/assets/metamask.png" width={56} height={56} alt="" />
                                 <Stack spacing={1}>
                                     <Typography fontSize={14} fontWeight={500}>
@@ -52,7 +59,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </IconButton>
                             </MetamaskNotifBox>
                             <Stack marginX="auto" alignItems="center">
-                                <Stack direction="row" spacing={2}>
+                                <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 1, md: 2 }}>
                                     <Stack
                                         width={192}
                                         height={84}
@@ -189,15 +196,26 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             </Box>
             <Box paddingY={10} sx={{ background: 'black' }}>
                 <Container>
-                    <Stack direction="row" justifyContent="center" alignItems="flex-start" spacing={14}>
-                        <Stack borderRadius={4} padding={3} spacing={3} sx={{ background: '#1B1C22' }}>
+                    <Stack
+                        direction={{ xs: 'column', md: 'row' }}
+                        justifyContent="center"
+                        alignItems="flex-start"
+                        spacing={{ xs: 5, md: 14 }}
+                    >
+                        <Stack
+                            alignSelf="center"
+                            borderRadius={4}
+                            padding={3}
+                            spacing={3}
+                            sx={{ background: '#1B1C22' }}
+                        >
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
                                 <Typography fontSize={20} fontWeight={600}>
                                     Curry Brand
                                 </Typography>
                             </Stack>
-                            <Box width={464} height={464} position="relative">
+                            <Box width={{ xs: 320, sm: 464 }} height={{ xs: 320, sm: 464 }} position="relative">
                                 <Image src="/assets/currycounter/curry-brand.png" layout="fill" />
                             </Box>
                             <Stack spacing={1}>
@@ -210,22 +228,37 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Stack>
                         </Stack>
                         <Stack alignItems="flex-start">
-                            <Typography fontSize={92} fontWeight={700} lineHeight={1.1}>
+                            <Typography fontSize={{ xs: 48, sm: 64, md: 92 }} fontWeight={700} lineHeight={1.1}>
                                 Curry Counter
                             </Typography>
-                            <Typography maxWidth={600} fontSize={32} fontWeight={600} lineHeight={1.1} marginTop={3}>
+                            <Typography
+                                maxWidth={600}
+                                fontSize={{ xs: 16, sm: 24, md: 32 }}
+                                fontWeight={600}
+                                lineHeight={1.1}
+                                marginTop={3}
+                            >
                                 For every 3 point shot Stephen Curry makes in the NBA Playoffs, a new Basketball mint is
                                 created.
                             </Typography>
-                            <Stack direction="row" spacing={2} marginTop={6}>
-                                <SupplyBox
-                                    amount={5}
-                                    label="Three Points Scored"
-                                    bgColor="#1B1C22"
-                                    headColor="#FFCA21"
-                                />
-                                <SupplyBox amount={0} label="Unclaimed Mints" bgColor="#1B1C22" headColor="#979797" />
-                            </Stack>
+                            <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
+                                <Grid item xs={6}>
+                                    <SupplyBox
+                                        amount={5}
+                                        label="Three Points Scored"
+                                        bgColor="#1B1C22"
+                                        headColor="#FFCA21"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <SupplyBox
+                                        amount={0}
+                                        label="Unclaimed Mints"
+                                        bgColor="#1B1C22"
+                                        headColor="#979797"
+                                    />
+                                </Grid>
+                            </Grid>
                             <Stack marginTop={4}>
                                 <Typography fontSize={16} fontWeight={600}>
                                     How to Play:
@@ -237,7 +270,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <li>Winners Claim Basketball</li>
                                 </ol>
                             </Stack>
-                            <Stack marginTop={5} spacing={1}>
+                            <Stack marginTop={{ xs: 4, md: 5 }} spacing={1}>
                                 {account ? (
                                     <>
                                         <PrimaryBtn

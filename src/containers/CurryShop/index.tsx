@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json'
-import { Stack, Box, Typography } from '@mui/material';
+import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
@@ -30,7 +30,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(freeMintSupply));
         }
-        if(account) {
+        if (account) {
             updateAppState();
         }
     }, [account]);
@@ -43,10 +43,16 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         <Typography fontSize={16} fontWeight={600} color="white">
                             Currently available
                         </Typography>
-                        <Stack direction="row" spacing={2}>
-                            <SupplyBox amount={20000} label="Basketballs supply" headColor="#FFCA21" />
-                            <SupplyBox amount={60000} label="Serum supply" headColor="#B8FF97" />
-                        </Stack>
+                        <Box>
+                            <Grid container columnSpacing={2} maxWidth={540}>
+                                <Grid item xs={6}>
+                                    <SupplyBox amount={20000} label="Basketballs supply" headColor="#FFCA21" />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <SupplyBox amount={60000} label="Serum supply" headColor="#B8FF97" />
+                                </Grid>
+                            </Grid>
+                        </Box>
                     </Stack>
                 </Container>
             </Box>
