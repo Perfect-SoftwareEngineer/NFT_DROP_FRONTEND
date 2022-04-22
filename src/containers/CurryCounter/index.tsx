@@ -16,6 +16,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import SERVER_URL from '../../constants/server';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
@@ -32,6 +33,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAgreeTermsConditions(event.target.checked);
     };
+
+    const onReserve = () => {};
 
     return (
         <>
@@ -128,7 +131,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 MY WALLET ADDRESS:
                                             </Typography>
                                             <Typography fontSize={16} fontWeight={800}>
-                                                {reduceHexAddress('0x3acedf55a03877c7561830238f0adb9e24090fbd', 4)}
+                                                {reduceHexAddress(account, 4)}
                                             </Typography>
                                         </Stack>
                                         {reserveAvailable ? (
@@ -154,7 +157,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                         }
                                                     />
                                                 </Stack>
-                                                <PrimaryBtn sx={{ marginTop: { xs: 1, md: 2.5 } }}>Reserve</PrimaryBtn>
+                                                <PrimaryBtn
+                                                    disabled={!agreeTermsConditions}
+                                                    sx={{ marginTop: { xs: 1, md: 2.5 } }}
+                                                    onClick={onReserve}
+                                                >
+                                                    Reserve
+                                                </PrimaryBtn>
                                                 <Typography
                                                     width={{ xs: '90%', md: 480 }}
                                                     color="#FFCA21"
