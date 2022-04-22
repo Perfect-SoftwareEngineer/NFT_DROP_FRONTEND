@@ -16,7 +16,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { getLatestGameInfo, getAvailableBasketballs } from '../../services/fetch';
+import {
+    getLatestGameInfo,
+    getFreeBasketballs,
+    reserveFreeBasketball,
+    getHexProofForClaim,
+    getFreeBasketballsForClaim,
+} from '../../services/fetch';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
@@ -26,7 +32,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
 
     const [gameInfo, setGameInfo] = React.useState<any[]>([]);
-    const [availableBasketballList, setAvailableBasketballList] = React.useState<string[]>([]);
+    const [availableBasketballList, setAvailableBasketballList] = React.useState<any[]>([]);
 
     const onConnect = () => {
         connect(activate);
@@ -41,18 +47,32 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
     React.useEffect(() => {
         if (gameInfo.length > 0 && gameInfo[0].game_id) {
-            getAvailableBasketballs(gameInfo[0].game_id).then((response: any) => {
-                let result: string[] = response;
+            getFreeBasketballs(gameInfo[0].game_id).then((response: any) => {
+                let result: any[] = response;
                 setAvailableBasketballList(result);
             });
         }
     }, [gameInfo]);
 
+    const onReserve = () => {
+        if (
+            account &&
+            gameInfo.length > 0 &&
+            gameInfo[0].game_id &&
+            availableBasketballList.length > 0 &&
+            availableBasketballList[0]._id
+        ) {
+            reserveFreeBasketball(availableBasketballList[0]._id, gameInfo[0].game_id, account).then(
+                (success: boolean) => {
+                    // reserve done
+                }
+            );
+        }
+    };
+
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAgreeTermsConditions(event.target.checked);
     };
-
-    const onReserve = () => {};
 
     return (
         <>

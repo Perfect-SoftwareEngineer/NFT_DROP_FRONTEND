@@ -8,7 +8,7 @@ export const FETCH_CONFIG_JSON = {
 };
 
 export const getLatestGameInfo = async () => {
-    let url = SERVER_URL + '/api/curryv2/current/match/get';
+    let url = `${SERVER_URL}/api/curryv2/current/match/get`;
     console.log('url:', url);
 
     const data = await fetch(url, FETCH_CONFIG_JSON);
@@ -17,8 +17,8 @@ export const getLatestGameInfo = async () => {
     return result;
 };
 
-export const getAvailableBasketballs = async (gameID: string) => {
-    let url = SERVER_URL + '/api/curryv2/free/basketball/get/' + gameID;
+export const getFreeBasketballs = async (gameID: string) => {
+    let url = `${SERVER_URL}/api/curryv2/free/basketball/get/${gameID}`;
     console.log('url:', url);
 
     const data = await fetch(url, FETCH_CONFIG_JSON);
@@ -27,13 +27,13 @@ export const getAvailableBasketballs = async (gameID: string) => {
     return result;
 };
 
-export const reserveBasketball = (_id: string, gameId: number, wallet: string) =>
+export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: string) =>
     new Promise((resolve: (value: boolean) => void, reject: (value: boolean) => void) => {
-        let reqUrl = SERVER_URL + '/api/curryv2/free/basketball/get';
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get`;
         const reqBody = {
             _id: _id,
             gameId: gameId,
-            wallet: wallet,
+            wallet: walletAddr,
         };
         fetch(reqUrl, {
             method: 'POST',
@@ -54,3 +54,23 @@ export const reserveBasketball = (_id: string, gameId: number, wallet: string) =
                 reject(false);
             });
     });
+
+export const getHexProofForClaim = async (gameID: string, walletAddr: string) => {
+    let url = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${gameID}/${walletAddr}`;
+    console.log('url:', url);
+
+    const data = await fetch(url, FETCH_CONFIG_JSON);
+    const result = await data.json();
+    console.log('result:', result);
+    return result;
+};
+
+export const getFreeBasketballsForClaim = async (walletAddr: string) => {
+    let url = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${walletAddr}`;
+    console.log('url:', url);
+
+    const data = await fetch(url, FETCH_CONFIG_JSON);
+    const result = await data.json();
+    console.log('result:', result);
+    return result;
+};
