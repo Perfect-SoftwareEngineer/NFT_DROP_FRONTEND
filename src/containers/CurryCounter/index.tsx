@@ -16,19 +16,37 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import SERVER_URL from '../../constants/server';
+import { getLatestGameInfo, getAvailableBasketballs } from '../../services/fetch';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
-    const { active, account, library, connector, activate, deactivate } = useWeb3React();
-    const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
-    const [reserveAvailable, setReserveAvailable] = React.useState(true);
-
     const theme = useTheme();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
+    const { active, account, library, connector, activate, deactivate } = useWeb3React();
+    const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
+
+    const [gameInfo, setGameInfo] = React.useState<any[]>([]);
+    const [availableBasketballList, setAvailableBasketballList] = React.useState<string[]>([]);
 
     const onConnect = () => {
         connect(activate);
     };
+
+    React.useEffect(() => {
+        getLatestGameInfo().then((response: any) => {
+            let result: any[] = response;
+            setGameInfo(result);
+        });
+    }, []);
+
+    React.useEffect(() => {
+        if (gameInfo.length > 0 && gameInfo[0].game_id) {
+            getAvailableBasketballs(gameInfo[0].game_id).then((response: any) => {
+                let result: string[] = response;
+                setAvailableBasketballList(result);
+            });
+        }
+    }, [gameInfo]);
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAgreeTermsConditions(event.target.checked);
@@ -134,7 +152,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 {reduceHexAddress(account, 4)}
                                             </Typography>
                                         </Stack>
-                                        {reserveAvailable ? (
+                                        {availableBasketballList.length > 0 ? (
                                             <>
                                                 <Stack direction="row" alignItems="center" marginTop={{ xs: 1, md: 3 }}>
                                                     <FormControlLabel
@@ -283,13 +301,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 {account ? (
                                     <>
                                         <PrimaryBtn
-                                            disabled={!reserveAvailable}
+                                            disabled={availableBasketballList.length === 0}
                                             sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
                                         >
                                             CLAIM
                                         </PrimaryBtn>
                                         <Typography fontSize={16} fontWeight={600}>
-                                            {reserveAvailable
+                                            {availableBasketballList.length > 0
                                                 ? 'You have 1 unclaimed mint'
                                                 : 'You do not have any claims'}
                                         </Typography>
