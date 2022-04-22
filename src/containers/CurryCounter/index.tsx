@@ -40,6 +40,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
     React.useEffect(() => {
         getLatestGameInfo().then((response: any) => {
+            // console.log('response:', response);
             let result: any[] = response;
             setGameInfo(result);
         });
@@ -48,6 +49,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     React.useEffect(() => {
         if (gameInfo.length > 0 && gameInfo[0].game_id) {
             getFreeBasketballs(gameInfo[0].game_id).then((response: any) => {
+                // console.log('response:', response);
                 let result: any[] = response;
                 setAvailableBasketballList(result);
             });
@@ -62,11 +64,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             availableBasketballList.length > 0 &&
             availableBasketballList[0]._id
         ) {
-            reserveFreeBasketball(availableBasketballList[0]._id, gameInfo[0].game_id, account).then(
-                (success: boolean) => {
-                    // reserve done
-                }
-            );
+            reserveFreeBasketball(availableBasketballList[0]._id, gameInfo[0].game_id, account)
+                .then((response: string) => {
+                    console.log('response:', response);
+                })
+                .catch((error) => {
+                    console.log('error:', error);
+                });
         }
     };
 
@@ -115,7 +119,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             Opponent Team
                                         </Typography>
                                         <Typography fontSize={16} fontWeight={400} color="#979797">
-                                            Boston Celtics
+                                            {gameInfo.length > 0 && gameInfo[0].opposite_team
+                                                ? gameInfo[0].opposite_team
+                                                : '-'}
                                         </Typography>
                                     </Stack>
                                     <Stack
