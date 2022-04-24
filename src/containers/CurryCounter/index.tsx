@@ -46,7 +46,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     React.useEffect(() => {
         setInterval(() => {
             getLatestGameInfo().then((response: any) => {
-                console.log('response:', response);
+                // console.log('response:', response);
                 let result: any[] = response;
                 setLastGameInfoForReserve(result);
             });
@@ -80,6 +80,24 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         }
     }, [unclaimedNFTInfo, account]);
 
+    const onReserve = () => {
+        if (
+            account &&
+            lastGameInfoForReserve.length > 0 &&
+            lastGameInfoForReserve[0].game_id &&
+            freeReserveBasketballList.length > 0 &&
+            freeReserveBasketballList[0]._id
+        ) {
+            reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
+                .then((response: string) => {
+                    console.log('reserve free basketball response:', response);
+                })
+                .catch((error) => {
+                    console.log('reserve free basketball error:', error);
+                });
+        }
+    };
+
     const claim = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
@@ -104,24 +122,6 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         } catch (err: any) {
             console.error(err);
             return;
-        }
-    };
-
-    const onReserve = () => {
-        if (
-            account &&
-            lastGameInfoForReserve.length > 0 &&
-            lastGameInfoForReserve[0].game_id &&
-            freeReserveBasketballList.length > 0 &&
-            freeReserveBasketballList[0]._id
-        ) {
-            reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
-                .then((response: string) => {
-                    console.log('reserve free basketball response:', response);
-                })
-                .catch((error) => {
-                    console.log('reserve free basketball error:', error);
-                });
         }
     };
 
@@ -230,7 +230,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 {reduceHexAddress(account, 4)}
                                             </Typography>
                                         </Stack>
-                                        {freeReserveBasketballList.length > 0 ? (
+                                        {lastGameInfoForReserve.length > 0 && freeReserveBasketballList.length > 0 ? (
                                             <>
                                                 <Stack direction="row" alignItems="center" marginTop={{ xs: 1, md: 3 }}>
                                                     <FormControlLabel
@@ -381,6 +381,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         <PrimaryBtn
                                             disabled={
                                                 !(
+                                                    lastGameInfoForReserve.length > 0 &&
                                                     lastGameInfoForReserve[0].merkled === true &&
                                                     lastGameInfoForReserve[0].live === false &&
                                                     unclaimedNFTInfo.length > 0
