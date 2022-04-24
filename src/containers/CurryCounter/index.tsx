@@ -43,15 +43,17 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         connect(activate);
     };
 
+    const onGetLatestGameInfo = () => {
+        getLatestGameInfo().then((response: any) => {
+            // console.log('response:', response);
+            let result: any[] = response;
+            setLastGameInfoForReserve(result);
+        });
+    };
+
     React.useEffect(() => {
-        setInterval(() => {
-            getLatestGameInfo().then((response: any) => {
-                // console.log('response:', response);
-                let result: any[] = response;
-                setLastGameInfoForReserve(result);
-            });
-            console.log('getLatestGameInfo');
-        }, 60 * 1000);
+        onGetLatestGameInfo();
+        setInterval(onGetLatestGameInfo, 60 * 1000);
     }, []);
 
     React.useEffect(() => {
