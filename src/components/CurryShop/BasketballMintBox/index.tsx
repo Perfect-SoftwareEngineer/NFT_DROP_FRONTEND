@@ -30,7 +30,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const mint = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x3671512788EDad8030B25D3d597dF8a831f633Df'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
         );
 
         try {
@@ -52,7 +52,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const reserve = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x3671512788EDad8030B25D3d597dF8a831f633Df'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
         );
 
         try {

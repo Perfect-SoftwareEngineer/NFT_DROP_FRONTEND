@@ -24,6 +24,8 @@ import {
     getFreeBasketballsForClaim,
 } from '../../services/fetch';
 
+import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json'
+
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -55,6 +57,22 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             });
         }
     }, [gameInfo]);
+
+    const claim = async () => {
+        const nftContract = new library.eth.Contract(
+            BasketballHeadABI,
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
+        );
+
+        try {
+            //change gameId and hexproof from backend
+            await nftContract.methods.claimFromThreePoint(_gameId, hexproof, account).send({ from: account });
+            //call post api
+        } catch (err: any) {   
+            console.error(err);
+            return;
+        }
+    };
 
     const onReserve = () => {
         if (
@@ -329,6 +347,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         <PrimaryBtn
                                             disabled={availableBasketballList.length === 0}
                                             sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
+                                            onClick={claim}
                                         >
                                             CLAIM
                                         </PrimaryBtn>
