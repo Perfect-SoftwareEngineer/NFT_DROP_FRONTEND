@@ -18,13 +18,14 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {
     getLatestGameInfo,
-    getFreeBasketballs,
+    getFreeReserveBasketballs,
     reserveFreeBasketball,
+    getUnclaimedBasketballs,
     getHexProofForClaim,
-    getFreeBasketballsForClaim,
+    claimBasketball,
 } from '../../services/fetch';
 
-import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json'
+import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
@@ -33,42 +34,74 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
 
-    const [gameInfo, setGameInfo] = React.useState<any[]>([]);
-    const [availableBasketballList, setAvailableBasketballList] = React.useState<any[]>([]);
+    const [lastGameInfoForReserve, setLastGameInfoForReserve] = React.useState<any[]>([]);
+    const [freeReserveBasketballList, setFreeReserveBasketballList] = React.useState<any[]>([]);
+    const [unclaimedNFTInfo, setUnclaimedNFTInfo] = React.useState<any[]>([]);
+    const [hexProofForClaim, setHexProofForClaim] = React.useState<any[]>([]);
 
     const onConnect = () => {
         connect(activate);
     };
 
     React.useEffect(() => {
-        getLatestGameInfo().then((response: any) => {
-            // console.log('response:', response);
-            let result: any[] = response;
-            setGameInfo(result);
-        });
+        setInterval(() => {
+            getLatestGameInfo().then((response: any) => {
+                console.log('response:', response);
+                let result: any[] = response;
+                setLastGameInfoForReserve(result);
+            });
+            console.log('getLatestGameInfo');
+        }, 60 * 1000);
     }, []);
 
     React.useEffect(() => {
-        if (gameInfo.length > 0 && gameInfo[0].game_id) {
-            getFreeBasketballs(gameInfo[0].game_id).then((response: any) => {
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+            getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id).then((response: any) => {
                 // console.log('response:', response);
                 let result: any[] = response;
-                setAvailableBasketballList(result);
+                setFreeReserveBasketballList(result);
+            });
+
+            if (account && lastGameInfoForReserve[0].merkled === true && lastGameInfoForReserve[0].live === false) {
+                getUnclaimedBasketballs(account).then((response: any) => {
+                    let result: any[] = response;
+                    setUnclaimedNFTInfo(result);
+                });
+            }
+        }
+    }, [lastGameInfoForReserve, account]);
+
+    React.useEffect(() => {
+        if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id) {
+            getHexProofForClaim(unclaimedNFTInfo[0].game_id, account).then((response: any) => {
+                let result: any[] = response;
+                setHexProofForClaim(result);
             });
         }
-    }, [gameInfo]);
+    }, [unclaimedNFTInfo, account]);
 
     const claim = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
         );
-
         try {
             //change gameId and hexproof from backend
-            await nftContract.methods.claimFromThreePoint(_gameId, hexproof, account).send({ from: account });
-            //call post api
-        } catch (err: any) {   
+            if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id && hexProofForClaim.length > 0) {
+                await nftContract.methods
+                    .claimFromThreePoint(unclaimedNFTInfo[0].game_id, hexProofForClaim, account)
+                    .send({ from: account });
+
+                //call post api
+                claimBasketball(unclaimedNFTInfo[0].game_id)
+                    .then((response: string) => {
+                        console.log('claim basketball response:', response);
+                    })
+                    .catch((error) => {
+                        console.log('claim basketball error:', error);
+                    });
+            }
+        } catch (err: any) {
             console.error(err);
             return;
         }
@@ -77,17 +110,17 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const onReserve = () => {
         if (
             account &&
-            gameInfo.length > 0 &&
-            gameInfo[0].game_id &&
-            availableBasketballList.length > 0 &&
-            availableBasketballList[0]._id
+            lastGameInfoForReserve.length > 0 &&
+            lastGameInfoForReserve[0].game_id &&
+            freeReserveBasketballList.length > 0 &&
+            freeReserveBasketballList[0]._id
         ) {
-            reserveFreeBasketball(availableBasketballList[0]._id, gameInfo[0].game_id, account)
+            reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
                 .then((response: string) => {
-                    console.log('response:', response);
+                    console.log('reserve free basketball response:', response);
                 })
                 .catch((error) => {
-                    console.log('error:', error);
+                    console.log('reserve free basketball error:', error);
                 });
         }
     };
@@ -137,8 +170,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             Opponent Team
                                         </Typography>
                                         <Typography fontSize={16} fontWeight={400} color="#979797">
-                                            {gameInfo.length > 0 && gameInfo[0].opposite_team
-                                                ? gameInfo[0].opposite_team
+                                            {lastGameInfoForReserve.length > 0 &&
+                                            lastGameInfoForReserve[0].opposite_team
+                                                ? lastGameInfoForReserve[0].opposite_team
                                                 : '-'}
                                         </Typography>
                                     </Stack>
@@ -196,7 +230,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 {reduceHexAddress(account, 4)}
                                             </Typography>
                                         </Stack>
-                                        {availableBasketballList.length > 0 ? (
+                                        {freeReserveBasketballList.length > 0 ? (
                                             <>
                                                 <Stack direction="row" alignItems="center" marginTop={{ xs: 1, md: 3 }}>
                                                     <FormControlLabel
@@ -324,7 +358,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Grid item xs={6}>
                                     <SupplyBox
                                         amount={0}
-                                        label="Unclaimed Mints"
+                                        label="Games Left in Season"
                                         bgColor="#1B1C22"
                                         headColor="#979797"
                                     />
@@ -345,16 +379,20 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 {account ? (
                                     <>
                                         <PrimaryBtn
-                                            disabled={availableBasketballList.length === 0}
+                                            disabled={
+                                                !(
+                                                    lastGameInfoForReserve[0].merkled === true &&
+                                                    lastGameInfoForReserve[0].live === false &&
+                                                    unclaimedNFTInfo.length > 0
+                                                )
+                                            }
                                             sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
                                             onClick={claim}
                                         >
                                             CLAIM
                                         </PrimaryBtn>
                                         <Typography fontSize={16} fontWeight={600}>
-                                            {availableBasketballList.length > 0
-                                                ? 'You have 1 unclaimed mint'
-                                                : 'You do not have any claims'}
+                                            You have 1 unclaimed mint
                                         </Typography>
                                     </>
                                 ) : (

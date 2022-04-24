@@ -17,7 +17,7 @@ export const getLatestGameInfo = async () => {
     return result;
 };
 
-export const getFreeBasketballs = async (gameID: string) => {
+export const getFreeReserveBasketballs = async (gameID: string) => {
     let url = `${SERVER_URL}/api/curryv2/free/basketball/get/${gameID}`;
     console.log('url:', url);
 
@@ -30,9 +30,6 @@ export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: s
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/reserve`;
         console.log('reqUrl:', reqUrl);
-        // console.log('_id', _id);
-        // console.log('gameId', gameId);
-        // console.log('walletAddr', walletAddr);
 
         const body = { _id: _id, gameId: gameId, wallet: walletAddr };
 
@@ -57,6 +54,16 @@ export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: s
             });
     });
 
+export const getUnclaimedBasketballs = async (walletAddr: string) => {
+    let url = `${SERVER_URL}/api/curryv2/free/basketball/get_unclaimed/${walletAddr}`;
+    console.log('url:', url);
+
+    const data = await fetch(url, FETCH_CONFIG_JSON);
+    const result = await data.json();
+    console.log('result:', result);
+    return result;
+};
+
 export const getHexProofForClaim = async (gameID: string, walletAddr: string) => {
     let url = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${gameID}/${walletAddr}`;
     console.log('url:', url);
@@ -67,12 +74,26 @@ export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
     return result;
 };
 
-export const getFreeBasketballsForClaim = async (walletAddr: string) => {
-    let url = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${walletAddr}`;
-    console.log('url:', url);
+export const claimBasketball = (_id: string) =>
+    new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/claim`;
+        console.log('reqUrl:', reqUrl);
 
-    const data = await fetch(url, FETCH_CONFIG_JSON);
-    const result = await data.json();
-    console.log('result:', result);
-    return result;
-};
+        const body = { _id: _id };
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        axios
+            .post(reqUrl, body)
+            .then((response) => {
+                if (response.data.code === 200) resolve(response.data);
+                else resolve('');
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            });
+    });
