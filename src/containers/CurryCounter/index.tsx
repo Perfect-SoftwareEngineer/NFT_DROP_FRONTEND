@@ -39,6 +39,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [unclaimedNFTInfo, setUnclaimedNFTInfo] = React.useState<any[]>([]);
     const [hexProofForClaim, setHexProofForClaim] = React.useState<any[]>([]);
 
+    const [isReserve, setIsReserve] = React.useState<boolean>(false);
+    const [reserveResult, setReserveResult] = React.useState<string>('');
+
     const onConnect = () => {
         connect(activate);
     };
@@ -90,12 +93,19 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             freeReserveBasketballList.length > 0 &&
             freeReserveBasketballList[0]._id
         ) {
+            setIsReserve(true);
             reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
                 .then((response: string) => {
                     console.log('reserve free basketball response:', response);
+                    setIsReserve(false);
+                    setReserveResult(
+                        'Reserve Completed. Check back after the game to claim basketball. Keep in mind there might be delays in allowing minting.'
+                    );
                 })
                 .catch((error) => {
                     console.log('reserve free basketball error:', error);
+                    setIsReserve(false);
+                    setReserveResult(error);
                 });
         }
     };
@@ -268,8 +278,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     textAlign="center"
                                                     marginTop={{ xs: 1, md: 3 }}
                                                 >
-                                                    Reserve Completed. Check back after the game to claim basketball.
-                                                    Keep in mind there might be delays in allowing minting.
+                                                    {reserveResult}
                                                 </Typography>
                                             </>
                                         ) : (
