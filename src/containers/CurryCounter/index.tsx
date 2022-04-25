@@ -42,6 +42,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [isReserve, setIsReserve] = React.useState<boolean>(false);
     const [reserveResult, setReserveResult] = React.useState<string>('');
 
+    const [isClaim, setIsClaim] = React.useState<boolean>(false);
+
     const onConnect = () => {
         connect(activate);
     };
@@ -60,21 +62,29 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     }, []);
 
     React.useEffect(() => {
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
             getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id).then((response: any) => {
                 // console.log('response:', response);
                 let result: any[] = response;
                 setFreeReserveBasketballList(result);
             });
-
-            if (account && lastGameInfoForReserve[0].merkled === true && lastGameInfoForReserve[0].live === false) {
-                getUnclaimedBasketballs(account).then((response: any) => {
-                    let result: any[] = response;
-                    setUnclaimedNFTInfo(result);
-                });
-            }
         }
-    }, [lastGameInfoForReserve, account]);
+    }, [lastGameInfoForReserve, account, isReserve]);
+
+    React.useEffect(() => {
+        if (
+            account &&
+            lastGameInfoForReserve.length > 0 &&
+            lastGameInfoForReserve[0].merkled === true &&
+            lastGameInfoForReserve[0].live === false &&
+            !isClaim
+        ) {
+            getUnclaimedBasketballs(account).then((response: any) => {
+                let result: any[] = response;
+                setUnclaimedNFTInfo(result);
+            });
+        }
+    }, [lastGameInfoForReserve, account, isClaim]);
 
     React.useEffect(() => {
         if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id) {
@@ -86,6 +96,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     }, [unclaimedNFTInfo, account]);
 
     const onReserve = () => {
+        if (isReserve) return;
+
         if (
             account &&
             lastGameInfoForReserve.length > 0 &&
@@ -110,11 +122,15 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         }
     };
 
-    const claim = async () => {
+    const onClaim = async () => {
+        if (isClaim) return;
+
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
         );
+
+        setIsClaim(true);
         try {
             //change gameId and hexproof from backend
             if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id && hexProofForClaim.length > 0) {
@@ -124,17 +140,19 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             }
         } catch (err: any) {
             console.error(err);
+            setIsClaim(false);
             return;
         }
-        
+
         //call post api
         claimBasketball(unclaimedNFTInfo[0].game_id)
-        .then((response: string) => {
-            console.log('claim basketball response:', response);
-        })
-        .catch((error) => {
-            console.log('claim basketball error:', error);
-        });
+            .then((response: string) => {
+                console.log('claim basketball response:', response);
+            })
+            .catch((error) => {
+                console.log('claim basketball error:', error);
+            });
+        setIsClaim(false);
     };
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -399,7 +417,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 )
                                             }
                                             sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
-                                            onClick={claim}
+                                            onClick={onClaim}
                                         >
                                             CLAIM
                                         </PrimaryBtn>
