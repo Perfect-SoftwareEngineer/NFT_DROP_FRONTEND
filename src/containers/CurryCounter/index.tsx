@@ -121,20 +121,20 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 await nftContract.methods
                     .claimFromThreePoint(unclaimedNFTInfo[0].game_id, hexProofForClaim, account)
                     .send({ from: account });
-
-                //call post api
-                claimBasketball(unclaimedNFTInfo[0].game_id)
-                    .then((response: string) => {
-                        console.log('claim basketball response:', response);
-                    })
-                    .catch((error) => {
-                        console.log('claim basketball error:', error);
-                    });
             }
         } catch (err: any) {
             console.error(err);
             return;
         }
+        
+        //call post api
+        claimBasketball(unclaimedNFTInfo[0].game_id)
+        .then((response: string) => {
+            console.log('claim basketball response:', response);
+        })
+        .catch((error) => {
+            console.log('claim basketball error:', error);
+        });
     };
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
