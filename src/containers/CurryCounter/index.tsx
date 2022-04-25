@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Box, Grid, Button, Typography, IconButton } from '@mui/material';
+import { Stack, Box, Grid, Button, Typography, IconButton, Dialog, CircularProgress } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
@@ -43,6 +43,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [reserveResult, setReserveResult] = React.useState<string>('');
 
     const [isClaim, setIsClaim] = React.useState<boolean>(false);
+    const [unclaimedCount, setUnclaimedCount] = React.useState<number>(0);
 
     const onConnect = () => {
         connect(activate);
@@ -421,9 +422,23 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         >
                                             CLAIM
                                         </PrimaryBtn>
-                                        <Typography fontSize={16} fontWeight={600}>
-                                            You have 1 unclaimed mint
-                                        </Typography>
+                                        {!!unclaimedCount ? (
+                                            <Typography fontSize={16} fontWeight={600}>
+                                                You have{' '}
+                                                <Typography
+                                                    fontSize={16}
+                                                    fontWeight={600}
+                                                    color="#FFCA21"
+                                                    display="inline"
+                                                >
+                                                    {`${unclaimedCount} unclaimed mint`}
+                                                </Typography>
+                                            </Typography>
+                                        ) : (
+                                            <Typography fontSize={16} fontWeight={600}>
+                                                You do not have any claims
+                                            </Typography>
+                                        )}
                                     </>
                                 ) : (
                                     <PrimaryBtn
@@ -468,6 +483,18 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Box>
+            <Dialog
+                open={isReserve || isClaim}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: 4,
+                        background: 'none',
+                    },
+                }}
+            >
+                <CircularProgress />
+            </Dialog>
         </>
     );
 };
