@@ -49,6 +49,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
     const [basketballWinners, setBasketballWinners] = React.useState<RaffleWinnerItemType[]>([]);
 
+    const [showMetamask, setShowMetamask] = React.useState<boolean>(true);
+
     const onConnect = () => {
         connect(activate);
     };
@@ -214,21 +216,23 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 <Box position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%', paddingY: { xs: 2, md: 5 } }}>
                         <Stack height="100%" justifyContent="flex-end" position="relative">
-                            <MetamaskNotifBox direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
-                                <img src="/assets/metamask.png" width={56} height={56} alt="" />
-                                <Stack spacing={1}>
-                                    <Typography fontSize={14} fontWeight={500}>
-                                        MetaMask
-                                    </Typography>
-                                    <Typography width={320} fontSize={12} fontWeight={400}>
-                                        Make sure you download Metamask and connect your account prior to minting. You
-                                        will need MetaMask compatibility to mint your Basketball.
-                                    </Typography>
-                                </Stack>
-                                <IconButton sx={{ color: 'white' }}>
-                                    <CloseIcon />
-                                </IconButton>
-                            </MetamaskNotifBox>
+                            {showMetamask && (
+                                <MetamaskNotifBox direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
+                                    <img src="/assets/metamask.png" width={56} height={56} alt="" />
+                                    <Stack spacing={1}>
+                                        <Typography fontSize={14} fontWeight={500}>
+                                            MetaMask
+                                        </Typography>
+                                        <Typography width={320} fontSize={12} fontWeight={400}>
+                                            Make sure you download Metamask and connect your account prior to minting.
+                                            You will need MetaMask compatibility to mint your Basketball.
+                                        </Typography>
+                                    </Stack>
+                                    <IconButton sx={{ color: 'white' }} onClick={() => setShowMetamask(false)}>
+                                        <CloseIcon />
+                                    </IconButton>
+                                </MetamaskNotifBox>
+                            )}
                             <Stack marginX="auto" alignItems="center">
                                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 1, md: 2 }}>
                                     <Stack
