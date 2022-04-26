@@ -18,7 +18,7 @@ type ComponentProps = {};
 const appMenuList = [
     // { title: 'Home', url: '/' },
     { title: 'Curry Counter', url: '/currycounter' },
-    { title: 'FAQ', url: '#' },
+    { title: 'FAQ', url: '/faq' },
     { title: 'Curry Shop', url: '', comingSoon: { rightPos: -8 } },
     { title: 'Mixology Room', url: '', comingSoon: { rightPos: -8 } },
     { title: 'The Lab', url: '', comingSoon: { rightPos: -56 } },
