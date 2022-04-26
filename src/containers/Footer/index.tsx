@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Box, Typography, IconButton } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
+import InstagramIcon from '../../assets/instagram.svg';
 import OpenseaIcon from '../../assets/opensea.svg';
 import DiscordIcon from '../../assets/discord.svg';
 import TwitterIcon from '../../assets/twitter.svg';
@@ -18,6 +19,7 @@ const externalLinksList = [
 ];
 
 const socialLinksList = [
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
     { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
     { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
     { title: 'Twitter', url: 'https://twitter.com/UnderArmour', icon: <TwitterIcon /> },

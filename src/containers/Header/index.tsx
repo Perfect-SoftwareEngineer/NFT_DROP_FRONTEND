@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { HeaderMenuBtn, ComingSoonTypo, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import InstagramIcon from '../../assets/instagram.svg';
 import OpenseaIcon from '../../assets/opensea.svg';
 import DiscordIcon from '../../assets/discord.svg';
 import TwitterIcon from '../../assets/twitter.svg';
@@ -24,6 +25,7 @@ const appMenuList = [
 ];
 
 const socialLinksList = [
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
     { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
     { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
     { title: 'Twitter', url: 'https://twitter.com/UnderArmour', icon: <TwitterIcon /> },

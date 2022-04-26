@@ -339,6 +339,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 </PrimaryBtn>
                                                 <Typography
                                                     width={{ xs: '90%', md: 480 }}
+                                                    fontSize={20}
+                                                    fontWeight={600}
                                                     color="#FFCA21"
                                                     textAlign="center"
                                                     marginTop={{ xs: 1, md: 3 }}
@@ -351,7 +353,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 <PrimaryBtn disabled sx={{ marginTop: { xs: 2, md: 4 } }}>
                                                     Unavailable
                                                 </PrimaryBtn>
-                                                <Typography color="#FFCA21" marginTop={2}>
+                                                <Typography
+                                                    fontSize={20}
+                                                    fontWeight={600}
+                                                    color="#FFCA21"
+                                                    marginTop={2}
+                                                >
                                                     Sorry, no reserves available
                                                 </Typography>
                                             </>
@@ -362,14 +369,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         Connect Wallet
                                     </PrimaryBtn>
                                 )}
-                                <Stack marginTop={{ xs: 2, sm: 3.5, md: 5 }}>
+                                {/* <Stack marginTop={{ xs: 2, sm: 3.5, md: 5 }}>
                                     <Typography fontSize={14} fontWeight={600} color="#979797">
                                         LEARN MORE
                                     </Typography>
                                     <Button sx={{ '&:hover': { background: 'transparent' } }}>
                                         <LearnMoreIcon sx={{ color: '#979797' }} />
                                     </Button>
-                                </Stack>
+                                </Stack> */}
                             </Stack>
                         </Stack>
                     </Container>
@@ -397,7 +404,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                             </Stack>
                             <Box width={{ xs: 300, sm: 464 }} height={{ xs: 300, sm: 464 }} position="relative">
-                                <Image src="/assets/currycounter/curry-brand.png" layout="fill" />
+                                <Image
+                                    src="/assets/currycounter/curry-brand.png"
+                                    layout="fill"
+                                    style={{ borderRadius: 16 }}
+                                />
                             </Box>
                             <Stack spacing={1}>
                                 <Typography fontSize={16} fontWeight={600}>
@@ -434,7 +445,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Grid item xs={6}>
                                     <SupplyBox
                                         amount={0}
-                                        label="Games Left in Season"
+                                        label="Available Mints"
                                         bgColor="#1B1C22"
                                         headColor="#979797"
                                     />
@@ -442,14 +453,16 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Grid>
                             <Stack marginTop={4}>
                                 <Typography fontSize={16} fontWeight={600}>
-                                    How to Play:
+                                    How to Claim:
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
-                                    <li>Submit Raffle Entry: Only 1 Entry per game (Renews every game)</li>
-                                    <li>Check site to see winners (Next day)</li>
-                                    <li>Winners Claim Basketball</li>
+                                    <li>When 3-point shot is made, press reserve</li>
+                                    <li>If you have successfully reserved a Basketball,press "Claim"</li>
                                 </ol>
+                                <Typography fontSize={16} fontWeight={400}>
+                                    Note: Only 1 Basketball per Wallet Address
+                                </Typography>
                             </Stack>
                             <Stack marginTop={{ xs: 4, md: 5 }} spacing={1}>
                                 {account ? (
