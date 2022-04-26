@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Stack, Box, Typography, IconButton, Dialog, DialogTitle, DialogContent } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
-import { HeaderMenuBtn, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
+import { HeaderMenuBtn, ComingSoonTypo, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import OpenseaIcon from '../../assets/opensea.svg';
@@ -15,12 +15,12 @@ import { connect } from '../../web3/connect';
 type ComponentProps = {};
 
 const appMenuList = [
-    { title: 'Home', url: '/' },
-    { title: 'Curry Shop', url: '/curryshop' },
-    { title: 'Mixology Room', url: '/mixology' },
-    { title: 'The Lab', url: '/lab' },
+    // { title: 'Home', url: '/' },
     { title: 'Curry Counter', url: '/currycounter' },
     { title: 'FAQ', url: '#' },
+    { title: 'Curry Shop', url: '', comingSoon: true },
+    { title: 'Mixology Room', url: '', comingSoon: true },
+    { title: 'The Lab', url: '', comingSoon: true },
 ];
 
 const socialLinksList = [
@@ -66,7 +66,10 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                 {appMenuList.map((item, index) => (
                                     <Link href={item.url} passHref key={`app-menu-link-${index}`}>
                                         <HeaderMenuBtn selected={router.pathname === item.url}>
-                                            <Typography>{item.title}</Typography>
+                                            <Typography fontSize={14} fontWeight={600}>
+                                                {item.title}
+                                            </Typography>
+                                            {item.comingSoon && <ComingSoonTypo>Coming soon</ComingSoonTypo>}
                                         </HeaderMenuBtn>
                                     </Link>
                                 ))}
