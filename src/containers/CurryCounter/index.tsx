@@ -61,27 +61,29 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         getLatestGameInfo()
             .then((response: any[]) => {
                 setLastGameInfoForReserve(response);
+
+                if (response.length > 0 && response[0].game_id) {
+                    getWinners(response[0].game_id)
+                        .then((response: any[]) => {
+                            setBasketballWinners(response);
+                        })
+                        .catch((error) => {
+                            setBasketballWinners([]);
+                        });
+
+                    getCountValues(response[0].game_id)
+                        .then((response: any[]) => {
+                            setGameMoreInfo(response);
+                        })
+                        .catch((error) => {});
+                }
             })
             .catch((error) => {
                 setLastGameInfoForReserve([]);
             });
     }, []);
 
-    useInterval(fetchLatestGameInfo, 60 * 1000);
-
-    const fetchGetWinners = useCallback(() => {
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
-            getWinners(lastGameInfoForReserve[0].game_id)
-                .then((response: any[]) => {
-                    setBasketballWinners(response);
-                })
-                .catch((error) => {
-                    setBasketballWinners([]);
-                });
-        }
-    }, [lastGameInfoForReserve]);
-
-    useInterval(fetchGetWinners, 30 * 1000);
+    useInterval(fetchLatestGameInfo, 30 * 1000);
 
     React.useEffect(() => {
         if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
@@ -174,7 +176,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         setIsClaim(true);
@@ -203,18 +205,6 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         setUnclaimedNFTInfo([]);
         setIsClaim(false);
     };
-
-    const fetchCountValues = useCallback(() => {
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
-            getCountValues(lastGameInfoForReserve[0].game_id)
-                .then((response: any[]) => {
-                    setGameMoreInfo(response);
-                })
-                .catch((error) => {});
-        }
-    }, [lastGameInfoForReserve]);
-
-    useInterval(fetchCountValues, 10 * 1000);
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAgreeTermsConditions(event.target.checked);
