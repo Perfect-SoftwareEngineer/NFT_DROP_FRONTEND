@@ -34,7 +34,7 @@ const RaffleWinnerItem: React.FC<ComponentProps> = ({ data, index }): JSX.Elemen
                 {data.wallet ? <AddressTypo>{reduceHexAddress(data.wallet, 4)}</AddressTypo> : <Typo>-</Typo>}
             </Grid>
             <Grid item xs={2} display={{ xs: 'none', md: 'block' }}>
-                <Typo>{data.claimed ? 'Minted' : 'Available'}</Typo>
+                <Typo>{data.claimed ? 'Minted' : 'Reserved'}</Typo>
             </Grid>
         </Grid>
     );

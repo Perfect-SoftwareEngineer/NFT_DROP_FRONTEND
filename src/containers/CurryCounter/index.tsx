@@ -438,8 +438,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.1}
                                 marginTop={3}
                             >
-                                For every 3 point shot Stephen Curry makes in the NBA Playoffs, a new Basketball mint is
-                                created.
+                                For every three-point shot Stephen Curry makes in the NBA Playoffs, a new Basketball
+                                mint is created.
                             </Typography>
                             <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
                                 <Grid item xs={6}>
@@ -466,6 +466,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
                                     <li>When a three-point shot is made, press reserve</li>
+                                    <li>Game data may take up to between 15 to 30 minutes to refresh</li>
                                     <li>
                                         If you have successfully reserved a Basketball, press "Claim" (Claims only open
                                         after game)
