@@ -23,10 +23,10 @@ const appMenuList = [
     { title: 'FAQ', url: '#' },
 ];
 
-const externalLinksList = [
+const socialLinksList = [
     { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
-    { title: 'Discord', url: '#', icon: <DiscordIcon /> },
-    { title: 'Twitter', url: '#', icon: <TwitterIcon /> },
+    { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
+    { title: 'Twitter', url: 'https://twitter.com/UnderArmour', icon: <TwitterIcon /> },
 ];
 
 const Header: React.FC<ComponentProps> = ({}) => {
@@ -73,7 +73,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                             </Stack>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={2}>
-                            {externalLinksList.map((item, index) => (
+                            {socialLinksList.map((item, index) => (
                                 <Link href={item.url} passHref key={`external-link-${index}`}>
                                     <a target="_blank" rel="noopener noreferrer">
                                         <IconButton>{item.icon}</IconButton>
@@ -116,7 +116,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                         </Typography>
                                     </Link>
                                 ))}
-                                {externalLinksList.map((item, index) => (
+                                {socialLinksList.map((item, index) => (
                                     <Link href={item.url} passHref key={`external-link-${index}`}>
                                         <a target="_blank" rel="noopener noreferrer">
                                             <Typography fontSize={14} fontWeight={500}>

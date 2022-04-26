@@ -14,9 +14,7 @@ const PageContainer: FC<PropsWithChildren<ComponentProps>> = ({ children }): JSX
     const [appState, setAppState] = useAppContext();
     const router = useRouter();
 
-    let footerHidden: boolean =
-        (router.pathname === '/mixology' && !!account && appState.mixologyCurStep < 3) ||
-        router.pathname === '/currycounter';
+    let footerHidden: boolean = router.pathname === '/mixology' && !!account && appState.mixologyCurStep < 3;
 
     return (
         <>

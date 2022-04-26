@@ -10,11 +10,17 @@ import Link from 'next/link';
 
 type ComponentProps = {};
 
-const menuList = [
-    { title: 'Under Armour', url: '#' },
-    { title: 'Curry Brand', url: '#' },
-    { title: 'Terms', url: '#' },
-    { title: 'Privacy', url: '#' },
+const externalLinksList = [
+    { title: 'Under Armour', url: 'https://about.underarmour.com/about' },
+    { title: 'Curry Brand', url: 'https://www.underarmour.com/en-us/t/currybrand/' },
+    { title: 'Terms & Conditions', url: '#' },
+    { title: 'Privacy Policy', url: 'https://account.underarmour.com/en-us/privacy' },
+];
+
+const socialLinksList = [
+    { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
+    { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
+    { title: 'Twitter', url: 'https://twitter.com/UnderArmour', icon: <TwitterIcon /> },
 ];
 
 const Footer: React.FC<ComponentProps> = ({}) => {
@@ -26,30 +32,30 @@ const Footer: React.FC<ComponentProps> = ({}) => {
                         <Stack direction="row" alignItems="center" spacing={5}>
                             <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
                             <Stack direction="row" spacing={2}>
-                                {menuList.map((item, index) => (
+                                {externalLinksList.map((item, index) => (
                                     <Link href={item.url} passHref>
-                                        <Typography
-                                            fontSize={14}
-                                            fontWeight={600}
-                                            color="#969AA1"
-                                            sx={{ cursor: 'pointer' }}
-                                        >
-                                            {item.title}
-                                        </Typography>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography
+                                                fontSize={14}
+                                                fontWeight={600}
+                                                color="#969AA1"
+                                                sx={{ cursor: 'pointer' }}
+                                            >
+                                                {item.title}
+                                            </Typography>
+                                        </a>
                                     </Link>
                                 ))}
                             </Stack>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={2}>
-                            <IconButton>
-                                <OpenseaIcon />
-                            </IconButton>
-                            <IconButton>
-                                <DiscordIcon />
-                            </IconButton>
-                            <IconButton>
-                                <TwitterIcon />
-                            </IconButton>
+                            {socialLinksList.map((item, index) => (
+                                <Link href={item.url} passHref key={`external-link-${index}`}>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <IconButton>{item.icon}</IconButton>
+                                    </a>
+                                </Link>
+                            ))}
                         </Stack>
                     </Stack>
                 </Container>
