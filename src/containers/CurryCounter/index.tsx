@@ -63,6 +63,20 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
     useInterval(fetchLatestGameInfo, 60 * 1000);
 
+    const fetchGetWinners = useCallback(() => {
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+            getWinners(lastGameInfoForReserve[0].game_id)
+                .then((response: any[]) => {
+                    setBasketballWinners(response);
+                })
+                .catch((error) => {
+                    setBasketballWinners([]);
+                });
+        }
+    }, [lastGameInfoForReserve]);
+
+    useInterval(fetchGetWinners, 30 * 1000);
+
     React.useEffect(() => {
         if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
             getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account).then((response: any) => {
@@ -71,17 +85,19 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 setFreeReserveBasketballList(result);
             });
         }
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+    }, [lastGameInfoForReserve, account, isReserve]);
+
+    React.useEffect(() => {
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve && !isClaim) {
             getWinners(lastGameInfoForReserve[0].game_id)
                 .then((response: any[]) => {
-                    // console.log('getWinners result:', response);
                     setBasketballWinners(response);
                 })
                 .catch((error) => {
                     setBasketballWinners([]);
                 });
         }
-    }, [lastGameInfoForReserve, account, isReserve]);
+    }, [lastGameInfoForReserve, isReserve, isClaim]);
 
     React.useEffect(() => {
         if (
@@ -94,6 +110,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             getUnclaimedBasketballs(account).then((response: any) => {
                 let result: any[] = response;
                 setUnclaimedNFTInfo(result);
+                setHexProofForClaim([]);
             });
         }
     }, [lastGameInfoForReserve, account, isClaim]);
@@ -122,6 +139,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 .then((response: string) => {
                     // console.log('reserve free basketball response:', response);
                     setIsReserve(false);
+                    setFreeReserveBasketballList([]);
                     setReserveResult(
                         'Reserve Completed. Check back after the game to claim basketball. Keep in mind there might be delays in allowing minting.'
                     );
@@ -129,6 +147,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 .catch((error) => {
                     // console.log('reserve free basketball error:', error);
                     setIsReserve(false);
+                    setFreeReserveBasketballList([]);
                     setReserveResult(error);
                 });
         }
@@ -153,6 +172,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         } catch (err: any) {
             console.error(err);
             setIsClaim(false);
+            setUnclaimedNFTInfo([]);
             return;
         }
 
@@ -165,6 +185,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 // console.log('claim basketball error:', error);
             });
         setIsClaim(false);
+        setUnclaimedNFTInfo([]);
     };
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -272,7 +293,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 {reduceHexAddress(account, 4)}
                                             </Typography>
                                         </Stack>
-                                        {lastGameInfoForReserve.length > 0 && freeReserveBasketballList.length > 0 ? (
+                                        {lastGameInfoForReserve.length > 0 &&
+                                        lastGameInfoForReserve[0].merkled === false &&
+                                        freeReserveBasketballList.length > 0 ? (
                                             <>
                                                 <Stack direction="row" alignItems="center" marginTop={{ xs: 1, md: 3 }}>
                                                     <FormControlLabel
@@ -425,7 +448,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     lastGameInfoForReserve.length > 0 &&
                                                     lastGameInfoForReserve[0].merkled === true &&
                                                     lastGameInfoForReserve[0].live === false &&
-                                                    unclaimedNFTInfo.length > 0
+                                                    unclaimedNFTInfo.length > 0 &&
+                                                    hexProofForClaim.length > 0
                                                 )
                                             }
                                             sx={{ width: 156, height: 34, fontSize: 14, padding: '2px 16px 6px' }}
