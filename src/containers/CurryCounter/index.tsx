@@ -54,11 +54,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     };
 
     const fetchLatestGameInfo = useCallback(() => {
-        getLatestGameInfo().then((response: any) => {
-            // console.log('response:', response);
-            let result: any[] = response;
-            setLastGameInfoForReserve(result);
-        });
+        getLatestGameInfo()
+            .then((response: any[]) => {
+                setLastGameInfoForReserve(response);
+            })
+            .catch((error) => {
+                setLastGameInfoForReserve([]);
+            });
     }, []);
 
     useInterval(fetchLatestGameInfo, 60 * 1000);
@@ -79,11 +81,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
     React.useEffect(() => {
         if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
-            getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account).then((response: any) => {
-                // console.log('response:', response);
-                let result: any[] = response;
-                setFreeReserveBasketballList(result);
-            });
+            getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
+                .then((response: any[]) => {
+                    setFreeReserveBasketballList(response);
+                })
+                .catch((error) => {
+                    setFreeReserveBasketballList([]);
+                });
         }
     }, [lastGameInfoForReserve, account, isReserve]);
 
@@ -107,20 +111,29 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             lastGameInfoForReserve[0].live === false &&
             !isClaim
         ) {
-            getUnclaimedBasketballs(account).then((response: any) => {
-                let result: any[] = response;
-                setHexProofForClaim([]);
-                setUnclaimedNFTInfo(result);
-            });
+            getUnclaimedBasketballs(account)
+                .then((response: any[]) => {
+                    // console.log('response:', response);
+                    setHexProofForClaim([]);
+                    setUnclaimedNFTInfo(response);
+                })
+                .catch((error) => {
+                    setHexProofForClaim([]);
+                    setUnclaimedNFTInfo([]);
+                });
         }
     }, [lastGameInfoForReserve, account, isClaim]);
 
     React.useEffect(() => {
         if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id) {
-            getHexProofForClaim(unclaimedNFTInfo[0].game_id, account).then((response: any) => {
-                let result: any[] = response;
-                setHexProofForClaim(result);
-            });
+            getHexProofForClaim(unclaimedNFTInfo[0].game_id, account)
+                .then((response: any[]) => {
+                    // console.log('response:', response);
+                    setHexProofForClaim(response);
+                })
+                .catch((error) => {
+                    setHexProofForClaim([]);
+                });
         }
     }, [unclaimedNFTInfo, account]);
 
@@ -138,18 +151,17 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
                 .then((response: string) => {
                     // console.log('reserve free basketball response:', response);
-                    setFreeReserveBasketballList([]);
                     setReserveResult(
                         'Reserve Completed. Check back after the game to claim basketball. Keep in mind there might be delays in allowing minting.'
                     );
-                    setIsReserve(false);
                 })
                 .catch((error) => {
                     // console.log('reserve free basketball error:', error);
-                    setFreeReserveBasketballList([]);
                     setReserveResult(error);
-                    setIsReserve(false);
                 });
+
+            setFreeReserveBasketballList([]);
+            setIsReserve(false);
         }
     };
 
