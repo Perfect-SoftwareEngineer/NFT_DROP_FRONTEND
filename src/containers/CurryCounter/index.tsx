@@ -26,6 +26,7 @@ import {
     getHexProofForClaim,
     claimBasketball,
     getWinners,
+    getCountValues,
 } from '../../services/fetch';
 
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
@@ -48,6 +49,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [isClaim, setIsClaim] = React.useState<boolean>(false);
 
     const [basketballWinners, setBasketballWinners] = React.useState<RaffleWinnerItemType[]>([]);
+    const [gameMoreInfo, setGameMoreInfo] = React.useState<number[]>([0, 0]);
 
     const [showMetamask, setShowMetamask] = React.useState<boolean>(true);
 
@@ -202,6 +204,18 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         setIsClaim(false);
     };
 
+    const fetchCountValues = useCallback(() => {
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+            getCountValues(lastGameInfoForReserve[0].game_id)
+                .then((response: any[]) => {
+                    setGameMoreInfo(response);
+                })
+                .catch((error) => {});
+        }
+    }, [lastGameInfoForReserve]);
+
+    useInterval(fetchCountValues, 10 * 1000);
+
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAgreeTermsConditions(event.target.checked);
     };
@@ -286,7 +300,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             Available Mints
                                         </Typography>
                                         <Typography fontSize={16} fontWeight={400} color="#979797">
-                                            5 Basketballs
+                                            {`${gameMoreInfo[1]} Basketballs`}
                                         </Typography>
                                     </Stack>
                                 </Stack>
@@ -440,7 +454,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
                                 <Grid item xs={6}>
                                     <SupplyBox
-                                        amount={5}
+                                        amount={gameMoreInfo[0]}
                                         label="Three Points Scored"
                                         bgColor="#1B1C22"
                                         headColor="#FFCA21"
@@ -448,7 +462,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <SupplyBox
-                                        amount={0}
+                                        amount={gameMoreInfo[1]}
                                         label="Available Mints"
                                         bgColor="#1B1C22"
                                         headColor="#979797"

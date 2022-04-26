@@ -136,3 +136,18 @@ export const getWinners = (gameID: string) =>
                 reject(error);
             });
     });
+
+export const getCountValues = (gameID: string) =>
+    new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get_count/${gameID}`;
+        // console.log('reqUrl:', reqUrl);
+
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });

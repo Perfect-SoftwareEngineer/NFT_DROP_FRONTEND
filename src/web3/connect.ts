@@ -7,7 +7,7 @@ export async function connect(activate: any) {
             method: 'wallet_addEthereumChain',
             params: [
                 {
-                    chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x89' : '0x13881',
+                    chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x4' : '0x13881',
                     chainName: process.env.NEXT_PUBLIC_ENV == 'production' ? 'Polygon' : 'Mumbai Testnet',
                     nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
                     rpcUrls:
@@ -20,12 +20,12 @@ export async function connect(activate: any) {
 
         await w.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x89' : '0x13881' }],
+            params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x4' : '0x13881' }],
         });
 
         await w.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x89' : '0x13881' }],
+            params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x4' : '0x13881' }],
         });
 
         await activate(injected);
