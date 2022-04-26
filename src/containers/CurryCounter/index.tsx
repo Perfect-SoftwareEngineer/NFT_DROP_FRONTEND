@@ -222,7 +222,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                     <Typography width={320} fontSize={12} fontWeight={400}>
                                         Make sure you download Metamask and connect your account prior to minting. You
-                                        will need MetaMask compatibility to mint your Intel Cryptex.
+                                        will need MetaMask compatibility to mint your Basketball.
                                     </Typography>
                                 </Stack>
                                 <IconButton sx={{ color: 'white' }}>

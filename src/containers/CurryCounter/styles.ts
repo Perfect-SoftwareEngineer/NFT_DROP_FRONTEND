@@ -13,7 +13,7 @@ export const MetamaskNotifBox = styled(Stack)`
     position: absolute;
     top: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(27, 28, 34, 0.75);
     padding: 24px;
     border-radius: 8px;
 `;
