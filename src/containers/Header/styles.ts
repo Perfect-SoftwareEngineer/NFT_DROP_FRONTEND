@@ -74,7 +74,7 @@ export const StyledBurger = styled('div')<{ open: boolean }>`
 `;
 
 export const BurgerMenuBox = styled(Stack)<{ open: boolean }>`
-    width: 160px;
+    width: 240px;
     padding: 16px;
     position: absolute;
     top: 120%;

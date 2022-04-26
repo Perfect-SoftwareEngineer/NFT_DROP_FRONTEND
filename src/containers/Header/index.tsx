@@ -128,17 +128,33 @@ const Header: React.FC<ComponentProps> = ({}) => {
                             <BurgerMenuBox spacing={2} open={menuOpen}>
                                 {appMenuList.map((item, index) => (
                                     <Link href={item.url} passHref key={`app-menu-link-${index}`}>
-                                        <Typography fontSize={14} fontWeight={500}>
-                                            {item.title}
-                                        </Typography>
+                                        <Stack direction="row" alignItems="center" justifyContent="space-between">
+                                            <Typography fontSize={14} fontWeight={500}>
+                                                {item.title}
+                                            </Typography>
+                                            {item.comingSoon && (
+                                                <Typography
+                                                    fontSize={8}
+                                                    fontWeight={400}
+                                                    padding="2px 4px"
+                                                    borderRadius={1}
+                                                    sx={{ background: 'white', color: 'black' }}
+                                                >
+                                                    Coming soon
+                                                </Typography>
+                                            )}
+                                        </Stack>
                                     </Link>
                                 ))}
                                 {socialLinksList.map((item, index) => (
                                     <Link href={item.url} passHref key={`external-link-${index}`}>
                                         <a target="_blank" rel="noopener noreferrer">
-                                            <Typography fontSize={14} fontWeight={500}>
-                                                {item.title}
-                                            </Typography>
+                                            <Stack direction="row" alignItems="center" justifyContent="space-between">
+                                                <Typography fontSize={14} fontWeight={500}>
+                                                    {item.title}
+                                                </Typography>
+                                                <IconButton sx={{ padding: 0 }}>{item.icon}</IconButton>
+                                            </Stack>
                                         </a>
                                     </Link>
                                 ))}
