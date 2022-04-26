@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Stack, Box, Grid, Button, Typography, IconButton, Dialog, CircularProgress } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
@@ -16,6 +16,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import useInterval from '../../hooks/useInterval';
 import {
     getLatestGameInfo,
     getFreeReserveBasketballs,
@@ -49,18 +50,15 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         connect(activate);
     };
 
-    const onGetLatestGameInfo = () => {
+    const fetchLatestGameInfo = useCallback(() => {
         getLatestGameInfo().then((response: any) => {
             // console.log('response:', response);
             let result: any[] = response;
             setLastGameInfoForReserve(result);
         });
-    };
-
-    React.useEffect(() => {
-        onGetLatestGameInfo();
-        setInterval(onGetLatestGameInfo, 60 * 1000);
     }, []);
+
+    useInterval(fetchLatestGameInfo, 60 * 1000);
 
     React.useEffect(() => {
         if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
