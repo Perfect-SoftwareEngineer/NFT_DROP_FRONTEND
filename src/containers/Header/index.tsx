@@ -19,9 +19,9 @@ const appMenuList = [
     // { title: 'Home', url: '/' },
     { title: 'Curry Counter', url: '/currycounter' },
     { title: 'FAQ', url: '#' },
-    { title: 'Curry Shop', url: '', comingSoon: true },
-    { title: 'Mixology Room', url: '', comingSoon: true },
-    { title: 'The Lab', url: '', comingSoon: true },
+    { title: 'Curry Shop', url: '', comingSoon: { rightPos: -8 } },
+    { title: 'Mixology Room', url: '', comingSoon: { rightPos: -8 } },
+    { title: 'The Lab', url: '', comingSoon: { rightPos: -56 } },
 ];
 
 const socialLinksList = [
@@ -58,7 +58,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                     <Stack
                         height={72}
                         direction="row"
-                        alignItems="center" 
+                        alignItems="center"
                         justifyContent="space-between"
                         display={{ xs: 'none', md: 'flex' }}
                     >
@@ -79,7 +79,11 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             <Typography fontSize={14} fontWeight={600}>
                                                 {item.title}
                                             </Typography>
-                                            {item.comingSoon && <ComingSoonTypo>Coming soon</ComingSoonTypo>}
+                                            {item.comingSoon && (
+                                                <ComingSoonTypo rightPos={item.comingSoon.rightPos}>
+                                                    Coming soon
+                                                </ComingSoonTypo>
+                                            )}
                                         </HeaderMenuBtn>
                                     </Link>
                                 ))}

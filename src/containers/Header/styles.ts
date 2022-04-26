@@ -11,10 +11,10 @@ export const HeaderMenuBtn = styled(Stack)<{ selected?: boolean }>`
     border-bottom: ${({ selected }) => (selected ? '2px solid #ffca21' : '2px solid transparent')};
 `;
 
-export const ComingSoonTypo = styled(Typography)`
+export const ComingSoonTypo = styled(Typography)<{ rightPos: number }>`
     position: absolute;
     top: 8px;
-    right: -8px;
+    right: ${({ rightPos }) => `${rightPos}px`};
     font-size: 8px;
     font-weight: 400;
     background: white;
