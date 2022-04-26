@@ -9,10 +9,10 @@ const Home: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     return (
         <>
             <Head>
-                <title>Next.js MUI Project</title>
+                <title>Curry Part 2</title>
             </Head>
             <PageContainer>
-                <Container>Content Box</Container>
+                <Container>Home</Container>
             </PageContainer>
         </>
     );

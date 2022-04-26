@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css';
-import { styled, Box } from '@mui/material';
+import { styled, Stack } from '@mui/material';
 
-export const PageWrapper = styled('div')`
+export const PageWrapper = styled(Stack)`
     min-height: 100vh;
     position: relative;
 `;
@@ -10,17 +10,18 @@ const style = css`
     .site__header {
         /* background: gray; */
         position: relative;
-        z-index: 10;
+        z-index: 20;
     }
     .site__main {
-        background: lightgray;
+        background: black;
         position: relative;
-        z-index: 20;
+        z-index: 10;
+        min-height: calc(100vh - 222px);
     }
     .site__footer {
         /* background: gray; */
         position: relative;
-        z-index: 10;
+        z-index: 20;
     }
 `;
 
