@@ -109,8 +109,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         ) {
             getUnclaimedBasketballs(account).then((response: any) => {
                 let result: any[] = response;
-                setUnclaimedNFTInfo(result);
                 setHexProofForClaim([]);
+                setUnclaimedNFTInfo(result);
             });
         }
     }, [lastGameInfoForReserve, account, isClaim]);
@@ -138,17 +138,17 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
                 .then((response: string) => {
                     // console.log('reserve free basketball response:', response);
-                    setIsReserve(false);
                     setFreeReserveBasketballList([]);
                     setReserveResult(
                         'Reserve Completed. Check back after the game to claim basketball. Keep in mind there might be delays in allowing minting.'
                     );
+                    setIsReserve(false);
                 })
                 .catch((error) => {
                     // console.log('reserve free basketball error:', error);
-                    setIsReserve(false);
                     setFreeReserveBasketballList([]);
                     setReserveResult(error);
+                    setIsReserve(false);
                 });
         }
     };
@@ -171,8 +171,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             }
         } catch (err: any) {
             console.error(err);
-            setIsClaim(false);
             setUnclaimedNFTInfo([]);
+            setIsClaim(false);
             return;
         }
 
@@ -184,8 +184,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             .catch((error) => {
                 // console.log('claim basketball error:', error);
             });
-        setIsClaim(false);
         setUnclaimedNFTInfo([]);
+        setIsClaim(false);
     };
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
