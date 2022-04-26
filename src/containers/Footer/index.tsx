@@ -32,7 +32,15 @@ const Footer: React.FC<ComponentProps> = ({}) => {
                 <Container>
                     <Stack height={72} direction="row" alignItems="center" justifyContent="space-between">
                         <Stack direction="row" alignItems="center" spacing={5}>
-                            <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
+                            <Link href="/currycounter" passHref>
+                                <Image
+                                    src="/assets/curry-logo.png"
+                                    width={40}
+                                    height={40}
+                                    alt="Logo"
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            </Link>
                             <Stack direction="row" spacing={2}>
                                 {externalLinksList.map((item, index) => (
                                     <Link href={item.url} passHref>

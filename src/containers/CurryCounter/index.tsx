@@ -250,7 +250,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         sx={{ background: '#1B1C22' }}
                                     >
                                         <Typography fontSize={16} fontWeight={700} color="white">
-                                            Opponent Team
+                                            Opposing Team
                                         </Typography>
                                         <Typography fontSize={16} fontWeight={400} color="#979797">
                                             {lastGameInfoForReserve.length > 0 &&
@@ -287,7 +287,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         sx={{ background: '#1B1C22' }}
                                     >
                                         <Typography fontSize={16} fontWeight={700} color="white">
-                                            Available Mints
+                                            Available Reserves
                                         </Typography>
                                         <Typography fontSize={16} fontWeight={400} color="#979797">
                                             {`${gameMoreInfo[1]} Basketballs`}
@@ -453,7 +453,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Grid item xs={6}>
                                     <SupplyBox
                                         amount={gameMoreInfo[1]}
-                                        label="Available Mints"
+                                        label="Available Reserves"
                                         bgColor="#1B1C22"
                                         headColor="#979797"
                                     />
@@ -465,8 +465,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
-                                    <li>When 3-point shot is made, press reserve</li>
-                                    <li>If you have successfully reserved a Basketball,press "Claim"</li>
+                                    <li>When a three-point shot is made, press reserve</li>
+                                    <li>
+                                        If you have successfully reserved a Basketball, press "Claim" (Claims only open
+                                        after game)
+                                    </li>
                                 </ol>
                                 <Typography fontSize={16} fontWeight={400}>
                                     Note: Only 1 Basketball per Wallet Address
