@@ -2,34 +2,11 @@ import { RaffleWinnerItemType } from '../types';
 
 export const raffleWinnersList: Array<RaffleWinnerItemType> = [
     {
-        id: 4,
-        name: 'Basketball',
-        url: '/assets/currycounter/curry-brand.png',
-        date: '23/04/22',
-        status: 'Available',
-    },
-    {
-        id: 3,
-        name: 'Basketball',
-        url: '/assets/currycounter/curry-brand.png',
-        date: '24/04/22',
-        address: '0x3acedf55a03877c7561830238f0adb9e24090fbd',
-        status: 'Minted',
-    },
-    {
-        id: 2,
-        name: 'Basketball',
-        url: '/assets/currycounter/curry-brand.png',
-        date: '25/04/22',
-        address: '0x3acedf55a03877c7561830238f0adb9e24090fbd',
-        status: 'Available',
-    },
-    {
-        id: 1,
-        name: 'Basketball',
-        url: '/assets/currycounter/curry-brand.png',
-        date: '26/04/22',
-        address: '0x3acedf55a03877c7561830238f0adb9e24090fbd',
-        status: 'Minted',
+        claimed: false,
+        _id: '6266bbe571412d38cc0e6dc7',
+        game_id: 10878,
+        wallet: '0x1256d044bba1b98841efe23bc4d38ff96bae4bce',
+        createdAt: '2022-04-25T15:19:01.759Z',
+        updatedAt: '2022-04-25T15:23:44.726Z',
     },
 ];

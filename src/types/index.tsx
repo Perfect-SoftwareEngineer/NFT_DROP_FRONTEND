@@ -25,10 +25,12 @@ export type WearableItemType = {
 };
 
 export type RaffleWinnerItemType = {
-    id: number;
-    name: string;
-    url: string;
-    date: string;
-    address?: string;
-    status: string;
+    _id: string;
+    game_id: number;
+    claimed: boolean;
+    // name: string;
+    // url: string;
+    createdAt: string;
+    updatedAt: string;
+    wallet: string;
 };

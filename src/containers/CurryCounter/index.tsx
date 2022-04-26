@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import RaffleWinerItem from '../../components/CurryCounter/RaffleWinerItem';
+import { RaffleWinnerItemType } from '../../types';
 import { raffleWinnersList } from '../../constants/dummyData';
 import { useWeb3React } from '@web3-react/core';
 import { connect } from '../../web3/connect';
@@ -24,6 +25,7 @@ import {
     getUnclaimedBasketballs,
     getHexProofForClaim,
     claimBasketball,
+    getWinners,
 } from '../../services/fetch';
 
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
@@ -44,7 +46,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [reserveResult, setReserveResult] = React.useState<string>('');
 
     const [isClaim, setIsClaim] = React.useState<boolean>(false);
-    const [unclaimedCount, setUnclaimedCount] = React.useState<number>(0);
+
+    const [basketballWinners, setBasketballWinners] = React.useState<RaffleWinnerItemType[]>([]);
 
     const onConnect = () => {
         connect(activate);
@@ -61,12 +64,22 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     useInterval(fetchLatestGameInfo, 60 * 1000);
 
     React.useEffect(() => {
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
-            getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id).then((response: any) => {
+        if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
+            getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account).then((response: any) => {
                 // console.log('response:', response);
                 let result: any[] = response;
                 setFreeReserveBasketballList(result);
             });
+        }
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+            getWinners(lastGameInfoForReserve[0].game_id)
+                .then((response: any[]) => {
+                    // console.log('getWinners result:', response);
+                    setBasketballWinners(response);
+                })
+                .catch((error) => {
+                    setBasketballWinners([]);
+                });
         }
     }, [lastGameInfoForReserve, account, isReserve]);
 
@@ -107,14 +120,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             setIsReserve(true);
             reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
                 .then((response: string) => {
-                    console.log('reserve free basketball response:', response);
+                    // console.log('reserve free basketball response:', response);
                     setIsReserve(false);
                     setReserveResult(
                         'Reserve Completed. Check back after the game to claim basketball. Keep in mind there might be delays in allowing minting.'
                     );
                 })
                 .catch((error) => {
-                    console.log('reserve free basketball error:', error);
+                    // console.log('reserve free basketball error:', error);
                     setIsReserve(false);
                     setReserveResult(error);
                 });
@@ -144,12 +157,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         }
 
         //call post api
-        claimBasketball(unclaimedNFTInfo[0].game_id)
+        claimBasketball(unclaimedNFTInfo[0]._id)
             .then((response: string) => {
-                console.log('claim basketball response:', response);
+                // console.log('claim basketball response:', response);
             })
             .catch((error) => {
-                console.log('claim basketball error:', error);
+                // console.log('claim basketball error:', error);
             });
         setIsClaim(false);
     };
@@ -420,7 +433,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         >
                                             CLAIM
                                         </PrimaryBtn>
-                                        {!!unclaimedCount ? (
+                                        {!!unclaimedNFTInfo.length ? (
                                             <Typography fontSize={16} fontWeight={600}>
                                                 You have{' '}
                                                 <Typography
@@ -429,7 +442,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     color="#FFCA21"
                                                     display="inline"
                                                 >
-                                                    {`${unclaimedCount} unclaimed mint`}
+                                                    {`${unclaimedNFTInfo.length} unclaimed mint`}
                                                 </Typography>
                                             </Typography>
                                         ) : (
@@ -451,7 +464,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                     <Stack marginTop={{ xs: 6, md: 9 }} spacing={4}>
                         <Typography fontSize={32} fontWeight={600}>
-                            Raffle Winners
+                            Basketball Winners
                         </Typography>
                         <Grid container rowGap={3}>
                             <Grid item container columns={{ xs: 7, md: 14 }}>
@@ -474,8 +487,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Grid item xs={14}>
                                 <Box width="100%" height="1px" sx={{ background: '#32343F' }}></Box>
                             </Grid>
-                            {raffleWinnersList.map((item, index) => (
-                                <RaffleWinerItem data={item} key={`raffle-winner-key${index}`} />
+                            {basketballWinners.map((item, index) => (
+                                <RaffleWinerItem data={item} index={index} key={`raffle-winner-key${index}`} />
                             ))}
                         </Grid>
                     </Stack>
