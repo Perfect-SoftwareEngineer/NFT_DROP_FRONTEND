@@ -68,7 +68,11 @@ const Footer: React.FC<ComponentProps> = ({}) => {
                         <Typography fontSize={16} fontWeight={400} color="#FFFEFF" sx={{ padding: '0 0 6px' }}>
                             Powered by
                         </Typography>
-                        <LunaLogoImg />
+                        <Link href="https://lunamarket.io/" passHref>
+                            <a target="_blank" rel="noopener noreferrer">
+                                <LunaLogoImg />
+                            </a>
+                        </Link>
                     </Stack>
                 </Container>
             </Box>

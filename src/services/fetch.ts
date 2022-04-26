@@ -19,7 +19,7 @@ export const getLatestGameInfo = async () =>
                 resolve(response.data);
             })
             .catch((error) => {
-                reject(error.response.data);
+                reject(error);
             });
     });
 
@@ -34,7 +34,7 @@ export const getFreeReserveBasketballs = async (gameID: string, walletAddr: stri
                 resolve(response.data);
             })
             .catch((error) => {
-                reject(error.response.data);
+                reject(error);
             });
     });
 
@@ -77,7 +77,7 @@ export const getUnclaimedBasketballs = async (walletAddr: string) =>
                 resolve(response.data);
             })
             .catch((error) => {
-                reject(error.response.data);
+                reject(error);
             });
     });
 
@@ -92,7 +92,7 @@ export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
                 resolve(response.data);
             })
             .catch((error) => {
-                reject(error.response.data);
+                reject(error);
             });
     });
 
@@ -133,6 +133,6 @@ export const getWinners = (gameID: string) =>
                 resolve(response.data);
             })
             .catch((error) => {
-                reject(error.response.data);
+                reject(error);
             });
     });

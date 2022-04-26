@@ -28,7 +28,7 @@ const RaffleWinnerItem: React.FC<ComponentProps> = ({ data, index }): JSX.Elemen
                 </Stack>
             </Grid>
             <Grid item xs={3} display={{ xs: 'none', md: 'block' }}>
-                <Typo>{data.createdAt.slice(0, 16).replace('T', ' ')}</Typo>
+                <Typo>{data.createdAt.slice(0, 10)}</Typo>
             </Grid>
             <Grid item xs={3} md={5}>
                 {data.wallet ? <AddressTypo>{reduceHexAddress(data.wallet, 4)}</AddressTypo> : <Typo>-</Typo>}
