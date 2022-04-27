@@ -223,11 +223,16 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         window.scrollTo({ top: claimAreaTopPos, behavior: 'smooth' });
     };
 
+    const videoRef = React.useRef<HTMLVideoElement>(null);
+    React.useEffect(() => {
+        videoRef.current?.play();
+    }, []);
+
     return (
         <>
             <Box position="relative">
                 <Box position="absolute" top={0} width="100vw" zIndex={-10}>
-                    <video autoPlay loop style={{ width: '100%' }}>
+                    <video autoPlay loop style={{ width: '100%' }} ref={videoRef}>
                         <source src="/assets/currycounter/background.mp4" type="video/mp4" />
                     </video>
                     <GradientBox />
