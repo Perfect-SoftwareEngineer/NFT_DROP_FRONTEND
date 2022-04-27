@@ -322,46 +322,105 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             MY WALLET ADDRESS:
                                         </Typography>
                                         <Typography fontSize={16} fontWeight={800}>
-                                            {reduceHexAddress(account ? account : '', 4)}
+                                            {account ? reduceHexAddress(account, 4) : 'Wallet not connected'}
                                         </Typography>
                                     </Stack>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={agreeTermsConditions}
-                                                onChange={handleAgreeTermsConditions}
-                                                inputProps={{ 'aria-label': 'controlled' }}
-                                                sx={{ color: '#9E9E9E' }}
-                                            />
-                                        }
-                                        label={
-                                            <Typography marginBottom="6px">
-                                                {`I agree that checking this box, I agree to Under Armours's `}
+                                    {account ? (
+                                        lastGameInfoForReserve.length > 0 &&
+                                        lastGameInfoForReserve[0].merkled === false &&
+                                        freeReserveBasketballList.length > 0 ? (
+                                            <>
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox
+                                                            checked={agreeTermsConditions}
+                                                            onChange={handleAgreeTermsConditions}
+                                                            inputProps={{ 'aria-label': 'controlled' }}
+                                                            sx={{ color: '#9E9E9E' }}
+                                                        />
+                                                    }
+                                                    label={
+                                                        <Typography marginBottom="6px">
+                                                            {`I agree that checking this box, I agree to Under Armours's `}
+                                                            <Typography
+                                                                color="#FFCA21"
+                                                                display="inline"
+                                                            >{`Terms & Conditions.`}</Typography>
+                                                        </Typography>
+                                                    }
+                                                    sx={{ marginTop: 3 }}
+                                                />
+                                                <PrimaryBtn
+                                                    disabled={!agreeTermsConditions}
+                                                    sx={{
+                                                        marginTop: { xs: 1, md: 1.5 },
+                                                        width: 156,
+                                                        height: 34,
+                                                        fontSize: 14,
+                                                        padding: '2px 16px 6px',
+                                                    }}
+                                                    onClick={onReserve}
+                                                >
+                                                    RESERVE
+                                                </PrimaryBtn>
                                                 <Typography
+                                                    fontSize={16}
+                                                    fontWeight={400}
                                                     color="#FFCA21"
-                                                    display="inline"
-                                                >{`Terms & Conditions.`}</Typography>
+                                                    marginTop={2}
+                                                >
+                                                    Reserve Completed. Check back after the game to claim basketball.
+                                                    Keep in mind there might be delays in allowing minting.
+                                                </Typography>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Typography fontSize={16} fontWeight={400} marginTop={2}>
+                                                    Even if Stephen Curry made a three-point shot, it will take around
+                                                    30 seconds for our system to process.
+                                                </Typography>
+                                                <PrimaryBtn
+                                                    disabled
+                                                    sx={{
+                                                        width: 156,
+                                                        height: 34,
+                                                        fontSize: 14,
+                                                        padding: '2px 16px 6px',
+                                                        marginTop: 2,
+                                                    }}
+                                                >
+                                                    UNAVAILABLE
+                                                </PrimaryBtn>
+                                                <Typography
+                                                    fontSize={16}
+                                                    fontWeight={400}
+                                                    color="#FFCA21"
+                                                    marginTop={2}
+                                                >
+                                                    There are currently no reserves available.
+                                                </Typography>
+                                            </>
+                                        )
+                                    ) : (
+                                        <>
+                                            <Typography fontSize={16} fontWeight={400} marginTop={2}>
+                                                In order to start, please connect your MetaMask Wallet. You will only be
+                                                able to start after connecting your Wallet.
                                             </Typography>
-                                        }
-                                        sx={{ marginTop: 3 }}
-                                    />
-                                    <PrimaryBtn
-                                        disabled={!agreeTermsConditions}
-                                        sx={{
-                                            marginTop: { xs: 1, md: 1.5 },
-                                            width: 156,
-                                            height: 34,
-                                            fontSize: 14,
-                                            padding: '2px 16px 6px',
-                                        }}
-                                        onClick={onReserve}
-                                    >
-                                        RESERVE
-                                    </PrimaryBtn>
-                                    <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
-                                        Reserve Completed. Check back after the game to claim basketball. Keep in mind
-                                        there might be delays in allowing minting.
-                                    </Typography>
+                                            <PrimaryBtn
+                                                sx={{
+                                                    width: 156,
+                                                    height: 34,
+                                                    fontSize: 14,
+                                                    padding: '2px 16px 6px',
+                                                    marginTop: 3,
+                                                }}
+                                                onClick={onConnect}
+                                            >
+                                                CONNECT WALLET
+                                            </PrimaryBtn>
+                                        </>
+                                    )}
                                 </Stack>
                                 <Stack
                                     width="100%"
