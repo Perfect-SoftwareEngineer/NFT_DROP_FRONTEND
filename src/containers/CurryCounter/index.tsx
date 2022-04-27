@@ -252,7 +252,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     )}
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
-                        alignItems="center"
+                        alignItems={{ xs: 'auto', md: 'center' }}
                         spacing={{ xs: 0, md: 5 }}
                         borderRadius={{ xs: 0, md: 100 }}
                         sx={{ background: '#1B1C22' }}
@@ -277,8 +277,15 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 Curry Counter
                             </Typography>
                         </Stack>
-                        <Stack height={64} direction="row" alignItems="center" spacing={5}>
-                            <Box>
+                        <Stack
+                            height={64}
+                            direction="row"
+                            alignItems="center"
+                            spacing={5}
+                            paddingX={{ xs: 2, md: 0 }}
+                            sx={{ overflowY: 'hidden', overflowX: 'auto' }}
+                        >
+                            <Box flexShrink={0}>
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Game Status:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="#B8FF97" display="inline">
@@ -286,7 +293,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box display={{ xs: 'none', md: 'block' }}>
+                            <Box flexShrink={0}>
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Game in Series:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
@@ -294,7 +301,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box display={{ xs: 'none', md: 'block' }}>
+                            <Box flexShrink={0}>
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Available Reserves:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
@@ -302,7 +309,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box display={{ xs: 'none', md: 'block' }}>
+                            <Box flexShrink={0}>
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Cost:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
@@ -310,7 +317,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box display={{ xs: 'block', md: 'none' }}>
+                            <Box flexShrink={0}>
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Opponent Team:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
