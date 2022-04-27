@@ -219,7 +219,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 <GradientBox />
                 <Box position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%', paddingY: { xs: 2, md: 5 } }}>
-                        <Stack height="100%" justifyContent="flex-end" position="relative">
+                        <Stack height="100%" justifyContent="space-between" position="relative">
                             {showMetamask && (
                                 <MetamaskNotifBox direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
                                     <img src="/assets/metamask.png" width={56} height={56} alt="" />
@@ -237,154 +237,158 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </IconButton>
                                 </MetamaskNotifBox>
                             )}
-                            <Stack marginX="auto" alignItems="center">
-                                <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 1, md: 2 }}>
-                                    <Stack
-                                        width={192}
-                                        height={84}
-                                        justifyContent="center"
-                                        alignItems="flex-start"
-                                        spacing={1}
-                                        paddingX={2}
-                                        borderRadius={2}
-                                        sx={{ background: '#1B1C22' }}
-                                    >
-                                        <Typography fontSize={16} fontWeight={700} color="white">
-                                            Opposing Team
+                            <Stack
+                                height={64}
+                                direction="row"
+                                alignItems="center"
+                                spacing={5}
+                                borderRadius={8}
+                                sx={{ background: '#1B1C22' }}
+                            >
+                                <Stack
+                                    width={224}
+                                    height="100%"
+                                    direction="row"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                    borderRadius={8}
+                                    spacing={1}
+                                    sx={{ background: '#32343F' }}
+                                >
+                                    <Image
+                                        src={'/assets/currycounter/curry-brand.png'}
+                                        width={32}
+                                        height={32}
+                                        style={{ borderRadius: '50%' }}
+                                    />
+                                    <Typography fontSize={20} fontWeight={600} paddingBottom="6px">
+                                        Curry Counter
+                                    </Typography>
+                                </Stack>
+                                <Box>
+                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                        Game Status:{' '}
+                                        <Typography fontSize={16} fontWeight={600} color="#B8FF97" display="inline">
+                                            Live
                                         </Typography>
-                                        <Typography fontSize={16} fontWeight={400} color="#979797">
-                                            {lastGameInfoForReserve.length > 0 &&
-                                            lastGameInfoForReserve[0].opposite_team
-                                                ? lastGameInfoForReserve[0].opposite_team
-                                                : '-'}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                        Game in Series:{' '}
+                                        <Typography fontSize={16} fontWeight={600} color="white" display="inline">
+                                            Series 2-2
                                         </Typography>
-                                    </Stack>
-                                    <Stack
-                                        width={192}
-                                        height={84}
-                                        justifyContent="center"
-                                        alignItems="flex-start"
-                                        spacing={1}
-                                        paddingX={2}
-                                        borderRadius={2}
-                                        sx={{ background: '#1B1C22' }}
-                                    >
-                                        <Typography fontSize={16} fontWeight={700} color="white">
-                                            Cost
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                        Available Reserves:{' '}
+                                        <Typography fontSize={16} fontWeight={600} color="white" display="inline">
+                                            6 Basketballs
                                         </Typography>
-                                        <Typography fontSize={16} fontWeight={400} color="#979797">
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                        Cost:{' '}
+                                        <Typography fontSize={16} fontWeight={600} color="white" display="inline">
                                             Free
                                         </Typography>
-                                    </Stack>
-                                    <Stack
-                                        width={192}
-                                        height={84}
-                                        justifyContent="center"
-                                        alignItems="flex-start"
-                                        spacing={1}
-                                        paddingX={2}
-                                        borderRadius={2}
-                                        sx={{ background: '#1B1C22' }}
-                                    >
-                                        <Typography fontSize={16} fontWeight={700} color="white">
-                                            Available Reserves
-                                        </Typography>
-                                        <Typography fontSize={16} fontWeight={400} color="#979797">
-                                            {`${gameMoreInfo[1]} Basketballs`}
-                                        </Typography>
-                                    </Stack>
-                                </Stack>
-                                {account ? (
-                                    <>
-                                        <Stack
-                                            direction="row"
-                                            width="100%"
-                                            justifyContent="space-between"
-                                            paddingX={3}
-                                            paddingY={1}
-                                            borderRadius="100px"
-                                            marginTop={3}
-                                            sx={{ background: '#1B1C22' }}
-                                        >
-                                            <Typography fontSize={16} fontWeight={400}>
-                                                MY WALLET ADDRESS:
-                                            </Typography>
-                                            <Typography fontSize={16} fontWeight={800}>
-                                                {reduceHexAddress(account, 4)}
-                                            </Typography>
-                                        </Stack>
-                                        {lastGameInfoForReserve.length > 0 &&
-                                        lastGameInfoForReserve[0].merkled === false &&
-                                        freeReserveBasketballList.length > 0 ? (
-                                            <>
-                                                <Stack direction="row" alignItems="center" marginTop={{ xs: 1, md: 3 }}>
-                                                    <FormControlLabel
-                                                        control={
-                                                            <Checkbox
-                                                                checked={agreeTermsConditions}
-                                                                onChange={handleAgreeTermsConditions}
-                                                                inputProps={{ 'aria-label': 'controlled' }}
-                                                                sx={{ color: '#9E9E9E' }}
-                                                            />
-                                                        }
-                                                        label={
-                                                            <Typography marginBottom="6px">
-                                                                {`I agree that checking this box, I agree to Under Armours's `}
-                                                                <Typography
-                                                                    color="#FFCA21"
-                                                                    display="inline"
-                                                                >{`Terms & Conditions.`}</Typography>
-                                                            </Typography>
-                                                        }
-                                                    />
-                                                </Stack>
-                                                <PrimaryBtn
-                                                    disabled={!agreeTermsConditions}
-                                                    sx={{ marginTop: { xs: 1, md: 2.5 } }}
-                                                    onClick={onReserve}
-                                                >
-                                                    Reserve
-                                                </PrimaryBtn>
-                                                <Typography
-                                                    width={{ xs: '90%', md: 480 }}
-                                                    fontSize={20}
-                                                    fontWeight={600}
-                                                    color="#FFCA21"
-                                                    textAlign="center"
-                                                    marginTop={{ xs: 1, md: 3 }}
-                                                >
-                                                    {reserveResult}
-                                                </Typography>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <PrimaryBtn disabled sx={{ marginTop: { xs: 2, md: 4 } }}>
-                                                    Unavailable
-                                                </PrimaryBtn>
-                                                <Typography
-                                                    fontSize={20}
-                                                    fontWeight={600}
-                                                    color="#FFCA21"
-                                                    marginTop={2}
-                                                >
-                                                    Sorry, no reserves available
-                                                </Typography>
-                                            </>
-                                        )}
-                                    </>
-                                ) : (
-                                    <PrimaryBtn sx={{ marginTop: 4 }} onClick={onConnect}>
-                                        Connect Wallet
-                                    </PrimaryBtn>
-                                )}
-                                {/* <Stack marginTop={{ xs: 2, sm: 3.5, md: 5 }}>
-                                    <Typography fontSize={14} fontWeight={600} color="#979797">
-                                        LEARN MORE
                                     </Typography>
-                                    <Button sx={{ '&:hover': { background: 'transparent' } }}>
-                                        <LearnMoreIcon sx={{ color: '#979797' }} />
-                                    </Button>
-                                </Stack> */}
+                                </Box>
+                            </Stack>
+                            <Stack direction="row" spacing={3}>
+                                <Stack
+                                    width="100%"
+                                    borderRadius={4}
+                                    padding={4}
+                                    sx={{ background: 'rgba(27, 28, 34, 0.75)' }}
+                                >
+                                    <Typography fontSize={32} fontWeight={600}>
+                                        Reserve a Basketball
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        width="100%"
+                                        justifyContent="space-between"
+                                        paddingX={2}
+                                        paddingY={1}
+                                        borderRadius="100px"
+                                        marginTop={2}
+                                        sx={{ background: '#32343F' }}
+                                    >
+                                        <Typography fontSize={16} fontWeight={400}>
+                                            MY WALLET ADDRESS:
+                                        </Typography>
+                                        <Typography fontSize={16} fontWeight={800}>
+                                            {reduceHexAddress(account ? account : '', 4)}
+                                        </Typography>
+                                    </Stack>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={agreeTermsConditions}
+                                                onChange={handleAgreeTermsConditions}
+                                                inputProps={{ 'aria-label': 'controlled' }}
+                                                sx={{ color: '#9E9E9E' }}
+                                            />
+                                        }
+                                        label={
+                                            <Typography marginBottom="6px">
+                                                {`I agree that checking this box, I agree to Under Armours's `}
+                                                <Typography
+                                                    color="#FFCA21"
+                                                    display="inline"
+                                                >{`Terms & Conditions.`}</Typography>
+                                            </Typography>
+                                        }
+                                        sx={{ marginTop: 3 }}
+                                    />
+                                    <PrimaryBtn
+                                        disabled={!agreeTermsConditions}
+                                        sx={{
+                                            marginTop: { xs: 1, md: 1.5 },
+                                            width: 156,
+                                            height: 34,
+                                            fontSize: 14,
+                                            padding: '2px 16px 6px',
+                                        }}
+                                        onClick={onReserve}
+                                    >
+                                        RESERVE
+                                    </PrimaryBtn>
+                                    <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
+                                        Reserve Completed. Check back after the game to claim basketball. Keep in mind
+                                        there might be delays in allowing minting.
+                                    </Typography>
+                                </Stack>
+                                <Stack
+                                    width="100%"
+                                    borderRadius={4}
+                                    padding={4}
+                                    sx={{ background: 'rgba(27, 28, 34, 0.75)' }}
+                                >
+                                    <Typography fontSize={32} fontWeight={600}>
+                                        How to Get Basketball
+                                    </Typography>
+                                    <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
+                                        NOTE: Reserving a Basketball does not guarantee a claim.
+                                    </Typography>
+                                    <Typography fontSize={16} fontWeight={600} marginTop={2.5}>
+                                        How this works:
+                                    </Typography>
+                                    <ol style={{ marginTop: 0, paddingLeft: 18 }}>
+                                        <li>Connect your Wallet</li>
+                                        <li>For every three-point shot, 3 free Basketballs that can be reserved</li>
+                                        <li>{`Accept Terms & Conditions and Press "Reserve"`}</li>
+                                        <li>
+                                            Whoever reserves the Basketball first will be able to claim their free
+                                            Basketball mint after the game{` `}
+                                            <span style={{ color: '#FFCA21' }}>below</span>
+                                        </li>
+                                    </ol>
+                                </Stack>
                             </Stack>
                         </Stack>
                     </Container>
@@ -438,8 +442,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.1}
                                 marginTop={3}
                             >
-                                For every three-point shot Stephen Curry makes in the NBA Playoffs, a new Basketball
-                                mint is created.
+                                For every three-point shot Stephen Curry makes in the NBA Playoffs, 3 new Basketball
+                                mints are created.
                             </Typography>
                             <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
                                 <Grid item xs={6}>
@@ -461,20 +465,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Grid>
                             <Stack marginTop={4}>
                                 <Typography fontSize={16} fontWeight={600}>
-                                    How to Claim:
+                                    Claim Your Basketball
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
-                                    <li>When a three-point shot is made, press reserve</li>
-                                    <li>Game data may take up to between 15 to 30 minutes to refresh</li>
-                                    <li>
-                                        If you have successfully reserved a Basketball, press "Claim" (Claims only open
-                                        after game)
-                                    </li>
+                                    <li>When Score is made, press reserve</li>
+                                    <li>If you have successfully reserved a Basketball,press "Claim"</li>
                                 </ol>
-                                <Typography fontSize={16} fontWeight={400}>
-                                    Note: Only 1 Basketball per Wallet Address
-                                </Typography>
                             </Stack>
                             <Stack marginTop={{ xs: 4, md: 5 }} spacing={1}>
                                 {account ? (
