@@ -12,6 +12,7 @@ import TwitterIcon from '../../assets/twitter.svg';
 import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
 import { connect } from '../../web3/connect';
+import LockIcon from '@mui/icons-material/LockOutlined';
 
 type ComponentProps = {};
 
@@ -19,9 +20,9 @@ const appMenuList = [
     // { title: 'Home', url: '/' },
     { title: 'Curry Counter', url: '/currycounter' },
     { title: 'FAQ', url: '/faq' },
-    { title: 'Curry Shop', url: '', comingSoon: { rightPos: -8 } },
-    { title: 'Mixology Room', url: '', comingSoon: { rightPos: -8 } },
-    { title: 'The Lab', url: '', comingSoon: { rightPos: -56 } },
+    { title: 'Curry Shop', url: '', locked: true },
+    { title: 'Mixology Room', url: '', locked: true },
+    { title: 'The Lab', url: '', locked: true },
 ];
 
 const socialLinksList = [
@@ -72,18 +73,18 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     style={{ cursor: 'pointer' }}
                                 />
                             </Link>
-                            <Stack direction="row" spacing={2}>
+                            <Stack direction="row" spacing={4}>
                                 {appMenuList.map((item, index) => (
                                     <Link href={item.url} passHref key={`app-menu-link-${index}`}>
-                                        <HeaderMenuBtn selected={router.pathname === item.url}>
+                                        <HeaderMenuBtn
+                                            direction="row"
+                                            spacing={1}
+                                            selected={router.pathname === item.url}
+                                        >
+                                            {item.locked === true && <LockIcon />}
                                             <Typography fontSize={14} fontWeight={600}>
                                                 {item.title}
                                             </Typography>
-                                            {item.comingSoon && (
-                                                <ComingSoonTypo rightPos={item.comingSoon.rightPos}>
-                                                    Coming soon
-                                                </ComingSoonTypo>
-                                            )}
                                         </HeaderMenuBtn>
                                     </Link>
                                 ))}
@@ -132,17 +133,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             <Typography fontSize={14} fontWeight={500}>
                                                 {item.title}
                                             </Typography>
-                                            {item.comingSoon && (
-                                                <Typography
-                                                    fontSize={8}
-                                                    fontWeight={400}
-                                                    padding="2px 4px"
-                                                    borderRadius={1}
-                                                    sx={{ background: 'white', color: 'black' }}
-                                                >
-                                                    Coming soon
-                                                </Typography>
-                                            )}
+                                            {item.locked === true && <LockIcon sx={{ color: '#969aa1' }} />}
                                         </Stack>
                                     </Link>
                                 ))}
