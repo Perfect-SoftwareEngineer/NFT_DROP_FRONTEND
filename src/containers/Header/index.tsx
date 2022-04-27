@@ -26,10 +26,10 @@ const appMenuList = [
 ];
 
 const socialLinksList = [
-    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
-    { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
     { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
     { title: 'Twitter', url: 'https://twitter.com/UnderArmour', icon: <TwitterIcon /> },
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
+    { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
 ];
 
 const Header: React.FC<ComponentProps> = ({}) => {

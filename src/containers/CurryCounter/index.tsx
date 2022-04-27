@@ -483,10 +483,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Box>
                             <Stack spacing={1}>
                                 <Typography fontSize={16} fontWeight={600}>
-                                    UA Basketball
+                                    Curry Brand Basketball
                                 </Typography>
                                 <Typography fontSize={14} fontWeight={400}>
-                                    Golden State Warriors
+                                    GSW Playoffs Basketball
                                 </Typography>
                             </Stack>
                         </Stack>
