@@ -11,7 +11,7 @@ export const GradientBox = styled(Box)`
 export const MetamaskNotifBox = styled(Stack)`
     align-items: flex-start;
     position: absolute;
-    top: 96px;
+    top: 136px;
     right: 0;
     background: rgba(27, 28, 34, 0.75);
     padding: 24px;
