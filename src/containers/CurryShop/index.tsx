@@ -18,7 +18,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0xEAE623fc7c98a15ddB372d951355d68BE8134B83'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
             );
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
@@ -26,9 +26,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
-            const freeMintSupply = await nftContract.methods.freeMintSupply().call({ from: account });
 
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(freeMintSupply));
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply));
         }
         if (account) {
             updateAppState();

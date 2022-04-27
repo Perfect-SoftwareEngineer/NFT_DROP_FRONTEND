@@ -30,17 +30,26 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const mint = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         try {
-            let reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
-            if(parseInt(reservedCount)) {
-                await nftContract.methods.mint(mintAmount).send({ from: account, value: 0 });
-                reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
-                setReservedAmount(reservedCount);
-            } else {
-                await nftContract.methods.mint(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            let dropPhase = await nftContract.methods.dropPhase().call({ from: account })
+            if(parseInt(dropPhase) == 1) {
+                // switch [] to hexproof of GCF
+                await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            } else if(parseInt(dropPhase) == 2) {
+                // switch [] to hexproof of whiltelist
+                await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            } else if(parseInt(dropPhase) == 3) {
+                let reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
+                if(parseInt(reservedCount)) {
+                    await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
+                    reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
+                    setReservedAmount(reservedCount);
+                } else {
+                    await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+                }
             }
         } catch (err: any) {   
             console.error(err);
@@ -52,12 +61,12 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const reserve = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0dC87A666eFbA194B6FfE4014D2f80b706D5dF51'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         try {
             await nftContract.methods.reserve(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            const reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
+            const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
             setReservedAmount(reservedCount);
         } catch (err: any) {   
             console.error(err);
@@ -70,10 +79,10 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0xEAE623fc7c98a15ddB372d951355d68BE8134B83'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
             );
 
-            const reservedCount = await nftContract.methods.getReservedCount().call({ from: account });
+            const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
             setReservedAmount(reservedCount);
             setMintPrice(parseInt(mPrice));
