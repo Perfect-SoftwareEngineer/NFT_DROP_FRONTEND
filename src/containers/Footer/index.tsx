@@ -14,7 +14,7 @@ type ComponentProps = {};
 const externalLinksList = [
     { title: 'Curry Brand', url: 'https://www.underarmour.com/en-us/t/currybrand/' },
     { title: 'Under Armour', url: 'https://about.underarmour.com/about' },
-    { title: 'Terms & Conditions', url: '/terms' },
+    { title: 'Terms & Conditions', url: '/legal/terms-and-conditions' },
     { title: 'Privacy Policy', url: 'https://account.underarmour.com/en-us/privacy' },
 ];
 

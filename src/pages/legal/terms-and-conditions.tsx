@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import Head from 'next/head';
-import PageContainer from '../containers/PageContainer';
-import TermsPageContainer from '../containers/Terms';
+import PageContainer from '../../containers/PageContainer';
+import TermsPageContainer from '../../containers/Terms';
 
 interface ComponentProps {}
 

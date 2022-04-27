@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Link } from '@mui/material';
 import Container from '../Container';
 
 const TermsPageContainer: React.FC = (): JSX.Element => {
@@ -14,7 +14,7 @@ const TermsPageContainer: React.FC = (): JSX.Element => {
                 <br></br>
                 These Terms and Conditions (the “Terms”) are a legal agreement between Under Armour, Inc. ("we", "our",
                 "us") and you, the visitor, governing your access to and use of all content and functionalities
-                available at the 2974.currybrand.com website (the "Site"), and related services (collectively, the
+                available at the lab.currybrand.com website (the "Site"), and related services (collectively, the
                 “Services”). These Terms supplement the Under Armour Terms and Conditions, the provisions of which are
                 expressly incorporated herein. Capitalized terms used but not defined in these terms and conditions will
                 have the same meaning given in the Under Armour Terms and Conditions.
@@ -44,48 +44,40 @@ const TermsPageContainer: React.FC = (): JSX.Element => {
                 <br></br>
                 <br></br>
                 NFT Owner Agreement. Purchase of an NFT is subject to the “Owner Agreement” By purchasing an NFT you are
-                agreeing to the terms and conditions set forth in the Owner Agreement. As detailed in the Owner
-                Agreement, while a purchaser may own the NFT, they shall have only a limited license to the Digital
-                Object(s), subject to the terms and conditions set forth therein.
+                agreeing to the terms and conditions set forth in the Owner Agreement. As detailed in the{' '}
+                <Link href="/legal/nft-ownership-agreement" color="#FFCA21">
+                    Owner Agreement
+                </Link>
+                , while a purchaser may own the NFT, they shall have only a limited license to the Digital Object(s),
+                subject to the terms and conditions set forth therein.
                 <br></br>
                 <br></br>
-                Genesis Curry Flow NFT. The Site features certain Genesis Curry Flow NFTs (the “Main NFT(s)”) for sale.
-                The purchase of a Main NFT entitles you to one of the 2,974 unique Main NFTs. The exact version will not
-                be viewable to you until after your purchase is complete.
+                NFT3. The Site features certain NF3 NFTs (the “NF3 NFT(s)”) for sale. The claiming of a NF3 NFT entitles
+                you to one of the total number of NF3 NFTs which can be used at a later date. The total supply of NF3 is
+                rolling and is based on the number of 3 pointers scored by Stephen Curry in the 2022 playoff games. We
+                reserve the right to increase the total supply of NF3 NFT in future sales.
                 <br></br>
                 <br></br>
-                Replicas. If you purchase a Main NFT, you may also receive (at no additional cost), up to four (4)
-                similar NFT(s) (the “Replica(s)”), where each such Replica is based on the Main NFT but will be
-                customized for use on certain Platforms (each a “Platform,” and collectively the “Platforms”). The
-                Replicas are gifted and not sold. You understand and agree that the Platforms are operated by a
-                third-party, which may impose additional obligations regarding your access to, and use of, the Replicas.
-                We have no control over the Platforms, and shall have no liability for any Replica(s) gifted to you
-                hereunder.
+                Pricing. Prices shown on the Site are in Ethereum and are exclusive of taxes. Prices are subject to
+                change at any time, for any reason, and in our sole and exclusive discretion. Inaccuracy Disclaimer:
+                From time to time, there may be information on the Site that contains typographical errors,
+                inaccuracies, or omissions that may relate to product descriptions, pricing, and availability. We
+                reserve the right to correct any errors, inaccuracies, or omissions and to change or update information
+                at any time without prior notice (including after you have submitted your order). If you do not wish to
+                continue with your order after pricing or other information has been corrected, please contact us right
+                away and we will work with you.
                 <br></br>
                 <br></br>
-                Pricing: Prices shown on the Site are in US Dollars and are exclusive of taxes. Prices are subject to
-                change at any time, for any reason, and in our sole and exclusive discretion.
+                Payment Terms. You must have a valid wallet and form of payment that are compatible with the Ethereum
+                blockchain on which the NF3 NFT was tokenized and minted with all necessary legal authorization to use
+                that wallet and/or payment to complete the transaction.
                 <br></br>
                 <br></br>
-                Inaccuracy Disclaimer: From time to time, there may be information on the Site that contains
-                typographical errors, inaccuracies, or omissions that may relate to product descriptions, pricing, and
-                availability. We reserve the right to correct any errors, inaccuracies, or omissions and to change or
-                update information at any time without prior notice (including after you have submitted your order). If
-                you do not wish to continue with your order after pricing or other information has been corrected,
-                please contact us right away and we will work with you.
-                <br></br>
-                <br></br>
-                Payment Terms: You must have a valid wallet and form of payment that are compatible with the Polygon
-                blockchain on which the Main NFT was tokenized and minted with all necessary legal authorization to use
-                that wallet and/or payment to complete the transaction. To access or use the Replica(s), you may require
-                a valid account with the applicable Platform, subject to their terms of use.
-                <br></br>
-                <br></br>
-                No Warranty: We make no representations or warranties, express or implied, written or oral, in
+                No Warranty. We make no representations or warranties, express or implied, written or oral, in
                 connection with any blockchain transaction or related technology.
                 <br></br>
                 <br></br>
-                No Refunds: All transactions are irreversible, final and there are no refunds. Please carefully review
+                No Refunds. All transactions are irreversible, final and there are no refunds. Please carefully review
                 your order prior to submitting.
                 <br></br>
                 <br></br>
