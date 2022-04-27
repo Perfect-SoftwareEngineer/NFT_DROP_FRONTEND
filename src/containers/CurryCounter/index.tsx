@@ -223,16 +223,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         window.scrollTo({ top: claimAreaTopPos, behavior: 'smooth' });
     };
 
-    const videoRef = React.useRef<HTMLVideoElement>(null);
-    React.useEffect(() => {
-        videoRef.current?.play();
-    }, []);
-
     return (
         <>
             <Box position="relative">
                 <Box position="absolute" top={0} width="100vw" zIndex={-10}>
-                    <video autoPlay loop style={{ width: '100%' }} ref={videoRef}>
+                    <video autoPlay muted loop style={{ width: '100%' }}>
                         <source src="/assets/currycounter/background.mp4" type="video/mp4" />
                     </video>
                     <GradientBox />
@@ -325,7 +320,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Box>
                         </Stack>
                     </Stack>
-                    <Stack direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} marginTop={{ xs: 30, md: 80 }}>
+                    <Stack direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} marginTop={{ xs: 30, md: 50 }}>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
                             <Typography fontSize={32} fontWeight={600}>
                                 Reserve a Basketball
