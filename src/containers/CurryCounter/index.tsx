@@ -54,6 +54,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
     const [showMetamask, setShowMetamask] = React.useState<boolean>(true);
 
+    const [claimAreaTopPos, setClaimAreaTopPos] = React.useState<number>(0);
+    const claimAreaRef = React.useRef<HTMLDivElement>(null);
+
     const onConnect = () => {
         connect(activate);
     };
@@ -211,6 +214,15 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         setAgreeTermsConditions(event.target.checked);
     };
 
+    React.useEffect(() => {
+        const rect = claimAreaRef.current?.getBoundingClientRect();
+        setClaimAreaTopPos(window.scrollY + (rect ? rect.top : 0));
+    }, []);
+
+    const gotoClaimPart = () => {
+        window.scrollTo({ top: claimAreaTopPos, behavior: 'smooth' });
+    };
+
     return (
         <>
             <Box position="relative">
@@ -239,20 +251,19 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </MetamaskNotifBox>
                             )}
                             <Stack
-                                height={64}
-                                direction="row"
+                                direction={{ xs: 'column', md: 'row' }}
                                 alignItems="center"
-                                spacing={5}
-                                borderRadius={8}
+                                spacing={{ xs: 0, md: 5 }}
+                                borderRadius={{ xs: 0, md: 100 }}
                                 sx={{ background: '#1B1C22' }}
                             >
                                 <Stack
-                                    width={224}
-                                    height="100%"
+                                    width={{ xs: '100%', md: 224 }}
+                                    height={64}
                                     direction="row"
                                     alignItems="center"
                                     justifyContent="center"
-                                    borderRadius={8}
+                                    borderRadius={{ xs: 0, md: 100 }}
                                     spacing={1}
                                     sx={{ background: '#32343F' }}
                                 >
@@ -266,40 +277,50 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         Curry Counter
                                     </Typography>
                                 </Stack>
-                                <Box>
-                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
-                                        Game Status:{' '}
-                                        <Typography fontSize={16} fontWeight={600} color="#B8FF97" display="inline">
-                                            Live
+                                <Stack height={64} direction="row" alignItems="center" spacing={5}>
+                                    <Box>
+                                        <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                            Game Status:{' '}
+                                            <Typography fontSize={16} fontWeight={600} color="#B8FF97" display="inline">
+                                                Live
+                                            </Typography>
                                         </Typography>
-                                    </Typography>
-                                </Box>
-                                <Box>
-                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
-                                        Game in Series:{' '}
-                                        <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                            Series 2-2
+                                    </Box>
+                                    <Box display={{ xs: 'none', md: 'block' }}>
+                                        <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                            Game in Series:{' '}
+                                            <Typography fontSize={16} fontWeight={600} color="white" display="inline">
+                                                Series 2-2
+                                            </Typography>
                                         </Typography>
-                                    </Typography>
-                                </Box>
-                                <Box>
-                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
-                                        Available Reserves:{' '}
-                                        <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                            6 Basketballs
+                                    </Box>
+                                    <Box display={{ xs: 'none', md: 'block' }}>
+                                        <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                            Available Reserves:{' '}
+                                            <Typography fontSize={16} fontWeight={600} color="white" display="inline">
+                                                6 Basketballs
+                                            </Typography>
                                         </Typography>
-                                    </Typography>
-                                </Box>
-                                <Box>
-                                    <Typography fontSize={16} fontWeight={600} color="#969AA1">
-                                        Cost:{' '}
-                                        <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                            Free
+                                    </Box>
+                                    <Box display={{ xs: 'none', md: 'block' }}>
+                                        <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                            Cost:{' '}
+                                            <Typography fontSize={16} fontWeight={600} color="white" display="inline">
+                                                Free
+                                            </Typography>
                                         </Typography>
-                                    </Typography>
-                                </Box>
+                                    </Box>
+                                    <Box display={{ xs: 'block', md: 'none' }}>
+                                        <Typography fontSize={16} fontWeight={600} color="#969AA1">
+                                            Opponent Team:{' '}
+                                            <Typography fontSize={16} fontWeight={600} color="white" display="inline">
+                                                Bosto
+                                            </Typography>
+                                        </Typography>
+                                    </Box>
+                                </Stack>
                             </Stack>
-                            <Stack direction="row" spacing={3}>
+                            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
                                 <Stack
                                     width="100%"
                                     borderRadius={4}
@@ -447,7 +468,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         <li>
                                             Whoever reserves the Basketball first will be able to claim their free
                                             Basketball mint after the game{` `}
-                                            <span style={{ color: '#FFCA21' }}>below</span>
+                                            <span
+                                                onClick={gotoClaimPart}
+                                                style={{ color: '#FFCA21', cursor: 'pointer' }}
+                                            >
+                                                below
+                                            </span>
                                         </li>
                                     </ol>
                                 </Stack>
@@ -463,6 +489,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         justifyContent="center"
                         alignItems="flex-start"
                         spacing={{ xs: 5, md: 14 }}
+                        ref={claimAreaRef}
                     >
                         <Stack
                             alignSelf="center"

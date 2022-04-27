@@ -81,7 +81,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             spacing={1}
                                             selected={router.pathname === item.url}
                                         >
-                                            {item.locked === true && <LockIcon />}
+                                            {item.locked === true && <LockIcon sx={{ width: 16 }} />}
                                             <Typography fontSize={14} fontWeight={600}>
                                                 {item.title}
                                             </Typography>
@@ -111,11 +111,21 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         height={72}
                         direction="row"
                         alignItems="center"
-                        justifyContent="flex-end"
+                        // justifyContent="flex-end"
                         spacing={2.5}
                         display={{ xs: 'flex', md: 'none' }}
                     >
+                        <Link href="/currycounter" passHref>
+                            <Image
+                                src="/assets/curry-logo.png"
+                                width={40}
+                                height={40}
+                                alt="Logo"
+                                style={{ cursor: 'pointer' }}
+                            />
+                        </Link>
                         <ConnectWalletBtn
+                            sx={{ marginLeft: 'auto !important' }}
                             onClick={() => {
                                 if (!active) setOpenConnectWalletDlg(true);
                             }}
@@ -133,7 +143,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             <Typography fontSize={14} fontWeight={500}>
                                                 {item.title}
                                             </Typography>
-                                            {item.locked === true && <LockIcon sx={{ color: '#969aa1' }} />}
+                                            {item.locked === true && <LockIcon sx={{ width: 16, color: '#969aa1' }} />}
                                         </Stack>
                                     </Link>
                                 ))}
