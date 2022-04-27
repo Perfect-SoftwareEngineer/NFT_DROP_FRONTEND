@@ -223,6 +223,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         window.scrollTo({ top: claimAreaTopPos, behavior: 'smooth' });
     };
 
+    let gameStatus = lastGameInfoForReserve.length === 0 ? 0 : lastGameInfoForReserve[0].live === true ? 1 : 2; // 0: no game, 1: live, 2: not live
+    const gameStatusInfo = [
+        { label: '-', color: 'white' },
+        { label: 'Live', color: '#B8FF97' },
+        { label: 'Not Live', color: 'red' },
+    ];
+
     return (
         <>
             <Box position="relative">
@@ -288,8 +295,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Box flexShrink={0}>
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Game Status:{' '}
-                                    <Typography fontSize={16} fontWeight={600} color="#B8FF97" display="inline">
-                                        Live
+                                    <Typography
+                                        fontSize={16}
+                                        fontWeight={600}
+                                        color={gameStatusInfo[gameStatus].color}
+                                        display="inline"
+                                    >
+                                        {gameStatusInfo[gameStatus].label}
                                     </Typography>
                                 </Typography>
                             </Box>
@@ -314,14 +326,6 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     Cost:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
                                         Free
-                                    </Typography>
-                                </Typography>
-                            </Box>
-                            <Box flexShrink={0}>
-                                <Typography fontSize={16} fontWeight={600} color="#969AA1">
-                                    Opponent Team:{' '}
-                                    <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                        Bosto
                                     </Typography>
                                 </Typography>
                             </Box>
