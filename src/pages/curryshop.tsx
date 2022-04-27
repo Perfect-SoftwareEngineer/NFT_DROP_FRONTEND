@@ -8,9 +8,6 @@ interface ComponentProps {}
 const CurryShopPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     return (
         <>
-            <Head>
-                <title>Curry Part 2 - CurryShop</title>
-            </Head>
             <PageContainer>
                 <CurryShopPageContainer />
             </PageContainer>

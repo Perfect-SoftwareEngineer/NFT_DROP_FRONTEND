@@ -18,6 +18,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useInterval from '../../hooks/useInterval';
+import Link from 'next/link';
 import {
     getLatestGameInfo,
     getFreeReserveBasketballs,
@@ -342,10 +343,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     label={
                                                         <Typography marginBottom="6px">
                                                             {`I agree that checking this box, I agree to Under Armours's `}
-                                                            <Typography
-                                                                color="#FFCA21"
-                                                                display="inline"
-                                                            >{`Terms & Conditions.`}</Typography>
+                                                            <Link href="/terms" passHref>
+                                                                <Typography
+                                                                    color="#FFCA21"
+                                                                    display="inline"
+                                                                >{`Terms & Conditions.`}</Typography>
+                                                            </Link>
                                                         </Typography>
                                                     }
                                                     sx={{ marginTop: 3 }}
