@@ -58,6 +58,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [claimAreaTopPos, setClaimAreaTopPos] = React.useState<number>(0);
     const claimAreaRef = React.useRef<HTMLDivElement>(null);
 
+    const [viewAll, setViewAll] = React.useState<boolean>(false);
+
     const onConnect = () => {
         connect(activate);
     };
@@ -651,9 +653,15 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Grid item xs={14}>
                                 <Box width="100%" height="1px" sx={{ background: '#32343F' }}></Box>
                             </Grid>
-                            {basketballWinners.map((item, index) => (
+                            {(viewAll ? basketballWinners : basketballWinners.slice(0, 6)).map((item, index) => (
                                 <RaffleWinerItem data={item} index={index} key={`raffle-winner-key${index}`} />
                             ))}
+                            <PrimaryBtn
+                                sx={{ width: 120, height: 34, marginX: 'auto', fontSize: 14, padding: '2px 16px 6px' }}
+                                onClick={() => setViewAll(!viewAll)}
+                            >
+                                {viewAll ? 'View Less' : 'View All'}
+                            </PrimaryBtn>
                         </Grid>
                     </Stack>
                 </Container>
