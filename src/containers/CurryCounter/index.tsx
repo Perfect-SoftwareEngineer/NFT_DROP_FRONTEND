@@ -48,7 +48,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [reserveState, setReserveState] = React.useState<number>(0); // 0: initial state, 1: default, 2: before reserve request, 3: success, 4: failed
     const [reserveResult, setReserveResult] = React.useState<string>('');
 
-    const [isClaim, setIsClaim] = React.useState<boolean>(false);
+    const [claimState, setClaimState] = React.useState<number>(0); // 0: initial state, 1: default, 2: before claim request, 3: success, 4: failed
 
     const [basketballWinners, setBasketballWinners] = React.useState<RaffleWinnerItemType[]>([]);
     const [gameMoreInfo, setGameMoreInfo] = React.useState<number[]>([0, 0]);
@@ -118,7 +118,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     }, [lastGameInfoForReserve, account, reserveState]);
 
     React.useEffect(() => {
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && reserveState === 3 && !isClaim) {
+        if (
+            lastGameInfoForReserve.length > 0 &&
+            lastGameInfoForReserve[0].game_id &&
+            (reserveState === 3 || claimState === 3)
+        ) {
             getWinners(lastGameInfoForReserve[0].game_id)
                 .then((response: any[]) => {
                     setBasketballWinners(response);
@@ -127,7 +131,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     setBasketballWinners([]);
                 });
         }
-    }, [lastGameInfoForReserve, reserveState, isClaim]);
+    }, [lastGameInfoForReserve, reserveState, claimState]);
 
     React.useEffect(() => {
         if (
@@ -135,20 +139,22 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             lastGameInfoForReserve.length > 0 &&
             lastGameInfoForReserve[0].merkled === true &&
             lastGameInfoForReserve[0].live === false &&
-            !isClaim
+            (claimState === 0 || claimState === 3 || claimState === 4)
         ) {
             getUnclaimedBasketballs(account)
                 .then((response: any[]) => {
                     // console.log('response:', response);
                     setHexProofForClaim([]);
                     setUnclaimedNFTInfo(response);
+                    setClaimState(1);
                 })
                 .catch((error) => {
                     setHexProofForClaim([]);
                     setUnclaimedNFTInfo([]);
+                    setClaimState(1);
                 });
         }
-    }, [lastGameInfoForReserve, account, isClaim]);
+    }, [lastGameInfoForReserve, account, claimState]);
 
     React.useEffect(() => {
         if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id) {
@@ -193,14 +199,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     };
 
     const onClaim = async () => {
-        if (isClaim) return;
+        if (claimState === 2) return;
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
-        setIsClaim(true);
+        setClaimState(2);
         try {
             //change gameId and hexproof from backend
             if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id && hexProofForClaim.length > 0) {
@@ -211,7 +217,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         } catch (err: any) {
             console.error(err);
             setUnclaimedNFTInfo([]);
-            setIsClaim(false);
+            setClaimState(4);
             return;
         }
 
@@ -219,12 +225,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         claimBasketball(unclaimedNFTInfo[0]._id)
             .then((response: string) => {
                 // console.log('claim basketball response:', response);
+                setClaimState(3);
             })
             .catch((error) => {
                 // console.log('claim basketball error:', error);
+                setClaimState(4);
             });
         setUnclaimedNFTInfo([]);
-        setIsClaim(false);
     };
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -653,7 +660,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             </Box>
 
             <Dialog
-                open={reserveState === 2 || isClaim}
+                open={reserveState === 2 || claimState === 2}
                 maxWidth="lg"
                 PaperProps={{
                     sx: {
