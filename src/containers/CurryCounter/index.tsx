@@ -317,7 +317,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Available Reserves:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                        6 Basketballs
+                                        {`${gameMoreInfo[1]} Basketballs`}
                                     </Typography>
                                 </Typography>
                             </Box>
@@ -334,8 +334,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     <Stack direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} marginTop={{ xs: 30, md: 50 }}>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
                             <Typography fontSize={32} fontWeight={600}>
-                                Reserve a Basketball
+                                Reserve an NF3 Basketball
                             </Typography>
+                            {!account && (
+                                <Typography fontSize={16} fontWeight={400} marginTop={2}>
+                                    Reserve an NF3 Basketball whenever Stephen Curry shoots a three-point shot. 3 free
+                                    NF3 Basketball mints will be created. Be fast, others will be trying as well.
+                                </Typography>
+                            )}
                             <Stack
                                 direction="row"
                                 width="100%"
@@ -423,10 +429,6 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 )
                             ) : (
                                 <>
-                                    <Typography fontSize={16} fontWeight={400} marginTop={2}>
-                                        In order to start, please connect your MetaMask Wallet. You will only be able to
-                                        start after connecting your Wallet.
-                                    </Typography>
                                     <PrimaryBtn
                                         sx={{
                                             width: 156,
@@ -444,21 +446,22 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
                             <Typography fontSize={32} fontWeight={600} lineHeight={1.2}>
-                                How to Get Basketball
+                                How to Get an NF3
                             </Typography>
                             <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
-                                NOTE: Reserving a Basketball does not guarantee a claim.
+                                NOTE: Reserving a NF3 Basketball does not guarantee a claim and it may 15-20 minutes to
+                                register the reserve request.
                             </Typography>
                             <Typography fontSize={16} fontWeight={600} marginTop={2.5}>
                                 How this works:
                             </Typography>
                             <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                 <li>Connect your Wallet</li>
-                                <li>For every three-point shot, 3 free Basketballs that can be reserved</li>
+                                <li>For every three-point shot, 3 free NF3 Basketballs that can be reserved</li>
                                 <li>{`Accept Terms & Conditions and Press "Reserve"`}</li>
                                 <li>
-                                    Whoever reserves the Basketball first will be able to claim their free Basketball
-                                    mint after the game{` `}
+                                    Whoever reserves the Basketball first will be able to claim their free NF3
+                                    Basketball mint after the game{` `}
                                     <span onClick={gotoClaimPart} style={{ color: '#FFCA21', cursor: 'pointer' }}>
                                         below
                                     </span>
@@ -505,7 +508,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                         <Stack alignItems="flex-start">
                             <Typography fontSize={{ xs: 48, sm: 64, md: 92 }} fontWeight={700} lineHeight={1.1}>
-                                Curry Counter
+                                NF3 Counter
                             </Typography>
                             <Typography
                                 maxWidth={600}
@@ -514,7 +517,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.1}
                                 marginTop={3}
                             >
-                                For every three-point shot Stephen Curry makes in the NBA Playoffs, 3 new Basketball
+                                For every three-point shot Stephen Curry makes in the Playoffs, 3 new NF3 Basketball
                                 mints are created.
                             </Typography>
                             <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
@@ -536,14 +539,17 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Grid>
                             </Grid>
                             <Stack marginTop={4}>
-                                <Typography fontSize={16} fontWeight={600}>
-                                    Claim Your Basketball
+                                <Typography fontSize={32} fontWeight={600}>
+                                    Claim Your NF3 Basketball
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
                                     <li>When Score is made, press reserve</li>
-                                    <li>If you have successfully reserved a Basketball,press "Claim"</li>
+                                    <li>If you have successfully reserved an NF3 Basketball, press "Claim"</li>
                                 </ol>
+                                <Typography fontSize={16} fontWeight={400} marginTop={1}>
+                                    Only one NF3 Basketball per Wallet per game
+                                </Typography>
                             </Stack>
                             <Stack marginTop={{ xs: 4, md: 5 }} spacing={1}>
                                 {account ? (
@@ -577,7 +583,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             </Typography>
                                         ) : (
                                             <Typography fontSize={16} fontWeight={600}>
-                                                You do not have any claims
+                                                You do not have any reserved NF3 Basketballs
                                             </Typography>
                                         )}
                                     </>
@@ -594,7 +600,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                     <Stack marginY={{ xs: 6, md: 9 }} spacing={4}>
                         <Typography fontSize={32} fontWeight={600}>
-                            Basketball Winners
+                            NF3 Basketball Winners
                         </Typography>
                         <Grid container rowGap={3}>
                             <Grid item container columns={{ xs: 7, md: 14 }}>

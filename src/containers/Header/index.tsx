@@ -18,12 +18,12 @@ type ComponentProps = {};
 
 const appMenuList = [
     // { title: 'Home', url: '/' },
-    { title: 'Curry Counter', url: '/currycounter' },
-    { title: 'FAQ', url: '/faq' },
+    { title: 'NF3 Counter', url: '/currycounter' },
     { title: 'Curry Shop', url: '', locked: true },
     { title: 'Mixology Room', url: '', locked: true },
     { title: 'The Lab', url: '', locked: true },
     { title: 'Roadmap', url: '', locked: true },
+    { title: 'FAQ', url: '/faq' },
 ];
 
 const socialLinksList = [
