@@ -1,5 +1,15 @@
 import React, { useCallback } from 'react';
-import { Stack, Box, Grid, Button, Typography, IconButton, Dialog, CircularProgress } from '@mui/material';
+import {
+    Stack,
+    Box,
+    Grid,
+    Button,
+    Typography,
+    IconButton,
+    Dialog,
+    CircularProgress,
+    Link as MuiLink,
+} from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
@@ -272,7 +282,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     <video autoPlay muted loop style={{ width: '100%' }}>
                         <source src="/assets/currycounter/background.mp4" type="video/mp4" />
                     </video>
-                    {/* <GradientBox /> */}
+                    <GradientBox />
                 </Box>
                 <Container sx={{ position: 'relative', height: '100%', paddingY: { xs: 2, md: 5 } }}>
                     {showMetamask && (
@@ -316,7 +326,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 style={{ borderRadius: '50%' }}
                             />
                             <Typography fontSize={20} fontWeight={600} paddingBottom="6px">
-                                Curry Counter
+                                NF3 Counter
                             </Typography>
                         </Stack>
                         <Stack
@@ -373,8 +383,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                             {!account && (
                                 <Typography fontSize={16} fontWeight={400} marginTop={2}>
-                                    Reserve an NF3 Basketball whenever Stephen Curry shoots a three-point shot. 3 free
-                                    NF3 Basketball mints will be created. Be fast, others will be trying as well.
+                                    For every 3-pointer Curry makes in a playoff game, three free digital basketballs
+                                    are claimable by the most engaged fans. Be fast. Others will be trying as well. For
+                                    more info, check out our{' '}
+                                    <MuiLink href="/faq" color="#FFCA21" underline="none">
+                                        FAQ
+                                    </MuiLink>
+                                    .
                                 </Typography>
                             )}
                             <Stack
@@ -442,16 +457,16 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 You have successfully reserved an NF3 Basketball!
                                             </Typography>
                                             <Typography fontSize={12} fontWeight={400} marginTop={1}>
-                                                Please wait till the end of the game to claim your NF3 Basketball NFT.
-                                                After the game the mintlist will update. Once complete you may claim
-                                                your NFT!
+                                                Please wait till one hour after the end of the game to claim your NF3
+                                                Basketball NFT. After the game, the mintlist will take time to update.
+                                                Once complete, you may claim your NFT!
                                             </Typography>
                                         </>
                                     )}
                                     {reserveState === 4 && (
                                         <>
                                             <Typography fontSize={16} fontWeight={400} color="#FF2121" marginTop={3}>
-                                                You have successfully reserved an NF3 Basketball!
+                                                Reserve Unsuccessful
                                             </Typography>
                                             <Typography fontSize={12} fontWeight={400} marginTop={1}>
                                                 Try again on the next available Reserve.
@@ -476,25 +491,26 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
                             <Typography fontSize={32} fontWeight={600} lineHeight={1.2}>
-                                How to Get an NF3
+                                How to Get an NF3 Basketball
                             </Typography>
                             <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
-                                NOTE: Reserving a NF3 Basketball does not guarantee a claim and it may 15-20 minutes to
-                                register the reserve request.
+                                NOTE: Pressing Reserve does not guarantee an NF3 Basketball claim. Only the very first
+                                person will successfully reserve an NFT.
                             </Typography>
                             <Typography fontSize={16} fontWeight={600} marginTop={2.5}>
                                 How this works:
                             </Typography>
                             <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                 <li>Connect your Wallet</li>
-                                <li>For every three-point shot, 3 free NF3 Basketballs that can be reserved</li>
-                                <li>{`Accept Terms & Conditions and Press "Reserve"`}</li>
+                                <li>For every three-point shot, 3 free NF3 Basketballs can be reserved</li>
+                                <li>Accept Terms & Conditions and Press "Reserve"</li>
                                 <li>
                                     Whoever reserves the Basketball first will be able to claim their free NF3
-                                    Basketball mint after the game{` `}
+                                    Basketball mint one hour after the game{` `}
                                     <span onClick={gotoClaimPart} style={{ color: '#FFCA21', cursor: 'pointer' }}>
                                         below
                                     </span>
+                                    .
                                 </li>
                             </ol>
                         </Stack>
@@ -562,7 +578,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Grid item xs={6}>
                                     <SupplyBox
                                         amount={gameMoreInfo[1]}
-                                        label="Available Reserves"
+                                        label="Available to Reserve"
                                         bgColor="#1B1C22"
                                         headColor="#979797"
                                     />

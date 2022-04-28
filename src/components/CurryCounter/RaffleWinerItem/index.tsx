@@ -36,7 +36,7 @@ const RaffleWinnerItem: React.FC<ComponentProps> = ({ data, index }): JSX.Elemen
                         height={32}
                         style={{ borderRadius: '50%' }}
                     />
-                    <Typo>Basketball</Typo>
+                    <Typo>NF3 Basketball</Typo>
                 </Stack>
             </Grid>
             <Grid item xs={4} display={{ xs: 'none', md: 'block' }}>
