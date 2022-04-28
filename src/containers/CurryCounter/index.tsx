@@ -44,7 +44,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [unclaimedNFTInfo, setUnclaimedNFTInfo] = React.useState<any[]>([]);
     const [hexProofForClaim, setHexProofForClaim] = React.useState<any[]>([]);
 
-    const [isReserve, setIsReserve] = React.useState<boolean>(false);
+    const [reserveState, setReserveState] = React.useState<number>(0); // 0: initial state, 1: default, 2: before reserve request, 3: success, 4: failed
     const [reserveResult, setReserveResult] = React.useState<string>('');
 
     const [isClaim, setIsClaim] = React.useState<boolean>(false);
@@ -90,19 +90,26 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     useInterval(fetchLatestGameInfo, 30 * 1000);
 
     React.useEffect(() => {
-        if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve) {
+        if (
+            account &&
+            lastGameInfoForReserve.length > 0 &&
+            lastGameInfoForReserve[0].game_id &&
+            (reserveState === 0 || reserveState === 3 || reserveState === 4)
+        ) {
             getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
                 .then((response: any[]) => {
                     setFreeReserveBasketballList(response);
+                    setReserveState(1);
                 })
                 .catch((error) => {
                     setFreeReserveBasketballList([]);
+                    setReserveState(1);
                 });
         }
-    }, [lastGameInfoForReserve, account, isReserve]);
+    }, [lastGameInfoForReserve, account, reserveState]);
 
     React.useEffect(() => {
-        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && !isReserve && !isClaim) {
+        if (lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id && reserveState === 3 && !isClaim) {
             getWinners(lastGameInfoForReserve[0].game_id)
                 .then((response: any[]) => {
                     setBasketballWinners(response);
@@ -111,7 +118,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     setBasketballWinners([]);
                 });
         }
-    }, [lastGameInfoForReserve, isReserve, isClaim]);
+    }, [lastGameInfoForReserve, reserveState, isClaim]);
 
     React.useEffect(() => {
         if (
@@ -148,7 +155,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     }, [unclaimedNFTInfo, account]);
 
     const onReserve = () => {
-        if (isReserve) return;
+        if (reserveState === 2) return;
 
         if (
             account &&
@@ -157,21 +164,22 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             freeReserveBasketballList.length > 0 &&
             freeReserveBasketballList[0]._id
         ) {
-            setIsReserve(true);
+            setReserveState(2);
             reserveFreeBasketball(freeReserveBasketballList[0]._id, lastGameInfoForReserve[0].game_id, account)
                 .then((response: string) => {
                     // console.log('reserve free basketball response:', response);
                     setReserveResult(
                         'Reserve Completed. Check back after the game to claim basketball. Keep in mind there might be delays in allowing minting.'
                     );
+                    setReserveState(3);
                 })
                 .catch((error) => {
                     // console.log('reserve free basketball error:', error);
                     setReserveResult(error);
+                    setReserveState(4);
                 });
 
             setFreeReserveBasketballList([]);
-            setIsReserve(false);
         }
     };
 
@@ -229,6 +237,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         { label: 'Live', color: '#B8FF97' },
         { label: 'Not Live', color: 'red' },
     ];
+
+    let reserveAvailable =
+        lastGameInfoForReserve.length > 0 &&
+        lastGameInfoForReserve[0].merkled === false &&
+        freeReserveBasketballList.length > 0 &&
+        freeReserveBasketballList[0].wallet === '0x';
 
     return (
         <>
@@ -360,10 +374,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                             </Stack>
                             {account ? (
-                                lastGameInfoForReserve.length > 0 &&
-                                lastGameInfoForReserve[0].merkled === false &&
-                                freeReserveBasketballList.length > 0 ? (
-                                    <>
+                                <>
+                                    {reserveAvailable && (
                                         <FormControlLabel
                                             control={
                                                 <Checkbox
@@ -386,62 +398,58 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             }
                                             sx={{ marginTop: 3 }}
                                         />
-                                        <PrimaryBtn
-                                            disabled={!agreeTermsConditions}
-                                            sx={{
-                                                marginTop: { xs: 1, md: 1.5 },
-                                                width: 156,
-                                                height: 34,
-                                                fontSize: 14,
-                                                padding: '2px 16px 6px',
-                                            }}
-                                            onClick={onReserve}
-                                        >
-                                            RESERVE
-                                        </PrimaryBtn>
-                                        <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
-                                            Reserve Completed. Check back after the game to claim basketball. Keep in
-                                            mind there might be delays in allowing minting.
-                                        </Typography>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Typography fontSize={16} fontWeight={400} marginTop={2}>
-                                            Even if Stephen Curry made a three-point shot, it will take around 30
-                                            seconds for our system to process.
-                                        </Typography>
-                                        <PrimaryBtn
-                                            disabled
-                                            sx={{
-                                                width: 156,
-                                                height: 34,
-                                                fontSize: 14,
-                                                padding: '2px 16px 6px',
-                                                marginTop: 2,
-                                            }}
-                                        >
-                                            UNAVAILABLE
-                                        </PrimaryBtn>
-                                        <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
-                                            There are currently no reserves available.
-                                        </Typography>
-                                    </>
-                                )
-                            ) : (
-                                <>
+                                    )}
                                     <PrimaryBtn
+                                        disabled={!agreeTermsConditions || !reserveAvailable}
                                         sx={{
+                                            marginTop: { xs: 1, md: 1.5 },
                                             width: 156,
                                             height: 34,
                                             fontSize: 14,
                                             padding: '2px 16px 6px',
-                                            marginTop: 3,
                                         }}
-                                        onClick={onConnect}
+                                        onClick={onReserve}
                                     >
-                                        CONNECT WALLET
+                                        RESERVE
                                     </PrimaryBtn>
+                                    {(reserveState === 3 ||
+                                        (freeReserveBasketballList.length > 0 &&
+                                            freeReserveBasketballList[0].wallet !== '0x')) && (
+                                        <>
+                                            <Typography fontSize={16} fontWeight={400} color="#B8FF97" marginTop={3}>
+                                                You have successfully reserved an NF3 Basketball!
+                                            </Typography>
+                                            <Typography fontSize={12} fontWeight={400} marginTop={1}>
+                                                Please wait till the end of the game to claim your NF3 Basketball NFT.
+                                                After the game the mintlist will update. Once complete you may claim
+                                                your NFT!
+                                            </Typography>
+                                        </>
+                                    )}
+                                    {reserveState === 4 && (
+                                        <>
+                                            <Typography fontSize={16} fontWeight={400} color="#FF2121" marginTop={3}>
+                                                You have successfully reserved an NF3 Basketball!
+                                            </Typography>
+                                            <Typography fontSize={12} fontWeight={400} marginTop={1}>
+                                                Try again on the next available Reserve.
+                                            </Typography>
+                                        </>
+                                    )}
                                 </>
+                            ) : (
+                                <PrimaryBtn
+                                    sx={{
+                                        width: 156,
+                                        height: 34,
+                                        fontSize: 14,
+                                        padding: '2px 16px 6px',
+                                        marginTop: 3,
+                                    }}
+                                    onClick={onConnect}
+                                >
+                                    CONNECT WALLET
+                                </PrimaryBtn>
                             )}
                         </Stack>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
@@ -632,7 +640,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             </Box>
 
             <Dialog
-                open={isReserve || isClaim}
+                open={reserveState === 2 || isClaim}
                 maxWidth="lg"
                 PaperProps={{
                     sx: {
