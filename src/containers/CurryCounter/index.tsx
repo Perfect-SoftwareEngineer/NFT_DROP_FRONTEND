@@ -272,7 +272,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     <video autoPlay muted loop style={{ width: '100%' }}>
                         <source src="/assets/currycounter/background.mp4" type="video/mp4" />
                     </video>
-                    <GradientBox />
+                    {/* <GradientBox /> */}
                 </Box>
                 <Container sx={{ position: 'relative', height: '100%', paddingY: { xs: 2, md: 5 } }}>
                     {showMetamask && (
