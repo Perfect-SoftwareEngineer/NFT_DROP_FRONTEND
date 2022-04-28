@@ -640,10 +640,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Grid item xs={3}>
                                     <TblHeaderCellTypo>NFT Name</TblHeaderCellTypo>
                                 </Grid>
-                                <Grid item xs={3} display={{ xs: 'none', md: 'block' }}>
+                                <Grid item xs={4} display={{ xs: 'none', md: 'block' }}>
                                     <TblHeaderCellTypo>Date Created</TblHeaderCellTypo>
                                 </Grid>
-                                <Grid item xs={3} md={5}>
+                                <Grid item xs={3} md={4}>
                                     <TblHeaderCellTypo>Wallet Address</TblHeaderCellTypo>
                                 </Grid>
                                 <Grid item xs={2} display={{ xs: 'none', md: 'block' }}>
@@ -653,8 +653,19 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Grid item xs={14}>
                                 <Box width="100%" height="1px" sx={{ background: '#32343F' }}></Box>
                             </Grid>
-                            {(viewAll ? basketballWinners : basketballWinners.slice(0, 6)).map((item, index) => (
-                                <RaffleWinerItem data={item} index={index} key={`raffle-winner-key${index}`} />
+                            {(viewAll
+                                ? [...basketballWinners].reverse()
+                                : [...basketballWinners].reverse().slice(0, 6)
+                            ).map((item, index) => (
+                                <RaffleWinerItem
+                                    data={item}
+                                    index={
+                                        viewAll
+                                            ? basketballWinners.length - index
+                                            : basketballWinners.slice(0, 6).length - index
+                                    }
+                                    key={`raffle-winner-key${index}`}
+                                />
                             ))}
                             <PrimaryBtn
                                 sx={{ width: 120, height: 34, marginX: 'auto', fontSize: 14, padding: '2px 16px 6px' }}
