@@ -44,6 +44,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [unclaimedNFTInfo, setUnclaimedNFTInfo] = React.useState<any[]>([]);
     const [hexProofForClaim, setHexProofForClaim] = React.useState<any[]>([]);
 
+    const [reserveAvailable, setReserveAvailable] = React.useState<boolean>(false);
     const [reserveState, setReserveState] = React.useState<number>(0); // 0: initial state, 1: default, 2: before reserve request, 3: success, 4: failed
     const [reserveResult, setReserveResult] = React.useState<string>('');
 
@@ -87,7 +88,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             });
     }, []);
 
-    useInterval(fetchLatestGameInfo, 30 * 1000);
+    useInterval(fetchLatestGameInfo, 10 * 1000);
 
     React.useEffect(() => {
         if (
@@ -99,11 +100,19 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
                 .then((response: any[]) => {
                     setFreeReserveBasketballList(response);
-                    setReserveState(1);
+                    if (reserveState === 4) {
+                        setTimeout(() => setReserveState(1), 3000);
+                    } else {
+                        setReserveState(1);
+                    }
                 })
                 .catch((error) => {
                     setFreeReserveBasketballList([]);
-                    setReserveState(1);
+                    if (reserveState === 4) {
+                        setTimeout(() => setReserveState(1), 3000);
+                    } else {
+                        setReserveState(1);
+                    }
                 });
         }
     }, [lastGameInfoForReserve, account, reserveState]);
@@ -238,11 +247,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         { label: 'Not Live', color: 'red' },
     ];
 
-    let reserveAvailable =
-        lastGameInfoForReserve.length > 0 &&
-        lastGameInfoForReserve[0].merkled === false &&
-        freeReserveBasketballList.length > 0 &&
-        freeReserveBasketballList[0].wallet === '0x';
+    React.useEffect(() => {
+        setReserveAvailable(
+            lastGameInfoForReserve.length > 0 &&
+                lastGameInfoForReserve[0].merkled === false &&
+                freeReserveBasketballList.length > 0 &&
+                freeReserveBasketballList[0].wallet === '0x'
+        );
+    }, [lastGameInfoForReserve, freeReserveBasketballList]);
 
     return (
         <>
@@ -414,7 +426,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     </PrimaryBtn>
                                     {(reserveState === 3 ||
                                         (freeReserveBasketballList.length > 0 &&
-                                            freeReserveBasketballList[0].wallet !== '0x')) && (
+                                            freeReserveBasketballList[0].wallet.toUpperCase() ===
+                                                account.toUpperCase())) && (
                                         <>
                                             <Typography fontSize={16} fontWeight={400} color="#B8FF97" marginTop={3}>
                                                 You have successfully reserved an NF3 Basketball!
