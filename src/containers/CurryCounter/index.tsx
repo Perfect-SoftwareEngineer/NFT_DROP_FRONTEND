@@ -354,7 +354,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Game in Series:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                        Series 2-2
+                                        2-2
                                     </Typography>
                                 </Typography>
                             </Box>
@@ -424,7 +424,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             label={
                                                 <Typography marginBottom="6px">
                                                     {`I agree that checking this box, I agree to Under Armours's `}
-                                                    <Link href="/terms" passHref>
+                                                    <Link href="/legal/terms-and-conditions" passHref>
                                                         <Typography
                                                             color="#FFCA21"
                                                             display="inline"
@@ -590,8 +590,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
-                                    <li>When Score is made, press reserve</li>
-                                    <li>If you have successfully reserved an NF3 Basketball, press "Claim"</li>
+                                    <li>When three-point score is made, press reserve</li>
+                                    <li>
+                                        If you have successfully reserved an NF3 Basketball, press "Claim"{' '}
+                                        <span style={{ fontWeight: 700 }}>(one hour after the game)</span>
+                                    </li>
                                 </ol>
                                 <Typography fontSize={16} fontWeight={400} marginTop={1}>
                                     Only one NF3 Basketball per Wallet per game
