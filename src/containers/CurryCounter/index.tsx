@@ -39,6 +39,7 @@ import {
     getWinners,
     getCountValues,
 } from '../../services/fetch';
+import { usePrevious } from 'react-use';
 
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 
@@ -47,9 +48,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
+    const accountPrev = usePrevious(account);
+
     const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
 
     const [lastGameInfoForReserve, setLastGameInfoForReserve] = React.useState<any[]>([]);
+    const lastGameInfoForReservePrev = usePrevious(lastGameInfoForReserve);
+
     const [freeReserveBasketballList, setFreeReserveBasketballList] = React.useState<any[]>([]);
     const [unclaimedNFTInfo, setUnclaimedNFTInfo] = React.useState<any[]>([]);
     const [hexProofForClaim, setHexProofForClaim] = React.useState<any[]>([]);
@@ -78,6 +83,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         getLatestGameInfo()
             .then((response: any[]) => {
                 setLastGameInfoForReserve(response);
+                console.log('setLastGameInfoForReserve');
 
                 if (response.length > 0 && response[0].game_id) {
                     getWinners(response[0].game_id)
@@ -100,32 +106,36 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             });
     }, []);
 
-    useInterval(fetchLatestGameInfo, 10 * 1000);
+    useInterval(fetchLatestGameInfo, 5 * 1000);
 
     React.useEffect(() => {
         if (
-            account &&
-            lastGameInfoForReserve.length > 0 &&
-            lastGameInfoForReserve[0].game_id &&
-            (reserveState === 0 || reserveState === 3 || reserveState === 4)
+            account !== accountPrev ||
+            lastGameInfoForReserve !== lastGameInfoForReservePrev ||
+            reserveState === 0 ||
+            reserveState === 3 ||
+            reserveState === 4
         ) {
-            getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
-                .then((response: any[]) => {
-                    setFreeReserveBasketballList(response);
-                    if (reserveState === 4) {
-                        setTimeout(() => setReserveState(1), 3000);
-                    } else {
-                        setReserveState(1);
-                    }
-                })
-                .catch((error) => {
-                    setFreeReserveBasketballList([]);
-                    if (reserveState === 4) {
-                        setTimeout(() => setReserveState(1), 3000);
-                    } else {
-                        setReserveState(1);
-                    }
-                });
+            if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
+                console.log('getFreeReserveBasketballs');
+                getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
+                    .then((response: any[]) => {
+                        setFreeReserveBasketballList(response);
+                        if (reserveState === 4) {
+                            setTimeout(() => setReserveState(1), 3000);
+                        } else {
+                            setReserveState(1);
+                        }
+                    })
+                    .catch((error) => {
+                        setFreeReserveBasketballList([]);
+                        if (reserveState === 4) {
+                            setTimeout(() => setReserveState(1), 3000);
+                        } else {
+                            setReserveState(1);
+                        }
+                    });
+            }
         }
     }, [lastGameInfoForReserve, account, reserveState]);
 
@@ -143,28 +153,36 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     setBasketballWinners([]);
                 });
         }
-    }, [lastGameInfoForReserve, reserveState, claimState]);
+    }, [reserveState, claimState]);
 
     React.useEffect(() => {
         if (
-            account &&
-            lastGameInfoForReserve.length > 0 &&
-            lastGameInfoForReserve[0].merkled === true &&
-            lastGameInfoForReserve[0].live === false &&
-            (claimState === 0 || claimState === 3 || claimState === 4)
+            account !== accountPrev ||
+            lastGameInfoForReserve !== lastGameInfoForReservePrev ||
+            claimState === 0 ||
+            claimState === 3 ||
+            claimState === 4
         ) {
-            getUnclaimedBasketballs(account)
-                .then((response: any[]) => {
-                    // console.log('response:', response);
-                    setHexProofForClaim([]);
-                    setUnclaimedNFTInfo(response);
-                    setClaimState(1);
-                })
-                .catch((error) => {
-                    setHexProofForClaim([]);
-                    setUnclaimedNFTInfo([]);
-                    setClaimState(1);
-                });
+            if (
+                account &&
+                lastGameInfoForReserve.length > 0 &&
+                lastGameInfoForReserve[0].merkled === true &&
+                lastGameInfoForReserve[0].live === false
+            ) {
+                console.log('getUnclaimedBasketballs');
+                getUnclaimedBasketballs(account)
+                    .then((response: any[]) => {
+                        // console.log('response:', response);
+                        setHexProofForClaim([]);
+                        setUnclaimedNFTInfo(response);
+                        setClaimState(1);
+                    })
+                    .catch((error) => {
+                        setHexProofForClaim([]);
+                        setUnclaimedNFTInfo([]);
+                        setClaimState(1);
+                    });
+            }
         }
     }, [lastGameInfoForReserve, account, claimState]);
 
