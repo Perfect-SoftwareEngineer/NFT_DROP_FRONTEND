@@ -30,8 +30,15 @@ const Footer: React.FC<ComponentProps> = ({}) => {
         <>
             <Box sx={{ background: '#1B1C22' }}>
                 <Container>
-                    <Stack height={72} direction="row" alignItems="center" justifyContent="space-between">
-                        <Stack direction="row" alignItems="center" spacing={5}>
+                    <Stack
+                        height={72}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        spacing={4}
+                        sx={{ overflowY: 'hidden', overflowX: 'auto' }}
+                    >
+                        <Stack direction="row" flexShrink={0} alignItems="center" spacing={5}>
                             <Link href="/currycounter" passHref>
                                 <Image
                                     src="/assets/curry-logo.png"

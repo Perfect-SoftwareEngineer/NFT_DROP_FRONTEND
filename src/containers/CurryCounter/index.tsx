@@ -396,7 +396,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 direction="row"
                                 width="100%"
                                 justifyContent="space-between"
-                                paddingX={2}
+                                paddingX={{ xs: 3, md: 2 }}
                                 paddingY={1}
                                 borderRadius="100px"
                                 marginTop={2}
@@ -405,7 +405,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={16} fontWeight={400}>
                                     MY WALLET ADDRESS:
                                 </Typography>
-                                <Typography fontSize={16} fontWeight={800}>
+                                <Typography fontSize={16} fontWeight={800} textAlign="right">
                                     {account ? reduceHexAddress(account, 4) : 'Wallet not connected'}
                                 </Typography>
                             </Stack>
@@ -644,11 +644,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Stack>
                         </Stack>
                     </Stack>
-                    <Stack marginY={{ xs: 6, md: 9 }} spacing={4}>
-                        <Typography fontSize={32} fontWeight={600}>
+                    <Stack marginY={{ xs: 6, md: 9 }} spacing={4} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>
+                        <Typography fontSize={32} fontWeight={600} whiteSpace="nowrap">
                             NF3 Basketball Winners
                         </Typography>
-                        <Grid container rowGap={3}>
+                        <Grid minWidth={480} container rowGap={3}>
                             <Grid item container columns={{ xs: 7, md: 14 }}>
                                 <Grid item xs={1}>
                                     <TblHeaderCellTypo>#</TblHeaderCellTypo>
