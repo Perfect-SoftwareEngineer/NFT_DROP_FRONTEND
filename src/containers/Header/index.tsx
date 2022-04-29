@@ -152,7 +152,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             <Typography fontSize={14} fontWeight={500}>
                                                 {item.title}
                                             </Typography>
-                                            {item.locked === true && <LockIcon sx={{ width: 16, color: '#969aa1' }} />}
+                                            {item.comingSoon && <LockIcon sx={{ width: 16, color: '#969aa1' }} />}
                                         </Stack>
                                     </Link>
                                 ))}
