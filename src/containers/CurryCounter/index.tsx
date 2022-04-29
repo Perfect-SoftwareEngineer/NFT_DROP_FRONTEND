@@ -312,8 +312,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     MetaMask
                                 </Typography>
                                 <Typography width={320} fontSize={12} fontWeight={400}>
-                                    Make sure you download Metamask and connect your account prior to minting. You will
-                                    need MetaMask compatibility to mint your Basketball.
+                                    Make sure you download MetaMask and connect your account. You will need MetaMask
+                                    compatibility. Get your download ready.
                                 </Typography>
                             </Stack>
                             <IconButton sx={{ color: 'white' }} onClick={() => setShowMetamask(false)}>
@@ -513,8 +513,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 How to Get an NF3 Basketball
                             </Typography>
                             <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
-                                NOTE: Pressing Reserve does not guarantee an NF3 Basketball claim. Only the very first
-                                person will successfully reserve an NFT.
+                                Pressing Reserve does not guarantee an NF3 Basketball. Only the very first person will
+                                successfully reserve an NFT.
                             </Typography>
                             <Typography fontSize={16} fontWeight={600} marginTop={2.5}>
                                 How this works:
@@ -525,7 +525,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <li>Accept Terms & Conditions and Press "Reserve"</li>
                                 <li>
                                     Whoever reserves the Basketball first will be able to claim their free NF3
-                                    Basketball mint one hour after the game{` `}
+                                    Basketball mint one hour after the game in the section{` `}
                                     <span onClick={gotoClaimPart} style={{ color: '#FFCA21', cursor: 'pointer' }}>
                                         below
                                     </span>
@@ -582,14 +582,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.1}
                                 marginTop={3}
                             >
-                                For every three-point shot Stephen Curry makes in the Playoffs, 3 new NF3 Basketball
+                                For every three-point shot Stephen Curry makes in the Playoffs, three new NF3 Basketball
                                 mints are created.
                             </Typography>
                             <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
                                 <Grid item xs={6}>
                                     <SupplyBox
                                         amount={gameMoreInfo[0]}
-                                        label="Three Points Scored"
+                                        label="Three-Points Scored"
                                         bgColor="#1B1C22"
                                         headColor="#FFCA21"
                                     />
@@ -609,14 +609,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
-                                    <li>When three-point score is made, press reserve</li>
+                                    <li>When three-pointer score is made, click reserve</li>
                                     <li>
                                         If you have successfully reserved an NF3 Basketball, press "Claim"{' '}
                                         <span style={{ fontWeight: 700 }}>(one hour after the game)</span>
                                     </li>
                                 </ol>
                                 <Typography fontSize={16} fontWeight={400} marginTop={1}>
-                                    Only one NF3 Basketball per Wallet per game
+                                    Only one NF3 Basketball is redeemable per Wallet per game
                                 </Typography>
                             </Stack>
                             <Stack marginTop={{ xs: 4, md: 5 }} spacing={1}>
