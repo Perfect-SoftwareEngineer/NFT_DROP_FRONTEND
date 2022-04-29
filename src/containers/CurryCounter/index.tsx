@@ -299,7 +299,14 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             <Box position="relative">
                 <Box position="absolute" top={0} width="100vw" zIndex={-10}>
                     <video autoPlay muted loop style={{ width: '100%' }}>
-                        <source src="/assets/currycounter/background.mp4" type="video/mp4" />
+                        <source
+                            src={
+                                matchDownMd
+                                    ? '/assets/currycounter/background-mobile.mp4'
+                                    : '/assets/currycounter/background.mp4'
+                            }
+                            type="video/mp4"
+                        />
                     </video>
                     <GradientBox />
                 </Box>
@@ -402,9 +409,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                             {!account && (
                                 <Typography fontSize={16} fontWeight={400} marginTop={2}>
-                                    For every 3-pointer Curry makes in a playoff game, three free digital basketballs
-                                    are claimable by the most engaged fans. Be fast. Others will be trying as well. For
-                                    more info, check out our{' '}
+                                    For every three-pointer Stephen Curry makes in a playoff game, three free digital
+                                    basketballs are claimable by the most engaged fans. Be fast. Others will be trying
+                                    as well. For more info, check out our{' '}
                                     <MuiLink href="/faq" color="#FFCA21" underline="none">
                                         FAQ
                                     </MuiLink>
@@ -646,7 +653,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     color="#FFCA21"
                                                     display="inline"
                                                 >
-                                                    {`${unclaimedNFTInfo.length} unclaimed mint`}
+                                                    {`${unclaimedNFTInfo.length} reserved NF3 Basketball`}
                                                 </Typography>
                                             </Typography>
                                         ) : (
