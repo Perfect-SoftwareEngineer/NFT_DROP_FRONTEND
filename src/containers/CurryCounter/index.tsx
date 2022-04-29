@@ -106,7 +106,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             });
     }, []);
 
-    useInterval(fetchLatestGameInfo, 5 * 1000);
+    useInterval(fetchLatestGameInfo, 10 * 1000);
 
     React.useEffect(() => {
         if (
@@ -121,14 +121,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
                     .then((response: any[]) => {
                         setFreeReserveBasketballList(response);
-                        if (reserveState === 4) {
-                            setTimeout(() => setReserveState(1), 3000);
-                        } else {
-                            setReserveState(1);
-                        }
                     })
                     .catch((error) => {
                         setFreeReserveBasketballList([]);
+                    })
+                    .finally(() => {
                         if (reserveState === 4) {
                             setTimeout(() => setReserveState(1), 3000);
                         } else {
@@ -173,13 +170,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 getUnclaimedBasketballs(account)
                     .then((response: any[]) => {
                         // console.log('response:', response);
-                        setHexProofForClaim([]);
                         setUnclaimedNFTInfo(response);
-                        setClaimState(1);
                     })
                     .catch((error) => {
-                        setHexProofForClaim([]);
                         setUnclaimedNFTInfo([]);
+                    })
+                    .finally(() => {
                         setClaimState(1);
                     });
             }
@@ -222,9 +218,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     // console.log('reserve free basketball error:', error);
                     setReserveResult(error);
                     setReserveState(4);
+                })
+                .finally(() => {
+                    setFreeReserveBasketballList([]);
                 });
-
-            setFreeReserveBasketballList([]);
         }
     };
 
@@ -247,6 +244,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         } catch (err: any) {
             console.error(err);
             setUnclaimedNFTInfo([]);
+            setHexProofForClaim([]);
             setClaimState(4);
             return;
         }
@@ -260,8 +258,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             .catch((error) => {
                 // console.log('claim basketball error:', error);
                 setClaimState(4);
+            })
+            .finally(() => {
+                setUnclaimedNFTInfo([]);
+                setHexProofForClaim([]);
             });
-        setUnclaimedNFTInfo([]);
     };
 
     const handleAgreeTermsConditions = (event: React.ChangeEvent<HTMLInputElement>) => {
