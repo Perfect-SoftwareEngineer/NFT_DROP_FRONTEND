@@ -19,10 +19,10 @@ type ComponentProps = {};
 const appMenuList = [
     // { title: 'Home', url: '/' },
     { title: 'NF3 Counter', url: '/currycounter' },
-    { title: 'Curry Shop', url: '', locked: true },
-    { title: 'Mixology Room', url: '', locked: true },
-    { title: 'The Lab', url: '', locked: true },
-    { title: 'Roadmap', url: '', locked: true },
+    { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
+    { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
+    { title: 'The Lab', url: '', comingSoon: { rightPos: -10 } },
+    { title: 'Roadmap', url: '', comingSoon: { rightPos: -10 } },
     { title: 'FAQ', url: '/faq' },
 ];
 
@@ -82,10 +82,18 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             spacing={1}
                                             selected={router.pathname === item.url}
                                         >
-                                            {item.locked === true && <LockIcon sx={{ width: 16 }} />}
+                                            {item.comingSoon && <LockIcon sx={{ width: 16 }} />}
                                             <Typography fontSize={14} fontWeight={600}>
                                                 {item.title}
                                             </Typography>
+                                            {item.comingSoon && (
+                                                <ComingSoonTypo
+                                                    rightPos={item.comingSoon.rightPos}
+                                                    className="comingsoon_mark"
+                                                >
+                                                    Coming soon
+                                                </ComingSoonTypo>
+                                            )}
                                         </HeaderMenuBtn>
                                     </Link>
                                 ))}

@@ -9,13 +9,21 @@ export const HeaderMenuBtn = styled(Stack)<{ selected?: boolean }>`
     color: ${({ selected }) => (selected ? 'white' : '#969aa1')};
     cursor: pointer;
     border-bottom: ${({ selected }) => (selected ? '2px solid #ffca21' : '2px solid transparent')};
+    .comingsoon_mark {
+        display: none;
+    }
+    &:hover {
+        .comingsoon_mark {
+            display: block;
+        }
+    }
 `;
 
 export const ComingSoonTypo = styled(Typography)<{ rightPos: number }>`
     position: absolute;
     top: 8px;
     right: ${({ rightPos }) => `${rightPos}px`};
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 400;
     background: white;
     color: black;
