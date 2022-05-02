@@ -301,16 +301,16 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         <>
             <Box position="relative">
                 <Box position="absolute" top={0} width="100vw" zIndex={-10}>
-                    <video autoPlay muted loop style={{ width: '100%' }}>
-                        <source
-                            src={
-                                matchDownMd
-                                    ? '/assets/currycounter/background-mobile.mp4'
-                                    : '/assets/currycounter/background.mp4'
-                            }
-                            type="video/mp4"
-                        />
-                    </video>
+                    {!matchDownMd && (
+                        <video autoPlay muted loop style={{ width: '100%' }}>
+                            <source src={'/assets/currycounter/background.mp4'} type="video/mp4" />
+                        </video>
+                    )}
+                    {matchDownMd && (
+                        <video autoPlay muted loop style={{ width: '100%' }}>
+                            <source src={'/assets/currycounter/background-mobile.mp4'} type="video/mp4" />
+                        </video>
+                    )}
                     <GradientBox />
                 </Box>
                 <Container sx={{ position: 'relative', height: '100%', paddingY: { xs: 2, md: 5 } }}>
