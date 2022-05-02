@@ -8,10 +8,18 @@ export const GradientBox = styled(Box)`
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(27, 28, 34, 0) 0.01%, #000000 100%);
 `;
 
-export const MetamaskNotifBox = styled(Stack)`
-    align-items: flex-start;
+export const MetamaskNotiBox = styled(Stack)`
     position: absolute;
     top: 136px;
+    right: 0;
+    background: rgba(27, 28, 34, 0.75);
+    padding: 24px;
+    border-radius: 8px;
+`;
+
+export const DiscordNotiBox = styled(Stack)`
+    position: absolute;
+    top: 280px;
     right: 0;
     background: rgba(27, 28, 34, 0.75);
     padding: 24px;

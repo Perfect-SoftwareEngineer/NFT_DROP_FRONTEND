@@ -13,7 +13,7 @@ import {
 import Container from '../Container';
 import Image from 'next/image';
 import BackgroundImg from '../../assets/currycounter/background.png';
-import { GradientBox, MetamaskNotifBox, PrimaryBtn, TblHeaderCellTypo } from './styles';
+import { GradientBox, MetamaskNotiBox, DiscordNotiBox, PrimaryBtn, TblHeaderCellTypo } from './styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
@@ -68,7 +68,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const [basketballWinners, setBasketballWinners] = React.useState<RaffleWinnerItemType[]>([]);
     const [gameMoreInfo, setGameMoreInfo] = React.useState<number[]>([0, 0]);
 
-    const [showMetamask, setShowMetamask] = React.useState<boolean>(true);
+    const [showMetamaskNoti, setShowMetamaskNoti] = React.useState<boolean>(true);
+    const [showDiscordNoti, setShowDiscordNoti] = React.useState<boolean>(true);
 
     const [claimAreaTopPos, setClaimAreaTopPos] = React.useState<number>(0);
     const claimAreaRef = React.useRef<HTMLDivElement>(null);
@@ -230,7 +231,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE'
+                : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         setClaimState(2);
@@ -311,8 +314,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     <GradientBox />
                 </Box>
                 <Container sx={{ position: 'relative', height: '100%', paddingY: { xs: 2, md: 5 } }}>
-                    {showMetamask && (
-                        <MetamaskNotifBox direction="row" spacing={2} display={{ xs: 'none', md: 'flex' }}>
+                    {showMetamaskNoti && (
+                        <MetamaskNotiBox
+                            direction="row"
+                            alignItems="flex-start"
+                            spacing={2}
+                            display={{ xs: 'none', md: 'flex' }}
+                        >
                             <img src="/assets/metamask.png" width={56} height={56} alt="" />
                             <Stack spacing={1}>
                                 <Typography fontSize={14} fontWeight={500}>
@@ -323,10 +331,40 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     compatibility. Get your download ready.
                                 </Typography>
                             </Stack>
-                            <IconButton sx={{ color: 'white' }} onClick={() => setShowMetamask(false)}>
+                            <IconButton sx={{ color: 'white' }} onClick={() => setShowMetamaskNoti(false)}>
                                 <CloseIcon />
                             </IconButton>
-                        </MetamaskNotifBox>
+                        </MetamaskNotiBox>
+                    )}
+                    {showDiscordNoti && (
+                        <DiscordNotiBox
+                            direction="row"
+                            alignItems="flex-start"
+                            spacing={2}
+                            display={{ xs: 'none', md: 'flex' }}
+                        >
+                            <img src="/assets/discord.svg" width={56} height={56} alt="" />
+                            <Stack spacing={1}>
+                                <Typography fontSize={14} fontWeight={500}>
+                                    Join Our Discord
+                                </Typography>
+                                <Typography width={320} fontSize={12} fontWeight={400}>
+                                    Let's watch the game together!{' '}
+                                    <MuiLink
+                                        href="https://discord.com/invite/M5dZ2GJSpQ"
+                                        color="#FFCA21"
+                                        underline="none"
+                                        target="_blank"
+                                    >
+                                        Join our Discord
+                                    </MuiLink>{' '}
+                                    now and watch NF3s rain.
+                                </Typography>
+                            </Stack>
+                            <IconButton sx={{ color: 'white' }} onClick={() => setShowDiscordNoti(false)}>
+                                <CloseIcon />
+                            </IconButton>
+                        </DiscordNotiBox>
                     )}
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
@@ -571,15 +609,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Box>
                             <Stack spacing={1}>
                                 <Typography fontSize={16} fontWeight={600}>
-                                    Curry Brand Basketball
-                                </Typography>
-                                <Typography fontSize={14} fontWeight={400}>
-                                    GSW Playoffs Basketball
+                                    Curry Brand NF3 Basketball
                                 </Typography>
                             </Stack>
                         </Stack>
                         <Stack alignItems="flex-start">
-                            <Typography fontSize={{ xs: 48, sm: 64, md: 92 }} fontWeight={700} lineHeight={1.1}>
+                            {/* <Typography fontSize={{ xs: 48, sm: 64, md: 92 }} fontWeight={700} lineHeight={1.1}>
                                 NF3 Counter
                             </Typography>
                             <Typography
@@ -591,7 +626,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             >
                                 For every three-point shot Stephen Curry makes in the Playoffs, three new NF3 Basketball
                                 mints are created.
-                            </Typography>
+                            </Typography> */}
                             <Grid container marginTop={{ xs: 3.5, md: 6 }} columnSpacing={2}>
                                 <Grid item xs={6}>
                                     <SupplyBox
@@ -611,21 +646,29 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Grid>
                             </Grid>
                             <Stack marginTop={4}>
-                                <Typography fontSize={32} fontWeight={600}>
+                                <Typography fontSize={32} fontWeight={600} textTransform="uppercase">
                                     Claim Your NF3 Basketball
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                     <li>Connect Metamask Wallet</li>
-                                    <li>When three-pointer score is made, click reserve</li>
+                                    <li>When three-pointer score is made, click reserve (in the box above)</li>
                                     <li>
                                         If you have successfully reserved an NF3 Basketball, press "Claim"{' '}
                                         <span style={{ fontWeight: 700 }}>(one hour after the game)</span>
                                     </li>
                                 </ol>
                                 <Typography fontSize={16} fontWeight={400} marginTop={1}>
-                                    Only one NF3 Basketball is redeemable per Wallet per game
+                                    *Only one NF3 Basketball is redeemable per Wallet per game
+                                    <br></br>
+                                    *Make sure you have enough Ethereum in your Wallet to pay for gas fees
                                 </Typography>
                             </Stack>
+                            <Typography fontSize={32} fontWeight={700} marginTop={4}>
+                                PRICE: FREE{' '}
+                                <Typography fontSize={16} fontWeight={700} display="inline">
+                                    (+GAS FEE)
+                                </Typography>
+                            </Typography>
                             <Stack marginTop={{ xs: 4, md: 5 }} spacing={1}>
                                 {account ? (
                                     <>
@@ -686,7 +729,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <TblHeaderCellTypo>NFT Name</TblHeaderCellTypo>
                                 </Grid>
                                 <Grid item xs={4} display={{ xs: 'none', md: 'block' }}>
-                                    <TblHeaderCellTypo>Date Created</TblHeaderCellTypo>
+                                    <TblHeaderCellTypo>Date/Time Updated</TblHeaderCellTypo>
                                 </Grid>
                                 <Grid item xs={3} md={4}>
                                     <TblHeaderCellTypo>Wallet Address</TblHeaderCellTypo>

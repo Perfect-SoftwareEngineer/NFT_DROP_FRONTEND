@@ -11,7 +11,7 @@ type ComponentProps = {
 };
 
 const RaffleWinnerItem: React.FC<ComponentProps> = ({ data, index }): JSX.Element => {
-    let date = new Date(data.createdAt);
+    let date = new Date(data.updatedAt);
     const pst = date.toLocaleString('en-US', {
         timeZone: 'America/Los_Angeles',
         year: '2-digit',
