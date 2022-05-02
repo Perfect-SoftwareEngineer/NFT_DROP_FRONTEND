@@ -8,6 +8,9 @@ interface ComponentProps {}
 const FAQPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     return (
         <>
+            <Head>
+                <title>FAQ</title>
+            </Head>
             <PageContainer>
                 <FAQPageContainer />
             </PageContainer>

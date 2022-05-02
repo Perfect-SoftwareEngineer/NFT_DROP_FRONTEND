@@ -24,8 +24,8 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="What is the NF3 Counter?">
                     <Typography fontSize={16} fontWeight={400}>
                         NF3 Counter is an interactive fan tool to reward the biggest Stephen Curry fans as he battles
-                        his way through the NBA playoffs. The premise is simple: for every three-pointer, Curry makes in
-                        a playoff game, three free digital basketballs are claimable by the most engaged fans. Score to
+                        his way through the Playoffs. The premise is simple: for every three-pointer, Curry makes in a
+                        playoff game, three free digital Basketballs are claimable by the most engaged fans. Score to
                         Mint kicks off the next iteration of Curry Brand's effort to create the most positive Basketball
                         community of all time, championed by the greatest shooter of all time.
                     </Typography>
@@ -68,11 +68,17 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         the Basketball NFT whenever they like.
                         <br></br>
                         <br></br>
-                        Please note: that you will need enough Ethereum in your wallet to pay for the gas fee.
-                        <br></br>
-                        (To pay less gas, track gas prices using https://etherscan.io/gastracker.)
-                        <br></br>
-                        The Gas fee is not something we can control.
+                        <i>
+                            Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.
+                            <br></br>
+                            (To pay less gas, track gas prices using{' '}
+                            <a href="https://etherscan.io/gastracker" target="_blank" style={{ color: '#FFCA21' }}>
+                                https://etherscan.io/gastracker
+                            </a>
+                            .)
+                            <br></br>
+                            The Gas fee is not something we can control.
+                        </i>
                     </Typography>
                 </FAQItem>
                 <FAQItem title="How many NF3 Basketballs can I claim?">
@@ -83,16 +89,16 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         If you successfully reserve a Basketball NFT, you will not be able to further participate in
                         reserve until the next game.
                         <br></br>
-                        If you were unsuccessful in reserving a Basketball NFT, then you can continue participating in
+                        If you were unsuccessful in reserving a Basketball NFT, you can continue to participate in
                         reserving a Basketball until you succeed.
                         <br></br>
                         <br></br>
-                        Please note: New game means a new start!
+                        <i>Please note: New game means a new start!</i>
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What can I do with my NF3 Basketball?">
                     <Typography fontSize={16} fontWeight={400}>
-                        We will announce more updates as we build the most fanatic basketball community ever! So don’t
+                        We will announce more updates as we build the most fanatic basketball community ever! So don't
                         miss any updates by following us on Twitter and joining our Discord!
                     </Typography>
                 </FAQItem>
@@ -104,8 +110,12 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 </FAQItem>
                 <FAQItem title="Do I need a digital wallet to get a Basketball?">
                     <Typography fontSize={16} fontWeight={400}>
-                        Yes, you need a MetaMask wallet to reserve mint an NF3 Basketball! We recommend downloading it
-                        on your computer and adding the extension for ease of reserving.
+                        Yes, you need a{' '}
+                        <a href="https://metamask.io/download/" target="_blank" style={{ color: '#FFCA21' }}>
+                            MetaMask
+                        </a>{' '}
+                        wallet to reserve and mint an NF3 Basketball! We recommend downloading it on your computer and
+                        adding the extension for ease of reserving.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What blockchain is the NFT on?">
@@ -149,9 +159,12 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         <br></br>
                         What is OpenSea?
                         <br></br>
-                        OpenSea is an NFT marketplace where users can buy, trade, and sell their NFTs. We partner with
-                        OpenSea to allow our users to trade their NF3 Basketball safely. Please visit opensea.io for
-                        more details.
+                        <a href="https://opensea.io/" target="_blank" style={{ color: '#FFCA21' }}>
+                            OpenSea
+                        </a>{' '}
+                        is an NFT marketplace where users can buy, trade, and sell their NFTs. We partner with OpenSea
+                        to allow our users to trade their NF3 Basketball safely. Please visit opensea.io for more
+                        details.
                         <br></br>
                         <br></br>
                         Will I be able to refund my NF3 Basketball? After a successful transaction, you will not be able
@@ -180,8 +193,19 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 </FAQItem>
                 <FAQItem title="How can I get Support?">
                     <Typography fontSize={16} fontWeight={400}>
-                        You can join our Discord and open up a Ticket or email us at contact@lunamarket.io! Also, follow
-                        our Twitter for real-time updates and announcements.
+                        You can join our{' '}
+                        <a href="https://discord.com/invite/M5dZ2GJSpQ" target="_blank" style={{ color: '#FFCA21' }}>
+                            Discord
+                        </a>{' '}
+                        and open up a Ticket or email us at{' '}
+                        <a href="mailto:contact@lunamarket.io" target="_blank" style={{ color: '#FFCA21' }}>
+                            contact@lunamarket.io
+                        </a>
+                        ! Also, follow our{' '}
+                        <a href="https://twitter.com/LunaMarketInc" target="_blank" style={{ color: '#FFCA21' }}>
+                            Twitter
+                        </a>{' '}
+                        for real-time updates and announcements.
                     </Typography>
                 </FAQItem>
             </Stack>
