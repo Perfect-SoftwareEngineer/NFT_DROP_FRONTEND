@@ -351,7 +351,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 height={32}
                                 style={{ borderRadius: '50%' }}
                             />
-                            <Typography fontSize={20} fontWeight={600} paddingBottom="6px">
+                            <Typography fontSize={20} fontWeight={600} paddingBottom="6px" textTransform="uppercase">
                                 NF3 Counter
                             </Typography>
                         </Stack>
@@ -404,7 +404,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                     <Stack direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} marginTop={{ xs: 30, md: 50 }}>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
-                            <Typography fontSize={32} fontWeight={600}>
+                            <Typography fontSize={32} fontWeight={600} textTransform="uppercase">
                                 Reserve an NF3 Basketball
                             </Typography>
                             {!account && (
@@ -516,7 +516,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             )}
                         </Stack>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
-                            <Typography fontSize={32} fontWeight={600} lineHeight={1.2}>
+                            <Typography fontSize={32} fontWeight={600} lineHeight={1.2} textTransform="uppercase">
                                 How to Get an NF3 Basketball
                             </Typography>
                             <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
@@ -528,7 +528,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                             <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                 <li>Connect your Wallet</li>
-                                <li>For every three-point shot, 3 free NF3 Basketballs can be reserved</li>
+                                <li>For every three-point shot, three free NF3 Basketballs can be reserved</li>
                                 <li>Accept Terms & Conditions and Press "Reserve"</li>
                                 <li>
                                     Whoever reserves the Basketball first will be able to claim their free NF3
