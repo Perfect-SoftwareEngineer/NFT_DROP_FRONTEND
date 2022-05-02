@@ -36,6 +36,8 @@
     "web3modal": "^1.9.5"
   },
   "devDependencies": {
+    "@simbathesailor/babel-plugin-use-what-changed": "^2.1.0",
+    "@simbathesailor/use-what-changed": "^2.0.0",
     "@types/react": "latest",
     "eslint": "latest",
     "eslint-config-next": "^12.0.8",
