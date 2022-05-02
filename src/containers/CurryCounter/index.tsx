@@ -230,7 +230,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         setClaimState(2);

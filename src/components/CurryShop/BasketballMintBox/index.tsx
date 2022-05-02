@@ -30,7 +30,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const mint = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         try {
@@ -61,7 +61,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const reserve = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
         try {
@@ -79,7 +79,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
             );
 
             const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
