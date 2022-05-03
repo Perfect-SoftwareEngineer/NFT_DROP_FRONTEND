@@ -389,7 +389,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 height={32}
                                 style={{ borderRadius: '50%' }}
                             />
-                            <Typography fontSize={20} fontWeight={600} paddingBottom="6px" textTransform="uppercase">
+                            <Typography
+                                fontSize={20}
+                                fontWeight={600}
+                                paddingBottom="6px"
+                                textTransform="uppercase"
+                                className="neueplak_condensed"
+                            >
                                 NF3 Counter
                             </Typography>
                         </Stack>
@@ -442,7 +448,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                     <Stack direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} marginTop={{ xs: 30, md: 50 }}>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
-                            <Typography fontSize={32} fontWeight={600} textTransform="uppercase">
+                            <Typography
+                                fontSize={32}
+                                fontWeight={600}
+                                textTransform="uppercase"
+                                className="neueplak_condensed"
+                            >
                                 Reserve an NF3 Basketball
                             </Typography>
                             {!account && (
@@ -554,7 +565,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             )}
                         </Stack>
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
-                            <Typography fontSize={32} fontWeight={600} lineHeight={1.2} textTransform="uppercase">
+                            <Typography
+                                fontSize={32}
+                                fontWeight={600}
+                                lineHeight={1.2}
+                                textTransform="uppercase"
+                                className="neueplak_condensed"
+                            >
                                 How to Get an NF3 Basketball
                             </Typography>
                             <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
@@ -646,7 +663,12 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 </Grid>
                             </Grid>
                             <Stack marginTop={4}>
-                                <Typography fontSize={32} fontWeight={600} textTransform="uppercase">
+                                <Typography
+                                    fontSize={32}
+                                    fontWeight={600}
+                                    textTransform="uppercase"
+                                    className="neueplak_condensed"
+                                >
                                     Claim Your NF3 Basketball
                                 </Typography>
                                 <ol style={{ marginTop: 0, paddingLeft: 18 }}>
@@ -717,7 +739,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Stack>
                     <Stack marginY={{ xs: 6, md: 9 }} spacing={4} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>
-                        <Typography fontSize={32} fontWeight={600} whiteSpace="nowrap">
+                        <Typography fontSize={32} fontWeight={600} whiteSpace="nowrap" className="neueplak_condensed">
                             NF3 Basketball Winners
                         </Typography>
                         <Grid minWidth={480} container rowGap={3}>
