@@ -391,7 +391,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             />
                             <Typography
                                 fontSize={20}
-                                fontWeight={600}
+                                fontWeight={800}
                                 paddingBottom="6px"
                                 textTransform="uppercase"
                                 className="neueplak_condensed"
@@ -450,7 +450,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
                             <Typography
                                 fontSize={32}
-                                fontWeight={600}
+                                fontWeight={800}
                                 textTransform="uppercase"
                                 className="neueplak_condensed"
                             >
@@ -567,7 +567,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         <Stack width="100%" borderRadius={4} padding={4} sx={{ background: 'rgba(27, 28, 34, 0.75)' }}>
                             <Typography
                                 fontSize={32}
-                                fontWeight={600}
+                                fontWeight={800}
                                 lineHeight={1.2}
                                 textTransform="uppercase"
                                 className="neueplak_condensed"
@@ -665,7 +665,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <Stack marginTop={4}>
                                 <Typography
                                     fontSize={32}
-                                    fontWeight={600}
+                                    fontWeight={800}
                                     textTransform="uppercase"
                                     className="neueplak_condensed"
                                 >
@@ -739,7 +739,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Stack>
                     <Stack marginY={{ xs: 6, md: 9 }} spacing={4} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>
-                        <Typography fontSize={32} fontWeight={600} whiteSpace="nowrap" className="neueplak_condensed">
+                        <Typography
+                            fontSize={32}
+                            fontWeight={800}
+                            whiteSpace="nowrap"
+                            textTransform="uppercase"
+                            className="neueplak_condensed"
+                        >
                             NF3 Basketball Winners
                         </Typography>
                         <Grid minWidth={480} container rowGap={3}>
