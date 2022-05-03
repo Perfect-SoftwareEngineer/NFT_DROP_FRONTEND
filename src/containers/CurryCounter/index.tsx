@@ -374,7 +374,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         sx={{ background: '#1B1C22' }}
                     >
                         <Stack
-                            width={{ xs: '100%', md: 224 }}
+                            width={{ xs: '100%', md: 192 }}
                             height={64}
                             direction="row"
                             alignItems="center"
