@@ -96,6 +96,28 @@ export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
             });
     });
 
+export const startClaim = (gameId: number, walletAddr: string) =>
+    new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/claim_started`;
+        // console.log('reqUrl:', reqUrl);
+
+        const body = { gameId: gameId, wallet: walletAddr };
+
+        axios
+            .post(reqUrl, body)
+            .then((response) => {
+                // console.log('result:', response);
+                if (response.data.code === 200) resolve(response.data);
+                else resolve('');
+            })
+            .catch((error) => {
+                // console.log('error data:', error.response.data);
+                // console.log('error status:', error.response.status);
+                // console.log('error headers:', error.response.headers);
+                reject(error.response.data);
+            });
+    });
+
 export const claimBasketball = (_id: string) =>
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/claim`;

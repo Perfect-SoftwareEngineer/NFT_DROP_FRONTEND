@@ -35,6 +35,7 @@ import {
     reserveFreeBasketball,
     getUnclaimedBasketballs,
     getHexProofForClaim,
+    startClaim,
     claimBasketball,
     getWinners,
     getCountValues,
@@ -84,7 +85,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         getLatestGameInfo()
             .then((response: any[]) => {
                 setLastGameInfoForReserve(response);
-                console.log('setLastGameInfoForReserve');
+                // console.log('setLastGameInfoForReserve');
 
                 if (response.length > 0 && response[0].game_id) {
                     getWinners(response[0].game_id)
@@ -118,7 +119,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             reserveState === 4
         ) {
             if (account && lastGameInfoForReserve.length > 0 && lastGameInfoForReserve[0].game_id) {
-                console.log('getFreeReserveBasketballs');
+                // console.log('getFreeReserveBasketballs');
                 getFreeReserveBasketballs(lastGameInfoForReserve[0].game_id, account)
                     .then((response: any[]) => {
                         setFreeReserveBasketballList(response);
@@ -167,7 +168,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 lastGameInfoForReserve[0].merkled === true &&
                 lastGameInfoForReserve[0].live === false
             ) {
-                console.log('getUnclaimedBasketballs');
+                // console.log('getUnclaimedBasketballs');
                 getUnclaimedBasketballs(account)
                     .then((response: any[]) => {
                         // console.log('response:', response);
@@ -227,7 +228,15 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     };
 
     const onClaim = async () => {
-        if (claimState === 2) return;
+        if (
+            claimState === 2 ||
+            !(account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id && hexProofForClaim.length > 0)
+        )
+            return;
+
+        setClaimState(2);
+
+        startClaim(unclaimedNFTInfo[0].game_id, account);
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
@@ -236,14 +245,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
-        setClaimState(2);
         try {
             //change gameId and hexproof from backend
-            if (account && unclaimedNFTInfo.length > 0 && unclaimedNFTInfo[0].game_id && hexProofForClaim.length > 0) {
-                await nftContract.methods
-                    .claimFromThreePoint(unclaimedNFTInfo[0].game_id, hexProofForClaim, account)
-                    .send({ from: account });
-            }
+            await nftContract.methods
+                .claimFromThreePoint(unclaimedNFTInfo[0].game_id, hexProofForClaim, account)
+                .send({ from: account });
         } catch (err) {
             console.error(err);
             setUnclaimedNFTInfo([]);
@@ -255,11 +261,11 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         //call post api
         claimBasketball(unclaimedNFTInfo[0]._id)
             .then((response: string) => {
-                // console.log('claim basketball response:', response);
+                console.log('claim basketball response:', response);
                 setClaimState(3);
             })
             .catch((error) => {
-                // console.log('claim basketball error:', error);
+                console.log('claim basketball error:', error);
                 setClaimState(4);
             })
             .finally(() => {
