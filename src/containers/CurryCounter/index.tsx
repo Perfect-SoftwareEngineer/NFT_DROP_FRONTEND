@@ -506,18 +506,26 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 <Typography marginBottom="6px">
                                                     I agree that checking this box, I agree to Under Armours's{' '}
                                                     <Link href="/legal/terms-and-conditions" passHref>
-                                                        <Typography
-                                                            color="#FFCA21"
-                                                            display="inline"
-                                                        >{`Terms & Conditions`}</Typography>
-                                                    </Link>{' '}
-                                                    and{' '}
+                                                        <a rel="noopener noreferrer">
+                                                            <Typography color="#FFCA21" display="inline">
+                                                                {`Terms & Conditions`}
+                                                            </Typography>
+                                                        </a>
+                                                    </Link>
+                                                    ,{' '}
                                                     <Link href="https://account.underarmour.com/en-us/privacy" passHref>
                                                         <a target="_blank" rel="noopener noreferrer">
-                                                            <Typography
-                                                                color="#FFCA21"
-                                                                display="inline"
-                                                            >{`Privacy Policy`}</Typography>
+                                                            <Typography color="#FFCA21" display="inline">
+                                                                Privacy Policy
+                                                            </Typography>
+                                                        </a>
+                                                    </Link>
+                                                    , and{' '}
+                                                    <Link href="/legal/nft-ownership-agreement" passHref>
+                                                        <a rel="noopener noreferrer">
+                                                            <Typography color="#FFCA21" display="inline">
+                                                                NFT Ownership Agreement
+                                                            </Typography>
                                                         </a>
                                                     </Link>
                                                     .

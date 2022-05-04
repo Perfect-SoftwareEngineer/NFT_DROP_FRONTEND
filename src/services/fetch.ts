@@ -173,3 +173,18 @@ export const getCountValues = (gameID: string) =>
                 reject(error);
             });
     });
+
+export const claimGCF = (wallet: string) =>
+    new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
+        // console.log('reqUrl:', reqUrl);
+
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
