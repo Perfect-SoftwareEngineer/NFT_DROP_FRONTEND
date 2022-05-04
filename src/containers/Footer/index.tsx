@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Box, Typography, IconButton } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
+import InstagramIcon from '../../assets/instagram.svg';
 import OpenseaIcon from '../../assets/opensea.svg';
 import DiscordIcon from '../../assets/discord.svg';
 import TwitterIcon from '../../assets/twitter.svg';
@@ -10,11 +11,18 @@ import Link from 'next/link';
 
 type ComponentProps = {};
 
-const menuList = [
-    { title: 'Under Armour', url: '#' },
-    { title: 'Curry Brand', url: '#' },
-    { title: 'Terms', url: '#' },
-    { title: 'Privacy', url: '#' },
+const externalLinksList = [
+    { title: 'Curry Brand', url: 'https://www.underarmour.com/en-us/t/currybrand/' },
+    { title: 'Under Armour', url: 'https://about.underarmour.com/about' },
+    { title: 'Terms & Conditions', url: '/legal/terms-and-conditions' },
+    { title: 'Privacy Policy', url: 'https://account.underarmour.com/en-us/privacy' },
+];
+
+const socialLinksList = [
+    { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
+    { title: 'Twitter', url: 'https://twitter.com/LunaMarketInc', icon: <TwitterIcon /> },
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
+    { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
 ];
 
 const Footer: React.FC<ComponentProps> = ({}) => {
@@ -22,34 +30,49 @@ const Footer: React.FC<ComponentProps> = ({}) => {
         <>
             <Box sx={{ background: '#1B1C22' }}>
                 <Container>
-                    <Stack height={72} direction="row" alignItems="center" justifyContent="space-between">
-                        <Stack direction="row" alignItems="center" spacing={5}>
-                            <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
+                    <Stack
+                        height={72}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        spacing={4}
+                        sx={{ overflowY: 'hidden', overflowX: 'auto' }}
+                    >
+                        <Stack direction="row" flexShrink={0} alignItems="center" spacing={5}>
+                            <Link href="/currycounter" passHref>
+                                <Image
+                                    src="/assets/curry-logo.png"
+                                    width={40}
+                                    height={40}
+                                    alt="Logo"
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            </Link>
                             <Stack direction="row" spacing={2}>
-                                {menuList.map((item, index) => (
+                                {externalLinksList.map((item, index) => (
                                     <Link href={item.url} passHref>
-                                        <Typography
-                                            fontSize={14}
-                                            fontWeight={600}
-                                            color="#969AA1"
-                                            sx={{ cursor: 'pointer' }}
-                                        >
-                                            {item.title}
-                                        </Typography>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography
+                                                fontSize={14}
+                                                fontWeight={600}
+                                                color="#969AA1"
+                                                sx={{ cursor: 'pointer' }}
+                                            >
+                                                {item.title}
+                                            </Typography>
+                                        </a>
                                     </Link>
                                 ))}
                             </Stack>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={2}>
-                            <IconButton>
-                                <OpenseaIcon />
-                            </IconButton>
-                            <IconButton>
-                                <DiscordIcon />
-                            </IconButton>
-                            <IconButton>
-                                <TwitterIcon />
-                            </IconButton>
+                            {socialLinksList.map((item, index) => (
+                                <Link href={item.url} passHref key={`external-link-${index}`}>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <IconButton>{item.icon}</IconButton>
+                                    </a>
+                                </Link>
+                            ))}
                         </Stack>
                     </Stack>
                 </Container>
@@ -60,7 +83,11 @@ const Footer: React.FC<ComponentProps> = ({}) => {
                         <Typography fontSize={16} fontWeight={400} color="#FFFEFF" sx={{ padding: '0 0 6px' }}>
                             Powered by
                         </Typography>
-                        <LunaLogoImg />
+                        <Link href="https://lunamarket.io/" passHref>
+                            <a target="_blank" rel="noopener noreferrer">
+                                <LunaLogoImg />
+                            </a>
+                        </Link>
                     </Stack>
                 </Container>
             </Box>

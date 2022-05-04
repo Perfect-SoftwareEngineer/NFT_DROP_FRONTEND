@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Stack, Box, Typography, IconButton, Dialog, DialogTitle, DialogContent } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
-import { HeaderMenuBtn, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
+import { HeaderMenuBtn, ComingSoonTypo, ConnectWalletBtn, StyledBurger, BurgerMenuBox } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import InstagramIcon from '../../assets/instagram.svg';
 import OpenseaIcon from '../../assets/opensea.svg';
 import DiscordIcon from '../../assets/discord.svg';
 import TwitterIcon from '../../assets/twitter.svg';
 import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
 import { connect } from '../../web3/connect';
+import LockIcon from '@mui/icons-material/LockOutlined';
 
 type ComponentProps = {};
 
@@ -25,10 +27,11 @@ const appMenuList = [
     { title: 'FAQ', url: '/faq' },
 ];
 
-const externalLinksList = [
-    { title: 'Opensea', url: 'https://opensea.io/', icon: <OpenseaIcon /> },
-    { title: 'Discord', url: '#', icon: <DiscordIcon /> },
-    { title: 'Twitter', url: '#', icon: <TwitterIcon /> },
+const socialLinksList = [
+    { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
+    { title: 'Twitter', url: 'https://twitter.com/LunaMarketInc', icon: <TwitterIcon /> },
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
+    { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
 ];
 
 const Header: React.FC<ComponentProps> = ({}) => {
@@ -63,19 +66,42 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         display={{ xs: 'none', md: 'flex' }}
                     >
                         <Stack direction="row" alignItems="center" spacing={5}>
-                            <Image src="/assets/curry-logo.png" width={40} height={40} alt="Logo" />
-                            <Stack direction="row" spacing={2}>
+                            <Link href="/currycounter" passHref>
+                                <Image
+                                    src="/assets/curry-logo.png"
+                                    width={40}
+                                    height={40}
+                                    alt="Logo"
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            </Link>
+                            <Stack direction="row" spacing={4}>
                                 {appMenuList.map((item, index) => (
                                     <Link href={item.url} passHref key={`app-menu-link-${index}`}>
-                                        <HeaderMenuBtn selected={router.pathname === item.url}>
-                                            <Typography>{item.title}</Typography>
+                                        <HeaderMenuBtn
+                                            direction="row"
+                                            spacing={1}
+                                            selected={router.pathname === item.url}
+                                        >
+                                            {item.comingSoon && <LockIcon sx={{ width: 16 }} />}
+                                            <Typography fontSize={14} fontWeight={600}>
+                                                {item.title}
+                                            </Typography>
+                                            {item.comingSoon && (
+                                                <ComingSoonTypo
+                                                    rightPos={item.comingSoon.rightPos}
+                                                    className="comingsoon_mark"
+                                                >
+                                                    Coming soon
+                                                </ComingSoonTypo>
+                                            )}
                                         </HeaderMenuBtn>
                                     </Link>
                                 ))}
                             </Stack>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={2}>
-                            {externalLinksList.map((item, index) => (
+                            {socialLinksList.map((item, index) => (
                                 <Link href={item.url} passHref key={`external-link-${index}`}>
                                     <a target="_blank" rel="noopener noreferrer">
                                         <IconButton>{item.icon}</IconButton>
@@ -95,11 +121,21 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         height={72}
                         direction="row"
                         alignItems="center"
-                        justifyContent="flex-end"
+                        // justifyContent="flex-end"
                         spacing={2.5}
                         display={{ xs: 'flex', md: 'none' }}
                     >
+                        <Link href="/currycounter" passHref>
+                            <Image
+                                src="/assets/curry-logo.png"
+                                width={40}
+                                height={40}
+                                alt="Logo"
+                                style={{ cursor: 'pointer' }}
+                            />
+                        </Link>
                         <ConnectWalletBtn
+                            sx={{ marginLeft: 'auto !important' }}
                             onClick={() => {
                                 if (!active) setOpenConnectWalletDlg(true);
                             }}
@@ -113,17 +149,23 @@ const Header: React.FC<ComponentProps> = ({}) => {
                             <BurgerMenuBox spacing={2} open={menuOpen}>
                                 {appMenuList.map((item, index) => (
                                     <Link href={item.url} passHref key={`app-menu-link-${index}`}>
-                                        <Typography fontSize={14} fontWeight={500}>
-                                            {item.title}
-                                        </Typography>
-                                    </Link>
-                                ))}
-                                {externalLinksList.map((item, index) => (
-                                    <Link href={item.url} passHref key={`external-link-${index}`}>
-                                        <a target="_blank" rel="noopener noreferrer">
+                                        <Stack direction="row" alignItems="center" justifyContent="space-between">
                                             <Typography fontSize={14} fontWeight={500}>
                                                 {item.title}
                                             </Typography>
+                                            {item.comingSoon && <LockIcon sx={{ width: 16, color: '#969aa1' }} />}
+                                        </Stack>
+                                    </Link>
+                                ))}
+                                {socialLinksList.map((item, index) => (
+                                    <Link href={item.url} passHref key={`external-link-${index}`}>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Stack direction="row" alignItems="center" justifyContent="space-between">
+                                                <Typography fontSize={14} fontWeight={500}>
+                                                    {item.title}
+                                                </Typography>
+                                                <IconButton sx={{ padding: 0 }}>{item.icon}</IconButton>
+                                            </Stack>
                                         </a>
                                     </Link>
                                 ))}

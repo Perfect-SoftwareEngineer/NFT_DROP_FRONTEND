@@ -32,9 +32,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
-            const freeMintSupply = await nftContract.methods.freeMintSupply().call({ from: account });
 
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(freeMintSupply));
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply));
         }
         if (account) {
             updateAppState();

@@ -8,25 +8,35 @@ export const FETCH_CONFIG_JSON = {
     },
 };
 
-export const getLatestGameInfo = async () => {
-    let reqUrl = `${SERVER_URL}/api/curryv2/current/match/get`;
-    // console.log('reqUrl:', reqUrl);
+export const getLatestGameInfo = async () =>
+    new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/current/match/get`;
+        // console.log('reqUrl:', reqUrl);
 
-    const data = await fetch(reqUrl, FETCH_CONFIG_JSON);
-    const result = await data.json();
-    // console.log('result:', result);
-    return result;
-};
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
 
-export const getFreeReserveBasketballs = async (gameID: string, walletAddr: string) => {
-    let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get/${gameID}/${walletAddr}`;
-    // console.log('reqUrl:', reqUrl);
+export const getFreeReserveBasketballs = async (gameID: string, walletAddr: string) =>
+    new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get/${gameID}/${walletAddr}`;
+        // console.log('reqUrl:', reqUrl);
 
-    const data = await fetch(reqUrl, FETCH_CONFIG_JSON);
-    const result = await data.json();
-    // console.log('result:', reqUrl, result);
-    return result;
-};
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
 
 export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: string) =>
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
@@ -56,25 +66,57 @@ export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: s
             });
     });
 
-export const getUnclaimedBasketballs = async (walletAddr: string) => {
-    let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get_unclaimed/${walletAddr}`;
-    // console.log('reqUrl:', reqUrl);
+export const getUnclaimedBasketballs = async (walletAddr: string) =>
+    new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get_unclaimed/${walletAddr}`;
+        // console.log('reqUrl:', reqUrl);
 
-    const data = await fetch(reqUrl, FETCH_CONFIG_JSON);
-    const result = await data.json();
-    // console.log('result:', result);
-    return result;
-};
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
 
-export const getHexProofForClaim = async (gameID: string, walletAddr: string) => {
-    let reqUrl = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${gameID}/${walletAddr}`;
-    // console.log('reqUrl:', reqUrl);
+export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
+    new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${gameID}/${walletAddr}`;
+        // console.log('reqUrl:', reqUrl);
 
-    const data = await fetch(reqUrl, FETCH_CONFIG_JSON);
-    const result = await data.json();
-    // console.log('result:', result);
-    return result;
-};
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+
+export const startClaim = (gameId: number, walletAddr: string) =>
+    new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/claim_started`;
+        // console.log('reqUrl:', reqUrl);
+
+        const body = { gameId: gameId, wallet: walletAddr };
+
+        axios
+            .post(reqUrl, body)
+            .then((response) => {
+                // console.log('result:', response);
+                if (response.data.code === 200) resolve(response.data);
+                else resolve('');
+            })
+            .catch((error) => {
+                // console.log('error data:', error.response.data);
+                // console.log('error status:', error.response.status);
+                // console.log('error headers:', error.response.headers);
+                reject(error.response.data);
+            });
+    });
 
 export const claimBasketball = (_id: string) =>
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
@@ -110,7 +152,6 @@ export const getWinners = (gameID: string) =>
         axios
             .get(reqUrl)
             .then((response) => {
-                // console.log('getWinners result:', response);
                 resolve(response.data);
             })
             .catch((error) => {

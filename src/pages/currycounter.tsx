@@ -9,7 +9,8 @@ const CurryCounterPage: React.FC<PropsWithChildren<ComponentProps>> = ({ childre
     return (
         <>
             <Head>
-                <title>Curry Part 2 - CurryCounter</title>
+                <meta name="viewport" content="initial-scale=1, width=device-width" />
+                <title>NF3 Counter</title>
             </Head>
             <PageContainer>
                 <CurryCounterPageContainer />

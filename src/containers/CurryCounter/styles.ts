@@ -2,18 +2,26 @@ import { styled, Stack, Box, Button, Typography } from '@mui/material';
 
 export const GradientBox = styled(Box)`
     width: 100%;
-    height: 100%;
+    height: 20%;
     position: absolute;
-    inset: 0;
+    bottom: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(27, 28, 34, 0) 0.01%, #000000 100%);
 `;
 
-export const MetamaskNotifBox = styled(Stack)`
-    align-items: flex-start;
+export const MetamaskNotiBox = styled(Stack)`
     position: absolute;
-    top: 0;
+    top: 136px;
     right: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(27, 28, 34, 0.75);
+    padding: 24px;
+    border-radius: 8px;
+`;
+
+export const DiscordNotiBox = styled(Stack)`
+    position: absolute;
+    top: 280px;
+    right: 0;
+    background: rgba(27, 28, 34, 0.75);
     padding: 24px;
     border-radius: 8px;
 `;

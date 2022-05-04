@@ -1,21 +1,19 @@
-import React, { PropsWithChildren } from 'react';
+import React, { useEffect, PropsWithChildren } from 'react';
 import Head from 'next/head';
 import PageContainer from '../containers/PageContainer';
 import Container from '../containers/Container';
+import { useRouter } from 'next/router';
 
 interface ComponentProps {}
 
 const Home: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
-    return (
-        <>
-            <Head>
-                <title>Curry Part 2</title>
-            </Head>
-            <PageContainer>
-                <Container>Home</Container>
-            </PageContainer>
-        </>
-    );
+    const router = useRouter();
+
+    useEffect(() => {
+        router.push('/currycounter');
+    }, []);
+
+    return <></>;
 };
 
 export default Home;

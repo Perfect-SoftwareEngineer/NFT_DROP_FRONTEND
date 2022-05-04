@@ -1,6 +1,7 @@
-import { styled, Stack, Button } from '@mui/material';
+import { styled, Stack, Button, Typography } from '@mui/material';
 
 export const HeaderMenuBtn = styled(Stack)<{ selected?: boolean }>`
+    position: relative;
     height: 72px;
     justify-content: center;
     align-items: center;
@@ -8,10 +9,27 @@ export const HeaderMenuBtn = styled(Stack)<{ selected?: boolean }>`
     color: ${({ selected }) => (selected ? 'white' : '#969aa1')};
     cursor: pointer;
     border-bottom: ${({ selected }) => (selected ? '2px solid #ffca21' : '2px solid transparent')};
-    p {
-        font-size: 14px;
-        font-weight: 600;
+    .comingsoon_mark {
+        display: none;
     }
+    &:hover {
+        .comingsoon_mark {
+            display: block;
+        }
+    }
+`;
+
+export const ComingSoonTypo = styled(Typography)<{ rightPos: number }>`
+    position: absolute;
+    top: 8px;
+    right: ${({ rightPos }) => `${rightPos}px`};
+    font-size: 10px;
+    font-weight: 400;
+    background: white;
+    color: black;
+    border-radius: 4px;
+    padding: 2px 4px;
+    white-space: nowrap;
 `;
 
 export const ConnectWalletBtn = styled(Button)`
@@ -64,7 +82,7 @@ export const StyledBurger = styled('div')<{ open: boolean }>`
 `;
 
 export const BurgerMenuBox = styled(Stack)<{ open: boolean }>`
-    width: 160px;
+    width: 240px;
     padding: 16px;
     position: absolute;
     top: 120%;

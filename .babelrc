@@ -1,4 +1,12 @@
 {
     "presets": ["next/babel"],
-    "plugins": ["inline-react-svg"]
+    "plugins": [
+        "inline-react-svg",
+        [
+            "@simbathesailor/babel-plugin-use-what-changed",
+            {
+                "active": true // boolean
+            }
+        ]
+    ]
 }
