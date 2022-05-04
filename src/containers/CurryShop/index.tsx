@@ -8,17 +8,23 @@ import CounterBox from '../../components/CounterBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import CurryFlowClaimBox from '../../components/CurryShop/CurryFlowClaimBox';
+import { claimGCF } from '../../services/fetch';
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
+    const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
+    const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
+
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0xEAE623fc7c98a15ddB372d951355d68BE8134B83'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? '0x097a62228e4C09e15a131AaAb2F8d6d05583bDfE'
+                    : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
             );
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
@@ -32,6 +38,17 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         }
         if (account) {
             updateAppState();
+
+            claimGCF(account)
+                .then((response: any) => {
+                    console.log('response:', response);
+                    setGCFOwnedCount(response.quantity);
+                    setHexProofForGCFClaim(response.hexProof);
+                })
+                .catch((error) => {
+                    setGCFOwnedCount(0);
+                    setHexProofForGCFClaim([]);
+                });
         }
     }, [account]);
 
@@ -77,7 +94,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 <Stack direction={{ xs: 'column', md: 'row' }} alignItems="flex-start" spacing={4} marginTop={6}>
                     <BasketballMintBox amountLeft={supplyLeft} />
                     <SerumMintBox amountLeft={1000} disabled />
-                    <CurryFlowClaimBox amountLeft={2974} disabled />
+                    <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} disabled />
                 </Stack>
             </Container>
         </>

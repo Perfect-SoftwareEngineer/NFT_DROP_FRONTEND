@@ -7,10 +7,11 @@ import GenersisCurryFlowImg from '../../../assets/curryshop/genesis-curry-flow.p
 
 type ComponentProps = {
     amountLeft: number;
+    gcfOwnedCount: number;
     disabled?: boolean;
 };
 
-const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
+const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, disabled = false }): JSX.Element => {
     return (
         <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
@@ -28,7 +29,7 @@ const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
             </Stack>
             <Stack spacing={1} marginTop={5}>
                 <Typography fontSize={16} fontWeight={700} color="white">
-                    You own 0 Genesis Curry Flow
+                    {`You own ${gcfOwnedCount} Genesis Curry Flow`}
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={2}>
                     <Stack direction="row" alignItems="center" spacing={1}>
