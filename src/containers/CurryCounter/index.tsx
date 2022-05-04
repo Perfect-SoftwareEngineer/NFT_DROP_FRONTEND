@@ -723,7 +723,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             </Typography>
                                         ) : (
                                             <Typography fontSize={16} fontWeight={600}>
-                                                You do not have any reserved NF3 Basketballs
+                                                You do not have any NF3 Basketballs to claim right now (check winner's
+                                                list)
                                             </Typography>
                                         )}
                                     </>
