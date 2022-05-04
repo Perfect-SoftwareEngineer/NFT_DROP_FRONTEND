@@ -10,7 +10,11 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 Frequently Asked Questions
             </Typography>
             <Typography width={{ xs: '80%', md: '35%' }} fontSize={16} fontWeight={400} marginTop={3}>
-                Got a question? We're here to answer! If you don't see your answer here, contact us through our Discord.
+                Got a question? We're here to answer! If you don't see your answer here, contact us through our{' '}
+                <a href="https://discord.com/invite/M5dZ2GJSpQ" target="_blank" style={{ color: '#FFCA21' }}>
+                    Discord
+                </a>
+                .
             </Typography>
             <Stack spacing={2} marginTop={6}>
                 <FAQItem title="What is an NFT?">

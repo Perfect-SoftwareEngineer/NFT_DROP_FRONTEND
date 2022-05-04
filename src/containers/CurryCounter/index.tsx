@@ -504,13 +504,23 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             }
                                             label={
                                                 <Typography marginBottom="6px">
-                                                    {`I agree that checking this box, I agree to Under Armours's `}
+                                                    I agree that checking this box, I agree to Under Armours's{' '}
                                                     <Link href="/legal/terms-and-conditions" passHref>
                                                         <Typography
                                                             color="#FFCA21"
                                                             display="inline"
-                                                        >{`Terms & Conditions.`}</Typography>
+                                                        >{`Terms & Conditions`}</Typography>
+                                                    </Link>{' '}
+                                                    and{' '}
+                                                    <Link href="https://account.underarmour.com/en-us/privacy" passHref>
+                                                        <a target="_blank" rel="noopener noreferrer">
+                                                            <Typography
+                                                                color="#FFCA21"
+                                                                display="inline"
+                                                            >{`Privacy Policy`}</Typography>
+                                                        </a>
                                                     </Link>
+                                                    .
                                                 </Typography>
                                             }
                                             sx={{ marginTop: 3 }}
@@ -590,7 +600,18 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                 <li>Connect your Wallet</li>
                                 <li>For every three-point shot, three free NF3 Basketballs can be reserved</li>
-                                <li>Accept Terms & Conditions and Press "Reserve"</li>
+                                <li>
+                                    Accept{' '}
+                                    <Link href="/legal/terms-and-conditions" passHref>
+                                        <a rel="noopener noreferrer">
+                                            <Typography
+                                                color="#FFCA21"
+                                                display="inline"
+                                            >{`Terms & Conditions`}</Typography>
+                                        </a>
+                                    </Link>{' '}
+                                    and Press "Reserve"
+                                </li>
                                 <li>
                                     Whoever reserves the Basketball first will be able to claim their free NF3
                                     Basketball mint one hour after the game in the section{` `}
