@@ -93,7 +93,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 <Stack direction={{ xs: 'column', md: 'row' }} alignItems="flex-start" spacing={4} marginTop={6}>
                     <BasketballMintBox amountLeft={supplyLeft} />
                     <SerumMintBox amountLeft={1000} disabled />
-                    <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} disabled />
+                    <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} />
                 </Stack>
             </Container>
         </>

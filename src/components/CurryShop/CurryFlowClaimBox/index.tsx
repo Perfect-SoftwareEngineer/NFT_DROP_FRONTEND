@@ -8,10 +8,9 @@ import GenersisCurryFlowImg from '../../../assets/curryshop/genesis-curry-flow.p
 type ComponentProps = {
     amountLeft: number;
     gcfOwnedCount: number;
-    disabled?: boolean;
 };
 
-const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, disabled = false }): JSX.Element => {
+const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount }): JSX.Element => {
     return (
         <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
@@ -33,7 +32,7 @@ const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={2}>
                     <Stack direction="row" alignItems="center" spacing={1}>
-                        <ClaimBtn disabled>Claim</ClaimBtn>
+                        <ClaimBtn disabled={!gcfOwnedCount}>Claim</ClaimBtn>
                         <MoreDetailsBtn>More details</MoreDetailsBtn>
                     </Stack>
                     <InfoIcon />
