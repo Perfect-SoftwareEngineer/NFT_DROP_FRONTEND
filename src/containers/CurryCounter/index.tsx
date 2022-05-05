@@ -762,6 +762,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 </Link>{' '}
                                                 profile to check if the NF3 Basketball is in your wallet
                                             </Typography>
+                                        ) : claimState === 4 ? (
+                                            <Typography fontWeight={600} color="#FF2121">
+                                                Claim Unsuccessful
+                                            </Typography>
                                         ) : !!unclaimedNFTInfo.length ? (
                                             <Typography fontSize={16} fontWeight={600}>
                                                 You have{' '}
