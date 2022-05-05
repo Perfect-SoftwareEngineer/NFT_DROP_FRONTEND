@@ -177,9 +177,13 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     .catch((error) => {
                         setUnclaimedNFTInfo([]);
                     })
-                    .finally(() => {
-                        setClaimState(1);
-                    });
+                    .finally(() => {});
+            }
+
+            if (claimState === 3 || claimState === 4) {
+                setTimeout(() => setClaimState(1), 3000);
+            } else if (claimState !== 2) {
+                setClaimState(1);
             }
         }
     }, [lastGameInfoForReserve, account, claimState]);
@@ -245,27 +249,29 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
         );
 
+        // console.log('call contract method claimFromThreePoint!');
         try {
             //change gameId and hexproof from backend
             await nftContract.methods
                 .claimFromThreePoint(unclaimedNFTInfo[0].game_id, hexProofForClaim, account)
                 .send({ from: account });
         } catch (err) {
-            console.error(err);
+            // console.log(err);
             setUnclaimedNFTInfo([]);
             setHexProofForClaim([]);
             setClaimState(4);
             return;
         }
+        // console.log('call contract method claimFromThreePoint end!');
 
         //call post api
         claimBasketball(unclaimedNFTInfo[0]._id)
             .then((response: string) => {
-                console.log('claim basketball response:', response);
+                // console.log('claim basketball response:', response);
                 setClaimState(3);
             })
             .catch((error) => {
-                console.log('claim basketball error:', error);
+                // console.log('claim basketball error:', error);
                 setClaimState(4);
             })
             .finally(() => {
@@ -744,7 +750,23 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         >
                                             CLAIM
                                         </PrimaryBtn>
-                                        {!!unclaimedNFTInfo.length ? (
+                                        {claimState === 3 ? (
+                                            <Typography fontWeight={600}>
+                                                You have claimed your NF3 Basketball, please check your{' '}
+                                                <Link href="https://opensea.io/collection/nf3-basketball" passHref>
+                                                    <a target="_blank" rel="noopener noreferrer">
+                                                        <Typography fontWeight={600} color="#FFCA21" display="inline">
+                                                            Opensea
+                                                        </Typography>
+                                                    </a>
+                                                </Link>{' '}
+                                                profile to check if the NF3 Basketball is in your wallet
+                                            </Typography>
+                                        ) : claimState === 4 ? (
+                                            <Typography fontWeight={600} color="#FF2121">
+                                                Claim Unsuccessful
+                                            </Typography>
+                                        ) : !!unclaimedNFTInfo.length ? (
                                             <Typography fontSize={16} fontWeight={600}>
                                                 You have{' '}
                                                 <Typography
@@ -758,8 +780,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             </Typography>
                                         ) : (
                                             <Typography fontSize={16} fontWeight={600}>
-                                                You do not have any NF3 Basketballs to claim right now (check winner's
-                                                list)
+                                                You do not have any reserved NF3 Basketballs
                                             </Typography>
                                         )}
                                     </>
