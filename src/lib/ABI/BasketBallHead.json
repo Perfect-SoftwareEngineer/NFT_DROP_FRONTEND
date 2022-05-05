@@ -251,13 +251,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "uint256",
         "name": "gameId",
         "type": "uint256"
       },
       {
-        "indexed": false,
+        "indexed": true,
         "internalType": "address",
         "name": "beneficiary",
         "type": "address"
@@ -389,9 +389,9 @@
     "name": "dropPhase",
     "outputs": [
       {
-        "internalType": "uint8",
+        "internalType": "uint256",
         "name": "",
-        "type": "uint8"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -944,12 +944,38 @@
   {
     "inputs": [
       {
-        "internalType": "uint8",
+        "internalType": "uint256",
         "name": "_dropPhase",
-        "type": "uint8"
+        "type": "uint256"
       }
     ],
     "name": "setDropPhase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_mintprice",
+        "type": "uint256"
+      }
+    ],
+    "name": "setMintPrice",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_maxMintCount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setMintCount",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -963,6 +989,32 @@
       }
     ],
     "name": "setMaxSupply",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_gcfRoot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "setGCFRoot",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_communityRoot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "setCommunityRoot",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
