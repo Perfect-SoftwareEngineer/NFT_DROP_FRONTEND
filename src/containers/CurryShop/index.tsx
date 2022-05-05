@@ -8,7 +8,7 @@ import CounterBox from '../../components/CounterBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import CurryFlowClaimBox from '../../components/CurryShop/CurryFlowClaimBox';
-import { claimGCF } from '../../services/fetch';
+import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
@@ -17,6 +17,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
+
+    const [hexProofForCommunityClaim, setHexProofForCommunityClaim] = React.useState<any[]>([]);
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -40,13 +42,22 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             claimGCF(account)
                 .then((response: any) => {
-                    console.log('response:', response);
+                    // console.log('response:', response);
                     setGCFOwnedCount(response.quantity);
                     setHexProofForGCFClaim(response.hexProof);
                 })
                 .catch((error) => {
                     setGCFOwnedCount(0);
                     setHexProofForGCFClaim([]);
+                });
+
+            claimCommunityNFT(account)
+                .then((response: any) => {
+                    // console.log('response:', response);
+                    setHexProofForCommunityClaim(response.hexProof);
+                })
+                .catch((error) => {
+                    setHexProofForCommunityClaim([]);
                 });
         }
     }, [account]);
