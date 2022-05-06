@@ -512,7 +512,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 <Typography marginBottom="6px">
                                                     I have read and agree to the{' '}
                                                     <Link href="/legal/terms-and-conditions" passHref>
-                                                        <a rel="noopener noreferrer">
+                                                        <a rel="noopener noreferrer" target="_blank">
                                                             <Typography color="#FFCA21" display="inline">
                                                                 {`Terms & Conditions`}
                                                             </Typography>
@@ -528,7 +528,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     </Link>
                                                     , and{' '}
                                                     <Link href="/legal/nft-ownership-agreement" passHref>
-                                                        <a rel="noopener noreferrer">
+                                                        <a rel="noopener noreferrer" target="_blank">
                                                             <Typography color="#FFCA21" display="inline">
                                                                 NFT Ownership Agreement
                                                             </Typography>
