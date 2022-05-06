@@ -604,7 +604,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             >
                                 How to Get an NF3 Basketball
                             </Typography>
-                            <Typography fontSize={16} fontWeight={400} color="#FFCA21" marginTop={2}>
+                            <Typography color="#FFCA21" marginTop={2}>
                                 Pressing Reserve does not guarantee an NF3 Basketball. Only the very first person will
                                 successfully reserve an NFT.
                             </Typography>
@@ -623,6 +623,22 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                 display="inline"
                                             >{`Terms & Conditions`}</Typography>
                                         </a>
+                                    </Link>
+                                    ,{' '}
+                                    <Link href="https://account.underarmour.com/en-us/privacy" passHref>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography color="#FFCA21" display="inline">
+                                                Privacy Policy
+                                            </Typography>
+                                        </a>
+                                    </Link>
+                                    , and{' '}
+                                    <Link href="/legal/nft-ownership-agreement" passHref>
+                                        <a rel="noopener noreferrer">
+                                            <Typography color="#FFCA21" display="inline">
+                                                NFT Ownership Agreement
+                                            </Typography>
+                                        </a>
                                     </Link>{' '}
                                     and Press "Reserve"
                                 </li>
@@ -632,7 +648,6 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                     <span onClick={gotoClaimPart} style={{ color: '#FFCA21', cursor: 'pointer' }}>
                                         below
                                     </span>
-                                    .
                                 </li>
                             </ol>
                         </Stack>
