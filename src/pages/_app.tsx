@@ -42,7 +42,7 @@ export default function MyApp(props: MyAppProps) {
                         />
 
                         {/* Metadata */}
-                        <meta property="og:title" content="Genesis Curry Flow" />
+                        <meta property="og:title" content="Curry Brand NF3 Basketball" />
                         <meta
                             property="og:image"
                             content="https://luna-bucket.s3.us-east-2.amazonaws.com/400x400_CURRY.png"
