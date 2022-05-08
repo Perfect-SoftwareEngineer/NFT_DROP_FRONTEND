@@ -8,7 +8,7 @@ import {
     IconButton,
     Dialog,
     CircularProgress,
-    Link as MuiLink,
+    Link as MuiLink
 } from '@mui/material';
 import Container from '../Container';
 import Image from 'next/image';
@@ -38,7 +38,7 @@ import {
     startClaim,
     claimBasketball,
     getWinners,
-    getCountValues,
+    getCountValues
 } from '../../services/fetch';
 import { usePrevious } from 'react-use';
 
@@ -92,7 +92,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         .then((response: any[]) => {
                             setBasketballWinners(response);
                         })
-                        .catch((error) => {
+                        .catch(error => {
                             setBasketballWinners([]);
                         });
 
@@ -100,10 +100,10 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         .then((response: any[]) => {
                             setGameMoreInfo(response);
                         })
-                        .catch((error) => {});
+                        .catch(error => {});
                 }
             })
-            .catch((error) => {
+            .catch(error => {
                 setLastGameInfoForReserve([]);
             });
     }, []);
@@ -124,7 +124,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     .then((response: any[]) => {
                         setFreeReserveBasketballList(response);
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         setFreeReserveBasketballList([]);
                     })
                     .finally(() => {
@@ -148,7 +148,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 .then((response: any[]) => {
                     setBasketballWinners(response);
                 })
-                .catch((error) => {
+                .catch(error => {
                     setBasketballWinners([]);
                 });
         }
@@ -174,7 +174,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                         // console.log('response:', response);
                         setUnclaimedNFTInfo(response);
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         setUnclaimedNFTInfo([]);
                     })
                     .finally(() => {});
@@ -195,7 +195,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     // console.log('response:', response);
                     setHexProofForClaim(response);
                 })
-                .catch((error) => {
+                .catch(error => {
                     setHexProofForClaim([]);
                 });
         }
@@ -220,7 +220,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                     );
                     setReserveState(3);
                 })
-                .catch((error) => {
+                .catch(error => {
                     // console.log('reserve free basketball error:', error);
                     setReserveResult(error);
                     setReserveState(4);
@@ -270,7 +270,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 // console.log('claim basketball response:', response);
                 setClaimState(3);
             })
-            .catch((error) => {
+            .catch(error => {
                 // console.log('claim basketball error:', error);
                 setClaimState(4);
             })
@@ -297,7 +297,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const gameStatusInfo = [
         { label: '-', color: 'white' },
         { label: 'Live', color: '#B8FF97' },
-        { label: 'Not Live', color: 'red' },
+        { label: 'Not Live', color: 'red' }
     ];
 
     React.useEffect(() => {
@@ -436,7 +436,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Game in Series:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                        3
+                                        4
                                     </Typography>
                                 </Typography>
                             </Box>
@@ -510,9 +510,9 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             }
                                             label={
                                                 <Typography marginBottom="6px">
-                                                    I agree that checking this box, I agree to Under Armours's{' '}
+                                                    I have read and agree to the{' '}
                                                     <Link href="/legal/terms-and-conditions" passHref>
-                                                        <a rel="noopener noreferrer">
+                                                        <a rel="noopener noreferrer" target="_blank">
                                                             <Typography color="#FFCA21" display="inline">
                                                                 {`Terms & Conditions`}
                                                             </Typography>
@@ -528,7 +528,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                                     </Link>
                                                     , and{' '}
                                                     <Link href="/legal/nft-ownership-agreement" passHref>
-                                                        <a rel="noopener noreferrer">
+                                                        <a rel="noopener noreferrer" target="_blank">
                                                             <Typography color="#FFCA21" display="inline">
                                                                 NFT Ownership Agreement
                                                             </Typography>
@@ -547,7 +547,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                             width: 156,
                                             height: 34,
                                             fontSize: 14,
-                                            padding: '2px 16px 6px',
+                                            padding: '2px 16px 6px'
                                         }}
                                         onClick={onReserve}
                                     >
@@ -586,7 +586,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                         height: 34,
                                         fontSize: 14,
                                         padding: '2px 16px 6px',
-                                        marginTop: 3,
+                                        marginTop: 3
                                     }}
                                     onClick={onConnect}
                                 >
@@ -868,8 +868,8 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                 PaperProps={{
                     sx: {
                         padding: 4,
-                        background: 'none',
-                    },
+                        background: 'none'
+                    }
                 }}
             >
                 <CircularProgress />

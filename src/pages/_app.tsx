@@ -31,7 +31,45 @@ export default function MyApp(props: MyAppProps) {
                 <CacheProvider value={emotionCache}>
                     <Head>
                         <meta name="viewport" content="initial-scale=1, width=device-width" />
-                        <title>Lab Curry Brand</title>
+                        <title>Curry Brand NF3 Basketball</title>
+
+                        <meta charSet="utf-8" />
+                        <meta name="viewport" content="initial-scale=1, width=device-width" />
+                        <meta name="author" content="Curry Brand NF3 Basketball" />
+                        <meta
+                            name="description"
+                            content="Every three-pointer that Stephen makes during the playoffs, Curry Brand will release three NFT basketballs free of charge to fans on a first-come, first-serve basis."
+                        />
+
+                        {/* Metadata */}
+                        <meta property="og:title" content="Curry Brand NF3 Basketball" />
+                        <meta
+                            property="og:image"
+                            content="https://luna-bucket.s3.us-east-2.amazonaws.com/400x400_CURRY.png"
+                        />
+                        <meta property="og:image:width" content="256" />
+                        <meta property="og:image:height" content="256" />
+                        <meta property="og:image:type" content="image/png" />
+                        <meta property="og:url" content="https://lab.currybrand.com" />
+                        <meta property="og:site_name" content="Curry Brand NF3 Basketball" />
+                        <meta property="og:type" content="website" />
+                        <meta
+                            property="og:description"
+                            content="Every three-pointer that Stephen makes during the playoffs, Curry Brand will release three NFT basketballs free of charge to fans on a first-come, first-serve basis."
+                        />
+
+                        {/* Twitter Cards */}
+                        <meta name="twitter:title" content="Curry Brand NF3 Basketball" />
+                        <meta
+                            name="twitter:description"
+                            content="Every three-pointer that Stephen makes during the playoffs, Curry Brand will release three NFT basketballs free of charge to fans on a first-come, first-serve basis."
+                        />
+                        <meta
+                            name="twitter:image"
+                            content="https://luna-bucket.s3.us-east-2.amazonaws.com/400x400_CURRY.png"
+                        />
+                        <meta name="twitter:site" content="@LunaMarketInc" />
+                        <meta name="twitter:creator" content="@LunaMarketInc" />
                     </Head>
                     <ThemeProvider theme={theme}>
                         <AppContextProvider>
