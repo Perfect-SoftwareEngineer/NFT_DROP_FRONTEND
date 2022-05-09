@@ -470,7 +470,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                             {!account && (
                                 <Typography fontSize={16} fontWeight={400} marginTop={2}>
-                                    For every three-pointer Stephen Curry makes in a playoff game, three free digital
+                                    For every three-pointer Stephen Curry makes in a playoff game, nine free digital
                                     basketballs are claimable by the most engaged fans. Be fast. Others will be trying
                                     as well. For more info, check out our{' '}
                                     <MuiLink href="/faq" color="#FFCA21" underline="none">
@@ -613,7 +613,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                             <ol style={{ marginTop: 0, paddingLeft: 18 }}>
                                 <li>Connect your Wallet</li>
-                                <li>For every three-point shot, three free NF3 Basketballs can be reserved</li>
+                                <li>For every three-point shot, nine free NF3 Basketballs can be reserved</li>
                                 <li>
                                     Accept{' '}
                                     <Link href="/legal/terms-and-conditions" passHref>
