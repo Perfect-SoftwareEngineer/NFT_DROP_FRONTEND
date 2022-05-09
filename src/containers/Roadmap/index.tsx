@@ -29,12 +29,12 @@ const q2_22 = [
     },
     {
         img: '/assets/roadmap/serum-shop.png',
-        title: '04/ SERUM SHOP OPENS',
+        title: '05/ SERUM SHOP OPENS',
         desc: 'There will be a general mint in the coming future. Follow our Twitter and join Discord to stay posted.',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '05/ MIXOLOGY ROOM',
+        title: '06/ MIXOLOGY ROOM',
         desc: 'Mixology open and avatars are created',
     },
 ];
@@ -42,17 +42,17 @@ const q2_22 = [
 const q3_22 = [
     {
         img: '/assets/roadmap/curry.png',
-        title: '06/ WEARABLE CREATION',
+        title: '07/ WEARABLE CREATION',
         desc: 'Community partners get permission to create wearables for their community so that assets are interoperable between our collection and theirs',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '07/ WEARABLE MANUFACTURING',
+        title: '08/ WEARABLE MANUFACTURING',
         desc: 'Manufacturing of goods for items that avatars are wearing (Sold in limited quantities)',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '08/ THE VIEWER',
+        title: '09/ THE VIEWER',
         desc: 'Avatars will be able to exchange what they are wearing for new goods: The way we create our clothing is that avatar wearables are plug and play! You can dress up your Basketball Head with purchase-able wearables on top of them in future drops.',
     },
 ];
@@ -60,27 +60,27 @@ const q3_22 = [
 const q4_22 = [
     {
         img: '/assets/roadmap/curry.png',
-        title: '09/ CLOTHING DROP 1',
+        title: '10/ CLOTHING DROP 1',
         desc: '',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '10/ COMPATIBLE WEARABLES',
+        title: '11/ COMPATIBLE WEARABLES',
         desc: 'Compatible wearable for partner communities',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '11/ CLOTHING DROP 2',
+        title: '12/ CLOTHING DROP 2',
         desc: '',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '12/ METAVERSE LAND INTEGRATION',
+        title: '13/ METAVERSE LAND INTEGRATION',
         desc: 'Metaverse land integration for avatars and ecommerce shop with discount for holders',
     },
     {
         img: '/assets/roadmap/curry.png',
-        title: '13/ CLOTHING DROP 3',
+        title: '14/ CLOTHING DROP 3',
         desc: '',
     },
 ];
