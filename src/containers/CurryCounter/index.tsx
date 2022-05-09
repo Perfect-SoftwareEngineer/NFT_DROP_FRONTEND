@@ -246,7 +246,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0xC57C94346b466bED19438c195ad78CAdC7D09473'
-                : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+                : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
         );
 
         // console.log('call contract method claimFromThreePoint!');
