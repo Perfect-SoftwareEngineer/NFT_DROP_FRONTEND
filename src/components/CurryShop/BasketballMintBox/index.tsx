@@ -30,7 +30,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const mint = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
         );
 
         try {
@@ -42,10 +42,10 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
                 // switch [] to hexproof of whiltelist
                 await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
             } else if(parseInt(dropPhase) == 3) {
-                let reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
+                let reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
                 if(parseInt(reservedCount)) {
                     await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
-                    reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
+                    reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
                     setReservedAmount(reservedCount);
                 } else {
                     await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
@@ -61,13 +61,16 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const reserve = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
         );
 
         try {
-            await nftContract.methods.reserve(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
-            setReservedAmount(reservedCount);
+            let dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            if(parseInt(dropPhase) == 3) {
+                await nftContract.methods.reserve(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+                const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
+                setReservedAmount(reservedCount);
+            }
         } catch (err: any) {   
             console.error(err);
             return;
@@ -79,10 +82,11 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
             );
 
-            const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
+            const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
+            console.log(reservedCount);
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
             setReservedAmount(reservedCount);
             setMintPrice(parseInt(mPrice));
