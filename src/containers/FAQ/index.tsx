@@ -29,14 +29,14 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                     <Typography fontSize={16} fontWeight={400}>
                         NF3 Counter is an interactive fan tool to reward the biggest Stephen Curry fans as he battles
                         his way through the Playoffs. The premise is simple: for every three-pointer, Curry makes in a
-                        playoff game, three free digital Basketballs are claimable by the most engaged fans. Score to
+                        playoff game, nine free digital Basketballs are claimable by the most engaged fans. Score to
                         Mint kicks off the next iteration of Curry Brand's effort to create the most positive Basketball
                         community of all time, championed by the greatest shooter of all time.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="How does the NF3 Counter work? Step by Step Guide">
                     <Typography fontSize={16} fontWeight={400}>
-                        For every 3-pointer Curry makes in a playoff game, three free digital basketballs are claimable
+                        For every 3-pointer Curry makes in a playoff game, nine free digital basketballs are claimable
                         by the most engaged fans.
                         <br></br>
                         <br></br>
