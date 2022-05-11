@@ -8,7 +8,7 @@ type ComponentProps = {};
 
 const CommunityMintBox: React.FC<ComponentProps> = (): JSX.Element => {
     return (
-        <Stack width={432} padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
+        <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
                 <Image src={CommunityImg} layout="responsive" alt="" />
             </Box>

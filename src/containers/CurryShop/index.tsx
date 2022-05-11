@@ -102,22 +102,24 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         </Typography>
                     </Stack>
                 </Stack>
-                <Stack
-                    direction={{ xs: 'column', md: 'row' }}
-                    flexWrap="wrap"
-                    columnGap={4}
-                    rowGap={4}
-                    marginTop={6}
-                >
-                    <BasketballMintBox
-                        amountLeft={supplyLeft}
-                        hexProofForGCFClaim={hexProofForGCFClaim}
-                        hexProofForCommunityClaim={hexProofForCommunityClaim}
-                    />
-                    <SerumMintBox amountLeft={1000} disabled />
-                    <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} />
-                    <CommunityMintBox />
-                </Stack>
+                <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <BasketballMintBox
+                            amountLeft={supplyLeft}
+                            hexProofForGCFClaim={hexProofForGCFClaim}
+                            hexProofForCommunityClaim={hexProofForCommunityClaim}
+                        />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <SerumMintBox amountLeft={1000} disabled />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <CommunityMintBox />
+                    </Grid>
+                </Grid>
             </Container>
         </>
     );

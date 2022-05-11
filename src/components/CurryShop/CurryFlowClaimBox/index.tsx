@@ -12,7 +12,7 @@ type ComponentProps = {
 
 const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount }): JSX.Element => {
     return (
-        <Stack width={432} padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
+        <Stack width="100%" height="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
                 <Image src={GenersisCurryFlowImg} layout="responsive" alt="" />
             </Box>
