@@ -8,6 +8,7 @@ import CounterBox from '../../components/CounterBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import CurryFlowClaimBox from '../../components/CurryShop/CurryFlowClaimBox';
+import CommunityMintBox from '../../components/CurryShop/CommunityMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
@@ -101,7 +102,13 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         </Typography>
                     </Stack>
                 </Stack>
-                <Stack direction={{ xs: 'column', md: 'row' }} alignItems="flex-start" spacing={4} marginTop={6}>
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    flexWrap="wrap"
+                    columnGap={4}
+                    rowGap={4}
+                    marginTop={6}
+                >
                     <BasketballMintBox
                         amountLeft={supplyLeft}
                         hexProofForGCFClaim={hexProofForGCFClaim}
@@ -109,6 +116,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     />
                     <SerumMintBox amountLeft={1000} disabled />
                     <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} />
+                    <CommunityMintBox />
                 </Stack>
             </Container>
         </>

@@ -119,7 +119,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
     }, [account]);
 
     return (
-        <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
+        <Stack width={432} padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
             <Box>
                 <Image src={BasketballImg} layout="responsive" alt="" />
             </Box>
