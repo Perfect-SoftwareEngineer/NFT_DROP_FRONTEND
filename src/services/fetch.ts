@@ -191,7 +191,7 @@ export const claimGCF = (wallet: string) =>
 
 export const claimCommunityNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios

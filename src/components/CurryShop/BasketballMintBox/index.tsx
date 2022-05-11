@@ -34,6 +34,8 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
     };
 
     const mint = async () => {
+        if (!account) return;
+
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
@@ -72,6 +74,8 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
     };
 
     const reserve = async () => {
+        if (!account) return;
+
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
