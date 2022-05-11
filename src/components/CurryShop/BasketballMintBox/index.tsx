@@ -123,44 +123,47 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
             <Box>
                 <Image src={BasketballImg} layout="responsive" alt="" />
             </Box>
-            <Stack direction="row" justifyContent="space-between" marginTop={2}>
-                <Typography fontSize={16} fontWeight={700} color="white">
-                    Mint or Reserve a Basketball
-                    {disabled && (
-                        <Typography fontSize={16} fontWeight={700} color="#FFCA21" display="inline">
-                            {` (Coming Soon)`}
-                        </Typography>
-                    )}
-                </Typography>
-                <Box>
-                    <Typography fontSize={16} fontWeight={700} color="white">
-                        {`${amountLeft.toLocaleString()} left`}
+            <Stack spacing={3} marginTop={2}>
+                <Stack direction="row" justifyContent="space-between">
+                    <Typography fontWeight={700} color="white">
+                        Mint or Reserve a Basketball
+                        {disabled && (
+                            <Typography fontWeight={700} color="#FFCA21" display="inline">
+                                {` (Coming Soon)`}
+                            </Typography>
+                        )}
                     </Typography>
-                </Box>
-            </Stack>
-            <Stack spacing={1} marginTop={3}>
-                <Typography fontSize={14} fontWeight={400} color="white">
-                    # of Basketball Heads (Max 3)
-                </Typography>
-                <AmountInputWrapper sx={{ width: 184 }}>
-                    <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
-                    <MaxBtn onClick={() => setMintAmount(MAX_VAL.toString())}>Max</MaxBtn>
-                </AmountInputWrapper>
-            </Stack>
-            <Stack spacing={1} marginTop={2}>
-                <Typography fontSize={16} fontWeight={700} color="white">
-                    {disabled ? 'Currently Unavailable' : 'You have ' + reservedAmount + ' reserve mints'}
-                </Typography>
-                <Stack direction="row" alignItems="center" spacing={2}>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                        <MintBtn disabled={disabled} onClick={mint}>
-                            Mint
-                        </MintBtn>
-                        <ReserveBtn disabled={disabled} onClick={reserve}>
-                            Reserve
-                        </ReserveBtn>
+                    <Box>
+                        <Typography fontWeight={700} color="white">
+                            {`${amountLeft.toLocaleString()} left`}
+                        </Typography>
+                    </Box>
+                </Stack>
+                <Typography fontWeight={700}>Price: 0.07 ETH</Typography>
+                <Stack spacing={1}>
+                    <Typography fontSize={14} fontWeight={400} color="white">
+                        # of Basketball Heads (Max 3)
+                    </Typography>
+                    <AmountInputWrapper sx={{ width: 184 }}>
+                        <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
+                        <MaxBtn onClick={() => setMintAmount(MAX_VAL.toString())}>Max</MaxBtn>
+                    </AmountInputWrapper>
+                </Stack>
+                <Stack spacing={1}>
+                    <Typography fontWeight={700} color="white">
+                        {disabled ? 'Currently Unavailable' : 'You have ' + reservedAmount + ' reserve mints'}
+                    </Typography>
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                            <MintBtn disabled={disabled} onClick={mint}>
+                                Mint
+                            </MintBtn>
+                            <ReserveBtn disabled={disabled} onClick={reserve}>
+                                Reserve
+                            </ReserveBtn>
+                        </Stack>
+                        <InfoIcon />
                     </Stack>
-                    <InfoIcon />
                 </Stack>
             </Stack>
         </Stack>

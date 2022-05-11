@@ -16,26 +16,25 @@ const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount
             <Box>
                 <Image src={GenersisCurryFlowImg} layout="responsive" alt="" />
             </Box>
-            <Stack direction="row" justifyContent="space-between" marginTop={2}>
-                <Typography fontSize={16} fontWeight={700} color="white">
-                    Claim your Genesis Curry Flow Serum
-                </Typography>
-                <Box>
-                    <Typography fontSize={16} fontWeight={700} color="white">
-                        {`${amountLeft.toLocaleString()} left`}
-                    </Typography>
-                </Box>
-            </Stack>
-            <Stack spacing={1} marginTop={5}>
-                <Typography fontSize={16} fontWeight={700} color="white">
-                    {`You own ${gcfOwnedCount} Genesis Curry Flow`}
-                </Typography>
-                <Stack direction="row" alignItems="center" spacing={2}>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                        <ClaimBtn disabled={!gcfOwnedCount}>Claim</ClaimBtn>
-                        <MoreDetailsBtn>More details</MoreDetailsBtn>
+            <Stack height="100%" spacing={3} marginTop={2}>
+                <Stack direction="row" justifyContent="space-between">
+                    <Typography fontWeight={700}>Claim your Genesis Curry Flow Serum</Typography>
+                    <Box>
+                        <Typography fontWeight={700}>{`${amountLeft.toLocaleString()} left`}</Typography>
+                    </Box>
+                </Stack>
+                <Stack height="100%" justifyContent="space-between">
+                    <Typography fontWeight={700}>Free Mints for GCF NFT Holders</Typography>
+                    <Stack spacing={1}>
+                        <Typography fontWeight={700}>{`You own ${gcfOwnedCount} Genesis Curry Flow`}</Typography>
+                        <Stack direction="row" alignItems="center" spacing={2}>
+                            <Stack direction="row" alignItems="center" spacing={1}>
+                                <ClaimBtn disabled={!gcfOwnedCount}>Claim</ClaimBtn>
+                                <MoreDetailsBtn>More details</MoreDetailsBtn>
+                            </Stack>
+                            <InfoIcon />
+                        </Stack>
                     </Stack>
-                    <InfoIcon />
                 </Stack>
             </Stack>
         </Stack>
