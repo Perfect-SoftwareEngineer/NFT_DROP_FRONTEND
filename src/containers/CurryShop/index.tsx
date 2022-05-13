@@ -68,36 +68,41 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 });
         }
     }, [account]);
+
     const dropBox = () => {
-        if(dropPhase == 1) {
+        if (dropPhase == 1) {
             return (
-            <Grid item xs={12} md={6} lg={4}>
-                <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} hexProofForGCFClaim={hexProofForGCFClaim} />
-            </Grid>
-            )
-        }
-        else if(dropPhase == 2) {
-            return (
-            <Grid item xs={12} md={6} lg={4}>
-                <CommunityMintBox  communityOwnedCount={communityOwnedCount} hexProofForCommunityClaim={hexProofForCommunityClaim}/>
-            </Grid>
-            )
-        }
-        else if(dropPhase == 3) {
-            return (
-            <>
                 <Grid item xs={12} md={6} lg={4}>
-                    <BasketballMintBox
-                        amountLeft={supplyLeft}
+                    <CurryFlowClaimBox
+                        amountLeft={2974}
+                        gcfOwnedCount={gcfOwnedCount}
+                        hexProofForGCFClaim={hexProofForGCFClaim}
                     />
                 </Grid>
+            );
+        } else if (dropPhase == 2) {
+            return (
                 <Grid item xs={12} md={6} lg={4}>
-                    <SerumMintBox amountLeft={1000} disabled />
+                    <CommunityMintBox
+                        communityOwnedCount={communityOwnedCount}
+                        hexProofForCommunityClaim={hexProofForCommunityClaim}
+                    />
                 </Grid>
-            </>
-            )
+            );
+        } else if (dropPhase == 3) {
+            return (
+                <>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <BasketballMintBox amountLeft={supplyLeft} />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <SerumMintBox amountLeft={1000} disabled />
+                    </Grid>
+                </>
+            );
         }
-    }
+    };
+
     return (
         <>
             <Box sx={{ background: '#1B1C22' }}>
