@@ -16,7 +16,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
+    const [dropPhase, setDropPhase] = useState<number>(0);
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
+    const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
 
     const [hexProofForCommunityClaim, setHexProofForCommunityClaim] = React.useState<any[]>([]);
@@ -29,6 +31,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     ? '0xC57C94346b466bED19438c195ad78CAdC7D09473'
                     : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
             );
+            let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            setDropPhase(parseInt(_dropPhase));
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
             setBalance(parseInt(balance));
@@ -55,14 +59,45 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             claimCommunityNFT(account)
                 .then((response: any) => {
                     // console.log('response:', response);
+                    setCommunityOwnedCount(response.quantity);
                     setHexProofForCommunityClaim(response.hexProof);
                 })
                 .catch((error) => {
+                    setCommunityOwnedCount(0);
                     setHexProofForCommunityClaim([]);
                 });
         }
     }, [account]);
-
+    const dropBox = () => {
+        if(dropPhase == 1) {
+            return (
+            <Grid item xs={12} md={6} lg={4}>
+                <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} hexProofForGCFClaim={hexProofForGCFClaim} />
+            </Grid>
+            )
+        }
+        else if(dropPhase == 2) {
+            return (
+            <Grid item xs={12} md={6} lg={4}>
+                <CommunityMintBox  communityOwnedCount={communityOwnedCount} hexProofForCommunityClaim={hexProofForCommunityClaim}/>
+            </Grid>
+            )
+        }
+        else if(dropPhase == 3) {
+            return (
+            <>
+                <Grid item xs={12} md={6} lg={4}>
+                    <BasketballMintBox
+                        amountLeft={supplyLeft}
+                    />
+                </Grid>
+                <Grid item xs={12} md={6} lg={4}>
+                    <SerumMintBox amountLeft={1000} disabled />
+                </Grid>
+            </>
+            )
+        }
+    }
     return (
         <>
             <Box sx={{ background: '#1B1C22' }}>
@@ -103,22 +138,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Stack>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <BasketballMintBox
-                            amountLeft={supplyLeft}
-                            hexProofForGCFClaim={hexProofForGCFClaim}
-                            hexProofForCommunityClaim={hexProofForCommunityClaim}
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <SerumMintBox amountLeft={1000} disabled />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <CurryFlowClaimBox amountLeft={2974} gcfOwnedCount={gcfOwnedCount} />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <CommunityMintBox />
-                    </Grid>
+                    {dropBox()}
                 </Grid>
             </Container>
         </>

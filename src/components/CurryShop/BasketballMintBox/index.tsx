@@ -6,13 +6,10 @@ import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../styles';
 import InfoIcon from '../../../assets/curryshop/info.svg';
 import BasketballImg from '../../../assets/curryshop/basketball.png';
-import Web3 from 'web3';
 
 type ComponentProps = {
     amountLeft: number;
     disabled?: boolean;
-    hexProofForGCFClaim: any[];
-    hexProofForCommunityClaim: any[];
 };
 
 const MAX_VAL = 3;
@@ -20,8 +17,6 @@ const MAX_VAL = 3;
 const BasketballMintBox: React.FC<ComponentProps> = ({
     amountLeft,
     disabled = false,
-    hexProofForGCFClaim,
-    hexProofForCommunityClaim,
 }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
@@ -44,28 +39,15 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
         );
 
         try {
-            let dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            if (parseInt(dropPhase) == 1) {
-                // switch [] to hexproof of GCF
+            let reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
+            if (parseInt(reservedCount)) {
+                await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
+                reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
+                setReservedAmount(reservedCount);
+            } else {
                 await nftContract.methods
-                    .mint(mintAmount, hexProofForGCFClaim)
+                    .mint(mintAmount, [])
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            } else if (parseInt(dropPhase) == 2) {
-                // switch [] to hexproof of whiltelist
-                await nftContract.methods
-                    .mint(mintAmount, hexProofForCommunityClaim)
-                    .send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            } else if (parseInt(dropPhase) == 3) {
-                let reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
-                if (parseInt(reservedCount)) {
-                    await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
-                    reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
-                    setReservedAmount(reservedCount);
-                } else {
-                    await nftContract.methods
-                        .mint(mintAmount, [])
-                        .send({ from: account, value: mintPrice * parseInt(mintAmount) });
-                }
             }
         } catch (err: any) {
             console.error(err);
