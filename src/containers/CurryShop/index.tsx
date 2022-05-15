@@ -10,6 +10,32 @@ import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import CurryFlowClaimBox from '../../components/CurryShop/CurryFlowClaimBox';
 import CommunityMintBox from '../../components/CurryShop/CommunityMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
+import StatusBox from '../../components/CurryShop/StatusBox';
+
+const mintBoxes = [
+    {
+        img: '/assets/curryshop/gcf-claim.png',
+        title: 'Genesis Curry Flow Claims',
+        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball',
+        dateList: [
+            'Snapshot Date: June 3, 2022 at 5PM PST',
+            'Start Date: June 3, 2022 at 5PM PST',
+            'End Date: June 5, 2022 at 5PM PST',
+        ],
+    },
+    {
+        img: '/assets/curryshop/mintlist-general-mint.svg',
+        title: 'Mintlist Mint',
+        desc: 'Our Community Holders will be able to mint before the Public Mint',
+        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+    },
+    {
+        img: '/assets/curryshop/mintlist-general-mint.svg',
+        title: 'General Mint',
+        desc: 'Public sale to mint or reserve mint an NF3 Basketball',
+        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+    },
+];
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
@@ -108,7 +134,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             <Box sx={{ background: '#1B1C22' }}>
                 <Container>
                     <Stack paddingY={5} spacing={2}>
-                        <Typography fontSize={16} fontWeight={600} color="white">
+                        <Typography fontSize={16} fontWeight={600}>
                             Currently available
                         </Typography>
                         <Box>
@@ -130,20 +156,23 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <CounterBox title="MY SERUMS" value={0} />
                 </Stack>
                 <Stack marginTop={4} spacing={3}>
-                    <Typography fontSize={48} fontWeight={700} lineHeight={1} color="white">
-                        Get a Basketball or Serum
+                    <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
+                        CURRY SHOP
                     </Typography>
-                    <Stack>
-                        <Typography fontSize={16} fontWeight={400} color="white">
-                            ° Mint a Basketball or Serum, make sure you have a Metamask ready.
-                        </Typography>
-                        <Typography fontSize={16} fontWeight={400} color="white">
-                            ° You can burn your Genesis Curry Flow NFT for a special Basketball.
-                        </Typography>
-                    </Stack>
+                    <Typography width="40%">
+                        The next iteration of Curry Brand's effort to create the most positive Basketball community of
+                        all time, championed by the greatest shooter of all time
+                    </Typography>
                 </Stack>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
-                    {dropBox()}
+                    <Grid item xs={5}>
+                        <Stack spacing={3}>
+                            {mintBoxes.map((item, index) => (
+                                <StatusBox {...item} selected={index === 0} key={`status_box_key${index}`} />
+                            ))}
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={7}></Grid>
                 </Grid>
             </Container>
         </>
