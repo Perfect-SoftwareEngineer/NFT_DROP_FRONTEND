@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import web3 from 'web3';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-import { ClaimBtn, MoreDetailsBtn } from './styles';
+import { MintBtn } from './styles';
+import { ConnectWalletBtn } from '../styles';
 import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
-import InfoIcon from '../../../assets/curryshop/info.svg';
-import GenersisCurryFlowImg from '../../../assets/curryshop/genesis-curry-flow.png';
+import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 
 type ComponentProps = {
     amountLeft: number;
@@ -15,8 +15,8 @@ type ComponentProps = {
 };
 
 const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexProofForGCFClaim }): JSX.Element => {
-    const {  account, library } = useWeb3React();
-    const [ count, setCount ] = useState<number>(gcfOwnedCount);
+    const { account, library } = useWeb3React();
+    const [count, setCount] = useState<number>(gcfOwnedCount);
 
     const mint = async () => {
         if (!account) return;
@@ -31,37 +31,65 @@ const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexP
         nftContract.methods
             .mint(count, hexProofForGCFClaim)
             .send({ from: account, value: 0 })
-            .then(
-                //to do : update db
-            )
-            .catch((e : any) => console.log(e))
-            
+            .then
+            //to do : update db
+            ()
+            .catch((e: any) => console.log(e));
     };
+
     return (
-        <Stack width="100%" height="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
-            <Box>
-                <Image src={GenersisCurryFlowImg} layout="responsive" alt="" />
-            </Box>
-            <Stack height="100%" spacing={3} marginTop={2}>
-                <Stack direction="row" justifyContent="space-between">
-                    <Typography fontWeight={700}>Claim your Genesis Curry Flow Serum</Typography>
-                    <Box>
-                        <Typography fontWeight={700}>{`${amountLeft.toLocaleString()} left`}</Typography>
-                    </Box>
+        <Stack padding={4} borderRadius={2} sx={{ background: '#1B1C22' }}>
+            <Typography fontSize={48} fontWeight={700}>
+                Genesis Curry Flow Claims
+            </Typography>
+            <Typography fontWeight={700} marginTop={2}>
+                Free NF3 Basketball Mint for every GCF NFT Holders
+            </Typography>
+            <Stack direction="row" spacing={2} marginTop={3}>
+                <Image
+                    src={'/assets/currycounter/curry-brand.png'}
+                    width={160}
+                    height={160}
+                    style={{ borderRadius: 16 }}
+                />
+                <Stack>
+                    <Typography fontWeight={700}>How it works:</Typography>
+                    <Typography marginTop={2}>° A snapshot will be taken on XXX, 2022 at 5PM PST</Typography>
+                    <Typography>
+                        ° On XXX, 2022 at 5PM PST, you may mint an NF3 Basketball for every GCF you hold
+                    </Typography>
+                    <Typography>
+                        ° Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.
+                    </Typography>
                 </Stack>
-                <Stack height="100%" justifyContent="space-between">
-                    <Typography fontWeight={700}>Free Mints for GCF NFT Holders</Typography>
-                    <Stack spacing={1}>
-                        <Typography fontWeight={700}>{`You own ${count} Genesis Curry Flow`}</Typography>
-                        <Stack direction="row" alignItems="center" spacing={2}>
-                            <Stack direction="row" alignItems="center" spacing={1}>
-                                <ClaimBtn onClick={mint}>Claim</ClaimBtn>
-                                <MoreDetailsBtn>More details</MoreDetailsBtn>
-                            </Stack>
-                            <InfoIcon />
+            </Stack>
+            <Stack marginTop={5}>
+                {account ? (
+                    <Stack>
+                        <Typography fontWeight={700}>You own 0 Genesis Curry Flow</Typography>
+                        <MintBtn sx={{ marginTop: 1 }}>MINT</MintBtn>
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            spacing={2}
+                            padding={2}
+                            borderRadius={1}
+                            marginTop={3}
+                            sx={{ background: '#FFFFFFE5' }}
+                        >
+                            <CompleteIcon sx={{ color: '#4CAF50' }} />
+                            <Typography fontSize={14} fontWeight={500} color="#1E4620">
+                                You have claimed 1 NF3 Basketball, please check your{' '}
+                                <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
+                                    Opensea
+                                </a>{' '}
+                                profile to check if the NF3 Basketball is in your wallet
+                            </Typography>
                         </Stack>
                     </Stack>
-                </Stack>
+                ) : (
+                    <ConnectWalletBtn>CONNECT WALLET</ConnectWalletBtn>
+                )}
             </Stack>
         </Stack>
     );

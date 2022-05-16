@@ -1,19 +1,19 @@
 import { styled, Button } from '@mui/material';
 
-export const ClaimBtn = styled(Button)`
+export const MintBtn = styled(Button)`
     width: 70px;
     height: 36px;
     padding: 6px 0 10px;
-    background: #ff2121;
+    background: #ffca21;
     font-size: 14px;
     font-weight: 600;
-    color: white;
+    color: black;
     &:hover {
-        background: #ff4141;
+        background: #ffca21;
     }
     &:disabled {
-        background: #979797;
         color: black;
+        background: #969aa1;
     }
 `;
 
