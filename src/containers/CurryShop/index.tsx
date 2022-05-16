@@ -22,18 +22,21 @@ const mintBoxes = [
             'Start Date: June 3, 2022 at 5PM PST',
             'End Date: June 5, 2022 at 5PM PST',
         ],
+        dropPhase: 1,
     },
     {
         img: '/assets/curryshop/mintlist-general-mint.svg',
         title: 'Mintlist Mint',
         desc: 'Our Community Holders will be able to mint before the Public Mint',
         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+        dropPhase: 2,
     },
     {
         img: '/assets/curryshop/mintlist-general-mint.svg',
         title: 'General Mint',
         desc: 'Public sale to mint or reserve mint an NF3 Basketball',
         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+        dropPhase: 3,
     },
 ];
 
@@ -42,7 +45,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
-    const [dropPhase, setDropPhase] = useState<number>(3);
+    const [dropPhase, setDropPhase] = useState<number>(1);
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
@@ -160,7 +163,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <Grid item xs={5}>
                         <Stack spacing={3}>
                             {mintBoxes.map((item, index) => (
-                                <StatusBox {...item} selected={index === 0} key={`status_box_key${index}`} />
+                                <StatusBox {...item} selected={item.dropPhase === dropPhase} key={`status_box_key${index}`} />
                             ))}
                         </Stack>
                     </Grid>

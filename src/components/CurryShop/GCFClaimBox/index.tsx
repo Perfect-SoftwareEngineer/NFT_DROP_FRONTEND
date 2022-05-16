@@ -14,12 +14,21 @@ type ComponentProps = {
     hexProofForGCFClaim: any[];
 };
 
+enum MintStatus {
+    NOT_MINTED,
+    MINTING,
+    MINT_FAILED,
+    MINT_SUCCESS,
+}
+
 const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexProofForGCFClaim }): JSX.Element => {
     const { account, library } = useWeb3React();
-    const [count, setCount] = useState<number>(gcfOwnedCount);
+    const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
 
     const mint = async () => {
         if (!account) return;
+
+        setMintState(MintStatus.MINTING);
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
@@ -29,12 +38,18 @@ const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexP
         );
 
         nftContract.methods
-            .mint(count, hexProofForGCFClaim)
+            .mint(gcfOwnedCount, hexProofForGCFClaim)
             .send({ from: account, value: 0 })
-            .then
-            //to do : update db
-            ()
-            .catch((e: any) => console.log(e));
+            .then(
+                //to do : update db
+                () => {
+                    setMintState(MintStatus.MINT_SUCCESS);
+                }
+            )
+            .catch((e: any) => {
+                setMintState(MintStatus.MINT_FAILED);
+                console.log(e);
+            });
     };
 
     return (
@@ -66,26 +81,30 @@ const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexP
             <Stack marginTop={5}>
                 {account ? (
                     <Stack>
-                        <Typography fontWeight={700}>You own 0 Genesis Curry Flow</Typography>
-                        <MintBtn sx={{ marginTop: 1 }}>MINT</MintBtn>
-                        <Stack
-                            direction="row"
-                            alignItems="center"
-                            spacing={2}
-                            padding={2}
-                            borderRadius={1}
-                            marginTop={3}
-                            sx={{ background: '#FFFFFFE5' }}
-                        >
-                            <CompleteIcon sx={{ color: '#4CAF50' }} />
-                            <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                                You have claimed 1 NF3 Basketball, please check your{' '}
-                                <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
-                                    Opensea
-                                </a>{' '}
-                                profile to check if the NF3 Basketball is in your wallet
-                            </Typography>
-                        </Stack>
+                        <Typography fontWeight={700}>{`You own ${gcfOwnedCount} Genesis Curry Flow`}</Typography>
+                        <MintBtn sx={{ marginTop: 1 }} onClick={mint}>
+                            MINT
+                        </MintBtn>
+                        {mintState === MintStatus.MINT_SUCCESS && (
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                spacing={2}
+                                padding={2}
+                                borderRadius={1}
+                                marginTop={3}
+                                sx={{ background: '#FFFFFFE5' }}
+                            >
+                                <CompleteIcon sx={{ color: '#4CAF50' }} />
+                                <Typography fontSize={14} fontWeight={500} color="#1E4620">
+                                    You have claimed 1 NF3 Basketball, please check your{' '}
+                                    <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
+                                        Opensea
+                                    </a>{' '}
+                                    profile to check if the NF3 Basketball is in your wallet
+                                </Typography>
+                            </Stack>
+                        )}
                     </Stack>
                 ) : (
                     <ConnectWalletBtn>CONNECT WALLET</ConnectWalletBtn>
