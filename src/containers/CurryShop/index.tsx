@@ -11,6 +11,10 @@ import GCFClaimBox from '../../components/CurryShop/GCFClaimBox';
 import MintlistMintBox from '../../components/CurryShop/MintlistMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
+import { ConnectMetamaskBtn } from './styles';
+import Image from 'next/image';
+import MetamaskImg from '../../assets/metamask.png';
+import { connect } from '../../web3/connect';
 
 const mintBoxes = [
     {
@@ -163,12 +167,40 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <Grid item xs={5}>
                         <Stack spacing={3}>
                             {mintBoxes.map((item, index) => (
-                                <StatusBox {...item} selected={item.dropPhase === dropPhase} key={`status_box_key${index}`} />
+                                <StatusBox
+                                    {...item}
+                                    selected={item.dropPhase === dropPhase}
+                                    key={`status_box_key${index}`}
+                                />
                             ))}
                         </Stack>
                     </Grid>
                     <Grid item xs={7}>
-                        {dropBox()}
+                        {account ? (
+                            dropBox()
+                        ) : (
+                            <Stack marginLeft={3}>
+                                <Typography fontSize={48} fontWeight={700}>
+                                    Connect MetaMask Wallet
+                                </Typography>
+                                <Typography marginTop={2}>
+                                    Make sure to download Metamask. Once you create or connect your MetaMask account,
+                                    connect your wallet.
+                                </Typography>
+                                <ConnectMetamaskBtn sx={{ marginTop: 5 }} onClick={() => connect(activate)}>
+                                    <Image src={MetamaskImg} width={56} height={56} />
+                                    <Typography
+                                        fontSize={{ xs: 22, sm: 26, md: 32 }}
+                                        fontWeight={600}
+                                        lineHeight={1.1}
+                                        marginLeft={{ xs: 1, sm: 2, md: 4 }}
+                                        sx={{ padding: '0 0 8px' }}
+                                    >
+                                        Connect Metamask
+                                    </Typography>
+                                </ConnectMetamaskBtn>
+                            </Stack>
+                        )}
                     </Grid>
                 </Grid>
             </Container>
