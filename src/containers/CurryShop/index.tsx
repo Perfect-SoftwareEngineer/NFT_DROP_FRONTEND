@@ -8,7 +8,7 @@ import CounterBox from '../../components/CounterBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import GCFClaimBox from '../../components/CurryShop/GCFClaimBox';
-import CommunityMintBox from '../../components/CurryShop/CommunityMintBox';
+import MintlistMintBox from '../../components/CurryShop/MintlistMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
 
@@ -42,7 +42,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
-    const [dropPhase, setDropPhase] = useState<number>(0);
+    const [dropPhase, setDropPhase] = useState<number>(1);
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
@@ -96,26 +96,22 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     }, [account]);
 
     const dropBox = () => {
-        if (dropPhase == 1) {
+        if (dropPhase === 1) {
             return (
-                <Grid item xs={12} md={6} lg={4}>
-                    <GCFClaimBox
-                        amountLeft={2974}
-                        gcfOwnedCount={gcfOwnedCount}
-                        hexProofForGCFClaim={hexProofForGCFClaim}
-                    />
-                </Grid>
+                <GCFClaimBox
+                    amountLeft={2974}
+                    gcfOwnedCount={gcfOwnedCount}
+                    hexProofForGCFClaim={hexProofForGCFClaim}
+                />
             );
-        } else if (dropPhase == 2) {
+        } else if (dropPhase === 2) {
             return (
-                <Grid item xs={12} md={6} lg={4}>
-                    <CommunityMintBox
-                        communityOwnedCount={communityOwnedCount}
-                        hexProofForCommunityClaim={hexProofForCommunityClaim}
-                    />
-                </Grid>
+                <MintlistMintBox
+                    communityOwnedCount={communityOwnedCount}
+                    hexProofForCommunityClaim={hexProofForCommunityClaim}
+                />
             );
-        } else if (dropPhase == 3) {
+        } else if (dropPhase === 3) {
             return (
                 <>
                     <Grid item xs={12} md={6} lg={4}>
@@ -172,7 +168,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             ))}
                         </Stack>
                     </Grid>
-                    <Grid item xs={7}></Grid>
+                    <Grid item xs={7}>
+                        {dropBox()}
+                    </Grid>
                 </Grid>
             </Container>
         </>

@@ -13,7 +13,7 @@ type ComponentProps = {
     hexProofForCommunityClaim: any[];
 };
 
-const CommunityMintBox: React.FC<ComponentProps> = ({communityOwnedCount, hexProofForCommunityClaim}): JSX.Element => {
+const MintlistMintBox: React.FC<ComponentProps> = ({communityOwnedCount, hexProofForCommunityClaim}): JSX.Element => {
     const {  account, library } = useWeb3React();
  
     const mint = async () => {
@@ -60,4 +60,4 @@ const CommunityMintBox: React.FC<ComponentProps> = ({communityOwnedCount, hexPro
     );
 };
 
-export default CommunityMintBox;
+export default MintlistMintBox;
