@@ -7,7 +7,7 @@ import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
 import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
-import CurryFlowClaimBox from '../../components/CurryShop/CurryFlowClaimBox';
+import GCFClaimBox from '../../components/CurryShop/GCFClaimBox';
 import CommunityMintBox from '../../components/CurryShop/CommunityMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
@@ -99,7 +99,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         if (dropPhase == 1) {
             return (
                 <Grid item xs={12} md={6} lg={4}>
-                    <CurryFlowClaimBox
+                    <GCFClaimBox
                         amountLeft={2974}
                         gcfOwnedCount={gcfOwnedCount}
                         hexProofForGCFClaim={hexProofForGCFClaim}

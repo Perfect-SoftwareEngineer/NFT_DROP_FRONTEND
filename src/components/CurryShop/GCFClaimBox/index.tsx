@@ -14,7 +14,7 @@ type ComponentProps = {
     hexProofForGCFClaim: any[];
 };
 
-const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexProofForGCFClaim }): JSX.Element => {
+const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexProofForGCFClaim }): JSX.Element => {
     const {  account, library } = useWeb3React();
     const [ count, setCount ] = useState<number>(gcfOwnedCount);
 
@@ -67,4 +67,4 @@ const CurryFlowClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount
     );
 };
 
-export default CurryFlowClaimBox;
+export default GCFClaimBox;
