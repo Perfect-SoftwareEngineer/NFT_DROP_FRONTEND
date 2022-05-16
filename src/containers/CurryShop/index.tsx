@@ -5,7 +5,7 @@ import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
-import BasketballMintBox from '../../components/CurryShop/BasketballMintBox';
+import GeneralMintBox from '../../components/CurryShop/GeneralMintBox';
 import SerumMintBox from '../../components/CurryShop/SerumMintBox';
 import GCFClaimBox from '../../components/CurryShop/GCFClaimBox';
 import MintlistMintBox from '../../components/CurryShop/MintlistMintBox';
@@ -42,7 +42,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
-    const [dropPhase, setDropPhase] = useState<number>(0);
+    const [dropPhase, setDropPhase] = useState<number>(3);
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
@@ -114,12 +114,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         } else if (dropPhase === 3) {
             return (
                 <>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <BasketballMintBox amountLeft={supplyLeft} />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <SerumMintBox amountLeft={1000} disabled />
-                    </Grid>
+                    <GeneralMintBox amountLeft={supplyLeft} />
+                    {/* <SerumMintBox amountLeft={1000} disabled /> */}
                 </>
             );
         }

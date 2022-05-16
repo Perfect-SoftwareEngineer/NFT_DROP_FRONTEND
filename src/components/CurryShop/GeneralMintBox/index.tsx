@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../styles';
-import InfoIcon from '../../../assets/curryshop/info.svg';
-import BasketballImg from '../../../assets/curryshop/basketball.png';
 
 type ComponentProps = {
     amountLeft: number;
@@ -14,10 +12,7 @@ type ComponentProps = {
 
 const MAX_VAL = 3;
 
-const BasketballMintBox: React.FC<ComponentProps> = ({
-    amountLeft,
-    disabled = false,
-}): JSX.Element => {
+const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
@@ -101,50 +96,58 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
     }, [account]);
 
     return (
-        <Stack width="100%" padding={2} borderRadius={2} sx={{ background: '#1B1C22' }}>
-            <Box>
-                <Image src={BasketballImg} layout="responsive" alt="" />
-            </Box>
-            <Stack spacing={3} marginTop={2}>
-                <Stack direction="row" justifyContent="space-between">
-                    <Typography fontWeight={700} color="white">
-                        Mint or Reserve a Basketball
-                        {disabled && (
-                            <Typography fontWeight={700} color="#FFCA21" display="inline">
-                                {` (Coming Soon)`}
-                            </Typography>
-                        )}
+        <Stack padding={4} borderRadius={2} sx={{ background: '#1B1C22' }}>
+            <Typography fontSize={48} fontWeight={700}>
+                General Mint
+            </Typography>
+            <Typography fontWeight={700} marginTop={2}>
+                Free NF3 Basketball Mint for every GCF NFT Holders
+            </Typography>
+            <Stack direction="row" spacing={2} marginTop={3}>
+                <Image
+                    src={'/assets/currycounter/curry-brand.png'}
+                    width={160}
+                    height={160}
+                    style={{ borderRadius: 16 }}
+                />
+                <Stack>
+                    <Typography fontWeight={700}>How it works:</Typography>
+                    <Typography marginTop={2}>° A snapshot will be taken on XXX, 2022 at 5PM PST</Typography>
+                    <Typography>
+                        ° On XXX, 2022 at 5PM PST, you may mint an NF3 Basketball for every GCF you hold
                     </Typography>
-                    <Box>
-                        <Typography fontWeight={700} color="white">
-                            {`${amountLeft.toLocaleString()} left`}
-                        </Typography>
-                    </Box>
+                    <Typography>
+                        ° Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.
+                    </Typography>
                 </Stack>
-                <Typography fontWeight={700}>Price: 0.07 ETH</Typography>
-                <Stack spacing={1}>
-                    <Typography fontSize={14} fontWeight={400} color="white">
-                        # of Basketball Heads (Max 3)
-                    </Typography>
-                    <AmountInputWrapper sx={{ width: 184 }}>
-                        <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
-                        <MaxBtn onClick={() => setMintAmount(MAX_VAL.toString())}>Max</MaxBtn>
-                    </AmountInputWrapper>
-                </Stack>
-                <Stack spacing={1}>
-                    <Typography fontWeight={700} color="white">
-                        {disabled ? 'Currently Unavailable' : 'You have ' + reservedAmount + ' reserve mints'}
-                    </Typography>
-                    <Stack direction="row" alignItems="center" spacing={2}>
-                        <Stack direction="row" alignItems="center" spacing={1}>
-                            <MintBtn disabled={disabled} onClick={mint}>
-                                Mint
-                            </MintBtn>
-                            <ReserveBtn disabled={disabled} onClick={reserve}>
-                                Reserve
-                            </ReserveBtn>
-                        </Stack>
-                        <InfoIcon />
+            </Stack>
+            <Typography fontSize={32} fontWeight={700} marginTop={4}>
+                PRICE: 0.07{' '}
+                <Typography fontWeight={700} display="inline">
+                    (+GAS FEE)
+                </Typography>
+            </Typography>
+            <Stack spacing={1} marginTop={3}>
+                <Typography fontSize={14} fontWeight={400} color="white">
+                    # of Basketball Heads (Max 3)
+                </Typography>
+                <AmountInputWrapper sx={{ width: 184 }}>
+                    <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
+                    <MaxBtn onClick={() => setMintAmount(MAX_VAL.toString())}>Max</MaxBtn>
+                </AmountInputWrapper>
+            </Stack>
+            <Stack spacing={1} marginTop={2}>
+                <Typography fontWeight={700} color="white">
+                    {disabled ? 'Currently Unavailable' : 'You have ' + reservedAmount + ' reserve mints'}
+                </Typography>
+                <Stack direction="row" alignItems="center" spacing={2}>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        <MintBtn disabled={disabled} onClick={mint}>
+                            MINT
+                        </MintBtn>
+                        <ReserveBtn disabled={disabled} onClick={reserve}>
+                            RESERVE
+                        </ReserveBtn>
                     </Stack>
                 </Stack>
             </Stack>
@@ -152,4 +155,4 @@ const BasketballMintBox: React.FC<ComponentProps> = ({
     );
 };
 
-export default BasketballMintBox;
+export default GeneralMintBox;
