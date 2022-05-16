@@ -30,6 +30,8 @@ const appMenuList = [
     { title: 'Roadmap', url: '/roadmap' },
 
     { title: 'FAQ', url: '/faq' },
+
+    { title: 'FTX Holders', url: '/ftxholders' },
 ];
 
 const socialLinksList = [
