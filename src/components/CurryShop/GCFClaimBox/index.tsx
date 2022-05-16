@@ -4,7 +4,6 @@ import web3 from 'web3';
 import { Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { MintBtn } from './styles';
-import { ConnectWalletBtn } from '../styles';
 import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 
@@ -79,35 +78,29 @@ const GCFClaimBox: React.FC<ComponentProps> = ({ amountLeft, gcfOwnedCount, hexP
                 </Stack>
             </Stack>
             <Stack marginTop={5}>
-                {account ? (
-                    <Stack>
-                        <Typography fontWeight={700}>{`You own ${gcfOwnedCount} Genesis Curry Flow`}</Typography>
-                        <MintBtn sx={{ marginTop: 1 }} onClick={mint}>
-                            MINT
-                        </MintBtn>
-                        {mintState === MintStatus.MINT_SUCCESS && (
-                            <Stack
-                                direction="row"
-                                alignItems="center"
-                                spacing={2}
-                                padding={2}
-                                borderRadius={1}
-                                marginTop={3}
-                                sx={{ background: '#FFFFFFE5' }}
-                            >
-                                <CompleteIcon sx={{ color: '#4CAF50' }} />
-                                <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                                    You have claimed 1 NF3 Basketball, please check your{' '}
-                                    <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
-                                        Opensea
-                                    </a>{' '}
-                                    profile to check if the NF3 Basketball is in your wallet
-                                </Typography>
-                            </Stack>
-                        )}
+                <Typography fontWeight={700}>{`You own ${gcfOwnedCount} Genesis Curry Flow`}</Typography>
+                <MintBtn sx={{ marginTop: 1 }} onClick={mint}>
+                    MINT
+                </MintBtn>
+                {mintState === MintStatus.MINT_SUCCESS && (
+                    <Stack
+                        direction="row"
+                        alignItems="center"
+                        spacing={2}
+                        padding={2}
+                        borderRadius={1}
+                        marginTop={3}
+                        sx={{ background: '#FFFFFFE5' }}
+                    >
+                        <CompleteIcon sx={{ color: '#4CAF50' }} />
+                        <Typography fontSize={14} fontWeight={500} color="#1E4620">
+                            You have claimed 1 NF3 Basketball, please check your{' '}
+                            <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
+                                Opensea
+                            </a>{' '}
+                            profile to check if the NF3 Basketball is in your wallet
+                        </Typography>
                     </Stack>
-                ) : (
-                    <ConnectWalletBtn>CONNECT WALLET</ConnectWalletBtn>
                 )}
             </Stack>
         </Stack>
