@@ -42,7 +42,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
-    const [dropPhase, setDropPhase] = useState<number>(1);
+    const [dropPhase, setDropPhase] = useState<number>(0);
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
