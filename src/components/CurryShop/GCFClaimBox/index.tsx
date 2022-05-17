@@ -79,8 +79,14 @@ const GCFClaimBox: React.FC<ComponentProps> = ({ gcfOwnedCount, hexProofForGCFCl
                     </Stack>
                 </Stack>
                 <Stack marginTop={5}>
-                    <Typography fontWeight={700}>{`You own ${gcfOwnedCount} Genesis Curry Flow`}</Typography>
-                    <MintBtn sx={{ marginTop: 1 }} disabled={!gcfOwnedCount} onClick={mint}>
+                    <Typography fontWeight={700}>{`You own ${
+                        mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
+                    } Genesis Curry Flow`}</Typography>
+                    <MintBtn
+                        sx={{ marginTop: 1 }}
+                        disabled={mintState === MintStatus.MINT_SUCCESS || !gcfOwnedCount}
+                        onClick={mint}
+                    >
                         MINT
                     </MintBtn>
                     {mintState === MintStatus.MINT_SUCCESS && (

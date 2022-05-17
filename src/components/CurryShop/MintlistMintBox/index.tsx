@@ -89,8 +89,14 @@ const MintlistMintBox: React.FC<ComponentProps> = ({ communityOwnedCount, hexPro
                     </Typography>
                 </Typography>
                 <Stack marginTop={3}>
-                    <Typography fontWeight={700}>{`You have ${communityOwnedCount} Mintlist Spots`}</Typography>
-                    <MintBtn sx={{ marginTop: 1 }} disabled={!communityOwnedCount} onClick={mint}>
+                    <Typography fontWeight={700}>{`You have ${
+                        mintState === MintStatus.MINT_SUCCESS ? 0 : communityOwnedCount
+                    } Mintlist Spots`}</Typography>
+                    <MintBtn
+                        sx={{ marginTop: 1 }}
+                        disabled={mintState === MintStatus.MINT_SUCCESS || !communityOwnedCount}
+                        onClick={mint}
+                    >
                         MINT
                     </MintBtn>
                     {mintState === MintStatus.MINT_SUCCESS && (
