@@ -11,6 +11,7 @@ type ComponentProps = {
     // amountLeft: number;
     communityOwnedCount: number;
     hexProofForCommunityClaim: any[];
+    setNeedUpdateInfo: (value: boolean) => void;
 };
 
 enum MintStatus {
@@ -20,7 +21,11 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-const MintlistMintBox: React.FC<ComponentProps> = ({ communityOwnedCount, hexProofForCommunityClaim }): JSX.Element => {
+const MintlistMintBox: React.FC<ComponentProps> = ({
+    communityOwnedCount,
+    hexProofForCommunityClaim,
+    setNeedUpdateInfo,
+}): JSX.Element => {
     const { account, library } = useWeb3React();
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
 
@@ -46,6 +51,7 @@ const MintlistMintBox: React.FC<ComponentProps> = ({ communityOwnedCount, hexPro
                 //to do : update db
                 () => {
                     setMintState(MintStatus.MINT_SUCCESS);
+                    setNeedUpdateInfo(true);
                 }
             )
             .catch((e: any) => {

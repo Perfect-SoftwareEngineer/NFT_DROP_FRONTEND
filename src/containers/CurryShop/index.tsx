@@ -56,6 +56,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [hexProofForCommunityClaim, setHexProofForCommunityClaim] = React.useState<any[]>([]);
 
+    const [needUpdateInfo, setNeedUpdateInfo] = useState<boolean>(true);
+
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
@@ -75,7 +77,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply));
         }
-        if (account) {
+
+        if (account && needUpdateInfo) {
             updateAppState();
 
             claimGCF(account)
@@ -99,17 +102,26 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     setCommunityOwnedCount(0);
                     setHexProofForCommunityClaim([]);
                 });
+
+            setNeedUpdateInfo(false);
         }
-    }, [account]);
+    }, [account, needUpdateInfo]);
 
     const dropBox = () => {
         if (dropPhase === 1) {
-            return <GCFClaimBox gcfOwnedCount={gcfOwnedCount} hexProofForGCFClaim={hexProofForGCFClaim} />;
+            return (
+                <GCFClaimBox
+                    gcfOwnedCount={gcfOwnedCount}
+                    hexProofForGCFClaim={hexProofForGCFClaim}
+                    setNeedUpdateInfo={setNeedUpdateInfo}
+                />
+            );
         } else if (dropPhase === 2) {
             return (
                 <MintlistMintBox
                     communityOwnedCount={communityOwnedCount}
                     hexProofForCommunityClaim={hexProofForCommunityClaim}
+                    setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             );
         } else if (dropPhase === 3) {

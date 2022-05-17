@@ -10,6 +10,7 @@ import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 type ComponentProps = {
     gcfOwnedCount: number;
     hexProofForGCFClaim: any[];
+    setNeedUpdateInfo: (value: boolean) => void;
 };
 
 enum MintStatus {
@@ -19,7 +20,11 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-const GCFClaimBox: React.FC<ComponentProps> = ({ gcfOwnedCount, hexProofForGCFClaim }): JSX.Element => {
+const GCFClaimBox: React.FC<ComponentProps> = ({
+    gcfOwnedCount,
+    hexProofForGCFClaim,
+    setNeedUpdateInfo,
+}): JSX.Element => {
     const { account, library } = useWeb3React();
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
 
@@ -42,6 +47,7 @@ const GCFClaimBox: React.FC<ComponentProps> = ({ gcfOwnedCount, hexProofForGCFCl
                 //to do : update db
                 () => {
                     setMintState(MintStatus.MINT_SUCCESS);
+                    setNeedUpdateInfo(true);
                 }
             )
             .catch((e: any) => {
