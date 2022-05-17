@@ -6,6 +6,8 @@ import web3 from 'web3';
 import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
+import { confirmClaimCommunity } from '../../../services/fetch';
+import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
     // amountLeft: number;
@@ -27,6 +29,8 @@ const MintlistMintBox: React.FC<ComponentProps> = ({
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { account, library } = useWeb3React();
+    const [appState, setAppState] = useAppContext();
+
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
 
     const mint = async () => {
@@ -52,6 +56,14 @@ const MintlistMintBox: React.FC<ComponentProps> = ({
                 () => {
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
+
+                    confirmClaimCommunity(account, appState.userSignature)
+                        .then((response: any) => {
+                            console.log('resonse:', response);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 }
             )
             .catch((e: any) => {

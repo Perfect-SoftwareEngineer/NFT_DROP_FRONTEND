@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { MintBtn } from './styles';
 import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
+import { confirmClaimGCF } from '../../../services/fetch';
+import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
     gcfOwnedCount: number;
@@ -26,6 +28,8 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { account, library } = useWeb3React();
+    const [appState, setAppState] = useAppContext();
+
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
 
     const mint = async () => {
@@ -48,6 +52,14 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
                 () => {
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
+
+                    confirmClaimGCF(account, appState.userSignature)
+                        .then((response: any) => {
+                            console.log('resonse:', response);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 }
             )
             .catch((e: any) => {

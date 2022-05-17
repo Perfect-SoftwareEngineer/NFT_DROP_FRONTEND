@@ -13,6 +13,8 @@ import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
 import { connect } from '../../web3/connect';
 import LockIcon from '@mui/icons-material/LockOutlined';
+import { getUserInfo, createUser } from '../../services/fetch';
+import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {};
 
@@ -47,6 +49,42 @@ const Header: React.FC<ComponentProps> = ({}) => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const [appState, setAppState] = useAppContext();
+
+    React.useEffect(() => {
+        const getSignature = async (nonce: number, wallet: string) => {
+            const msg = `Luna Backend user one-time Nonce: ${nonce}`;
+            const sig = await library.eth.personal.sign(msg, wallet);
+            return sig;
+        };
+
+        if (account) {
+            getUserInfo(account)
+                .then(async (response: any) => {
+                    console.log('response:', response);
+                    if (Object.keys(response).length === 0) {
+                        createUser(account)
+                            .then(async (response: any) => {
+                                console.log('resonse:', response);
+                                const sig = await getSignature(response.nonce, account);
+                                console.log('sig:', sig);
+                                setAppState({ ...appState, userSignature: sig });
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    } else {
+                        const sig = await getSignature(response.nonce, account);
+                        console.log('sig:', sig);
+                        setAppState({ ...appState, userSignature: sig });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, [account]);
 
     const onConnect = (data: any) => {
         if (data.type === 'Metamask') {

@@ -9,6 +9,7 @@ interface AppState {
     selectedSerumId: Array<number>;
     mutantsList: Array<MutantItemType>;
     wearablesList: Array<WearableItemType>;
+    userSignature: string;
 }
 
 const defaultState: AppState = {
@@ -65,6 +66,7 @@ const defaultState: AppState = {
             desc: 'RKL',
         },
     ],
+    userSignature: '',
 };
 
 type ContextType<TValue> = [TValue, (newValue: TValue) => void];
