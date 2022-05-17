@@ -53,7 +53,7 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimGCF(account, appState.userSignature)
+                    confirmClaimGCF(account, appState.jwtToken)
                         .then((response: any) => {
                             console.log('resonse:', response);
                         })

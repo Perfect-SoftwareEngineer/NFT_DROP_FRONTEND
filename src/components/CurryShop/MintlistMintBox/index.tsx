@@ -57,7 +57,7 @@ const MintlistMintBox: React.FC<ComponentProps> = ({
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimCommunity(account, appState.userSignature)
+                    confirmClaimCommunity(account, appState.jwtToken)
                         .then((response: any) => {
                             console.log('resonse:', response);
                         })

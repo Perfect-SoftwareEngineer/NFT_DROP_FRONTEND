@@ -13,7 +13,7 @@ import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
 import { connect } from '../../web3/connect';
 import LockIcon from '@mui/icons-material/LockOutlined';
-import { getUserInfo, createUser } from '../../services/fetch';
+import { getUserInfo, createUser, userSignIn } from '../../services/fetch';
 import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {};
@@ -62,14 +62,24 @@ const Header: React.FC<ComponentProps> = ({}) => {
         if (account) {
             getUserInfo(account)
                 .then(async (response: any) => {
-                    console.log('response:', response);
+                    console.log('getUserInfo response:', response);
+
                     if (Object.keys(response).length === 0) {
                         createUser(account)
                             .then(async (response: any) => {
-                                console.log('resonse:', response);
+                                console.log('createUser resonse:', response);
+
                                 const sig = await getSignature(response.nonce, account);
                                 console.log('sig:', sig);
-                                setAppState({ ...appState, userSignature: sig });
+
+                                userSignIn(account, sig)
+                                    .then(async (response: any) => {
+                                        console.log('userSignIn resonse:', response);
+                                        setAppState({ ...appState, jwtToken: response });
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
                             })
                             .catch((error) => {
                                 console.log(error);
@@ -77,7 +87,15 @@ const Header: React.FC<ComponentProps> = ({}) => {
                     } else {
                         const sig = await getSignature(response.nonce, account);
                         console.log('sig:', sig);
-                        setAppState({ ...appState, userSignature: sig });
+
+                        userSignIn(account, sig)
+                            .then(async (response: any) => {
+                                console.log('userSignIn resonse:', response);
+                                setAppState({ ...appState, jwtToken: response });
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
                     }
                 })
                 .catch((error) => {

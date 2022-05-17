@@ -189,7 +189,7 @@ export const claimGCF = (wallet: string) =>
             });
     });
 
-export const confirmClaimGCF = (wallet: string, auth: string) =>
+export const confirmClaimGCF = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/claim`;
         // console.log('reqUrl:', reqUrl);
@@ -199,7 +199,7 @@ export const confirmClaimGCF = (wallet: string, auth: string) =>
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: auth,
+                Authorization: token,
             },
         };
 
@@ -228,7 +228,7 @@ export const claimCommunityNFT = (wallet: string) =>
             });
     });
 
-export const confirmClaimCommunity = (wallet: string, auth: string) =>
+export const confirmClaimCommunity = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/claim`;
         // console.log('reqUrl:', reqUrl);
@@ -238,7 +238,7 @@ export const confirmClaimCommunity = (wallet: string, auth: string) =>
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: auth,
+                Authorization: token,
             },
         };
 
@@ -273,6 +273,30 @@ export const createUser = (wallet: string) =>
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        axios
+            .post(reqUrl, body)
+            .then((response) => {
+                // console.log('result:', response);
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            });
+    });
+
+export const userSignIn = (wallet: string, signature: string) =>
+    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/auth/signin`;
+        // console.log('reqUrl:', reqUrl);
+
+        const body = { wallet: wallet, signature: signature };
 
         const config = {
             headers: {
