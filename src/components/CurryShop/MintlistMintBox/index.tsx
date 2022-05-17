@@ -57,15 +57,16 @@ const MintlistMintBox: React.FC<ComponentProps> = ({ communityOwnedCount, hexPro
     return (
         <>
             <Stack padding={4} borderRadius={2} sx={{ background: '#1B1C22' }}>
-                <Typography fontSize={48} fontWeight={700}>
+                <Typography fontSize={48} fontWeight={700} lineHeight={1.1}>
                     Mintlist Mints
                 </Typography>
                 <Typography fontWeight={700} marginTop={2}>
                     Free NF3 Basketball Mint for every GCF NFT Holders
                 </Typography>
-                <Stack direction="row" spacing={2} marginTop={3}>
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} marginTop={3}>
                     <Image
                         src={'/assets/currycounter/curry-brand.png'}
+                        layout="fixed"
                         width={160}
                         height={160}
                         style={{ borderRadius: 16 }}

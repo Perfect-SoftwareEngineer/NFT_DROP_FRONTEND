@@ -133,7 +133,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         <Box>
                             <Grid container columnSpacing={2} maxWidth={540}>
                                 <Grid item xs={6}>
-                                    <SupplyBox amount={20000} label="Basketballs supply" headColor="#FFCA21" />
+                                    <SupplyBox amount={supplyLeft} label="Basketballs supply" headColor="#FFCA21" />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <SupplyBox amount={60000} label="Serum supply" headColor="#B8FF97" />
@@ -152,13 +152,13 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
                         CURRY SHOP
                     </Typography>
-                    <Typography width="40%">
+                    <Typography width={{ xs: '100%', sm: '80%', md: '40%' }}>
                         The next iteration of Curry Brand's effort to create the most positive Basketball community of
                         all time, championed by the greatest shooter of all time
                     </Typography>
                 </Stack>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
-                    <Grid item xs={5}>
+                    <Grid item xs={12} md={5}>
                         <Stack spacing={3}>
                             {mintBoxes.map((item, index) => (
                                 <StatusBox
@@ -169,7 +169,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             ))}
                         </Stack>
                     </Grid>
-                    <Grid item xs={7}>
+                    <Grid item xs={12} md={7}>
                         {account ? (
                             dropBox()
                         ) : (
