@@ -104,13 +104,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const dropBox = () => {
         if (dropPhase === 1) {
-            return (
-                <GCFClaimBox
-                    amountLeft={2974}
-                    gcfOwnedCount={gcfOwnedCount}
-                    hexProofForGCFClaim={hexProofForGCFClaim}
-                />
-            );
+            return <GCFClaimBox gcfOwnedCount={gcfOwnedCount} hexProofForGCFClaim={hexProofForGCFClaim} />;
         } else if (dropPhase === 2) {
             return (
                 <MintlistMintBox
