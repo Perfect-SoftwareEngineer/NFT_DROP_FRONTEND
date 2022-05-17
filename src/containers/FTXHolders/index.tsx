@@ -4,8 +4,12 @@ import Container from '../Container';
 import { CodeInputField, ConnectWalletBtn, SubmitBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorIcon from '@mui/icons-material/ErrorOutline';
+import { useWeb3React } from '@web3-react/core';
+import { connect } from '../../web3/connect';
 
 const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
+    const { active, account, library, activate } = useWeb3React();
+
     return (
         <Container sx={{ paddingY: 8 }}>
             <Stack width={600} spacing={3}>
@@ -35,30 +39,47 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                         <CodeInputField />
                     </Stack>
                     <Stack spacing={3}>
-                        <ConnectWalletBtn>CONNECT WALLET</ConnectWalletBtn>
-                        <SubmitBtn>SUBMIT</SubmitBtn>
-                        <Stack direction="row" spacing={2} padding={2} borderRadius={1} sx={{ background: '#EDF7ED' }}>
-                            <CompleteIcon sx={{ marginTop: 0.5, color: '#4CAF50' }} />
-                            <Stack>
-                                <Typography fontWeight={700} color="#1E4620">
-                                    You have successfully joined the Mintlist.
-                                </Typography>
-                                <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                                    You have 1 Mintlist spot. Mint your NFT3 Basketball in the Curry Shop.
-                                </Typography>
-                            </Stack>
-                        </Stack>
-                        <Stack direction="row" spacing={2} padding={2} borderRadius={1} sx={{ background: '#FEECEB' }}>
-                            <ErrorIcon sx={{ marginTop: 0.5, color: '#F44336' }} />
-                            <Stack>
-                                <Typography fontWeight={700} color="#621B16">
-                                    Error
-                                </Typography>
-                                <Typography fontSize={14} fontWeight={500} color="#621B16">
-                                    You have entered an invalid code. Please try again.
-                                </Typography>
-                            </Stack>
-                        </Stack>
+                        {account ? (
+                            <>
+                                <SubmitBtn>SUBMIT</SubmitBtn>
+                                <Stack
+                                    direction="row"
+                                    spacing={2}
+                                    padding={2}
+                                    borderRadius={1}
+                                    sx={{ background: '#EDF7ED' }}
+                                >
+                                    <CompleteIcon sx={{ marginTop: 0.5, color: '#4CAF50' }} />
+                                    <Stack>
+                                        <Typography fontWeight={700} color="#1E4620">
+                                            You have successfully joined the Mintlist.
+                                        </Typography>
+                                        <Typography fontSize={14} fontWeight={500} color="#1E4620">
+                                            You have 1 Mintlist spot. Mint your NFT3 Basketball in the Curry Shop.
+                                        </Typography>
+                                    </Stack>
+                                </Stack>
+                                <Stack
+                                    direction="row"
+                                    spacing={2}
+                                    padding={2}
+                                    borderRadius={1}
+                                    sx={{ background: '#FEECEB' }}
+                                >
+                                    <ErrorIcon sx={{ marginTop: 0.5, color: '#F44336' }} />
+                                    <Stack>
+                                        <Typography fontWeight={700} color="#621B16">
+                                            Error
+                                        </Typography>
+                                        <Typography fontSize={14} fontWeight={500} color="#621B16">
+                                            You have entered an invalid code. Please try again.
+                                        </Typography>
+                                    </Stack>
+                                </Stack>
+                            </>
+                        ) : (
+                            <ConnectWalletBtn onClick={() => connect(activate)}>CONNECT WALLET</ConnectWalletBtn>
+                        )}
                     </Stack>
                 </Stack>
             </Stack>
