@@ -59,6 +59,20 @@ const Header: React.FC<ComponentProps> = ({}) => {
             return sig;
         };
 
+        const signIn = async (nonce: number, wallet: string) => {
+            const sig = await getSignature(nonce, wallet);
+            console.log('sig:', sig);
+
+            userSignIn(wallet, sig)
+                .then((response: any) => {
+                    console.log('userSignIn resonse:', response);
+                    setAppState({ ...appState, jwtToken: response });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        };
+
         if (account) {
             getUserInfo(account)
                 .then(async (response: any) => {
@@ -68,34 +82,13 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         createUser(account)
                             .then(async (response: any) => {
                                 console.log('createUser resonse:', response);
-
-                                const sig = await getSignature(response.nonce, account);
-                                console.log('sig:', sig);
-
-                                userSignIn(account, sig)
-                                    .then(async (response: any) => {
-                                        console.log('userSignIn resonse:', response);
-                                        setAppState({ ...appState, jwtToken: response });
-                                    })
-                                    .catch((error) => {
-                                        console.log(error);
-                                    });
+                                signIn(response.nonce, account);
                             })
                             .catch((error) => {
                                 console.log(error);
                             });
                     } else {
-                        const sig = await getSignature(response.nonce, account);
-                        console.log('sig:', sig);
-
-                        userSignIn(account, sig)
-                            .then(async (response: any) => {
-                                console.log('userSignIn resonse:', response);
-                                setAppState({ ...appState, jwtToken: response });
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
+                        signIn(response.nonce, account);
                     }
                 })
                 .catch((error) => {
