@@ -204,7 +204,7 @@ export const confirmClaimGCF = (wallet: string, token: string) =>
         };
 
         axios
-            .post(reqUrl, body)
+            .post(reqUrl, body, config)
             .then((response) => {
                 resolve(response.data);
             })
@@ -243,7 +243,7 @@ export const confirmClaimCommunity = (wallet: string, token: string) =>
         };
 
         axios
-            .post(reqUrl, body)
+            .post(reqUrl, body, config)
             .then((response) => {
                 resolve(response.data);
             })
