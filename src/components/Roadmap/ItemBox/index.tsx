@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import { Markup } from 'interweave';
 
 type ComponentProps = {
     img: string;
@@ -24,7 +25,9 @@ const ItemBox: React.FC<ComponentProps> = ({ img, title, desc }): JSX.Element =>
                 <Typography fontSize={48} fontWeight={800} lineHeight={1.1} className="neueplak_condensed">
                     {title}
                 </Typography>
-                <Typography>{desc}</Typography>
+                <Typography>
+                    <Markup content={desc} />
+                </Typography>
             </Stack>
         </Stack>
     );
