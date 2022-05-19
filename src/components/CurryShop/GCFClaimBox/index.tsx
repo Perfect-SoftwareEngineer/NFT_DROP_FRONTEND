@@ -31,6 +31,7 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
     const [appState, setAppState] = useAppContext();
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
+    const [claimedCount, setclaimedCount] = useState<number>(0);
 
     const mint = async () => {
         if (!account) return;
@@ -50,6 +51,7 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
             .then(
                 //to do : update db
                 () => {
+                    setclaimedCount(gcfOwnedCount);
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
@@ -119,7 +121,7 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
                         >
                             <CompleteIcon sx={{ color: '#4CAF50' }} />
                             <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                                You have claimed 1 NF3 Basketball, please check your{' '}
+                                {`You have claimed ${claimedCount} NF3 Basketball, please check your `}
                                 <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
                                     Opensea
                                 </a>{' '}
