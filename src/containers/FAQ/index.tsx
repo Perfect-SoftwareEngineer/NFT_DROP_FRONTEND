@@ -25,6 +25,56 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         event.
                     </Typography>
                 </FAQItem>
+                <FAQItem title="What is Reserve Minting?">
+                    <Typography>
+                        To avoid “gas wars,” you may press “Reserve” during the public mint to trigger a transaction
+                        where you pay for the amount of NFTs you specify. This will allow you to mint your reserved NFTs
+                        at a later time. There are no time limits for when you can mint your reserved NFTs.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="I am a Genesis Curry Flow holder, what happens next?">
+                    <Typography>
+                        For our long term Genesis Curry Flow holders, we will reward free NF3 Basketball claims. A
+                        snapshot will take place on [DATE AND TIME HERE], and all of those who have the Genesis Curry
+                        Flows in their wallet will be registered to claim on [DATE AND TIME HERE]. We will give holders
+                        48 hours to claim their free mints.
+                        <br></br>
+                        <br></br>
+                        If you have more than one Genesis Curry Flow, you will be able to claim the same amount of NF3
+                        Basketballs as the number of Genesis Curry Flows in your wallet.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What if I am a Genesis Curry Flow Metaverse Sneaker Holder?">
+                    <Typography>
+                        Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist
+                        snapshot will be taken on DATE_FOR_MINTLIST_SNAPSHOT and opened to purchase on
+                        DATE_FOR_MINTLIST_OPEN.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What is a snapshot?">
+                    <Typography>
+                        A snapshot is a record of wallet addresses that have been collected at a given time. It is used
+                        to claim for those who own the Genesis Curry Flows. If you are interested in claiming, make sure
+                        to keep the snapshot time in mind when purchasing the Genesis Curry Flows.
+                        <br></br>
+                        <br></br>For this project, there will be three separate snapshots (one for each drop). So, hold
+                        your Genesis Curry Flows throughout the snapshots in order to claim your NFTs.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What is a mintlist?">
+                    <Typography>
+                        To be on a mintlist means that your Metamask wallet is pre-approved to mint within a predefined
+                        time. This is done to prevent a gas war. If you do not mint within the timeframe, your mintlist
+                        placement returns to the public mint. Essentially, mintlist participants will be able to
+                        purchase before everyone else!
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="I can't find my NFT after claiming/airdrop. Where is it?">
+                    <Typography>
+                        Once you have claimed and cannot find it in your Opensea wallet, please check your hidden tab
+                        for your claiim. If it is not there, please contact the Luna Support Team.
+                    </Typography>
+                </FAQItem>
                 <FAQItem title="What is the NF3 Counter?">
                     <Typography>
                         NF3 Counter is an interactive fan tool to reward the biggest Stephen Curry fans as he battles
@@ -213,56 +263,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                             Twitter
                         </a>{' '}
                         for real-time updates and announcements.
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="What is Reserve Minting?">
-                    <Typography>
-                        To avoid “gas wars,” you may press “Reserve” during the public mint to trigger a transaction
-                        where you pay for the amount of NFTs you specify. This will allow you to mint your reserved NFTs
-                        at a later time. There are no time limits for when you can mint your reserved NFTs.
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="I am a Genesis Curry Flow holder, what happens next?">
-                    <Typography>
-                        For our long term Genesis Curry Flow holders, we will reward free NF3 Basketball claims. A
-                        snapshot will take place on [DATE AND TIME HERE], and all of those who have the Genesis Curry
-                        Flows in their wallet will be registered to claim on [DATE AND TIME HERE]. We will give holders
-                        48 hours to claim their free mints.
-                        <br></br>
-                        <br></br>
-                        If you have more than one Genesis Curry Flow, you will be able to claim the same amount of NF3
-                        Basketballs as the number of Genesis Curry Flows in your wallet.
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="What if I am a Genesis Curry Flow Metaverse Sneaker Holder?">
-                    <Typography>
-                        Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist
-                        snapshot will be taken on DATE_FOR_MINTLIST_SNAPSHOT and opened to purchase on
-                        DATE_FOR_MINTLIST_OPEN.
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="What is a snapshot?">
-                    <Typography>
-                        A snapshot is a record of wallet addresses that have been collected at a given time. It is used
-                        to claim for those who own the Genesis Curry Flows. If you are interested in claiming, make sure
-                        to keep the snapshot time in mind when purchasing the Genesis Curry Flows.
-                        <br></br>
-                        <br></br>For this project, there will be three separate snapshots (one for each drop). So, hold
-                        your Genesis Curry Flows throughout the snapshots in order to claim your NFTs.
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="What is a mintlist?">
-                    <Typography>
-                        To be on a mintlist means that your Metamask wallet is pre-approved to mint within a predefined
-                        time. This is done to prevent a gas war. If you do not mint within the timeframe, your mintlist
-                        placement returns to the public mint. Essentially, mintlist participants will be able to
-                        purchase before everyone else!
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="I can't find my NFT after claiming/airdrop. Where is it?">
-                    <Typography>
-                        Once you have claimed and cannot find it in your Opensea wallet, please check your hidden tab
-                        for your claiim. If it is not there, please contact the Luna Support Team.
                     </Typography>
                 </FAQItem>
             </Stack>
