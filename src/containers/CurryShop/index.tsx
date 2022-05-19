@@ -127,7 +127,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         } else if (dropPhase === 3) {
             return (
                 <>
-                    <GeneralMintBox amountLeft={supplyLeft} />
+                    <GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                     {/* <SerumMintBox amountLeft={1000} disabled /> */}
                 </>
             );

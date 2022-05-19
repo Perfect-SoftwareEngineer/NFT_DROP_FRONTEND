@@ -8,6 +8,7 @@ import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn }
 type ComponentProps = {
     amountLeft: number;
     disabled?: boolean;
+    setNeedUpdateInfo: (value: boolean) => void;
 };
 
 const MAX_VAL = 3;
@@ -26,7 +27,7 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false }): JSX.Element => {
+const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false, setNeedUpdateInfo }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
@@ -63,6 +64,8 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
                     .mint(mintAmount, [])
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
+
+            setNeedUpdateInfo(true);
             setMintState(MintStatus.MINT_SUCCESS);
         } catch (err: any) {
             setMintState(MintStatus.MINT_FAILED);
