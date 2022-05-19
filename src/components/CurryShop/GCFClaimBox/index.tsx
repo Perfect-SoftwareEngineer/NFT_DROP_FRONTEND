@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import web3 from 'web3';
-import { Stack, Typography, Dialog, CircularProgress } from '@mui/material';
+import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import { MintBtn } from './styles';
 import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
@@ -72,24 +72,25 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
 
     return (
         <>
-            <Stack padding={4} borderRadius={2} sx={{ background: '#1B1C22' }}>
-                <Typography fontSize={48} fontWeight={700} lineHeight={1.1}>
-                    Genesis Curry Flow Claims
-                </Typography>
-                <Typography fontWeight={700} marginTop={2}>
-                    Free NF3 Basketball Mint for every GCF NFT Holders
-                </Typography>
-                <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} marginTop={3}>
-                    <Image
-                        src={'/assets/currycounter/curry-brand.png'}
-                        layout="fixed"
-                        width={160}
-                        height={160}
-                        style={{ borderRadius: 16 }}
-                    />
+            <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
+                <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
+                    <Image src={'/assets/roadmap/genesis-curry-flow.png'} layout="fill" objectFit="cover" />
+                </Box>
+                <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
+                    <Typography
+                        fontSize={48}
+                        fontWeight={800}
+                        lineHeight={1.1}
+                        textTransform="uppercase"
+                        className="neueplak_condensed"
+                    >
+                        Genesis Curry Flow Claims
+                    </Typography>
+                    <Typography fontWeight={700}>
+                        Genesis Curry Flow holders will be able to claim a free NF3 Basketball
+                    </Typography>
                     <Stack>
-                        <Typography fontWeight={700}>How it works:</Typography>
-                        <Typography marginTop={2}>° A snapshot will be taken on XXX, 2022 at 5PM PST</Typography>
+                        <Typography>° A snapshot for claiming will be taken on XXX, 2022 at 5PM PST</Typography>
                         <Typography>
                             ° On XXX, 2022 at 5PM PST, you may mint an NF3 Basketball for every GCF you hold
                         </Typography>
@@ -97,18 +98,41 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
                             ° Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.
                         </Typography>
                     </Stack>
-                </Stack>
-                <Stack marginTop={5}>
-                    <Typography fontWeight={700}>{`You own ${
-                        mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
-                    } Genesis Curry Flow`}</Typography>
-                    <MintBtn
-                        sx={{ marginTop: 1 }}
-                        disabled={mintState === MintStatus.MINT_SUCCESS || !gcfOwnedCount}
-                        onClick={mint}
+                    <Stack
+                        direction={{ xs: 'column', md: 'row' }}
+                        alignItems={{ xs: 'flex-start', md: 'center' }}
+                        spacing={4}
+                        marginTop={3}
                     >
-                        MINT
-                    </MintBtn>
+                        <Box minWidth={240} width={240} height={240} position="relative">
+                            <Image
+                                src={'/assets/currycounter/curry-brand.png'}
+                                layout="fill"
+                                style={{ borderRadius: 16 }}
+                            />
+                        </Box>
+                        <Stack>
+                            <Typography fontSize={20} fontWeight={700}>
+                                NFT3 BASKETBALL
+                            </Typography>
+                            <Typography fontSize={32} fontWeight={700} marginTop={2}>
+                                PRICE: FREE{' '}
+                                <Typography fontWeight={700} display="inline">
+                                    (+GAS FEE)
+                                </Typography>
+                            </Typography>
+                            <Typography fontWeight={700} marginTop={3}>{`You have ${
+                                mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
+                            } Genesis Curry Flow claims`}</Typography>
+                            <MintBtn
+                                sx={{ marginTop: 1 }}
+                                disabled={mintState === MintStatus.MINT_SUCCESS || !gcfOwnedCount}
+                                onClick={mint}
+                            >
+                                MINT
+                            </MintBtn>
+                        </Stack>
+                    </Stack>
                     {mintState === MintStatus.MINT_SUCCESS && (
                         <Stack
                             direction="row"
