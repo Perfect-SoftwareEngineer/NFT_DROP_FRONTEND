@@ -9,7 +9,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
             <Typography fontSize={48} fontWeight={700} lineHeight={1.2}>
                 Frequently Asked Questions
             </Typography>
-            <Typography width={{ xs: '80%', md: '35%' }} fontSize={16} fontWeight={400} marginTop={3}>
+            <Typography width={{ xs: '80%', md: '35%' }} marginTop={3}>
                 Got a question? We're here to answer! If you don't see your answer here, contact us through our{' '}
                 <a href="https://discord.com/invite/M5dZ2GJSpQ" target="_blank" style={{ color: '#FFCA21' }}>
                     Discord
@@ -18,7 +18,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
             </Typography>
             <Stack spacing={2} marginTop={6}>
                 <FAQItem title="What is an NFT?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         NFT are ”non-fungible tokens” — a fancy way of saying it's a unique, one-of-a-kind digital item
                         that users can buy, own, and trade. Some NFTs' primary functions are digital art and looking
                         cool; some offer additional utility, like exclusive access to websites or participation in an
@@ -26,17 +26,17 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is the NF3 Counter?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         NF3 Counter is an interactive fan tool to reward the biggest Stephen Curry fans as he battles
                         his way through the Playoffs. The premise is simple: for every three-pointer, Curry makes in a
-                        playoff game, nine free digital Basketballs are claimable by the most engaged fans. Score to
-                        Mint kicks off the next iteration of Curry Brand's effort to create the most positive Basketball
+                        playoff game, three free digital Basketballs are claimable by the most engaged fans. Score to
+                        Mint kicks off the next iteration of Curry Brand’s effort to create the most positive Basketball
                         community of all time, championed by the greatest shooter of all time.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="How does the NF3 Counter work? Step by Step Guide">
-                    <Typography fontSize={16} fontWeight={400}>
-                        For every 3-pointer Curry makes in a playoff game, nine free digital basketballs are claimable
+                    <Typography>
+                        For every 3-pointer Curry makes in a playoff game, three free digital basketballs are claimable
                         by the most engaged fans.
                         <br></br>
                         <br></br>
@@ -51,22 +51,25 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         a Basketball.
                         <br></br>
                         Step 5: If you were successful, please scroll down to “NF3 Counter” and click “Claim” one hour
-                        after the game. Please note: It will take around an hour before you can claim your NF3
-                        Basketball.
+                        after the game.
+                        <br></br>
+                        <i>Please note: It will take around an hour before you can claim your NF3 Basketball.</i>
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What does “Reserve” do on the NF3 Counter Page?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         The reserve button will activate when Curry scores a three-pointer during the Playoffs. The user
                         that first clicks “Reserve” will have a free Basketball NFT reserved to claim after the game.
                         <br></br>
                         <br></br>
-                        Please note: Even if you successfully reserve a Basketball, it may take some time for the
-                        information to be updated due to the backend system updating all the details.
+                        <i>
+                            Please note: Even if you successfully reserve a Basketball, it may take some time for the
+                            information to be updated due to the backend system updating all the details.
+                        </i>
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What does Claiming mean?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Claiming means that you can own the Basketball NFT. When you click “Reserve” and succeed, we are
                         just reserving your Basketball for you so that you can fully claim it afterward. Users may Claim
                         the Basketball NFT whenever they like.
@@ -86,7 +89,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                 </FAQItem>
                 <FAQItem title="How many NF3 Basketballs can I claim?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         There is only one Claim per wallet per game.
                         <br></br>
                         <br></br>
@@ -101,19 +104,19 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What can I do with my NF3 Basketball?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         We will announce more updates as we build the most fanatic basketball community ever! So don't
                         miss any updates by following us on Twitter and joining our Discord!
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What if I wasn't able to get an NF3 Basketball?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         There will be a general mint in the coming future. Follow our Twitter and join Discord to stay
                         posted.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="Do I need a digital wallet to get a Basketball?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Yes, you need a{' '}
                         <a href="https://metamask.io/download/" target="_blank" style={{ color: '#FFCA21' }}>
                             MetaMask
@@ -123,27 +126,28 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What blockchain is the NFT on?">
-                    <Typography fontSize={16} fontWeight={400}>
-                        It is on the Ethereum blockchain.
-                    </Typography>
+                    <Typography>It is on the Ethereum blockchain.</Typography>
                 </FAQItem>
                 <FAQItem title="Where can I get ETH cryptocurrency?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         You can purchase ETH using your native currency on an exchange platform, like Coinbase and
                         Gemini.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is a gas fee?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Gas fees are the transaction fees that users pay to have their transactions processed. On the
                         Ethereum blockchain, gas fees are paid using ETH cryptocurrency. The amount of gas you'll need
                         to pay to have your transaction processed depends on the number of people trying to process
-                        transactions. There are websites where you can track gas prices, such as
-                        https://etherscan.io/gastracker.
+                        transactions. There are websites where you can track gas prices, such as{' '}
+                        <a href="https://etherscan.io/gastracker" target="_blank" style={{ color: '#FFCA21' }}>
+                            https://etherscan.io/gastracker
+                        </a>
+                        .
                     </Typography>
                 </FAQItem>
                 <FAQItem title="Selling, Trading, and Refunds">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Can I sell my NF3 Basketball?
                         <br></br>
                         Yes! You will be able to sell your NF3 Basketball on OpenSea. We are using OpenSea so users can
@@ -171,32 +175,31 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         details.
                         <br></br>
                         <br></br>
-                        Will I be able to refund my NF3 Basketball? After a successful transaction, you will not be able
-                        to refund your NF3 Basketball.
+                        Will I be able to refund my NF3 Basketball?
+                        <br></br>
+                        After a successful transaction, you will not be able to refund your NF3 Basketball.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="Where can I view my NFT after I minted it?">
-                    <Typography fontSize={16} fontWeight={400}>
-                        After minting, you can view your NFT in Opensea.
-                    </Typography>
+                    <Typography>After minting, you can view your NFT in Opensea.</Typography>
                 </FAQItem>
                 <FAQItem title="What if I'm a Genesis Curry Flow Holder?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Please wait for future updates. We have not forgotten about our GCF holders.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What happens if I have a Partner Shoe (Decentraland, Gala Games, Rumble Kong League, and The Sandbox)?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Please wait for future updates. We are working hard with our partners to award holders.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="As an Under Armour employee, can I use my UA Employee discount on this purchase?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         Unfortunately, UA Employee discount is not available on the purchase of the NF3 Basketball.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="How can I get Support?">
-                    <Typography fontSize={16} fontWeight={400}>
+                    <Typography>
                         You can join our{' '}
                         <a href="https://discord.com/invite/M5dZ2GJSpQ" target="_blank" style={{ color: '#FFCA21' }}>
                             Discord
@@ -210,6 +213,56 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                             Twitter
                         </a>{' '}
                         for real-time updates and announcements.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What is Reserve Minting?">
+                    <Typography>
+                        To avoid “gas wars,” you may press “Reserve” during the public mint to trigger a transaction
+                        where you pay for the amount of NFTs you specify. This will allow you to mint your reserved NFTs
+                        at a later time. There are no time limits for when you can mint your reserved NFTs.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="I am a Genesis Curry Flow holder, what happens next?">
+                    <Typography>
+                        For our long term Genesis Curry Flow holders, we will reward free NF3 Basketball claims. A
+                        snapshot will take place on [DATE AND TIME HERE], and all of those who have the Genesis Curry
+                        Flows in their wallet will be registered to claim on [DATE AND TIME HERE]. We will give holders
+                        48 hours to claim their free mints.
+                        <br></br>
+                        <br></br>
+                        If you have more than one Genesis Curry Flow, you will be able to claim the same amount of NF3
+                        Basketballs as the number of Genesis Curry Flows in your wallet.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What if I am a Genesis Curry Flow Metaverse Sneaker Holder?">
+                    <Typography>
+                        Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist
+                        snapshot will be taken on DATE_FOR_MINTLIST_SNAPSHOT and opened to purchase on
+                        DATE_FOR_MINTLIST_OPEN.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What is a snapshot?">
+                    <Typography>
+                        A snapshot is a record of wallet addresses that have been collected at a given time. It is used
+                        to claim for those who own the Genesis Curry Flows. If you are interested in claiming, make sure
+                        to keep the snapshot time in mind when purchasing the Genesis Curry Flows.
+                        <br></br>
+                        <br></br>For this project, there will be three separate snapshots (one for each drop). So, hold
+                        your Genesis Curry Flows throughout the snapshots in order to claim your NFTs.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What is a mintlist?">
+                    <Typography>
+                        To be on a mintlist means that your Metamask wallet is pre-approved to mint within a predefined
+                        time. This is done to prevent a gas war. If you do not mint within the timeframe, your mintlist
+                        placement returns to the public mint. Essentially, mintlist participants will be able to
+                        purchase before everyone else!
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="I can't find my NFT after claiming/airdrop. Where is it?">
+                    <Typography>
+                        Once you have claimed and cannot find it in your Opensea wallet, please check your hidden tab
+                        for your claiim. If it is not there, please contact the Luna Support Team.
                     </Typography>
                 </FAQItem>
             </Stack>
