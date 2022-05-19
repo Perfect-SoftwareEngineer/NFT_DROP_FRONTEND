@@ -102,7 +102,7 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                     PHASE 1
                 </Typography>
                 <Stack spacing={2}>
-                    <Typography>Q4 2021</Typography>
+                    {/* <Typography>Q4 2021</Typography> */}
                     <Stack spacing={3}>
                         {q4_21.map((item, index) => (
                             <RoadmapItemBox
@@ -112,9 +112,17 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                                 key={`q4_21_roadmap_item_${index}`}
                             />
                         ))}
+                        {q2_22.map((item, index) => (
+                            <RoadmapItemBox
+                                img={item.img}
+                                title={item.title}
+                                desc={item.desc}
+                                key={`q2_22_roadmap_item_${index}`}
+                            />
+                        ))}
                     </Stack>
                 </Stack>
-                <Stack spacing={2}>
+                {/* <Stack spacing={2}>
                     <Typography>Q2 2022</Typography>
                     <Stack spacing={3}>
                         {q2_22.map((item, index) => (
@@ -126,8 +134,8 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                             />
                         ))}
                     </Stack>
-                </Stack>
-                <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
+                </Stack> */}
+                {/* <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
                     PHASE 2
                 </Typography>
                 <Stack spacing={2}>
@@ -155,7 +163,7 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                             />
                         ))}
                     </Stack>
-                </Stack>
+                </Stack> */}
             </Stack>
         </Container>
     );

@@ -6,7 +6,13 @@ import FAQItem from '../../components/FAQ/FAQItem';
 const FAQPageContainer: React.FC = (): JSX.Element => {
     return (
         <Container sx={{ paddingY: 8 }}>
-            <Typography fontSize={48} fontWeight={700} lineHeight={1.2}>
+            <Typography
+                fontSize={48}
+                fontWeight={800}
+                lineHeight={1.2}
+                textTransform="uppercase"
+                className="neueplak_condensed"
+            >
                 Frequently Asked Questions
             </Typography>
             <Typography width={{ xs: '80%', md: '35%' }} marginTop={3}>
