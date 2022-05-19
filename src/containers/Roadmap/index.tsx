@@ -95,7 +95,7 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
     return (
         <Container sx={{ marginY: 5 }}>
             <Stack spacing={5}>
-                <Typography fontSize={92} fontWeight={900} lineHeight={1} className="neueplak_condensed">
+                <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
                     ROADMAP
                 </Typography>
                 {/* <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
