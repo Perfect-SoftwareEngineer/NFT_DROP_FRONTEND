@@ -436,7 +436,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Typography fontSize={16} fontWeight={600} color="#969AA1">
                                     Game in Series:{' '}
                                     <Typography fontSize={16} fontWeight={600} color="white" display="inline">
-                                        6
+                                        1
                                     </Typography>
                                 </Typography>
                             </Box>
