@@ -62,9 +62,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         A snapshot is a record of wallet addresses that have been collected at a given time. It is used
                         to claim for those who own the Genesis Curry Flows. If you are interested in claiming, make sure
                         to keep the snapshot time in mind when purchasing the Genesis Curry Flows.
-                        <br></br>
-                        <br></br>For this project, there will be three separate snapshots (one for each drop). So, hold
-                        your Genesis Curry Flows throughout the snapshots in order to claim your NFTs.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is a mintlist?">
@@ -78,7 +75,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="I can't find my NFT after claiming/airdrop. Where is it?">
                     <Typography>
                         Once you have claimed and cannot find it in your Opensea wallet, please check your hidden tab
-                        for your claiim. If it is not there, please contact the Luna Support Team.
+                        for your claim. If it is not there, please contact the Luna Support Team.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is the NF3 Counter?">
