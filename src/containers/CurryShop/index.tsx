@@ -74,9 +74,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
-            const totalThreePointSupply = await nftContract.methods.totalThreePointSupply().call({ from: account });
+            const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
 
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalThreePointSupply));
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
         }
 
         if (account && needUpdateInfo) {
