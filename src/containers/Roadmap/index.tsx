@@ -38,11 +38,11 @@ const q2_22 = [
         title: '06/ MIXOLOGY ROOM',
         desc: 'With the launch of the Mixology Room, NF3 Basketball and Serum holders will be able to fuse their them together to create a Basketball Head Avatar. Simply put:<br/><br/>1 Basketball Headz Avatar = 1 NF3 Basketball + 0-3 Serums<br/>1 Serum = 1-2 traits of the NFT community/brand traits GUARANTEED to be on your avatar<br/><br/>To create your Basketball Head Avatar, simply insert your NF3 Basketball, select up to three Serums you own, and morph them together in the Mixology Room. Be careful - the likeness of your Basketball Headz are in your own hands!',
     },
-    {
-        img: '/assets/roadmap/curry.png',
-        title: `07/ WHAT'S NEXT`,
-        desc: 'State-of-the-art 3D apparel locker, interoperable avatars, 3D file usage, real-life merchandise in the likeness of your avatar? Coming soon…',
-    },
+    // {
+    //     img: '/assets/roadmap/curry.png',
+    //     title: `07/ WHAT'S NEXT`,
+    //     desc: 'State-of-the-art 3D apparel locker, interoperable avatars, 3D file usage, real-life merchandise in the likeness of your avatar? Coming soon…',
+    // },
 ];
 
 const q3_22 = [
