@@ -64,7 +64,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? '0xC57C94346b466bED19438c195ad78CAdC7D09473'
-                    : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
+                    : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
             );
             let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
             setDropPhase(parseInt(_dropPhase));
@@ -74,8 +74,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
+            const totalThreePointSupply = await nftContract.methods.totalThreePointSupply().call({ from: account });
 
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply));
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalThreePointSupply));
         }
 
         if (account && needUpdateInfo) {
