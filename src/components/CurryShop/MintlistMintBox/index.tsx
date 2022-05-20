@@ -43,7 +43,7 @@ const MintlistMintBox: React.FC<ComponentProps> = ({
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0xC57C94346b466bED19438c195ad78CAdC7D09473'
-                : '0xb627Cd8E908EDfde1494304168AF6f59ADcB410E'
+                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
         );
 
         let _mintPrice = 0.07;
