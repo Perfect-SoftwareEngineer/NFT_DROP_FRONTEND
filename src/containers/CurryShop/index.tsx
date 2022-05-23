@@ -53,8 +53,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
-    const [mintedForGCF, setMintedForGCF] = useState<boolean>(false);
-    const [mintedForCommunity, setMintedForCommunity] = useState<boolean>(false);
 
     const [hexProofForCommunityClaim, setHexProofForCommunityClaim] = React.useState<any[]>([]);
 
@@ -79,17 +77,30 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
             
             const GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
+            
+
             if(GCFFlag == true) {
-                setMintedForGCF(true);
                 setGCFOwnedCount(0);
                 setHexProofForGCFClaim([]);
+            } else {
+                if(account) {
+                    const response = await claimGCF(account);
+                    setGCFOwnedCount(response.quantity);
+                    setHexProofForGCFClaim(response.hexProof);
+                }
             }
 
             const CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
+            
             if(CommunityFlag == true) {
-                setMintedForCommunity(true);
                 setCommunityOwnedCount(0);
                 setHexProofForCommunityClaim([]);
+            } else {
+                if(account) {
+                    const response = await claimCommunityNFT(account);
+                    setGCFOwnedCount(response.quantity);
+                    setHexProofForGCFClaim(response.hexProof);
+                }
             }
 
             setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
@@ -97,38 +108,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
         if (account && needUpdateInfo) {
             updateAppState();
-
-            claimGCF(account)
-            .then((response: any) => {
-                // console.log('response:', response);
-                if(mintedForGCF) {
-                    setGCFOwnedCount(0);
-                    setHexProofForGCFClaim([]);
-                } else {
-                    setGCFOwnedCount(response.quantity);
-                    setHexProofForGCFClaim(response.hexProof);
-                }
-            })
-            .catch((error) => {
-                setGCFOwnedCount(0);
-                setHexProofForGCFClaim([]);
-            });
-
-            claimCommunityNFT(account)
-                .then((response: any) => {
-                    // console.log('response:', response);
-                    if(mintedForCommunity) {
-                        setCommunityOwnedCount(0);
-                        setHexProofForCommunityClaim([]);
-                    } else {
-                        setCommunityOwnedCount(response.quantity);
-                        setHexProofForCommunityClaim(response.hexProof);
-                    }
-                })
-                .catch((error) => {
-                    setCommunityOwnedCount(0);
-                    setHexProofForCommunityClaim([]);
-                });
 
             setNeedUpdateInfo(false);
         }
