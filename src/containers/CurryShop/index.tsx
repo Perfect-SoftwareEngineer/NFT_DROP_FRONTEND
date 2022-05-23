@@ -53,6 +53,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
     const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
+    const [mintedForGCF, setMintedForGCF] = useState<boolean>(false);
+    const [mintedForCommunity, setMintedForCommunity] = useState<boolean>(false);
 
     const [hexProofForCommunityClaim, setHexProofForCommunityClaim] = React.useState<any[]>([]);
 
@@ -75,6 +77,20 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
             const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
+            
+            const GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
+            if(GCFFlag == true) {
+                setMintedForGCF(true);
+                setGCFOwnedCount(0);
+                setHexProofForGCFClaim([]);
+            }
+
+            const CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
+            if(CommunityFlag == true) {
+                setMintedForCommunity(true);
+                setCommunityOwnedCount(0);
+                setHexProofForCommunityClaim([]);
+            }
 
             setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
         }
@@ -83,21 +99,31 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             updateAppState();
 
             claimGCF(account)
-                .then((response: any) => {
-                    // console.log('response:', response);
-                    setGCFOwnedCount(response.quantity);
-                    setHexProofForGCFClaim(response.hexProof);
-                })
-                .catch((error) => {
+            .then((response: any) => {
+                // console.log('response:', response);
+                if(mintedForGCF) {
                     setGCFOwnedCount(0);
                     setHexProofForGCFClaim([]);
-                });
+                } else {
+                    setGCFOwnedCount(response.quantity);
+                    setHexProofForGCFClaim(response.hexProof);
+                }
+            })
+            .catch((error) => {
+                setGCFOwnedCount(0);
+                setHexProofForGCFClaim([]);
+            });
 
             claimCommunityNFT(account)
                 .then((response: any) => {
                     // console.log('response:', response);
-                    setCommunityOwnedCount(response.quantity);
-                    setHexProofForCommunityClaim(response.hexProof);
+                    if(mintedForCommunity) {
+                        setCommunityOwnedCount(0);
+                        setHexProofForCommunityClaim([]);
+                    } else {
+                        setCommunityOwnedCount(response.quantity);
+                        setHexProofForCommunityClaim(response.hexProof);
+                    }
                 })
                 .catch((error) => {
                     setCommunityOwnedCount(0);
