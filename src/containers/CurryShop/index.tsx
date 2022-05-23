@@ -15,6 +15,7 @@ import { ConnectMetamaskBtn } from './styles';
 import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
+import { useAppContext } from '../../context/AppContext';
 
 const mintBoxes = [
     {
@@ -46,6 +47,8 @@ const mintBoxes = [
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
+    const [appState, setAppState] = useAppContext();
+
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
@@ -75,15 +78,14 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
             const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
-            
-            const GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
-            
 
-            if(GCFFlag == true) {
+            const GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
+
+            if (GCFFlag == true) {
                 setGCFOwnedCount(0);
                 setHexProofForGCFClaim([]);
             } else {
-                if(account) {
+                if (account) {
                     const response = await claimGCF(account);
                     setGCFOwnedCount(response.quantity);
                     setHexProofForGCFClaim(response.hexProof);
@@ -91,12 +93,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             }
 
             const CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
-            
-            if(CommunityFlag == true) {
+
+            if (CommunityFlag == true) {
                 setCommunityOwnedCount(0);
                 setHexProofForCommunityClaim([]);
             } else {
-                if(account) {
+                if (account) {
                     const response = await claimCommunityNFT(account);
                     setCommunityOwnedCount(response.quantity);
                     setHexProofForCommunityClaim(response.hexProof);
@@ -114,7 +116,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     }, [account, needUpdateInfo]);
 
     const dropBox = () => {
-        if (dropPhase === 1) {
+        if (!appState.jwtToken) return '';
+        else if (dropPhase === 1) {
             return (
                 <GCFClaimBox
                     gcfOwnedCount={gcfOwnedCount}
@@ -181,7 +184,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             {mintBoxes.map((item, index) => (
                                 <StatusBox
                                     {...item}
-                                    selected={item.dropPhase === dropPhase}
+                                    selected={!!appState.jwtToken && item.dropPhase === dropPhase}
                                     key={`status_box_key${index}`}
                                 />
                             ))}
