@@ -98,8 +98,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             } else {
                 if(account) {
                     const response = await claimCommunityNFT(account);
-                    setGCFOwnedCount(response.quantity);
-                    setHexProofForGCFClaim(response.hexProof);
+                    setCommunityOwnedCount(response.quantity);
+                    setHexProofForCommunityClaim(response.hexProof);
                 }
             }
 

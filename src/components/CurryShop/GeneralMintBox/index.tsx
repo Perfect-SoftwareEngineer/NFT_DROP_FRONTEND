@@ -38,7 +38,10 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        if (!isNaN(Number(value)) && Number(value) <= MAX_VAL) setMintAmount(value);
+        if (isNaN(Number(value))) return;
+
+        const maxCount = reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL : reservedAmount;
+        setMintAmount(Math.min(Number(value), maxCount).toString());
     };
 
     const mint = async () => {
@@ -122,7 +125,9 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
     }, [account]);
 
     const setMaxMintCount = () => {
-        setMintAmount(reservedAmount ? reservedAmount.toString() : MAX_VAL.toString());
+        setMintAmount(
+            reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL.toString() : reservedAmount.toString()
+        );
     };
 
     return (
