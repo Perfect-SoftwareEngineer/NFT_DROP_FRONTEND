@@ -31,7 +31,7 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
     const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
-    const [reservedAmount, setReservedAmount] = useState<string>('');
+    const [reservedAmount, setReservedAmount] = useState<number>(0);
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
@@ -58,7 +58,7 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
             if (parseInt(reservedCount)) {
                 await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
                 reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
-                setReservedAmount(reservedCount);
+                setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
                     .mint(mintAmount, [])
@@ -91,7 +91,8 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
                 .reserve(mintAmount)
                 .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
-            setReservedAmount(reservedCount);
+            setReservedAmount(parseInt(reservedCount));
+            setNeedUpdateInfo(true);
             setReserveState(ReserveStatus.RESERVE_SUCCESS);
         } catch (err: any) {
             setReserveState(ReserveStatus.RESERVE_FAILED);
@@ -110,15 +111,19 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
             );
 
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
-            console.log(reservedCount);
+            console.log('reservedCount:', reservedCount);
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
-            setReservedAmount(reservedCount);
+            setReservedAmount(parseInt(reservedCount));
             setMintPrice(parseInt(mPrice));
         }
         if (account) {
             updateAppState();
         }
     }, [account]);
+
+    const setMaxMintCount = () => {
+        setMintAmount(reservedAmount ? reservedAmount.toString() : MAX_VAL.toString());
+    };
 
     return (
         <>
@@ -160,7 +165,7 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
                                 </Typography>
                                 <AmountInputWrapper sx={{ width: 184 }}>
                                     <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
-                                    <MaxBtn onClick={() => setMintAmount(MAX_VAL.toString())}>Max</MaxBtn>
+                                    <MaxBtn onClick={setMaxMintCount}>Max</MaxBtn>
                                 </AmountInputWrapper>
                             </Stack>
                             <Stack spacing={1} marginTop={2}>
