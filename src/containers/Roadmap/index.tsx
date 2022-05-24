@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Stack, Box, Grid, Typography } from '@mui/material';
+import { Stack, Box, Typography } from '@mui/material';
 import Container from '../Container';
 import RoadmapItemBox from '../../components/Roadmap/ItemBox';
+import Image from 'next/image';
+import BackgroundImg from '../../assets/roadmap/background.png';
+import { GradientBox } from './styles';
 
 // const q4_21 = [
 //     {
@@ -97,18 +100,23 @@ const q4_22 = [
 
 const RoadmapPageContainer: React.FC = (): JSX.Element => {
     return (
-        <Container sx={{ marginY: 5 }}>
-            <Stack spacing={5}>
-                <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
-                    ROADMAP
-                </Typography>
-                {/* <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
+        <Box position="relative">
+            <Stack position="absolute" top={0} left={0} right={0} zIndex={-10}>
+                <Image src={BackgroundImg} layout="responsive" alt="" />
+                <GradientBox />
+            </Stack>
+            <Container sx={{ paddingY: 8 }}>
+                <Stack spacing={8}>
+                    <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
+                        ROADMAP
+                    </Typography>
+                    {/* <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
                     PHASE 1
                 </Typography> */}
-                <Stack spacing={2}>
-                    {/* <Typography>Q4 2021</Typography> */}
-                    <Stack spacing={3}>
-                        {/* {q4_21.map((item, index) => (
+                    <Stack spacing={2}>
+                        {/* <Typography>Q4 2021</Typography> */}
+                        <Stack spacing={3}>
+                            {/* {q4_21.map((item, index) => (
                             <RoadmapItemBox
                                 img={item.img}
                                 title={item.title}
@@ -116,17 +124,17 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                                 key={`q4_21_roadmap_item_${index}`}
                             />
                         ))} */}
-                        {roadmapLists.map((item, index) => (
-                            <RoadmapItemBox
-                                img={item.img}
-                                title={item.title}
-                                desc={item.desc}
-                                key={`roadmap_item_${index}`}
-                            />
-                        ))}
+                            {roadmapLists.map((item, index) => (
+                                <RoadmapItemBox
+                                    img={item.img}
+                                    title={item.title}
+                                    desc={item.desc}
+                                    key={`roadmap_item_${index}`}
+                                />
+                            ))}
+                        </Stack>
                     </Stack>
-                </Stack>
-                {/* <Stack spacing={2}>
+                    {/* <Stack spacing={2}>
                     <Typography>Q2 2022</Typography>
                     <Stack spacing={3}>
                         {q2_22.map((item, index) => (
@@ -139,7 +147,7 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                         ))}
                     </Stack>
                 </Stack> */}
-                {/* <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
+                    {/* <Typography fontSize={48} fontWeight={900} lineHeight={1} className="neueplak_condensed">
                     PHASE 2
                 </Typography>
                 <Stack spacing={2}>
@@ -168,8 +176,9 @@ const RoadmapPageContainer: React.FC = (): JSX.Element => {
                         ))}
                     </Stack>
                 </Stack> */}
-            </Stack>
-        </Container>
+                </Stack>
+            </Container>
+        </Box>
     );
 };
 
