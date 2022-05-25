@@ -18,33 +18,32 @@ const roadmapLists = [
     {
         img: '/assets/roadmap/01.png',
         title: '01/ GENESIS CURRY FLOW',
-        desc: 'This NFT was built in 5 unique versions, each assigned a class of rarity. Upon delivery of the NFT, holders discovered which versions they unlocked. As the owner of the Genesis Curry Flow, you will be entitled to claim Metaverse Curry Flows from each of our partners; Decentraland, Sandbox, and RKL. Utility for all the Curry Flows are now introduced once again → read more below!',
+        desc: 'How do you celebrate the moment that Stephen Curry broke the world record for three-point shooting, changing the game for good? You change the Metaverse for good with the Curry Genesis Flow, the first wearable to cross the platforms of Decentraland, Sandbox, Gala Games, and RKL. Minted in five distinct rarities and now delivering the NF3 Basketball to our loyal holders.',
     },
     {
         img: '/assets/roadmap/02.png',
-        title: '02/ NF3 COUNTER',
-        desc: `NF3 Counter is an interactive fan tool to reward the biggest Stephen Curry fans as he battles his way through the Playoffs. The premise is simple: for every three-pointer, Curry makes in a playoff game, three free digital Basketballs (NF3s) are claimable by the most engaged fans. Score to Mint kicks off the next iteration of Curry Brand's effort to create the most positive Basketball community of all time, championed by the greatest shooter of all time.`,
+        title: '02/ NFT MEETS NF3',
+        desc: `As Stephen continues to raise the bar through the 2022 NBA Playoffs, we launch the amazing NF3 Basketball. Nine free NFT basketball minted every time he scores a 3 pointer. Yes, they are limited, and that’s the point; just like Steph, you have to have the quickest hands in the game.`,
     },
     {
         img: '/assets/roadmap/03.png',
-        title: '03/ COMMUNITY REVEAL',
-        desc: 'We are partnering with some of the biggest NFT communities championing utility and positivity. We hope to bridge new and existing communities within the NFT space through these long-term partnerships to build a community of basketball lovers. We will be revealing our 5 partners very soon. Join our Discord for the announcement!',
+        title: '03/ IT’S ALL ABOUT COMMUNITY',
+        desc: 'We are excited to partner with some of the most amazing NFT projects in the Metaverse to grow one big passionate basketball community. So prepare to be excited and get involved in the biggest cross-community project the Metaverse has seen.',
     },
     {
         img: '/assets/roadmap/04.png',
-        title: '04/ NF3 BASKETBALL SALE',
-        desc: `Previously, we gave away free NF3 basketballs based on Steph Curry's performance. Now, we want to reward our loyal holders of the Genesis Curry Flow holders as well as the Metaverse shoe holders (Sandbox, Decentraland, RKL, Gala Games X Town Star). Genesis Curry Flow holders will be able to claim a free NF3 Basketball and a free Serum based on the rarity of your Genesis Curry Flow! A snapshot for claiming will be taken on June 3rd and opened for claiming on June 3rd.
-        <br/><br/>Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist snapshot will be taken on DATE_FOR_MINTLIST_SNAPSHOT and opened to purchase on DATE_FOR_MINTLIST_OPEN. Essentially, mintlist participants will be able to purchase before everyone else!`,
+        title: '04/ YOU DESERVE THE MINTLIST',
+        desc: `To reward our loyal holders of the Genesis Curry Flow, as well as the Metaverse shoe holders (Sandbox, Decentraland, RKL, Gala Games X Town Star), holders will be able to claim a free NF3 Basketball and a free Serum based on the rarity of your Genesis Curry Flow! A snapshot for claiming will be taken on June 3rd and opened for claiming on June 3rd.`,
     },
     {
         img: '/assets/roadmap/05.png',
-        title: '05/ SERUM SHOP OPENS',
-        desc: 'To bring NF3 Basketballs to life, special Serums guarantee certain trait styles on your Basketball Head based on the Serum variety you own. There are 12 different types of Serums — you can fuse anywhere between 1-3 Serums with your NF3 Basketball to bring a Basketball Head to life. Serums take after popular NFT collections mixed with the unique style of Stephen Curry and Under Armour.The Partner NFT collections will be announced soon! General minting for Serums and NF3 Basketballs open on DATE_TIME_FOR_SHOP_OPEN.',
+        title: '05/ MUTATE THE GAME',
+        desc: 'Bringing together the NF3 and traits from our community partners, serums from each partner will be available for purchase from our store. So buy up to three and mix them together in our high-tech lab to create your very own unique and generative ‘Basketball Head’ avatar.<br/><br/>Serums and NF3 Basketballs open on DATE_TIME_FOR_SHOP_OPEN.',
     },
     {
         img: '/assets/roadmap/06.png',
-        title: '06/ MIXOLOGY ROOM',
-        desc: 'With the launch of the Mixology Room, NF3 Basketball and Serum holders will be able to fuse their them together to create a Basketball Head Avatar. Simply put:<br/><br/>1 Basketball Headz Avatar = 1 NF3 Basketball + 0-3 Serums<br/>1 Serum = 1-2 traits of the NFT community/brand traits GUARANTEED to be on your avatar<br/><br/>To create your Basketball Head Avatar, simply insert your NF3 Basketball, select up to three Serums you own, and morph them together in the Mixology Room. Be careful - the likeness of your Basketball Headz are in your own hands!',
+        title: '06/ WHAT’S NEXT',
+        desc: 'State-of-the-art 3D apparel locker, interoperable avatars, 3D file usage, real-life merchandise in the likeness of your avatar? Coming soon…',
     },
     // {
     //     img: '/assets/roadmap/curry.png',
