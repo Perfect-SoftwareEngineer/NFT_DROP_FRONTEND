@@ -5,10 +5,9 @@ import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
-import GeneralMintBox from '../../components/CurryShop/GeneralMintBox';
-import SerumMintBox from '../../components/CurryShop/SerumMintBox';
-import GCFClaimBox from '../../components/CurryShop/GCFClaimBox';
-import MintlistMintBox from '../../components/CurryShop/MintlistMintBox';
+import NF3GCFClaimBox from '../../components/CurryShop/NF3Basketball/GCFClaimBox';
+import NF3MintlistMintBox from '../../components/CurryShop/NF3Basketball/MintlistMintBox';
+import NF3GeneralMintBox from '../../components/CurryShop/NF3Basketball/GeneralMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
 import { ConnectMetamaskBtn, CategoryBtn } from './styles';
@@ -126,7 +125,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         if (!appState.jwtToken) return '';
         else if (dropPhase === 1) {
             return (
-                <GCFClaimBox
+                <NF3GCFClaimBox
                     gcfOwnedCount={gcfOwnedCount}
                     hexProofForGCFClaim={hexProofForGCFClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
@@ -134,7 +133,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             );
         } else if (dropPhase === 2) {
             return (
-                <MintlistMintBox
+                <NF3MintlistMintBox
                     communityOwnedCount={communityOwnedCount}
                     hexProofForCommunityClaim={hexProofForCommunityClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
@@ -143,8 +142,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         } else if (dropPhase === 3) {
             return (
                 <>
-                    <GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
-                    {/* <SerumMintBox amountLeft={1000} disabled /> */}
+                    <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                 </>
             );
         }

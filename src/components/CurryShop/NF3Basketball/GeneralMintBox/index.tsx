@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
+import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
-import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../styles';
+import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
 
 type ComponentProps = {
     amountLeft: number;
@@ -27,7 +27,7 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false, setNeedUpdateInfo }): JSX.Element => {
+const NF3GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false, setNeedUpdateInfo }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
@@ -210,4 +210,4 @@ const GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false
     );
 };
 
-export default GeneralMintBox;
+export default NF3GeneralMintBox;

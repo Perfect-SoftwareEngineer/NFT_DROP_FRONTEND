@@ -3,11 +3,11 @@ import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material'
 import Image from 'next/image';
 import { useWeb3React } from '@web3-react/core';
 import web3 from 'web3';
-import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
+import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimCommunity } from '../../../services/fetch';
-import { useAppContext } from '../../../context/AppContext';
+import { confirmClaimCommunity } from '../../../../services/fetch';
+import { useAppContext } from '../../../../context/AppContext';
 
 type ComponentProps = {
     // amountLeft: number;
@@ -23,7 +23,7 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-const MintlistMintBox: React.FC<ComponentProps> = ({
+const NF3MintlistMintBox: React.FC<ComponentProps> = ({
     communityOwnedCount,
     hexProofForCommunityClaim,
     setNeedUpdateInfo,
@@ -175,4 +175,4 @@ const MintlistMintBox: React.FC<ComponentProps> = ({
     );
 };
 
-export default MintlistMintBox;
+export default NF3MintlistMintBox;

@@ -4,10 +4,10 @@ import web3 from 'web3';
 import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import { MintBtn } from './styles';
-import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
+import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimGCF } from '../../../services/fetch';
-import { useAppContext } from '../../../context/AppContext';
+import { confirmClaimGCF } from '../../../../services/fetch';
+import { useAppContext } from '../../../../context/AppContext';
 
 type ComponentProps = {
     gcfOwnedCount: number;
@@ -22,7 +22,7 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-const GCFClaimBox: React.FC<ComponentProps> = ({
+const NF3GCFClaimBox: React.FC<ComponentProps> = ({
     gcfOwnedCount,
     hexProofForGCFClaim,
     setNeedUpdateInfo,
@@ -171,4 +171,4 @@ const GCFClaimBox: React.FC<ComponentProps> = ({
     );
 };
 
-export default GCFClaimBox;
+export default NF3GCFClaimBox;
