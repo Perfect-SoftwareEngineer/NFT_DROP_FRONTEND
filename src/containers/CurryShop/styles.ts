@@ -1,4 +1,4 @@
-import { styled, Button } from '@mui/material';
+import { styled, Button, Typography } from '@mui/material';
 
 export const ConnectMetamaskBtn = styled(Button)`
     display: flex;
@@ -19,4 +19,14 @@ export const ConnectMetamaskBtn = styled(Button)`
         width: 80%;
         height: 72px;
     }
+`;
+
+export const CategoryBtn = styled(Typography)<{ selected?: boolean }>`
+    padding: 4px 22px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: ${({ selected }) => (selected ? '#FFCA21' : 'none')};
+    color: ${({ selected }) => (selected ? 'black' : 'white')};
+    cursor: pointer;
 `;

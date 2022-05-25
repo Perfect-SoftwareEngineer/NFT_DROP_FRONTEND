@@ -11,7 +11,7 @@ import GCFClaimBox from '../../components/CurryShop/GCFClaimBox';
 import MintlistMintBox from '../../components/CurryShop/MintlistMintBox';
 import { claimGCF, claimCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
-import { ConnectMetamaskBtn } from './styles';
+import { ConnectMetamaskBtn, CategoryBtn } from './styles';
 import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
@@ -45,9 +45,16 @@ const mintBoxes = [
     },
 ];
 
+enum CategoryType {
+    NF3_BASKETBALL,
+    SERUMS,
+}
+
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [appState, setAppState] = useAppContext();
+
+    const [selCategory, setSelCategory] = useState<CategoryType>(CategoryType.NF3_BASKETBALL);
 
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
@@ -177,6 +184,20 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         The next iteration of Curry Brand's effort to create the most positive Basketball community of
                         all time, championed by the greatest shooter of all time
                     </Typography>
+                </Stack>
+                <Stack direction="row" spacing={1} marginTop={2}>
+                    <CategoryBtn
+                        selected={selCategory === CategoryType.NF3_BASKETBALL}
+                        onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
+                    >
+                        NF3 Basketball
+                    </CategoryBtn>
+                    <CategoryBtn
+                        selected={selCategory === CategoryType.SERUMS}
+                        onClick={() => setSelCategory(CategoryType.SERUMS)}
+                    >
+                        Serums
+                    </CategoryBtn>
                 </Stack>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
                     <Grid item xs={12} md={5}>
