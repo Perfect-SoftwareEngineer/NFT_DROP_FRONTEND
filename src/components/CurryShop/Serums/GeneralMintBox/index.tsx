@@ -4,6 +4,8 @@ import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
+import { SelectItemType } from '../../../../types';
+import SerumTypeSelect from '../../SerumTypeSelect';
 
 type ComponentProps = {
     amountLeft: number;
@@ -27,6 +29,34 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
+export const serumTypeOptions: Array<SelectItemType> = [
+    {
+        label: 'Unanimous1',
+        value: 'Unanimous1',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous2',
+        value: 'Unanimous2',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous3',
+        value: 'Unanimous3',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous4',
+        value: 'Unanimous4',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous5',
+        value: 'Unanimous5',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+];
+
 const SerumGeneralMintBox: React.FC<ComponentProps> = ({
     amountLeft,
     disabled = false,
@@ -39,6 +69,8 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
+
+    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -136,8 +168,14 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
 
     return (
         <>
-            <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
-                <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
+            <Stack borderRadius={2} sx={{ background: '#1B1C22' }}>
+                <Box
+                    position="relative"
+                    width="100%"
+                    height={{ xs: 160, md: 220 }}
+                    overflow="hidden"
+                    sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
+                >
                     <Image src={'/assets/curryshop/serum-general-mint-banner.png'} layout="fill" objectFit="cover" />
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
@@ -148,7 +186,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        General Mint
+                        GENERAL SERUM MINT
                     </Typography>
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} marginTop={3}>
                         <Box minWidth={240} width={240} height={240} position="relative">
@@ -156,22 +194,32 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                Serums
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
-                                PRICE: 0.07 ETH{' '}
+                                PRICE: 0.03 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
-                            <Stack spacing={1} marginTop={3}>
-                                <Typography fontSize={14} fontWeight={400} color="white">
-                                    # of Basketball Heads (Max 3)
-                                </Typography>
-                                <AmountInputWrapper sx={{ width: 184 }}>
-                                    <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
-                                    <MaxBtn onClick={setMaxMintCount}>Max</MaxBtn>
-                                </AmountInputWrapper>
+                            <Stack direction="row" spacing={2} marginTop={3}>
+                                <Stack spacing={1}>
+                                    <Typography fontSize={14}>Serum Type</Typography>
+                                    <SerumTypeSelect
+                                        serumType={serumType}
+                                        setSerumType={setSerumType}
+                                        serumTypeOptions={serumTypeOptions}
+                                    />
+                                </Stack>
+                                <Stack spacing={1}>
+                                    <Typography fontSize={14} fontWeight={400} color="white">
+                                        # of Basketball Heads (Max 3)
+                                    </Typography>
+                                    <AmountInputWrapper sx={{ width: 184 }}>
+                                        <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
+                                        <MaxBtn onClick={setMaxMintCount}>Max</MaxBtn>
+                                    </AmountInputWrapper>
+                                </Stack>
                             </Stack>
                             <Stack spacing={1} marginTop={2}>
                                 <Typography fontWeight={700} color="white">

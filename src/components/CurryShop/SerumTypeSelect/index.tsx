@@ -34,7 +34,7 @@ const SerumTypeSelect: React.FC<ComponentProps> = ({ serumType, setSerumType, se
                     <ArrowDownIcon sx={{ color: '#9E9E9E' }} className="arrow-icon" />
                 </SelectBtn>
             }
-            width={240}
+            width={220}
             options={serumTypeOptions}
             isOpen={serumTypeSelectOpen ? 1 : 0}
             handleClick={(value: string) => {
