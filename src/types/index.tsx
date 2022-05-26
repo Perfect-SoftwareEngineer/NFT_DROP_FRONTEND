@@ -34,3 +34,9 @@ export type RaffleWinnerItemType = {
     updatedAt: string;
     wallet: string;
 };
+
+export type SelectItemType = {
+    label: string;
+    value: string;
+    icon?: React.ReactNode;
+};

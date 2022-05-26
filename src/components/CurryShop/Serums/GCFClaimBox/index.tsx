@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import web3 from 'web3';
 import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
@@ -8,6 +8,11 @@ import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimGCF } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
+import { SelectItemType } from '../../../../types';
+import Select from '../../../../components/Select';
+import { SelectBtn } from '../styles';
+import useOnClickOutside from '../../../../hooks/useOnClickOutside';
+import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 type ComponentProps = {
     gcfOwnedCount: number;
@@ -22,6 +27,24 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
+export const serumTypeOptions: Array<SelectItemType> = [
+    {
+        label: 'Unanimous1',
+        value: 'Unanimous1',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous2',
+        value: 'Unanimous2',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous3',
+        value: 'Unanimous3',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+];
+
 const SerumGCFClaimBox: React.FC<ComponentProps> = ({
     gcfOwnedCount,
     hexProofForGCFClaim,
@@ -32,6 +55,11 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [claimedCount, setclaimedCount] = useState<number>(0);
+
+    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
+    const [serumTypeSelectOpen, setSerumTypeSelectOpen] = useState(false);
+    const nodeSerumTypeSelect = useRef<HTMLDivElement>(null);
+    useOnClickOutside(nodeSerumTypeSelect, () => setSerumTypeSelectOpen(false));
 
     const mint = async () => {
         if (!account) return;
@@ -105,11 +133,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                         marginTop={3}
                     >
                         <Box minWidth={240} width={240} height={240} position="relative">
-                            <Image
-                                src={'/assets/curryshop/serum-box.png'}
-                                layout="fill"
-                                style={{ borderRadius: 16 }}
-                            />
+                            <Image src={'/assets/curryshop/serum-box.png'} layout="fill" style={{ borderRadius: 16 }} />
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
@@ -121,6 +145,35 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
+                            <Stack spacing={1} marginTop={3}>
+                                <Typography fontSize={14}>Serum Type</Typography>
+                                <Select
+                                    titlebox={
+                                        <SelectBtn fullWidth isopen={serumTypeSelectOpen ? 1 : 0}>
+                                            {!!serumType.label ? (
+                                                <Stack direction="row" alignItems="center" spacing={1}>
+                                                    {serumType.icon}
+                                                    <Typography padding="2px 0 6px" color="white">
+                                                        {serumType.label}
+                                                    </Typography>
+                                                </Stack>
+                                            ) : (
+                                                'Select'
+                                            )}
+                                            <ArrowDownIcon sx={{ color: '#9E9E9E' }} className="arrow-icon" />
+                                        </SelectBtn>
+                                    }
+                                    width={220}
+                                    options={serumTypeOptions}
+                                    isOpen={serumTypeSelectOpen ? 1 : 0}
+                                    handleClick={(value: string) => {
+                                        const item = serumTypeOptions.find((option) => option.value === value);
+                                        setSerumType(item || { label: '', value: '' });
+                                    }}
+                                    setOpen={setSerumTypeSelectOpen}
+                                    ref={nodeSerumTypeSelect}
+                                />
+                            </Stack>
                             <Typography fontWeight={700} marginTop={3}>{`You have ${
                                 mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
                             } Genesis Curry Flow claims`}</Typography>
