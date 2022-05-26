@@ -127,8 +127,14 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const dropBox = () => {
         if (!appState.jwtToken) return '';
         else if (dropPhase === 1) {
-            return (
+            return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3GCFClaimBox
+                    gcfOwnedCount={gcfOwnedCount}
+                    hexProofForGCFClaim={hexProofForGCFClaim}
+                    setNeedUpdateInfo={setNeedUpdateInfo}
+                />
+            ) : (
+                <SerumGCFClaimBox
                     gcfOwnedCount={gcfOwnedCount}
                     hexProofForGCFClaim={hexProofForGCFClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}

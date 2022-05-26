@@ -106,7 +106,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                     >
                         <Box minWidth={240} width={240} height={240} position="relative">
                             <Image
-                                src={'/assets/currycounter/curry-brand.png'}
+                                src={'/assets/curryshop/nf3-basketball-box.png'}
                                 layout="fill"
                                 style={{ borderRadius: 16 }}
                             />

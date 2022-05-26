@@ -149,7 +149,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} marginTop={3}>
                         <Box minWidth={240} width={240} height={240} position="relative">
                             <Image
-                                src={'/assets/currycounter/curry-brand.png'}
+                                src={'/assets/curryshop/nf3-basketball-box.png'}
                                 layout="fill"
                                 style={{ borderRadius: 16 }}
                             />

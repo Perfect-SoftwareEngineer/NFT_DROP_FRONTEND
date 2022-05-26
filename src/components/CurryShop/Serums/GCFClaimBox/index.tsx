@@ -106,17 +106,17 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                     >
                         <Box minWidth={240} width={240} height={240} position="relative">
                             <Image
-                                src={'/assets/currycounter/curry-brand.png'}
+                                src={'/assets/curryshop/serum-box.png'}
                                 layout="fill"
                                 style={{ borderRadius: 16 }}
                             />
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                Serums
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
-                                PRICE: FREE{' '}
+                                PRICE: 0.03{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
