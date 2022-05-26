@@ -8,6 +8,8 @@ import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimCommunity } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
+import { SelectItemType } from '../../../../types';
+import SerumTypeSelect from '../../SerumTypeSelect';
 
 type ComponentProps = {
     // amountLeft: number;
@@ -23,6 +25,34 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
+export const serumTypeOptions: Array<SelectItemType> = [
+    {
+        label: 'Unanimous1',
+        value: 'Unanimous1',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous2',
+        value: 'Unanimous2',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous3',
+        value: 'Unanimous3',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous4',
+        value: 'Unanimous4',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous5',
+        value: 'Unanimous5',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+];
+
 const SerumMintlistMintBox: React.FC<ComponentProps> = ({
     communityOwnedCount,
     hexProofForCommunityClaim,
@@ -33,6 +63,8 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [claimedCount, setclaimedCount] = useState<number>(0);
+
+    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
 
     const mint = async () => {
         if (!account) return;
@@ -76,8 +108,14 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({
 
     return (
         <>
-            <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
-                <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
+            <Stack borderRadius={2} sx={{ background: '#1B1C22' }}>
+                <Box
+                    position="relative"
+                    width="100%"
+                    height={{ xs: 160, md: 220 }}
+                    overflow="hidden"
+                    sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
+                >
                     <Image src={'/assets/curryshop/serum-mintlist-mint-banner.png'} layout="fill" objectFit="cover" />
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
@@ -88,7 +126,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        Mintlist Mint
+                        SERUM MINTLIST MINT
                     </Typography>
                     <Typography fontWeight={700}>
                         Mintlist spots will also be given to all community supporters.
@@ -111,15 +149,23 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                Serums
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
-                                PRICE: 0.07 ETH{' '}
+                                PRICE: 0.03 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
-                            <Stack marginTop={3}>
+                            <Stack spacing={1} marginTop={3}>
+                                <Typography fontSize={14}>Serum Type</Typography>
+                                <SerumTypeSelect
+                                    serumType={serumType}
+                                    setSerumType={setSerumType}
+                                    serumTypeOptions={serumTypeOptions}
+                                />
+                            </Stack>
+                            <Stack marginTop={2}>
                                 <Typography fontWeight={700}>{`You have ${
                                     mintState === MintStatus.MINT_SUCCESS ? 0 : communityOwnedCount
                                 } Mintlist Spots`}</Typography>

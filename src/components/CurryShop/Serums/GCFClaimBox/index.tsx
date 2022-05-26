@@ -150,7 +150,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                                 Serums
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
-                                PRICE: 0.03{' '}
+                                PRICE: 0.03 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
