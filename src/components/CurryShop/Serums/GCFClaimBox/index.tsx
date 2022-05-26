@@ -13,7 +13,7 @@ import SerumTypeSelect from '../../SerumTypeSelect';
 
 type ComponentProps = {
     gcfOwnedCount: number;
-    hexProofForGCFClaim: any[];
+    gcfClaimHexProof: any[];
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -54,7 +54,7 @@ export const serumTypeOptions: Array<SelectItemType> = [
 
 const SerumGCFClaimBox: React.FC<ComponentProps> = ({
     gcfOwnedCount,
-    hexProofForGCFClaim,
+    gcfClaimHexProof,
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { account, library } = useWeb3React();
@@ -78,7 +78,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
         );
 
         nftContract.methods
-            .mint(gcfOwnedCount, hexProofForGCFClaim)
+            .mint(gcfOwnedCount, gcfClaimHexProof)
             .send({ from: account, value: 0 })
             .then(
                 //to do : update db

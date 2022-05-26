@@ -64,16 +64,16 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [dropPhase, setDropPhase] = useState<number>(0);
 
     const [nf3GCFOwnedCount, setNF3GCFOwnedCount] = useState<number>(0);
-    const [hexProofForNF3GCFClaim, setHexProofForNF3GCFClaim] = React.useState<any[]>([]);
+    const [nf3GCFClaimHexProof, setNF3GCFClaimHexProof] = React.useState<any[]>([]);
 
     const [serumGCFOwnedCount, setSerumGCFOwnedCount] = useState<number>(0);
-    const [hexProofForSerumGCFClaim, setHexProofForSerumGCFClaim] = React.useState<any[]>([]);
+    const [serumGCFClaimHexProof, setSerumGCFClaimHexProof] = React.useState<any[]>([]);
 
     const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
-    const [hexProofForNF3CommunityClaim, setHexProofForNF3CommunityClaim] = React.useState<any[]>([]);
+    const [nf3CommunityClaimHexProof, setNF3CommunityClaimHexProof] = React.useState<any[]>([]);
 
     const [serumCommunityOwnedCount, setSerumCommunityOwnedCount] = useState<number>(0);
-    const [hexProofForSerumCommunityClaim, setHexProofForSerumCommunityClaim] = React.useState<any[]>([]);
+    const [serumCommunityClaimHexProof, setSerumCommunityClaimHexProof] = React.useState<any[]>([]);
 
     const [needUpdateInfo, setNeedUpdateInfo] = useState<boolean>(true);
 
@@ -100,12 +100,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
                 if (NF3GCFFlag == true) {
                     setNF3GCFOwnedCount(0);
-                    setHexProofForNF3GCFClaim([]);
+                    setNF3GCFClaimHexProof([]);
                 } else {
                     if (account) {
                         const response = await claimNF3GCF(account);
                         setNF3GCFOwnedCount(response.quantity);
-                        setHexProofForNF3GCFClaim(response.hexProof);
+                        setNF3GCFClaimHexProof(response.hexProof);
                     }
                 }
             } else {
@@ -113,12 +113,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
                 if (SerumGCFFlag == true) {
                     setSerumGCFOwnedCount(0);
-                    setHexProofForSerumGCFClaim([]);
+                    setSerumGCFClaimHexProof([]);
                 } else {
                     if (account) {
                         const response = await claimSerumGCF(account);
                         setSerumGCFOwnedCount(response.quantity);
-                        setHexProofForSerumGCFClaim(response.hexProof);
+                        setSerumGCFClaimHexProof(response.hexProof);
                     }
                 }
             }
@@ -128,12 +128,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
                 if (NF3CommunityFlag == true) {
                     setNF3CommunityOwnedCount(0);
-                    setHexProofForNF3CommunityClaim([]);
+                    setNF3CommunityClaimHexProof([]);
                 } else {
                     if (account) {
                         const response = await claimNF3CommunityNFT(account);
                         setNF3CommunityOwnedCount(response.quantity);
-                        setHexProofForNF3CommunityClaim(response.hexProof);
+                        setNF3CommunityClaimHexProof(response.hexProof);
                     }
                 }
             } else {
@@ -141,12 +141,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
                 if (SerumCommunityFlag == true) {
                     setSerumCommunityOwnedCount(0);
-                    setHexProofForSerumCommunityClaim([]);
+                    setSerumCommunityClaimHexProof([]);
                 } else {
                     if (account) {
                         const response = await claimSerumCommunityNFT(account);
                         setSerumCommunityOwnedCount(response.quantity);
-                        setHexProofForSerumCommunityClaim(response.hexProof);
+                        setSerumCommunityClaimHexProof(response.hexProof);
                     }
                 }
             }
@@ -167,13 +167,13 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3GCFClaimBox
                     gcfOwnedCount={nf3GCFOwnedCount}
-                    hexProofForGCFClaim={hexProofForNF3GCFClaim}
+                    gcfClaimHexProof={nf3GCFClaimHexProof}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             ) : (
                 <SerumGCFClaimBox
                     gcfOwnedCount={serumGCFOwnedCount}
-                    hexProofForGCFClaim={hexProofForSerumGCFClaim}
+                    gcfClaimHexProof={serumGCFClaimHexProof}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             );
@@ -181,13 +181,13 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3MintlistMintBox
                     communityOwnedCount={nf3CommunityOwnedCount}
-                    hexProofForCommunityClaim={hexProofForNF3CommunityClaim}
+                    communityClaimHexProof={nf3CommunityClaimHexProof}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             ) : (
                 <SerumMintlistMintBox
                     communityOwnedCount={serumCommunityOwnedCount}
-                    hexProofForCommunityClaim={hexProofForSerumCommunityClaim}
+                    communityClaimHexProof={serumCommunityClaimHexProof}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             );

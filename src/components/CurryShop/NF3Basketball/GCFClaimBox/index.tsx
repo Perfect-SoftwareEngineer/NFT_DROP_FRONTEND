@@ -11,7 +11,7 @@ import { useAppContext } from '../../../../context/AppContext';
 
 type ComponentProps = {
     gcfOwnedCount: number;
-    hexProofForGCFClaim: any[];
+    gcfClaimHexProof: any[];
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -24,7 +24,7 @@ enum MintStatus {
 
 const NF3GCFClaimBox: React.FC<ComponentProps> = ({
     gcfOwnedCount,
-    hexProofForGCFClaim,
+    gcfClaimHexProof,
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { account, library } = useWeb3React();
@@ -46,7 +46,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
         );
 
         nftContract.methods
-            .mint(gcfOwnedCount, hexProofForGCFClaim)
+            .mint(gcfOwnedCount, gcfClaimHexProof)
             .send({ from: account, value: 0 })
             .then(
                 //to do : update db

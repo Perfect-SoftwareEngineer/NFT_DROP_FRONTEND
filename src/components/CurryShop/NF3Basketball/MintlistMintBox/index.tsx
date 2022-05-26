@@ -12,7 +12,7 @@ import { useAppContext } from '../../../../context/AppContext';
 type ComponentProps = {
     // amountLeft: number;
     communityOwnedCount: number;
-    hexProofForCommunityClaim: any[];
+    communityClaimHexProof: any[];
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -25,7 +25,7 @@ enum MintStatus {
 
 const NF3MintlistMintBox: React.FC<ComponentProps> = ({
     communityOwnedCount,
-    hexProofForCommunityClaim,
+    communityClaimHexProof,
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { account, library } = useWeb3React();
@@ -50,7 +50,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
         let value = (_mintPrice * communityOwnedCount).toString();
         value = web3.utils.toWei(value, 'ether');
         await nftContract.methods
-            .mint(communityOwnedCount, hexProofForCommunityClaim)
+            .mint(communityOwnedCount, communityClaimHexProof)
             .send({ from: account, value: value })
             .then(
                 //to do : update db
