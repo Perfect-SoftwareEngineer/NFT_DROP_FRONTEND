@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MintBtn } from './styles';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimGCF } from '../../../../services/fetch';
+import { confirmClaimNF3GCF } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 
 type ComponentProps = {
@@ -55,7 +55,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimGCF(account, appState.jwtToken)
+                    confirmClaimNF3GCF(account, appState.jwtToken)
                         .then((response: any) => {
                             console.log('resonse:', response);
                         })

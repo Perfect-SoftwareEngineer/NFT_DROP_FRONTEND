@@ -6,7 +6,7 @@ import web3 from 'web3';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimCommunity } from '../../../../services/fetch';
+import { confirmClaimSerumCommunity } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
@@ -91,7 +91,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimCommunity(account, appState.jwtToken)
+                    confirmClaimSerumCommunity(account, appState.jwtToken)
                         .then((response: any) => {
                             console.log('resonse:', response);
                         })

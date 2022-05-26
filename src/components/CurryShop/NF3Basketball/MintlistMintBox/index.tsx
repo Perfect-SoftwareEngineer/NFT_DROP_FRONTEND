@@ -6,7 +6,7 @@ import web3 from 'web3';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimCommunity } from '../../../../services/fetch';
+import { confirmClaimNF3Community } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 
 type ComponentProps = {
@@ -59,7 +59,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimCommunity(account, appState.jwtToken)
+                    confirmClaimNF3Community(account, appState.jwtToken)
                         .then((response: any) => {
                             console.log('resonse:', response);
                         })

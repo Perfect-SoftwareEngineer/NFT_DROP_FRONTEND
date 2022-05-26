@@ -11,7 +11,7 @@ import NF3GeneralMintBox from '../../components/CurryShop/NF3Basketball/GeneralM
 import SerumGCFClaimBox from '../../components/CurryShop/Serums/GCFClaimBox';
 import SerumMintlistMintBox from '../../components/CurryShop/Serums/MintlistMintBox';
 import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBox';
-import { claimGCF, claimCommunityNFT } from '../../services/fetch';
+import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
 import { ConnectMetamaskBtn, CategoryBtn } from './styles';
 import Image from 'next/image';
@@ -62,11 +62,18 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
     const [dropPhase, setDropPhase] = useState<number>(0);
-    const [gcfOwnedCount, setGCFOwnedCount] = useState<number>(0);
-    const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
-    const [hexProofForGCFClaim, setHexProofForGCFClaim] = React.useState<any[]>([]);
 
-    const [hexProofForCommunityClaim, setHexProofForCommunityClaim] = React.useState<any[]>([]);
+    const [nf3GCFOwnedCount, setNF3GCFOwnedCount] = useState<number>(0);
+    const [hexProofForNF3GCFClaim, setHexProofForNF3GCFClaim] = React.useState<any[]>([]);
+
+    const [serumGCFOwnedCount, setSerumGCFOwnedCount] = useState<number>(0);
+    const [hexProofForSerumGCFClaim, setHexProofForSerumGCFClaim] = React.useState<any[]>([]);
+
+    const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
+    const [hexProofForNF3CommunityClaim, setHexProofForNF3CommunityClaim] = React.useState<any[]>([]);
+
+    const [serumCommunityOwnedCount, setSerumCommunityOwnedCount] = useState<number>(0);
+    const [hexProofForSerumCommunityClaim, setHexProofForSerumCommunityClaim] = React.useState<any[]>([]);
 
     const [needUpdateInfo, setNeedUpdateInfo] = useState<boolean>(true);
 
@@ -88,29 +95,59 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
             const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
 
-            const GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
+            if (selCategory === CategoryType.NF3_BASKETBALL) {
+                const NF3GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
 
-            if (GCFFlag == true) {
-                setGCFOwnedCount(0);
-                setHexProofForGCFClaim([]);
+                if (NF3GCFFlag == true) {
+                    setNF3GCFOwnedCount(0);
+                    setHexProofForNF3GCFClaim([]);
+                } else {
+                    if (account) {
+                        const response = await claimNF3GCF(account);
+                        setNF3GCFOwnedCount(response.quantity);
+                        setHexProofForNF3GCFClaim(response.hexProof);
+                    }
+                }
             } else {
-                if (account) {
-                    const response = await claimGCF(account);
-                    setGCFOwnedCount(response.quantity);
-                    setHexProofForGCFClaim(response.hexProof);
+                const SerumGCFFlag = true;
+
+                if (SerumGCFFlag == true) {
+                    setSerumGCFOwnedCount(0);
+                    setHexProofForSerumGCFClaim([]);
+                } else {
+                    if (account) {
+                        const response = await claimSerumGCF(account);
+                        setSerumGCFOwnedCount(response.quantity);
+                        setHexProofForSerumGCFClaim(response.hexProof);
+                    }
                 }
             }
 
-            const CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
+            if (selCategory === CategoryType.NF3_BASKETBALL) {
+                const NF3CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
 
-            if (CommunityFlag == true) {
-                setCommunityOwnedCount(0);
-                setHexProofForCommunityClaim([]);
+                if (NF3CommunityFlag == true) {
+                    setNF3CommunityOwnedCount(0);
+                    setHexProofForNF3CommunityClaim([]);
+                } else {
+                    if (account) {
+                        const response = await claimNF3CommunityNFT(account);
+                        setNF3CommunityOwnedCount(response.quantity);
+                        setHexProofForNF3CommunityClaim(response.hexProof);
+                    }
+                }
             } else {
-                if (account) {
-                    const response = await claimCommunityNFT(account);
-                    setCommunityOwnedCount(response.quantity);
-                    setHexProofForCommunityClaim(response.hexProof);
+                const SerumCommunityFlag = true;
+
+                if (SerumCommunityFlag == true) {
+                    setSerumCommunityOwnedCount(0);
+                    setHexProofForSerumCommunityClaim([]);
+                } else {
+                    if (account) {
+                        const response = await claimSerumCommunityNFT(account);
+                        setSerumCommunityOwnedCount(response.quantity);
+                        setHexProofForSerumCommunityClaim(response.hexProof);
+                    }
                 }
             }
 
@@ -122,35 +159,35 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             setNeedUpdateInfo(false);
         }
-    }, [account, needUpdateInfo]);
+    }, [account, selCategory, needUpdateInfo]);
 
     const dropBox = () => {
         if (!appState.jwtToken) return '';
         else if (dropPhase === 1) {
             return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3GCFClaimBox
-                    gcfOwnedCount={gcfOwnedCount}
-                    hexProofForGCFClaim={hexProofForGCFClaim}
+                    gcfOwnedCount={nf3GCFOwnedCount}
+                    hexProofForGCFClaim={hexProofForNF3GCFClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             ) : (
                 <SerumGCFClaimBox
-                    gcfOwnedCount={gcfOwnedCount}
-                    hexProofForGCFClaim={hexProofForGCFClaim}
+                    gcfOwnedCount={serumGCFOwnedCount}
+                    hexProofForGCFClaim={hexProofForSerumGCFClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             );
         } else if (dropPhase === 2) {
             return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3MintlistMintBox
-                    communityOwnedCount={communityOwnedCount}
-                    hexProofForCommunityClaim={hexProofForCommunityClaim}
+                    communityOwnedCount={nf3CommunityOwnedCount}
+                    hexProofForCommunityClaim={hexProofForNF3CommunityClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             ) : (
                 <SerumMintlistMintBox
-                    communityOwnedCount={communityOwnedCount}
-                    hexProofForCommunityClaim={hexProofForCommunityClaim}
+                    communityOwnedCount={serumCommunityOwnedCount}
+                    hexProofForCommunityClaim={hexProofForSerumCommunityClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             );

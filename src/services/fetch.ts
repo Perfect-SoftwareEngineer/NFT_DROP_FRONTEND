@@ -174,7 +174,7 @@ export const getCountValues = (gameID: string) =>
             });
     });
 
-export const claimGCF = (wallet: string) =>
+export const claimNF3GCF = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
@@ -189,7 +189,7 @@ export const claimGCF = (wallet: string) =>
             });
     });
 
-export const confirmClaimGCF = (wallet: string, token: string) =>
+export const confirmClaimNF3GCF = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/claim`;
         // console.log('reqUrl:', reqUrl);
@@ -213,7 +213,46 @@ export const confirmClaimGCF = (wallet: string, token: string) =>
             });
     });
 
-export const claimCommunityNFT = (wallet: string) =>
+export const claimSerumGCF = (wallet: string) =>
+    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
+        // console.log('reqUrl:', reqUrl);
+
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+
+export const confirmClaimSerumGCF = (wallet: string, token: string) =>
+    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/claim`;
+        // console.log('reqUrl:', reqUrl);
+
+        const body = { wallet: wallet };
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+        };
+
+        axios
+            .post(reqUrl, body, config)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            });
+    });
+
+export const claimNF3CommunityNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
@@ -228,7 +267,46 @@ export const claimCommunityNFT = (wallet: string) =>
             });
     });
 
-export const confirmClaimCommunity = (wallet: string, token: string) =>
+export const confirmClaimNF3Community = (wallet: string, token: string) =>
+    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/claim`;
+        // console.log('reqUrl:', reqUrl);
+
+        const body = { wallet: wallet };
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+        };
+
+        axios
+            .post(reqUrl, body, config)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error.response.data);
+            });
+    });
+
+export const claimSerumCommunityNFT = (wallet: string) =>
+    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/hex_proof/${wallet}`;
+        // console.log('reqUrl:', reqUrl);
+
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+
+export const confirmClaimSerumCommunity = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/claim`;
         // console.log('reqUrl:', reqUrl);

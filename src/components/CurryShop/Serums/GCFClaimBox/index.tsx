@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MintBtn } from './styles';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimGCF } from '../../../../services/fetch';
+import { confirmClaimSerumGCF } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
@@ -87,7 +87,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimGCF(account, appState.jwtToken)
+                    confirmClaimSerumGCF(account, appState.jwtToken)
                         .then((response: any) => {
                             console.log('resonse:', response);
                         })
