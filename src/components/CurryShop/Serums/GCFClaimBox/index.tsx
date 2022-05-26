@@ -9,10 +9,7 @@ import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimGCF } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
-import Select from '../../../../components/Select';
-import { SelectBtn } from '../styles';
-import useOnClickOutside from '../../../../hooks/useOnClickOutside';
-import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import SerumTypeSelect from '../../SerumTypeSelect';
 
 type ComponentProps = {
     gcfOwnedCount: number;
@@ -67,9 +64,6 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
     const [claimedCount, setclaimedCount] = useState<number>(0);
 
     const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
-    const [serumTypeSelectOpen, setSerumTypeSelectOpen] = useState(false);
-    const nodeSerumTypeSelect = useRef<HTMLDivElement>(null);
-    useOnClickOutside(nodeSerumTypeSelect, () => setSerumTypeSelectOpen(false));
 
     const mint = async () => {
         if (!account) return;
@@ -163,31 +157,10 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                             </Typography>
                             <Stack spacing={1} marginTop={3}>
                                 <Typography fontSize={14}>Serum Type</Typography>
-                                <Select
-                                    titlebox={
-                                        <SelectBtn fullWidth isopen={serumTypeSelectOpen ? 1 : 0}>
-                                            {!!serumType.label ? (
-                                                <Stack direction="row" alignItems="center" spacing={1}>
-                                                    {serumType.icon}
-                                                    <Typography padding="2px 0 6px" color="white">
-                                                        {serumType.label}
-                                                    </Typography>
-                                                </Stack>
-                                            ) : (
-                                                'Select'
-                                            )}
-                                            <ArrowDownIcon sx={{ color: '#9E9E9E' }} className="arrow-icon" />
-                                        </SelectBtn>
-                                    }
-                                    width={220}
-                                    options={serumTypeOptions}
-                                    isOpen={serumTypeSelectOpen ? 1 : 0}
-                                    handleClick={(value: string) => {
-                                        const item = serumTypeOptions.find((option) => option.value === value);
-                                        setSerumType(item || { label: '', value: '' });
-                                    }}
-                                    setOpen={setSerumTypeSelectOpen}
-                                    ref={nodeSerumTypeSelect}
+                                <SerumTypeSelect
+                                    serumType={serumType}
+                                    setSerumType={setSerumType}
+                                    serumTypeOptions={serumTypeOptions}
                                 />
                             </Stack>
                             <Typography fontWeight={700} marginTop={3}>{`You have ${
