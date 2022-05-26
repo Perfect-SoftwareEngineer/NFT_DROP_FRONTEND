@@ -3,12 +3,12 @@ import { styled, Box, Stack, Button } from '@mui/material';
 export const ListItemsWrapper = styled(Box)<{ isOpen: number }>`
     display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
     position: absolute;
-    padding-top: 8px;
+    padding-top: 4px;
     z-index: 10;
 `;
 
 export const ListItemsStack = styled(Stack)`
-    border-radius: 16px;
+    border-radius: 4px;
     padding: 8px;
     overflow: hidden;
     background: white;

@@ -21,7 +21,7 @@ const style = css`
     .site__footer {
         /* background: gray; */
         position: relative;
-        z-index: 20;
+        z-index: 5;
     }
 `;
 

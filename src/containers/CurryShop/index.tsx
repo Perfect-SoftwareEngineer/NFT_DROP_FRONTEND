@@ -178,7 +178,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Box>
-            <Container sx={{ marginY: 4 }}>
+            <Container sx={{ marginY: 4, overflow: 'visible' }}>
                 <Stack direction="row" spacing={2}>
                     <CounterBox title="MY BASKETBALLS" value={balance} />
                     <CounterBox title="MY SERUMS" value={0} />

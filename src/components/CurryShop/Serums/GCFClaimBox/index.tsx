@@ -43,6 +43,16 @@ export const serumTypeOptions: Array<SelectItemType> = [
         value: 'Unanimous3',
         icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
     },
+    {
+        label: 'Unanimous4',
+        value: 'Unanimous4',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Unanimous5',
+        value: 'Unanimous5',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
 ];
 
 const SerumGCFClaimBox: React.FC<ComponentProps> = ({
@@ -100,8 +110,14 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
 
     return (
         <>
-            <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
-                <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
+            <Stack borderRadius={2} sx={{ background: '#1B1C22' }}>
+                <Box
+                    position="relative"
+                    width="100%"
+                    height={{ xs: 160, md: 220 }}
+                    overflow="hidden"
+                    sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
+                >
                     <Image src={'/assets/roadmap/genesis-curry-flow.png'} layout="fill" objectFit="cover" />
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
