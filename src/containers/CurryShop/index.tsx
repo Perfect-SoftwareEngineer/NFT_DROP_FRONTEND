@@ -141,18 +141,24 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 />
             );
         } else if (dropPhase === 2) {
-            return (
+            return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3MintlistMintBox
+                    communityOwnedCount={communityOwnedCount}
+                    hexProofForCommunityClaim={hexProofForCommunityClaim}
+                    setNeedUpdateInfo={setNeedUpdateInfo}
+                />
+            ) : (
+                <SerumMintlistMintBox
                     communityOwnedCount={communityOwnedCount}
                     hexProofForCommunityClaim={hexProofForCommunityClaim}
                     setNeedUpdateInfo={setNeedUpdateInfo}
                 />
             );
         } else if (dropPhase === 3) {
-            return (
-                <>
-                    <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
-                </>
+            return selCategory === CategoryType.NF3_BASKETBALL ? (
+                <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
+            ) : (
+                <SerumGeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
             );
         }
     };

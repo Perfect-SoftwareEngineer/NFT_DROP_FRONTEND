@@ -74,7 +74,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
         <>
             <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
                 <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
-                    <Image src={'/assets/roadmap/genesis-curry-flow.png'} layout="fill" objectFit="cover" />
+                    <Image src={'/assets/curryshop/gcf-claim-banner.png'} layout="fill" objectFit="cover" />
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography

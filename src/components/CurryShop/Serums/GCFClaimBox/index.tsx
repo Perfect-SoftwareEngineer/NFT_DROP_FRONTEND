@@ -112,7 +112,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                     overflow="hidden"
                     sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
                 >
-                    <Image src={'/assets/roadmap/genesis-curry-flow.png'} layout="fill" objectFit="cover" />
+                    <Image src={'/assets/curryshop/gcf-claim-banner.png'} layout="fill" objectFit="cover" />
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography

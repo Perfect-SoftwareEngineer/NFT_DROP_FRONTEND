@@ -27,7 +27,11 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-const NF3GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = false, setNeedUpdateInfo }): JSX.Element => {
+const NF3GeneralMintBox: React.FC<ComponentProps> = ({
+    amountLeft,
+    disabled = false,
+    setNeedUpdateInfo,
+}): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
@@ -134,7 +138,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
         <>
             <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
                 <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
-                    <Image src={'/assets/roadmap/curry-counter.png'} layout="fill" objectFit="cover" />
+                    <Image src={'/assets/curryshop/nf3-general-mint-banner.png'} layout="fill" objectFit="cover" />
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography
