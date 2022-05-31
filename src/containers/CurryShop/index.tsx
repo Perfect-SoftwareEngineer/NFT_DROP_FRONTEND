@@ -19,7 +19,7 @@ import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
 import { useAppContext } from '../../context/AppContext';
 
-const mintBoxes = [
+const nf3MintBoxes = [
     {
         img: '/assets/curryshop/gcf-claim.png',
         title: 'Genesis Curry Flow Claims',
@@ -32,14 +32,42 @@ const mintBoxes = [
         dropPhase: 1,
     },
     {
-        img: '/assets/curryshop/mintlist-general-mint.svg',
+        img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
         title: 'Mintlist Mint',
         desc: 'Our Community Holders will be able to mint before the Public Mint',
         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
         dropPhase: 2,
     },
     {
-        img: '/assets/curryshop/mintlist-general-mint.svg',
+        img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
+        title: 'General Mint',
+        desc: 'Public sale to mint or reserve mint an NF3 Basketball',
+        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+        dropPhase: 3,
+    },
+];
+
+const serumMintBoxes = [
+    {
+        img: '/assets/curryshop/gcf-claim.png',
+        title: 'Genesis Curry Flow Claims',
+        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball',
+        dateList: [
+            'Snapshot Date: June 3, 2022 at 5PM PST',
+            'Start Date: June 3, 2022 at 5PM PST',
+            'End Date: June 5, 2022 at 5PM PST',
+        ],
+        dropPhase: 1,
+    },
+    {
+        img: '/assets/curryshop/serum-mintlist-general-mint.png',
+        title: 'Mintlist Mint',
+        desc: 'Our Community Holders will be able to mint before the Public Mint',
+        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+        dropPhase: 2,
+    },
+    {
+        img: '/assets/curryshop/serum-mintlist-general-mint.png',
         title: 'General Mint',
         desc: 'Public sale to mint or reserve mint an NF3 Basketball',
         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
@@ -252,13 +280,15 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
                     <Grid item xs={12} md={5}>
                         <Stack spacing={3}>
-                            {mintBoxes.map((item, index) => (
-                                <StatusBox
-                                    {...item}
-                                    selected={!!appState.jwtToken && item.dropPhase === dropPhase}
-                                    key={`status_box_key${index}`}
-                                />
-                            ))}
+                            {(selCategory === CategoryType.NF3_BASKETBALL ? nf3MintBoxes : serumMintBoxes).map(
+                                (item, index) => (
+                                    <StatusBox
+                                        {...item}
+                                        selected={!!appState.jwtToken && item.dropPhase === dropPhase}
+                                        key={`status_box_key${index}`}
+                                    />
+                                )
+                            )}
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={7}>
