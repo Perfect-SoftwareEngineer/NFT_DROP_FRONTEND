@@ -6,7 +6,7 @@ import { Markup } from 'interweave';
 type ComponentProps = {
     img: string;
     title: string;
-    desc: string;
+    desc: React.ReactNode;
 };
 
 const ItemBox: React.FC<ComponentProps> = ({ img, title, desc }): JSX.Element => {
@@ -25,9 +25,7 @@ const ItemBox: React.FC<ComponentProps> = ({ img, title, desc }): JSX.Element =>
                 <Typography fontSize={48} fontWeight={800} lineHeight={1.1} className="neueplak_condensed">
                     {title}
                 </Typography>
-                <Typography>
-                    <Markup content={desc} />
-                </Typography>
+                {desc}
             </Stack>
         </Stack>
     );
