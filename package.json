@@ -36,6 +36,7 @@
     "next-pwa": "^5.4.4",
     "react": "latest",
     "react-dom": "latest",
+    "react-player": "^2.10.1",
     "react-use": "^17.3.2",
     "recoil": "^0.6.1",
     "sass": "^1.49.9",
