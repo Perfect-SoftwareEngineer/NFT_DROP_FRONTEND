@@ -41,9 +41,9 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="I am a Genesis Curry Flow holder, what happens next?">
                     <Typography>
                         For our long term Genesis Curry Flow holders, we will reward free NF3 Basketball claims. A
-                        snapshot will take place on [DATE AND TIME HERE], and all of those who have the Genesis Curry
-                        Flows in their wallet will be registered to claim on [DATE AND TIME HERE]. We will give holders
-                        48 hours to claim their free mints.
+                        snapshot will take place on June 9th at 5:00:00 PST, and all of those who have the Genesis Curry
+                        Flows in their wallet will be registered to claim on June 9th at 5:00:00 PST. We will give
+                        holders 48 hours to claim their free mints.
                         <br></br>
                         <br></br>
                         If you have more than one Genesis Curry Flow, you will be able to claim the same amount of NF3
@@ -53,8 +53,8 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="What if I am a Genesis Curry Flow Metaverse Sneaker Holder?">
                     <Typography>
                         Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist
-                        snapshot will be taken on DATE_FOR_MINTLIST_SNAPSHOT and opened to purchase on
-                        DATE_FOR_MINTLIST_OPEN.
+                        snapshot will be taken on June 13th at 5:00:00 PST and opened to purchase on June 13th at
+                        5:00:00 PST.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is a snapshot?">
@@ -62,6 +62,10 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         A snapshot is a record of wallet addresses that have been collected at a given time. It is used
                         to claim for those who own the Genesis Curry Flows. If you are interested in claiming, make sure
                         to keep the snapshot time in mind when purchasing the Genesis Curry Flows.
+                        <br></br>
+                        <br></br>
+                        For this project, there will be three separate snapshots (one for each drop). So, hold your
+                        Genesis Curry Flows throughout the snapshots in order to claim your NFTs.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is a mintlist?">
