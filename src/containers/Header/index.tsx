@@ -20,12 +20,14 @@ type ComponentProps = {};
 
 const appMenuList = [
     // { title: 'Home', url: '/' },
+
     { title: 'NF3 Counter', url: '/currycounter' },
 
-    // { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
-    { title: 'Curry Shop', url: '/curryshop' },
+    { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
+    // { title: 'Curry Shop', url: '/curryshop' },
 
     { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
+
     { title: 'The Lab', url: '', comingSoon: { rightPos: -10 } },
 
     // { title: 'Roadmap', url: '', comingSoon: { rightPos: -10 } },
@@ -33,7 +35,8 @@ const appMenuList = [
 
     { title: 'FAQ', url: '/faq' },
 
-    { title: 'FTX Holders', url: '/ftxholders' },
+    // { title: 'FTX Holders', url: '/ftxholders' },
+    { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
 ];
 
 const socialLinksList = [
