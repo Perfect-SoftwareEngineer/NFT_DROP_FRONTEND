@@ -32,9 +32,9 @@ const roadmapLists = [
         title: '02/ NFT MEETS NF3',
         desc: (
             <Typography>
-                As Stephen continues to raise the bar through the 2022 NBA Playoffs, we launch the amazing NF3
+                As Curry continues to raise the bar through the 2022 NBA Playoffs, we launch our first ever NF3
                 Basketball. Nine free NFT basketball minted every time he scores a 3 pointer. Yes, they are limited, and
-                that's the point; just like Steph, you have to have the quickest hands in the game.
+                that's the point; just like Curry, you have to have the quickest hands in the game.
             </Typography>
         ),
     },
@@ -44,8 +44,8 @@ const roadmapLists = [
         desc: (
             <Typography>
                 We are excited to partner with some of the most amazing NFT projects in the Metaverse to grow one big
-                passionate basketball community. So prepare to be excited and get involved in the biggest
-                cross-community project the Metaverse has seen.
+                passionate basketball community. So prepare to get involved in the biggest cross-community project the
+                Metaverse has seen.
             </Typography>
         ),
     },
@@ -79,11 +79,11 @@ const roadmapLists = [
         desc: (
             <Typography>
                 Bringing together the NF3 and traits from our community partners, serums from each partner will be
-                available for purchase from our store. So buy up to three and mix them together in our high-tech lab to
-                create your very own unique and generative 'Basketball Head' avatar.
+                available for purchase from our store. Mix them together in our high-tech lab and prepare to unlock your
+                unique and generative Basketball Headz avatar.
                 <br />
                 <br />
-                <b>NF3 Basketballs General Mints open on June 16th at 5:00:00 PST.</b>
+                <b>NF3 Basketball General Mints open on June 16th at 5:00:00 PST.</b>
                 <br />
                 <b>Serum purchasing is available on June 28th at 5:00:00 PST.</b>
             </Typography>
@@ -94,8 +94,8 @@ const roadmapLists = [
         title: `06/ WHAT'S NEXT`,
         desc: (
             <Typography>
-                State-of-the-art 3D apparel locker, interoperable avatars, 3D file usage, real-life merchandise in the
-                likeness of your avatar? Coming soon…
+                Curry Brand is committed to building the most vibrant basketball community in the Metaverse. So stay
+                tuned as we continue to innovate with new drops to delight and reward our fans.
             </Typography>
         ),
     },
