@@ -18,7 +18,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
+                    : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
             );
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });

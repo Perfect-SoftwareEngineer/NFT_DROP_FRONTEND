@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json'
+import BasketballHeadABI from '../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../styles';
 import InfoIcon from '../../../assets/curryshop/info.svg';
 import BasketballImg from '../../../assets/curryshop/basketball.png';
 import Web3 from 'web3';
-
 
 type ComponentProps = {
     amountLeft: number;
@@ -30,56 +29,68 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
     const mint = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
+                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
         );
 
         try {
-            let dropPhase = await nftContract.methods.dropPhase().call({ from: account })
-            if(parseInt(dropPhase) == 1) {
+            let dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            if (parseInt(dropPhase) == 1) {
                 // switch [] to hexproof of GCF
-                await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            } else if(parseInt(dropPhase) == 2) {
+                await nftContract.methods
+                    .mint(mintAmount, [])
+                    .send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            } else if (parseInt(dropPhase) == 2) {
                 // switch [] to hexproof of whiltelist
-                await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            } else if(parseInt(dropPhase) == 3) {
+                await nftContract.methods
+                    .mint(mintAmount, [])
+                    .send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            } else if (parseInt(dropPhase) == 3) {
                 let reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
-                if(parseInt(reservedCount)) {
+                if (parseInt(reservedCount)) {
                     await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
                     reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
                     setReservedAmount(reservedCount);
                 } else {
-                    await nftContract.methods.mint(mintAmount, []).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+                    await nftContract.methods
+                        .mint(mintAmount, [])
+                        .send({ from: account, value: mintPrice * parseInt(mintAmount) });
                 }
             }
-        } catch (err: any) {   
+        } catch (err: any) {
             console.error(err);
             return;
         }
-
     };
 
     const reserve = async () => {
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
+                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
         );
 
         try {
-            await nftContract.methods.reserve(mintAmount).send({ from: account, value: mintPrice * parseInt(mintAmount) });
+            await nftContract.methods
+                .reserve(mintAmount)
+                .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
             setReservedAmount(reservedCount);
-        } catch (err: any) {   
+        } catch (err: any) {
             console.error(err);
             return;
         }
-
     };
 
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '0xC57C94346b466bED19438c195ad78CAdC7D09473' : '0x1d42BCE7Ef74E7699F6De85F8C753ddd8aB7C16B'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
+                    : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
             );
 
             const reservedCount = await nftContract.methods.reserveCount().call(account, { from: account });
@@ -87,7 +98,7 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
             setReservedAmount(reservedCount);
             setMintPrice(parseInt(mPrice));
         }
-        if(account) {
+        if (account) {
             updateAppState();
         }
     }, [account]);
@@ -127,8 +138,12 @@ const BasketballMintBox: React.FC<ComponentProps> = ({ amountLeft, disabled = fa
                 </Typography>
                 <Stack direction="row" alignItems="center" spacing={2}>
                     <Stack direction="row" alignItems="center" spacing={1}>
-                        <MintBtn disabled={disabled} onClick={mint}>Mint</MintBtn>
-                        <ReserveBtn disabled={disabled} onClick={reserve}>Reserve</ReserveBtn>
+                        <MintBtn disabled={disabled} onClick={mint}>
+                            Mint
+                        </MintBtn>
+                        <ReserveBtn disabled={disabled} onClick={reserve}>
+                            Reserve
+                        </ReserveBtn>
                     </Stack>
                     <InfoIcon />
                 </Stack>
