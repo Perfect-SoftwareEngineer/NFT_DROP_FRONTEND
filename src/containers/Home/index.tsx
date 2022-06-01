@@ -10,10 +10,10 @@ const HomePageContainer: React.FC = (): JSX.Element => {
     const handleScroll = (event: any) => {
         if (event.deltaY < 0) {
             // console.log('scrolling up, seekPos:', seekPos);
-            setSeekPos(Math.max(seekPos - 0.003, 0));
+            setSeekPos(Math.max(seekPos - 0.01, 0));
         } else if (event.deltaY > 0) {
             // console.log('scrolling down, seekPos:', seekPos);
-            setSeekPos(Math.min(seekPos + 0.003, 1));
+            setSeekPos(Math.min(seekPos + 0.01, 1));
         }
     };
 
