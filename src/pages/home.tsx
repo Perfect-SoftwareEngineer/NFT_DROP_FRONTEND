@@ -9,15 +9,16 @@ interface ComponentProps {}
 const HomePage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     const router = useRouter();
 
-    useEffect(() => {
-        router.push('/currycounter');
-    }, []);
+    // useEffect(() => {
+    //     router.push('/currycounter');
+    // }, []);
 
     return (
-        // <PageContainer>
-        //     <HomePageContainer />
-        // </PageContainer>
-        <></>
+        <>
+            <PageContainer>
+                <HomePageContainer />
+            </PageContainer>
+        </>
     );
 };
 
