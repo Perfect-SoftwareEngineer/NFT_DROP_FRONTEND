@@ -1,16 +1,23 @@
-import React, { PropsWithChildren } from 'react';
+import React, { useEffect, PropsWithChildren } from 'react';
 import Head from 'next/head';
 import PageContainer from '../containers/PageContainer';
 import CurryShopPageContainer from '../containers/CurryShop';
+import { useRouter } from 'next/router';
 
 interface ComponentProps {}
 
 const CurryShopPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.push('/currycounter');
+    }, []);
+
     return (
         <>
-            <PageContainer>
+            {/* <PageContainer>
                 <CurryShopPageContainer />
-            </PageContainer>
+            </PageContainer> */}
         </>
     );
 };

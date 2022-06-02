@@ -1,16 +1,23 @@
-import React, { PropsWithChildren } from 'react';
+import React, { useEffect, PropsWithChildren } from 'react';
 import Head from 'next/head';
 import PageContainer from '../containers/PageContainer';
 import LabPageContainer from '../containers/Lab';
+import { useRouter } from 'next/router';
 
 interface ComponentProps {}
 
 const LabPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        router.push('/currycounter');
+    }, []);
+
     return (
         <>
-            <PageContainer>
+            {/* <PageContainer>
                 <LabPageContainer />
-            </PageContainer>
+            </PageContainer> */}
         </>
     );
 };
