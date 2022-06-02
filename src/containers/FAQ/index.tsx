@@ -266,7 +266,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                             contact@lunamarket.io
                         </a>
                         ! Also, follow our{' '}
-                        <a href="https://twitter.com/LunaMarketInc" target="_blank" style={{ color: '#FFCA21' }}>
+                        <a href="https://twitter.com/bball_headz" target="_blank" style={{ color: '#FFCA21' }}>
                             Twitter
                         </a>{' '}
                         for real-time updates and announcements.
