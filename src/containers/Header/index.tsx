@@ -36,12 +36,12 @@ const appMenuList = [
     { title: 'FAQ', url: '/faq' },
 
     // { title: 'FTX Holders', url: '/ftxholders' },
-    { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
+    // { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
 ];
 
 const socialLinksList = [
     { title: 'Discord', url: 'https://discord.com/invite/M5dZ2GJSpQ', icon: <DiscordIcon /> },
-    { title: 'Twitter', url: 'https://twitter.com/LunaMarketInc', icon: <TwitterIcon /> },
+    { title: 'Twitter', url: 'https://twitter.com/bball_headz', icon: <TwitterIcon /> },
     { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
     { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
 ];

@@ -62,10 +62,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         A snapshot is a record of wallet addresses that have been collected at a given time. It is used
                         to claim for those who own the Genesis Curry Flows. If you are interested in claiming, make sure
                         to keep the snapshot time in mind when purchasing the Genesis Curry Flows.
-                        <br></br>
-                        <br></br>
-                        For this project, there will be three separate snapshots (one for each drop). So, hold your
-                        Genesis Curry Flows throughout the snapshots in order to claim your NFTs.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is a mintlist?">
@@ -245,11 +241,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         Please wait for future updates. We have not forgotten about our GCF holders.
                     </Typography>
                 </FAQItem>
-                <FAQItem title="What happens if I have a Partner Shoe (Decentraland, Gala Games, Rumble Kong League, and The Sandbox)?">
-                    <Typography>
-                        Please wait for future updates. We are working hard with our partners to award holders.
-                    </Typography>
-                </FAQItem>
                 <FAQItem title="As an Under Armour employee, can I use my UA Employee discount on this purchase?">
                     <Typography>
                         Unfortunately, UA Employee discount is not available on the purchase of the NF3 Basketball.
@@ -266,7 +257,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                             contact@lunamarket.io
                         </a>
                         ! Also, follow our{' '}
-                        <a href="https://twitter.com/LunaMarketInc" target="_blank" style={{ color: '#FFCA21' }}>
+                        <a href="https://twitter.com/bball_headz" target="_blank" style={{ color: '#FFCA21' }}>
                             Twitter
                         </a>{' '}
                         for real-time updates and announcements.
