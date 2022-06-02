@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Stack } from '@mui/material';
 import ReactPlayer from 'react-player';
 import style from './style';
+import disableScroll from 'disable-scroll';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     const playerRef = useRef<ReactPlayer>(null);
@@ -18,6 +20,12 @@ const HomePageContainer: React.FC = (): JSX.Element => {
     };
 
     useEffect(() => {
+        // if (seekPos < 1) {
+        //     disableScroll.on();
+        // } else {
+        //     disableScroll.off();
+        // }
+
         window.addEventListener('wheel', handleScroll);
 
         return () => window.removeEventListener('wheel', handleScroll);
@@ -38,6 +46,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                 width="100%"
                 height="calc(100vh - 222px)"
             />
+            <Stack height={1000}>afdasdfasdf</Stack>
             <style jsx>{style}</style>
         </>
     );
