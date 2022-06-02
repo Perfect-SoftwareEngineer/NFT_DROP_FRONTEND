@@ -245,11 +245,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         Please wait for future updates. We have not forgotten about our GCF holders.
                     </Typography>
                 </FAQItem>
-                <FAQItem title="What happens if I have a Partner Shoe (Decentraland, Gala Games, Rumble Kong League, and The Sandbox)?">
-                    <Typography>
-                        Please wait for future updates. We are working hard with our partners to award holders.
-                    </Typography>
-                </FAQItem>
                 <FAQItem title="As an Under Armour employee, can I use my UA Employee discount on this purchase?">
                     <Typography>
                         Unfortunately, UA Employee discount is not available on the purchase of the NF3 Basketball.
