@@ -23,7 +23,7 @@ export const GradientBox3 = styled(Box)`
     background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
 `;
 
-export const NF3CounterBtn = styled(Button)`
+export const RoadmapBtn = styled(Button)`
     width: fit-content;
     height: 38px;
     padding: 0 16px;
