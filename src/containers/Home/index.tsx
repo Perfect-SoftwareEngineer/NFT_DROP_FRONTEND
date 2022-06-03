@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
-import { GradientBox1, GradientBox2, GradientBox3, RoadmapBtn } from './style';
+import { GradientBox1, GradientBox2, GradientBox3, GradientBox4, RoadmapBtn } from './style';
 import Link from 'next/link';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
@@ -83,6 +83,22 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Stack>
                 </Container>
+            </Stack>
+            <Box position="relative">
+                <video autoPlay muted loop style={{ width: '100%' }}>
+                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
+            </Box>
+            <Stack position="relative" alignItems="center">
+                <video autoPlay muted loop style={{ width: '50%' }}>
+                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
             </Stack>
         </Stack>
     );

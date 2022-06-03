@@ -23,6 +23,16 @@ export const GradientBox3 = styled(Box)`
     background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
 `;
 
+export const GradientBox4 = styled(Box)`
+    width: 110%;
+    height: 20%;
+    position: absolute;
+    top: -90px;
+    left: -20px;
+    background: black;
+    transform: rotate(-5deg);
+`;
+
 export const RoadmapBtn = styled(Button)`
     width: fit-content;
     height: 38px;
