@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
-import { GradientBox1, GradientBox2, GradientBox3, GradientBox4, RoadmapBtn } from './style';
+import { GradientBox1, GradientBox2, GradientBox3, GradientBox4, GradientBox5, RoadmapBtn } from './style';
 import Link from 'next/link';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
@@ -144,6 +144,52 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Stack>
                 </Container>
+            </Stack>
+            <Stack position="relative">
+                <img src="/assets/home/bg3.png" alt="" />
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox5 />
+                </Stack>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <Container sx={{ height: '100%' }}>
+                        <Stack height="100%" justifyContent="center" alignItems="flex-end">
+                            <Typography
+                                fontSize={48}
+                                fontWeight={700}
+                                lineHeight={1}
+                                color="#FFCA21"
+                                className="neueplak_condensed"
+                                marginTop={-20}
+                            >
+                                MIXOLOGY ROOM
+                            </Typography>
+                            <Typography
+                                fontSize={128}
+                                fontWeight={800}
+                                lineHeight={1}
+                                sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
+                                className="neueplak_condensed"
+                            >
+                                GET IN THE MIX
+                            </Typography>
+                            <Typography
+                                width={600}
+                                fontSize={20}
+                                fontWeight={600}
+                                lineHeight={1.2}
+                                textAlign="right"
+                                marginTop={10}
+                            >
+                                Once you have an NF3 basketball and up to 3 distinct serums from our community partners,
+                                Cyber Kongs, Hape, Chibi dinos and Smileverse jump on over to our Lab and prepare to
+                                mutate.
+                                <br></br>
+                                <br></br>
+                                COMING SOON
+                            </Typography>
+                        </Stack>
+                    </Container>
+                </Stack>
             </Stack>
         </Stack>
     );
