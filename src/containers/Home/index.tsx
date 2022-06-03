@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
-import { GradientBox, NF3CounterBtn } from './style';
+import { GradientBox1, GradientBox2, GradientBox3, NF3CounterBtn } from './style';
 import Link from 'next/link';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
@@ -10,7 +10,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
             <Stack position="relative">
                 <img src="/assets/home/bg1.png" alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox />
+                    <GradientBox1 />
                 </Stack>
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%' }}>
@@ -43,6 +43,13 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                         </Stack>
                     </Container>
+                </Stack>
+            </Stack>
+            <Stack position="relative" marginTop={-1}>
+                <img src="/assets/home/bg2.png" alt="" />
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox2 />
+                    <GradientBox3 />
                 </Stack>
             </Stack>
             <Stack position="relative" alignItems="center" marginTop={15}>
