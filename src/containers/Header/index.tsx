@@ -63,39 +63,42 @@ const Header: React.FC<ComponentProps> = ({}) => {
         };
 
         const signIn = async (nonce: number, wallet: string) => {
+            // console.log('jwtToken:', appState.jwtToken);
+            if (!!appState.jwtToken) return;
+
             const sig = await getSignature(nonce, wallet);
-            console.log('sig:', sig);
+            // console.log('sig:', sig);
 
             userSignIn(wallet, sig)
                 .then((response: any) => {
-                    console.log('userSignIn resonse:', response);
+                    // console.log('userSignIn resonse:', response);
                     setAppState({ ...appState, jwtToken: response });
                 })
                 .catch((error) => {
-                    console.log(error);
+                    // console.log(error);
                 });
         };
 
         if (account) {
             getUserInfo(account)
                 .then(async (response: any) => {
-                    console.log('getUserInfo response:', response);
+                    // console.log('getUserInfo response:', response);
 
                     if (Object.keys(response).length === 0) {
                         createUser(account)
                             .then(async (response: any) => {
-                                console.log('createUser resonse:', response);
+                                // console.log('createUser resonse:', response);
                                 signIn(response.nonce, account);
                             })
                             .catch((error) => {
-                                console.log(error);
+                                // console.log(error);
                             });
                     } else {
                         signIn(response.nonce, account);
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
+                    // console.log(error);
                 });
         }
     }, [account]);
@@ -107,7 +110,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                     setOpenConnectWalletDlg(false);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    // console.log(error);
                     setOpenConnectWalletDlg(false);
                 });
         }
