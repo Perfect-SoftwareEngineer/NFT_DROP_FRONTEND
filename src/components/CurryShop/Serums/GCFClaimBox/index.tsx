@@ -89,16 +89,16 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
 
                     confirmClaimSerumGCF(account, appState.jwtToken)
                         .then((response: any) => {
-                            console.log('resonse:', response);
+                            // console.log('resonse:', response);
                         })
                         .catch((error) => {
-                            console.log(error);
+                            // console.log(error);
                         });
                 }
             )
             .catch((e: any) => {
                 setMintState(MintStatus.MINT_FAILED);
-                console.log(e);
+                // console.log(e);
             });
     };
 

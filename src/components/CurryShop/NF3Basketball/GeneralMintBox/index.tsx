@@ -118,7 +118,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             );
 
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
-            console.log('reservedCount:', reservedCount);
+            // console.log('reservedCount:', reservedCount);
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
             setReservedAmount(parseInt(reservedCount));
             setMintPrice(parseInt(mPrice));
