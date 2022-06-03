@@ -100,6 +100,51 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox4 />
                 </Stack>
             </Stack>
+            <Stack paddingY={16}>
+                <Container>
+                    <Stack spacing={8}>
+                        <Stack width={400} spacing={4}>
+                            <img src="/assets/home/img1.png" alt="" />
+                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                                SO HERE'S THE SCOOP
+                            </Typography>
+                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                                Since the beginning of the playoffs we've been dropping free NF3 basketballs every time
+                                Stephen hits a 3, and we know that happens a lot!
+                            </Typography>
+                        </Stack>
+                        <Stack width={400} spacing={4} alignSelf="flex-end">
+                            <img src="/assets/home/img2.png" alt="" />
+                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                                REWARD FOR GCF HOLDERS
+                            </Typography>
+                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                                Our loyal GCF NFT owners can claim a free NF3 basketball plus a community serum right
+                                now, just because we love our community!
+                            </Typography>
+                        </Stack>
+                        <Stack width={400} spacing={4}>
+                            <img src="/assets/home/img3.png" alt="" />
+                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                                NF3 BASKETBALL SALES
+                            </Typography>
+                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                                On XXX of June the balance of our 20,000 NF3 basketballs go on sale to anyone who hasn't
+                                got an NF3 already
+                            </Typography>
+                        </Stack>
+                        <Stack width={400} spacing={4} alignSelf="flex-end">
+                            <img src="/assets/home/img4.png" alt="" />
+                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                                SERUM SALES
+                            </Typography>
+                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                                And on XXXX the community serums go on sale
+                            </Typography>
+                        </Stack>
+                    </Stack>
+                </Container>
+            </Stack>
         </Stack>
     );
 };
