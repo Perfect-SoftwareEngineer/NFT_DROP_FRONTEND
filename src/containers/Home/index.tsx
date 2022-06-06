@@ -96,7 +96,13 @@ const HomePageContainer: React.FC = (): JSX.Element => {
             </Stack>
             <Stack paddingY={{ xs: 16, md: 24 }}>
                 <Container>
-                    <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                    <Typography
+                        fontSize={{ xs: 72, md: 128 }}
+                        fontWeight={800}
+                        lineHeight={1}
+                        sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
+                        className="neueplak_condensed"
+                    >
                         OUR PARTNERS
                     </Typography>
                     <Typography
@@ -104,7 +110,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         fontSize={{ xs: 16, md: 20 }}
                         fontWeight={600}
                         lineHeight={1.2}
-                        marginTop={3}
+                        marginTop={6}
                     >
                         Join our partners' Discords for more updates and details on how to join the community mintlist.
                     </Typography>
@@ -312,7 +318,10 @@ const HomePageContainer: React.FC = (): JSX.Element => {
             </Stack>
             <Stack position="relative">
                 <Stack position="absolute" top={0} left={0} right={0} zIndex={-10}>
-                    <img src="/assets/roadmap/background.png" alt="" />
+                    <img
+                        src={matchDownMd ? '/assets/roadmap/background-mobile.png' : '/assets/roadmap/background.png'}
+                        alt=""
+                    />
                     <GradientBox6 />
                 </Stack>
                 <Container sx={{ paddingY: 20 }}>
