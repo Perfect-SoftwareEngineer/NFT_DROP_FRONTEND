@@ -133,6 +133,72 @@ const HomePageContainer: React.FC = (): JSX.Element => {
             </Stack>
             <Stack>
                 <Container>
+                    <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                        OUR PARTNERS
+                    </Typography>
+                    <Typography
+                        width={560}
+                        fontSize={{ xs: 16, md: 20 }}
+                        fontWeight={600}
+                        lineHeight={1.2}
+                        marginTop={3}
+                    >
+                        Join our partner's Discord for more updates and details on how to join the community mintlist.
+                    </Typography>
+                    <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" spacing={5} marginTop={6}>
+                        <PartnerLogoBox>
+                            <Link href="https://discord.com/invite/cyberkongz" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/cyberkong.gif" alt="" />
+                                </a>
+                            </Link>
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <Link href="https://discord.com/invite/hape" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/hape.png" alt="" />
+                                </a>
+                            </Link>
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <Link href="https://discord.com/invite/dinos" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/chibi.png" alt="" />
+                                </a>
+                            </Link>
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <Link href="https://discord.com/invite/ftxland" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/ftx.png" alt="" />
+                                </a>
+                            </Link>
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <Box width="100%" paddingTop="100%" position="relative">
+                                <Stack
+                                    position="absolute"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    sx={{ inset: 0 }}
+                                >
+                                    <Typography
+                                        fontSize={48}
+                                        fontWeight={700}
+                                        lineHeight={1}
+                                        textAlign="center"
+                                        className="neueplak_condensed"
+                                    >
+                                        COMING SOON
+                                    </Typography>
+                                </Stack>
+                            </Box>
+                        </PartnerLogoBox>
+                    </Stack>
+                </Container>
+            </Stack>
+            <Stack marginTop={20}>
+                <Container>
                     <Stack spacing={8}>
                         <Stack
                             width={{ xs: 260, md: 400 }}
@@ -209,72 +275,6 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 And on XXXX the community serums go on sale
                             </Typography>
                         </Stack>
-                    </Stack>
-                </Container>
-            </Stack>
-            <Stack marginTop={{ xs: 12, md: 22 }}>
-                <Container>
-                    <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
-                        OUR PARTNERS
-                    </Typography>
-                    <Typography
-                        width={560}
-                        fontSize={{ xs: 16, md: 20 }}
-                        fontWeight={600}
-                        lineHeight={1.2}
-                        marginTop={3}
-                    >
-                        Join our partner's Discord for more updates and details on how to join the community mintlist.
-                    </Typography>
-                    <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" spacing={5} marginTop={6}>
-                        <PartnerLogoBox>
-                            <Link href="https://discord.com/invite/cyberkongz" passHref>
-                                <a target="_blank" rel="noopener noreferrer">
-                                    <img src="/assets/home/logo/cyberkong.gif" alt="" />
-                                </a>
-                            </Link>
-                        </PartnerLogoBox>
-                        <PartnerLogoBox>
-                            <Link href="https://discord.com/invite/hape" passHref>
-                                <a target="_blank" rel="noopener noreferrer">
-                                    <img src="/assets/home/logo/hape.png" alt="" />
-                                </a>
-                            </Link>
-                        </PartnerLogoBox>
-                        <PartnerLogoBox>
-                            <Link href="https://discord.com/invite/dinos" passHref>
-                                <a target="_blank" rel="noopener noreferrer">
-                                    <img src="/assets/home/logo/chibi.png" alt="" />
-                                </a>
-                            </Link>
-                        </PartnerLogoBox>
-                        <PartnerLogoBox>
-                            <Link href="https://discord.com/invite/ftxland" passHref>
-                                <a target="_blank" rel="noopener noreferrer">
-                                    <img src="/assets/home/logo/ftx.png" alt="" />
-                                </a>
-                            </Link>
-                        </PartnerLogoBox>
-                        <PartnerLogoBox>
-                            <Box width="100%" paddingTop="100%" position="relative">
-                                <Stack
-                                    position="absolute"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    sx={{ inset: 0 }}
-                                >
-                                    <Typography
-                                        fontSize={48}
-                                        fontWeight={700}
-                                        lineHeight={1}
-                                        textAlign="center"
-                                        className="neueplak_condensed"
-                                    >
-                                        COMING SOON
-                                    </Typography>
-                                </Stack>
-                            </Box>
-                        </PartnerLogoBox>
                     </Stack>
                 </Container>
             </Stack>
