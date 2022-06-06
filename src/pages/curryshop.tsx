@@ -9,15 +9,15 @@ interface ComponentProps {}
 const CurryShopPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     const router = useRouter();
 
-    // useEffect(() => {
-    //     router.push('/currycounter');
-    // }, []);
+    useEffect(() => {
+        router.push('/');
+    }, []);
 
     return (
         <>
-            <PageContainer>
+            {/* <PageContainer>
                 <CurryShopPageContainer />
-            </PageContainer>
+            </PageContainer> */}
         </>
     );
 };

@@ -10,7 +10,7 @@ const LabPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     const router = useRouter();
 
     useEffect(() => {
-        router.push('/currycounter');
+        router.push('/');
     }, []);
 
     return (
