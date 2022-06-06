@@ -163,16 +163,32 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Typography>
                     <Stack direction="row" spacing={5} marginTop={6}>
                         <PartnerLogoBox>
-                            <img src="/assets/home/logo/cyberkong.gif" alt="" />
+                            <Link href="https://discord.com/invite/cyberkongz" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/cyberkong.gif" alt="" />
+                                </a>
+                            </Link>
                         </PartnerLogoBox>
                         <PartnerLogoBox>
-                            <img src="/assets/home/logo/hape.png" alt="" />
+                            <Link href="https://discord.com/invite/hape" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/hape.png" alt="" />
+                                </a>
+                            </Link>
                         </PartnerLogoBox>
                         <PartnerLogoBox>
-                            <img src="/assets/home/logo/chibi.png" alt="" />
+                            <Link href="https://discord.com/invite/dinos" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/chibi.png" alt="" />
+                                </a>
+                            </Link>
                         </PartnerLogoBox>
                         <PartnerLogoBox>
-                            <img src="/assets/home/logo/ftx.png" alt="" />
+                            <Link href="https://discord.com/invite/ftxland" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/ftx.png" alt="" />
+                                </a>
+                            </Link>
                         </PartnerLogoBox>
                         <PartnerLogoBox display="flex" justifyContent="center" alignItems="center">
                             <Typography
