@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     return (
-        <Stack>
+        <Stack sx={{ overflowX: 'hidden' }}>
             <Stack position="relative">
                 <img src="/assets/home/bg1.png" alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
