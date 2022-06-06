@@ -22,7 +22,12 @@ const ItemBox: React.FC<ComponentProps> = ({ img, title, desc }): JSX.Element =>
                 <Image src={img} alt="" layout="fill" objectFit="cover" style={{ borderRadius: 8 }} />
             </Box>
             <Stack spacing={1}>
-                <Typography fontSize={48} fontWeight={800} lineHeight={1.1} className="neueplak_condensed">
+                <Typography
+                    fontSize={{ xs: 36, md: 48 }}
+                    fontWeight={800}
+                    lineHeight={1.1}
+                    className="neueplak_condensed"
+                >
                     {title}
                 </Typography>
                 {desc}

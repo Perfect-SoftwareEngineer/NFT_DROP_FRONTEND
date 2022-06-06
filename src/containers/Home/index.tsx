@@ -7,10 +7,13 @@ import {
     GradientBox3,
     GradientBox4,
     GradientBox5,
+    GradientBox6,
     RoadmapBtn,
     PartnerLogoBox,
 } from './style';
 import Link from 'next/link';
+import roadmapLists from '../../constants/roadmapData';
+import RoadmapItemBox from '../../components/Roadmap/ItemBox';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     return (
@@ -311,6 +314,35 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Container>
                 </Stack>
+            </Stack>
+            <Stack position="relative">
+                <Stack position="absolute" top={0} left={0} right={0} zIndex={-10}>
+                    <img src="/assets/roadmap/background.png" alt="" />
+                    <GradientBox6 />
+                </Stack>
+                <Container sx={{ paddingY: 8 }}>
+                    <Stack spacing={8}>
+                        <Typography
+                            fontSize={{ xs: 72, md: 128 }}
+                            fontWeight={800}
+                            lineHeight={1}
+                            sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
+                            className="neueplak_condensed"
+                        >
+                            ROADMAP
+                        </Typography>
+                        <Stack spacing={3}>
+                            {roadmapLists.map((item, index) => (
+                                <RoadmapItemBox
+                                    img={item.img}
+                                    title={item.title}
+                                    desc={item.desc}
+                                    key={`roadmap_item_${index}`}
+                                />
+                            ))}
+                        </Stack>
+                    </Stack>
+                </Container>
             </Stack>
         </Stack>
     );

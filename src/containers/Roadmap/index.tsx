@@ -2,7 +2,6 @@ import React from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Container from '../Container';
 import RoadmapItemBox from '../../components/Roadmap/ItemBox';
-import Image from 'next/image';
 import { GradientBox } from './styles';
 import roadmapLists from '../../constants/roadmapData';
 

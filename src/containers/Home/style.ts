@@ -45,6 +45,14 @@ export const GradientBox5 = styled(Box)`
     transform: rotate(-180deg);
 `;
 
+export const GradientBox6 = styled(Box)`
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+`;
+
 export const RoadmapBtn = styled(Button)`
     width: fit-content;
     height: 38px;
