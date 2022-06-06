@@ -47,7 +47,7 @@ export const GradientBox5 = styled(Box)`
 
 export const GradientBox6 = styled(Box)`
     width: 100%;
-    height: 20%;
+    height: 15%;
     position: absolute;
     top: 0;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 100%);

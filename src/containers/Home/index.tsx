@@ -328,7 +328,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <img src="/assets/roadmap/background.png" alt="" />
                     <GradientBox6 />
                 </Stack>
-                <Container sx={{ paddingY: 8 }}>
+                <Container sx={{ paddingY: 20 }}>
                     <Stack spacing={8}>
                         <Typography
                             fontSize={{ xs: 72, md: 128 }}
