@@ -14,12 +14,17 @@ import {
 import Link from 'next/link';
 import roadmapLists from '../../constants/roadmapData';
 import RoadmapItemBox from '../../components/Roadmap/ItemBox';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
+    const theme = useTheme();
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Stack sx={{ overflowX: 'hidden' }}>
             <Stack position="relative">
-                <img src="/assets/home/bg1.png" alt="" />
+                <img src={matchDownMd ? '/assets/home/bg1-mobile.png' : '/assets/home/bg1.png'} alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox1 />
                 </Stack>
@@ -50,7 +55,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 fontSize={{ xs: 16, md: 20 }}
                                 fontWeight={600}
                                 lineHeight={1.2}
-                                marginTop={{ xs: 2, md: 10 }}
+                                marginTop={{ xs: 6, md: 10 }}
                             >
                                 Time to step up like the man who changed the game for good and change it once again with
                                 your own Basketball Headz avatar.
@@ -58,12 +63,15 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 <br></br>
                                 20,000 unique, generative avatars are waiting which one will be yours?
                             </Typography>
+                            {/* <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2} marginTop={3}>
+                                NF3 Basketball Free Claiming: June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
+                            </Typography> */}
                         </Stack>
                     </Container>
                 </Stack>
             </Stack>
             <Stack position="relative" marginTop={-1}>
-                <img src="/assets/home/bg2.png" alt="" />
+                <img src={matchDownMd ? '/assets/home/bg2-mobile.png' : '/assets/home/bg2.png'} alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox2 />
                     <GradientBox3 />
