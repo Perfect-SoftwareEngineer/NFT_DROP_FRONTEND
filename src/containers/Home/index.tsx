@@ -279,7 +279,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                 </Container>
             </Stack>
             <Stack position="relative" marginTop={{ xs: 12, md: 20 }}>
-                <img src="/assets/home/bg3.png" alt="" />
+                <img src={matchDownMd ? '/assets/home/bg3-mobile.png' : '/assets/home/bg3.png'} alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox5 />
                 </Stack>
