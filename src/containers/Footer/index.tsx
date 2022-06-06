@@ -39,7 +39,7 @@ const Footer: React.FC<ComponentProps> = ({}) => {
                         sx={{ overflowY: 'hidden', overflowX: 'auto' }}
                     >
                         <Stack direction="row" flexShrink={0} alignItems="center" spacing={5}>
-                            <Link href="/currycounter" passHref>
+                            <Link href="/" passHref>
                                 <Image
                                     src="/assets/curry-logo.png"
                                     width={40}

@@ -128,7 +128,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         display={{ xs: 'none', md: 'flex' }}
                     >
                         <Stack direction="row" alignItems="center" spacing={5}>
-                            <Link href="/currycounter" passHref>
+                            <Link href="/" passHref>
                                 <Image
                                     src="/assets/curry-logo.png"
                                     width={40}
