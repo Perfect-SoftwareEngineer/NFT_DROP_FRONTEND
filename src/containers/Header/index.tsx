@@ -187,7 +187,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                         spacing={2.5}
                         display={{ xs: 'flex', md: 'none' }}
                     >
-                        <Link href="/currycounter" passHref>
+                        <Link href="/" passHref>
                             <Image
                                 src="/assets/curry-logo.png"
                                 width={40}
