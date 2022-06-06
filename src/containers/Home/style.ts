@@ -31,6 +31,9 @@ export const GradientBox4 = styled(Box)`
     left: -20px;
     background: black;
     transform: rotate(-5deg);
+    ${(props) => props.theme.breakpoints.down('md')} {
+        top: -25px;
+    }
 `;
 
 export const GradientBox5 = styled(Box)`
@@ -62,5 +65,8 @@ export const PartnerLogoBox = styled(Box)`
     overflow: hidden;
     img {
         width: 100%;
+    }
+    ${(props) => props.theme.breakpoints.down('md')} {
+        width: 60%;
     }
 `;

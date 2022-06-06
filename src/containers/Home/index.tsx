@@ -24,17 +24,17 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <Container sx={{ height: '100%' }}>
                         <Stack height="100%" justifyContent="center">
                             <Typography
-                                fontSize={48}
+                                fontSize={{ xs: 32, md: 48 }}
                                 fontWeight={700}
                                 lineHeight={1}
                                 color="#FFCA21"
                                 className="neueplak_condensed"
-                                marginTop={-20}
+                                marginTop={{ xs: 0, md: -20 }}
                             >
                                 CROSS-COMMUNITY PROJECT
                             </Typography>
                             <Typography
-                                fontSize={128}
+                                fontSize={{ xs: 72, md: 128 }}
                                 fontWeight={800}
                                 lineHeight={1}
                                 sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
@@ -42,7 +42,13 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             >
                                 IT'S GAMETIME
                             </Typography>
-                            <Typography width={600} fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={10}>
+                            <Typography
+                                width={{ xs: '90%', md: 600 }}
+                                fontSize={{ xs: 16, md: 20 }}
+                                fontWeight={600}
+                                lineHeight={1.2}
+                                marginTop={{ xs: 2, md: 10 }}
+                            >
                                 Time to step up like the man who changed the game for good and change it once again with
                                 your own Basketball Headz avatar.
                                 <br></br>
@@ -60,12 +66,12 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox3 />
                 </Stack>
             </Stack>
-            <Stack paddingY={16}>
+            <Stack paddingY={{ xs: 10, md: 16 }}>
                 <Container>
                     <Stack alignItems="center">
                         <Stack>
                             <Typography
-                                fontSize={48}
+                                fontSize={{ xs: 32, md: 48 }}
                                 fontWeight={700}
                                 lineHeight={1}
                                 color="#FFCA21"
@@ -74,7 +80,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 MULTI-PARTNER SERUMS
                             </Typography>
                             <Typography
-                                fontSize={128}
+                                fontSize={{ xs: 72, md: 128 }}
                                 fontWeight={800}
                                 lineHeight={1}
                                 sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
@@ -82,12 +88,18 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             >
                                 MUTATE THE GAME
                             </Typography>
-                            <Typography width={700} fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={10}>
+                            <Typography
+                                width={{ xs: '100%', md: 700 }}
+                                fontSize={{ xs: 16, md: 20 }}
+                                fontWeight={600}
+                                lineHeight={1.2}
+                                marginTop={{ xs: 4, md: 10 }}
+                            >
                                 Our Basketball Headz avatars will be generated from the combination of Curry Brand DNA
                                 and the traits of some the biggest and most exciting communities in the NFT space. Once
                                 you've changed the game the only thing left to do is Mutate The Game.
                             </Typography>
-                            <RoadmapBtn sx={{ marginTop: 6 }}>ROADMAP</RoadmapBtn>
+                            <RoadmapBtn sx={{ marginTop: { xs: 4, md: 6 } }}>ROADMAP</RoadmapBtn>
                         </Stack>
                     </Stack>
                 </Container>
@@ -100,7 +112,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox4 />
                 </Stack>
             </Box>
-            <Stack position="relative" alignItems="center">
+            <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
                 <video autoPlay muted loop style={{ width: '50%' }}>
                     <source src={'/assets/home/video2.mp4'} type="video/mp4" />
                 </video>
@@ -111,57 +123,99 @@ const HomePageContainer: React.FC = (): JSX.Element => {
             <Stack>
                 <Container>
                     <Stack spacing={8}>
-                        <Stack width={400} spacing={4}>
+                        <Stack
+                            width={{ xs: 260, md: 400 }}
+                            spacing={{ xs: 3, md: 4 }}
+                            alignSelf={{ xs: 'center', md: 'flex-start' }}
+                        >
                             <img src="/assets/home/img1.png" alt="" />
-                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                            <Typography
+                                fontSize={{ xs: 36, md: 48 }}
+                                fontWeight={700}
+                                lineHeight={1}
+                                className="neueplak_condensed"
+                            >
                                 SO HERE'S THE SCOOP
                             </Typography>
-                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                            <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
                                 Since the beginning of the playoffs we've been dropping free NF3 basketballs every time
                                 Stephen hits a 3, and we know that happens a lot!
                             </Typography>
                         </Stack>
-                        <Stack width={400} spacing={4} alignSelf="flex-end">
+                        <Stack
+                            width={{ xs: 260, md: 400 }}
+                            spacing={{ xs: 3, md: 4 }}
+                            alignSelf={{ xs: 'center', md: 'flex-end' }}
+                        >
                             <img src="/assets/home/img2.png" alt="" />
-                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                            <Typography
+                                fontSize={{ xs: 36, md: 48 }}
+                                fontWeight={700}
+                                lineHeight={1}
+                                className="neueplak_condensed"
+                            >
                                 REWARD FOR GCF HOLDERS
                             </Typography>
-                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                            <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
                                 Our loyal GCF NFT owners can claim a free NF3 basketball plus a community serum right
                                 now, just because we love our community!
                             </Typography>
                         </Stack>
-                        <Stack width={400} spacing={4}>
+                        <Stack
+                            width={{ xs: 260, md: 400 }}
+                            spacing={{ xs: 3, md: 4 }}
+                            alignSelf={{ xs: 'center', md: 'flex-start' }}
+                        >
                             <img src="/assets/home/img3.png" alt="" />
-                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                            <Typography
+                                fontSize={{ xs: 36, md: 48 }}
+                                fontWeight={700}
+                                lineHeight={1}
+                                className="neueplak_condensed"
+                            >
                                 NF3 BASKETBALL SALES
                             </Typography>
-                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                            <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
                                 On XXX of June the balance of our 20,000 NF3 basketballs go on sale to anyone who hasn't
                                 got an NF3 already
                             </Typography>
                         </Stack>
-                        <Stack width={400} spacing={4} alignSelf="flex-end">
+                        <Stack
+                            width={{ xs: 260, md: 400 }}
+                            spacing={{ xs: 3, md: 4 }}
+                            alignSelf={{ xs: 'center', md: 'flex-end' }}
+                        >
                             <img src="/assets/home/img4.png" alt="" />
-                            <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                            <Typography
+                                fontSize={{ xs: 36, md: 48 }}
+                                fontWeight={700}
+                                lineHeight={1}
+                                className="neueplak_condensed"
+                            >
                                 SERUM SALES
                             </Typography>
-                            <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
+                            <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
                                 And on XXXX the community serums go on sale
                             </Typography>
                         </Stack>
                     </Stack>
                 </Container>
             </Stack>
-            <Stack marginTop={22}>
+            <Stack marginTop={{ xs: 12, md: 22 }}>
                 <Container>
                     <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
                         OUR PARTNERS
                     </Typography>
-                    <Typography width={560} fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={3}>
+                    <Typography
+                        width={560}
+                        fontSize={{ xs: 16, md: 20 }}
+                        fontWeight={600}
+                        lineHeight={1.2}
+                        marginTop={3}
+                    >
                         Join our partner's Discord for more updates and details on how to join the community mintlist.
                     </Typography>
-                    <Stack direction="row" spacing={5} marginTop={6}>
+                    <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" spacing={5} marginTop={6}>
                         <PartnerLogoBox>
                             <Link href="https://discord.com/invite/cyberkongz" passHref>
                                 <a target="_blank" rel="noopener noreferrer">
@@ -190,21 +244,30 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 </a>
                             </Link>
                         </PartnerLogoBox>
-                        <PartnerLogoBox display="flex" justifyContent="center" alignItems="center">
-                            <Typography
-                                fontSize={48}
-                                fontWeight={700}
-                                lineHeight={1}
-                                textAlign="center"
-                                className="neueplak_condensed"
-                            >
-                                COMING SOON
-                            </Typography>
+                        <PartnerLogoBox>
+                            <Box width="100%" paddingTop="100%" position="relative">
+                                <Stack
+                                    position="absolute"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    sx={{ inset: 0 }}
+                                >
+                                    <Typography
+                                        fontSize={48}
+                                        fontWeight={700}
+                                        lineHeight={1}
+                                        textAlign="center"
+                                        className="neueplak_condensed"
+                                    >
+                                        COMING SOON
+                                    </Typography>
+                                </Stack>
+                            </Box>
                         </PartnerLogoBox>
                     </Stack>
                 </Container>
             </Stack>
-            <Stack position="relative" marginTop={20}>
+            <Stack position="relative" marginTop={{ xs: 12, md: 20 }}>
                 <img src="/assets/home/bg3.png" alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox5 />
@@ -213,17 +276,16 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <Container sx={{ height: '100%' }}>
                         <Stack height="100%" justifyContent="center" alignItems="flex-end">
                             <Typography
-                                fontSize={48}
+                                fontSize={{ xs: 32, md: 48 }}
                                 fontWeight={700}
                                 lineHeight={1}
                                 color="#FFCA21"
                                 className="neueplak_condensed"
-                                marginTop={-20}
                             >
                                 MIXOLOGY ROOM
                             </Typography>
                             <Typography
-                                fontSize={128}
+                                fontSize={{ xs: 72, md: 128 }}
                                 fontWeight={800}
                                 lineHeight={1}
                                 sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
@@ -233,11 +295,11 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             </Typography>
                             <Typography
                                 width={600}
-                                fontSize={20}
+                                fontSize={{ xs: 16, md: 20 }}
                                 fontWeight={600}
                                 lineHeight={1.2}
                                 textAlign="right"
-                                marginTop={10}
+                                marginTop={{ xs: 2, md: 10 }}
                             >
                                 Once you have an NF3 basketball and up to 3 distinct serums from our community partners,
                                 Cyber Kongs, Hape, Chibi dinos and Smileverse jump on over to our Lab and prepare to
