@@ -49,13 +49,13 @@ const roadmapLists = [
                 <br />
                 This snapshot is for Genesis Curry Flow holders. If you are a holder before the snapshot time on June
                 9th at 5:00:00 PST, you will have 48 hours to claim a free NF3.
-                <br />
+                {/* <br />
                 <br />
                 <b>Snapshot 2: From June 13th at 5:00:00 PST to June 15th at 5:00:00 PST.</b>
                 <br />
                 This snapshot is for the GCF Metaverse Partner shoes. If you are a holder of the partner shoes (Sandbox,
                 Decentraland, RKL, Gala Games X Town Star) before the snapshot time on June 13th at 5:00:00 PST, you
-                will have 48 hours to mint an NF3 Basketball.
+                will have 48 hours to mint an NF3 Basketball. */}
             </Typography>
         ),
     },
