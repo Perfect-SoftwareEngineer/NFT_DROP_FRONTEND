@@ -1,7 +1,15 @@
 import React from 'react';
 import { Stack, Box, Grid, Typography } from '@mui/material';
 import Container from '../Container';
-import { GradientBox1, GradientBox2, GradientBox3, GradientBox4, GradientBox5, RoadmapBtn } from './style';
+import {
+    GradientBox1,
+    GradientBox2,
+    GradientBox3,
+    GradientBox4,
+    GradientBox5,
+    RoadmapBtn,
+    PartnerLogoBox,
+} from './style';
 import Link from 'next/link';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
@@ -100,7 +108,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox4 />
                 </Stack>
             </Stack>
-            <Stack paddingY={16}>
+            <Stack>
                 <Container>
                     <Stack spacing={8}>
                         <Stack width={400} spacing={4}>
@@ -145,7 +153,42 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Stack>
-            <Stack position="relative">
+            <Stack marginTop={22}>
+                <Container>
+                    <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
+                        OUR PARTNERS
+                    </Typography>
+                    <Typography width={560} fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={3}>
+                        Join our partner's Discord for more updates and details on how to join the community mintlist.
+                    </Typography>
+                    <Stack direction="row" spacing={5} marginTop={6}>
+                        <PartnerLogoBox>
+                            <img src="/assets/home/logo/cyberkong.gif" alt="" />
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <img src="/assets/home/logo/hape.png" alt="" />
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <img src="/assets/home/logo/chibi.png" alt="" />
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
+                            <img src="/assets/home/logo/ftx.png" alt="" />
+                        </PartnerLogoBox>
+                        <PartnerLogoBox display="flex" justifyContent="center" alignItems="center">
+                            <Typography
+                                fontSize={48}
+                                fontWeight={700}
+                                lineHeight={1}
+                                textAlign="center"
+                                className="neueplak_condensed"
+                            >
+                                COMING SOON
+                            </Typography>
+                        </PartnerLogoBox>
+                    </Stack>
+                </Container>
+            </Stack>
+            <Stack position="relative" marginTop={20}>
                 <img src="/assets/home/bg3.png" alt="" />
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox5 />

@@ -54,3 +54,13 @@ export const RoadmapBtn = styled(Button)`
         background: #ffca21;
     }
 `;
+
+export const PartnerLogoBox = styled(Box)`
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 16px;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+`;
