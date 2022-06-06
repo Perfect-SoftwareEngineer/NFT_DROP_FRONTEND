@@ -30,7 +30,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                 </Stack>
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%' }}>
-                        <Stack height="100%" justifyContent="center">
+                        <Stack height="100%" justifyContent="center" marginTop={{ xs: -25, md: -10 }}>
                             <Typography
                                 fontSize={{ xs: 32, md: 48 }}
                                 fontWeight={700}
@@ -106,7 +106,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         OUR PARTNERS
                     </Typography>
                     <Typography
-                        width={560}
+                        width={{ xs: '100%', md: 560 }}
                         fontSize={{ xs: 16, md: 20 }}
                         fontWeight={600}
                         lineHeight={1.2}
@@ -298,7 +298,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 GET IN THE MIX
                             </Typography>
                             <Typography
-                                width={600}
+                                width={{ xs: '100%', md: 600 }}
                                 fontSize={{ xs: 16, md: 20 }}
                                 fontWeight={600}
                                 lineHeight={1.2}
