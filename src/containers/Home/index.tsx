@@ -30,7 +30,11 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                 </Stack>
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <Container sx={{ height: '100%' }}>
-                        <Stack height="100%" justifyContent="center" marginTop={{ xs: -25, md: -10 }}>
+                        <Stack
+                            height="100%"
+                            justifyContent={{ xs: 'flex-start', md: 'center' }}
+                            marginTop={{ xs: 10, md: 0 }}
+                        >
                             <Typography
                                 fontSize={{ xs: 32, md: 48 }}
                                 fontWeight={700}
@@ -58,12 +62,14 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 marginTop={{ xs: 4, md: 10 }}
                             >
                                 One player changed the game for good, but it takes a community, in fact, some of the
-                                biggest and best communities in the Metaverse, to mutate the game.
+                                biggest and best communities in the Metaverse, to mutate the game. Therefore, Curry
+                                Brand is unifying the basketball community across the Metaverse in another first, an NFT
+                                that is both generative and customizable.
                                 <br />
                                 <br />
-                                Introducing Basketball Headz. 20,000 unique, generative Avatars created from a
-                                combination of NF3 and Partner Serums. Combine up to three different Serums to customize
-                                your Avatar. So which one will be yours?
+                                Introducing Basketball Headz. 20,000 unique Avatars created from a combination of NF3
+                                and Partner Serums. Combine up to three different Serums to customize your Avatar. So
+                                which one will be yours?
                             </Typography>
                             <Stack marginTop={6}>
                                 <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
