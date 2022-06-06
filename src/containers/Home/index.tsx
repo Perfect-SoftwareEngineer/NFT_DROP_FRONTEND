@@ -39,56 +39,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 className="neueplak_condensed"
                                 marginTop={{ xs: 0, md: -20 }}
                             >
-                                CROSS-COMMUNITY PROJECT
-                            </Typography>
-                            <Typography
-                                fontSize={{ xs: 72, md: 128 }}
-                                fontWeight={800}
-                                lineHeight={1}
-                                sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
-                                className="neueplak_condensed"
-                            >
-                                IT'S GAMETIME
-                            </Typography>
-                            <Typography
-                                width={{ xs: '90%', md: 600 }}
-                                fontSize={{ xs: 16, md: 20 }}
-                                fontWeight={600}
-                                lineHeight={1.2}
-                                marginTop={{ xs: 6, md: 10 }}
-                            >
-                                Time to step up like the man who changed the game for good and change it once again with
-                                your own Basketball Headz avatar.
-                                <br></br>
-                                <br></br>
-                                20,000 unique, generative avatars are waiting which one will be yours?
-                            </Typography>
-                            {/* <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2} marginTop={3}>
-                                NF3 Basketball Free Claiming: June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
-                            </Typography> */}
-                        </Stack>
-                    </Container>
-                </Stack>
-            </Stack>
-            <Stack position="relative" marginTop={-1}>
-                <img src={matchDownMd ? '/assets/home/bg2-mobile.png' : '/assets/home/bg2.png'} alt="" />
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox2 />
-                    <GradientBox3 />
-                </Stack>
-            </Stack>
-            <Stack paddingY={{ xs: 10, md: 16 }}>
-                <Container>
-                    <Stack alignItems="center">
-                        <Stack>
-                            <Typography
-                                fontSize={{ xs: 32, md: 48 }}
-                                fontWeight={700}
-                                lineHeight={1}
-                                color="#FFCA21"
-                                className="neueplak_condensed"
-                            >
-                                MULTI-PARTNER SERUMS
+                                BASKETBALL HEADZ
                             </Typography>
                             <Typography
                                 fontSize={{ xs: 72, md: 128 }}
@@ -106,32 +57,44 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.2}
                                 marginTop={{ xs: 4, md: 10 }}
                             >
-                                Our Basketball Headz avatars will be generated from the combination of Curry Brand DNA
-                                and the traits of some the biggest and most exciting communities in the NFT space. Once
-                                you've changed the game the only thing left to do is Mutate The Game.
+                                One player changed the game for good, but it takes a community, in fact, some of the
+                                biggest and best communities in the Metaverse, to mutate the game.
+                                <br />
+                                <br />
+                                Introducing Basketball Headz. 20,000 unique, generative Avatars created from a
+                                combination of NF3 and Partner Serums. Combine up to three different Serums to customize
+                                your Avatar. So which one will be yours?
                             </Typography>
-                            <RoadmapBtn sx={{ marginTop: { xs: 4, md: 6 } }}>ROADMAP</RoadmapBtn>
+                            <Stack marginTop={6}>
+                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
+                                    Genesis Curry Flow NF3 Basketball Free Claiming:{' '}
+                                    <span style={{ color: '#FFCA21' }}>
+                                        June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
+                                    </span>
+                                </Typography>
+                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
+                                    NF3 Basketball Mintlist Mint:{' '}
+                                    <span style={{ color: '#FFCA21' }}>
+                                        June 13th at 5:00:00 PST to June 15th at 5:00:00 PST.
+                                    </span>
+                                </Typography>
+                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
+                                    NF3 Basketball General Mint:{' '}
+                                    <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PST.</span>
+                                </Typography>
+                            </Stack>
                         </Stack>
-                    </Stack>
-                </Container>
-            </Stack>
-            <Box position="relative">
-                <video autoPlay muted loop style={{ width: '100%' }}>
-                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
-                </Stack>
-            </Box>
-            <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
-                <video autoPlay muted loop style={{ width: '50%' }}>
-                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
+                    </Container>
                 </Stack>
             </Stack>
-            <Stack>
+            <Stack position="relative" marginTop={-1}>
+                <img src={matchDownMd ? '/assets/home/bg2-mobile.png' : '/assets/home/bg2.png'} alt="" />
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox2 />
+                    <GradientBox3 />
+                </Stack>
+            </Stack>
+            <Stack paddingY={{ xs: 16, md: 24 }}>
                 <Container>
                     <Typography fontSize={48} fontWeight={700} lineHeight={1} className="neueplak_condensed">
                         OUR PARTNERS
@@ -143,7 +106,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         lineHeight={1.2}
                         marginTop={3}
                     >
-                        Join our partner's Discord for more updates and details on how to join the community mintlist.
+                        Join our partners' Discords for more updates and details on how to join the community mintlist.
                     </Typography>
                     <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" spacing={5} marginTop={6}>
                         <PartnerLogoBox>
@@ -197,6 +160,22 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Stack>
+            <Box position="relative">
+                <video autoPlay muted loop style={{ width: '100%' }}>
+                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
+            </Box>
+            <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
+                <video autoPlay muted loop style={{ width: '50%' }}>
+                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
+            </Stack>
             <Stack marginTop={20}>
                 <Container>
                     <Stack spacing={8}>
@@ -215,8 +194,8 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SO HERE'S THE SCOOP
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                Since the beginning of the playoffs we've been dropping free NF3 basketballs every time
-                                Stephen hits a 3, and we know that happens a lot!
+                                Since the beginning of the Playoffs, we've been dropping free NF3 Basketballs every time
+                                Curry hits a three-pointer, and we know that happens a lot!
                             </Typography>
                         </Stack>
                         <Stack
@@ -234,8 +213,15 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 REWARD FOR GCF HOLDERS
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                Our loyal GCF NFT owners can claim a free NF3 basketball plus a community serum right
-                                now, just because we love our community!
+                                Our loyal Genesis Curry Flow NFT owners can claim a free NF3 Basketball + a GCF Serum
+                                just because we love our community!
+                                <br />
+                                <br />
+                                <i>*The Serum you claim will be based on the rarity of your Genesis Curry Flow</i>
+                                <br />
+                                <p style={{ color: '#FFCA21' }}>
+                                    From June 9th at 5:00:00 PST to June 11th at 5:00:00 PST
+                                </p>
                             </Typography>
                         </Stack>
                         <Stack
@@ -253,8 +239,8 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 NF3 BASKETBALL SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                On XXX of June the balance of our 20,000 NF3 basketballs go on sale to anyone who hasn't
-                                got an NF3 already
+                                On <span style={{ color: '#FFCA21' }}>June 16th, 2022 at 5:00:00 PM PST</span>, the NF3
+                                Basketball general mint goes live.
                             </Typography>
                         </Stack>
                         <Stack
@@ -272,7 +258,8 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SERUM SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                And on XXXX the community serums go on sale
+                                On <span style={{ color: '#FFCA21' }}>June 28th, 2022 at 5:00:00 PM PST</span>, the
+                                Partner Serum sale goes live
                             </Typography>
                         </Stack>
                     </Stack>
@@ -312,9 +299,9 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 textAlign="right"
                                 marginTop={{ xs: 2, md: 10 }}
                             >
-                                Once you have an NF3 basketball and up to 3 distinct serums from our community partners,
-                                Cyber Kongs, Hape, Chibi dinos and Smileverse jump on over to our Lab and prepare to
-                                mutate.
+                                Once you have an NF3 Basketball, you can use up to three distinct Serums from our
+                                community partners - CyberKongz, HAPE, Chibi Dinos, and Smilesss. Come to mutate the NF3
+                                in our Lab.
                                 <br></br>
                                 <br></br>
                                 COMING SOON
