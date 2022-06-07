@@ -83,7 +83,7 @@ export const getUnclaimedBasketballs = async (walletAddr: string) =>
 
 export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
     new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${gameID}/${walletAddr}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/basketball/hex_proof/${gameID}/${walletAddr}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -176,7 +176,7 @@ export const getCountValues = (gameID: string) =>
 
 export const claimNF3GCF = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/basketball/gcf/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -191,7 +191,7 @@ export const claimNF3GCF = (wallet: string) =>
 
 export const confirmClaimNF3GCF = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/basketball/gcf/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };
@@ -254,7 +254,7 @@ export const confirmClaimSerumGCF = (wallet: string, token: string) =>
 
 export const claimNF3CommunityNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/basketball/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -269,7 +269,7 @@ export const claimNF3CommunityNFT = (wallet: string) =>
 
 export const confirmClaimNF3Community = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/basketball/community/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };
