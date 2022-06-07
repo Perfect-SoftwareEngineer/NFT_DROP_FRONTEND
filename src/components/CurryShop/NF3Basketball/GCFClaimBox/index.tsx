@@ -90,9 +90,12 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                         Genesis Curry Flow holders will be able to claim a free NF3 Basketball
                     </Typography>
                     <Stack>
-                        <Typography>° A snapshot for claiming will be taken on XXX, 2022 at 5PM PST</Typography>
                         <Typography>
-                            ° On XXX, 2022 at 5PM PST, you may mint an NF3 Basketball for every GCF you hold
+                            ° A snapshot for claiming will be taken on June 9th, 2022 at 5:00:00 PM PST
+                        </Typography>
+                        <Typography>
+                            ° On June 9th, 2022 at 5:00:00 PM PST, you may claim a free NF3 Basketball for every GCF you
+                            hold
                         </Typography>
                         <Typography>
                             ° Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.

@@ -8,6 +8,7 @@ import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimNF3Community } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
+import Link from 'next/link';
 
 type ComponentProps = {
     // amountLeft: number;
@@ -94,10 +95,20 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                         Mintlist spots will also be given to all community supporters.
                     </Typography>
                     <Stack>
-                        <Typography>° FTX 2974 Holders: Enter your code here to qualify for the Mintlist.</Typography>
                         <Typography>
-                            ° GCF Metaverse Shoe Holders: The mintlist snapshot will be taken on DATE-TIME.
+                            ° FTX 2974 Holders: Enter your code{' '}
+                            <Link href="/ftxholders" passHref>
+                                <a rel="noopener noreferrer">
+                                    <Typography color="#FFCA21" display="inline">
+                                        here
+                                    </Typography>
+                                </a>
+                            </Link>{' '}
+                            to qualify for the Mintlist.
                         </Typography>
+                        {/* <Typography>
+                            ° GCF Metaverse Shoe Holders: The mintlist snapshot will be taken on DATE-TIME.
+                        </Typography> */}
                         <Typography>° NFT Community: Mintlist spot winners will be able to claim here.</Typography>
                     </Stack>
                     <Stack

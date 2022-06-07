@@ -24,26 +24,26 @@ const nf3MintBoxes = [
     {
         img: '/assets/curryshop/gcf-claim.png',
         title: 'Genesis Curry Flow Claims',
-        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball',
+        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball.',
         dateList: [
-            'Snapshot Date: June 3, 2022 at 5PM PST',
-            'Start Date: June 3, 2022 at 5PM PST',
-            'End Date: June 5, 2022 at 5PM PST',
+            'Snapshot Date: June 9, 2022 at 5:00:00 PM PST',
+            'Start Date: June 9, 2022 at 5:00:00 PM PST',
+            'End Date: June 11, 2022 at 5:00:00 PM PST',
         ],
         dropPhase: 1,
     },
     {
         img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
         title: 'Mintlist Mint',
-        desc: 'Our Community Holders will be able to mint before the Public Mint',
-        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+        desc: 'Our Community Holders will be able to mint before the Public Mint.',
+        dateList: ['Start Date: June 13, 2022 at 5:00:00 PM PST', 'End Date: June 15, 2022 at 5:00:00 PM PST'],
         dropPhase: 2,
     },
     {
         img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
         title: 'General Mint',
-        desc: 'Public sale to mint or reserve mint an NF3 Basketball',
-        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+        desc: 'Public sale to mint or reserve mint an NF3 Basketball.',
+        dateList: ['Start Date: June 16, 2022, at 5:00:00 PM PST'],
         dropPhase: 3,
     },
 ];
@@ -240,10 +240,10 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         <Box>
                             <Grid container columnSpacing={2} maxWidth={540}>
                                 <Grid item xs={6}>
-                                    <SupplyBox amount={supplyLeft} label="Basketballs supply" headColor="#FFCA21" />
+                                    <SupplyBox amount={supplyLeft} label="NF3 Basketballs Supply" headColor="#FFCA21" />
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <SupplyBox amount={60000} label="Serum supply" headColor="#B8FF97" />
+                                    <SupplyBox amount={60000} label="Serum Supply" headColor="#B8FF97" />
                                 </Grid>
                             </Grid>
                         </Box>
@@ -260,8 +260,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         CURRY SHOP
                     </Typography>
                     <Typography width={{ xs: '100%', sm: '80%', md: '40%' }}>
-                        The next iteration of Curry Brand's effort to create the most positive Basketball community of
-                        all time, championed by the greatest shooter of all time
+                        Claim, Reserve, and Mint your NF3 Basketball in the Curry Shop.
                     </Typography>
                 </Stack>
                 <Stack direction="row" spacing={1} marginTop={2}>

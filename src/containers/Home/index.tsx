@@ -61,15 +61,10 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.2}
                                 marginTop={{ xs: 4, md: 10 }}
                             >
-                                One player changed the game for good, but it takes a community, in fact, some of the
-                                biggest and best communities in the Metaverse, to mutate the game. Therefore, Curry
-                                Brand is unifying the basketball community across the Metaverse in another first, an NFT
-                                that is both generative and customizable.
-                                <br />
-                                <br />
-                                Introducing Basketball Headz. 20,000 unique Avatars created from a combination of NF3
-                                and Partner Serums. Combine up to three different Serums to customize your Avatar. So
-                                which one will be yours?
+                                Curry Brand is unifying the basketball community across the Metaverse in another first,
+                                an NFT that is both generative and customizable. Combine your NF3 Basketball with up to
+                                three Serums from the biggest and most exciting NFT communities to create one of 20,000
+                                unique Basketball Headz avatars. 'Night Night!'
                             </Typography>
                             <Stack marginTop={6}>
                                 <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
