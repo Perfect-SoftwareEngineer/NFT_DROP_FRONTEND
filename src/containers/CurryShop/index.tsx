@@ -13,6 +13,7 @@ import SerumMintlistMintBox from '../../components/CurryShop/Serums/MintlistMint
 import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBox';
 import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
+import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
 import { ConnectMetamaskBtn, CategoryBtn } from './styles';
 import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
@@ -280,15 +281,15 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
                     <Grid item xs={12} md={5}>
                         <Stack spacing={3}>
-                            {(selCategory === CategoryType.NF3_BASKETBALL ? nf3MintBoxes : serumMintBoxes).map(
-                                (item, index) => (
+                            {selCategory === CategoryType.NF3_BASKETBALL &&
+                                nf3MintBoxes.map((item, index) => (
                                     <StatusBox
                                         {...item}
                                         selected={!!appState.jwtToken && item.dropPhase === dropPhase}
                                         key={`status_box_key${index}`}
                                     />
-                                )
-                            )}
+                                ))}
+                            {selCategory === CategoryType.SERUMS && <SerumStatusBox selected={0} />}
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={7}>
