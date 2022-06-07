@@ -138,13 +138,20 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             </Link>
                         </PartnerLogoBox>
                         <PartnerLogoBox>
+                            <Link href="https://discord.com/invite/smilesss" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/smilesss.png" alt="" />
+                                </a>
+                            </Link>
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
                             <Link href="https://discord.com/invite/ftxland" passHref>
                                 <a target="_blank" rel="noopener noreferrer">
                                     <img src="/assets/home/logo/ftx.png" alt="" />
                                 </a>
                             </Link>
                         </PartnerLogoBox>
-                        <PartnerLogoBox>
+                        {/* <PartnerLogoBox>
                             <Box width="100%" paddingTop="100%" position="relative">
                                 <Stack
                                     position="absolute"
@@ -163,7 +170,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Stack>
                             </Box>
-                        </PartnerLogoBox>
+                        </PartnerLogoBox> */}
                     </Stack>
                 </Container>
             </Stack>
