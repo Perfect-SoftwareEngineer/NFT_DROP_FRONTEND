@@ -9,15 +9,15 @@ interface ComponentProps {}
 const FTXHoldersPage: React.FC<PropsWithChildren<ComponentProps>> = ({ children }) => {
     const router = useRouter();
 
-    useEffect(() => {
-        router.push('/');
-    }, []);
+    // useEffect(() => {
+    //     router.push('/');
+    // }, []);
 
     return (
         <>
-            {/* <PageContainer>
+            <PageContainer>
                 <FTXHoldersPageContainer />
-            </PageContainer> */}
+            </PageContainer>
         </>
     );
 };
