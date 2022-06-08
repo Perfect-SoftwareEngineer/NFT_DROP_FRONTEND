@@ -9,9 +9,10 @@ import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimNF3Community } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 import Link from 'next/link';
+import SupplyBox from '../../SupplyBox';
 
 type ComponentProps = {
-    // amountLeft: number;
+    amountLeft: number;
     communityOwnedCount: number;
     communityClaimHexProof: any[];
     setNeedUpdateInfo: (value: boolean) => void;
@@ -25,6 +26,7 @@ enum MintStatus {
 }
 
 const NF3MintlistMintBox: React.FC<ComponentProps> = ({
+    amountLeft,
     communityOwnedCount,
     communityClaimHexProof,
     setNeedUpdateInfo,
@@ -80,6 +82,14 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
             <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
                 <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
                     <Image src={'/assets/curryshop/nf3-mintlist-mint-banner.png'} layout="fill" objectFit="cover" />
+                    <Stack position="absolute" justifyContent="center" alignItems="flex-start" sx={{ inset: 0 }}>
+                        <SupplyBox
+                            amount={amountLeft}
+                            label="NF3 Basketballs Supply"
+                            headColor="#FFCA21"
+                            sx={{ flexGrow: 0, marginLeft: 4, paddingRight: 4 }}
+                        />
+                    </Stack>
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography

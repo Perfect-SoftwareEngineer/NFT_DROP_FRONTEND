@@ -210,6 +210,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         } else if (dropPhase === 2) {
             return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3MintlistMintBox
+                    amountLeft={supplyLeft}
                     communityOwnedCount={nf3CommunityOwnedCount}
                     communityClaimHexProof={nf3CommunityClaimHexProof}
                     setNeedUpdateInfo={setNeedUpdateInfo}

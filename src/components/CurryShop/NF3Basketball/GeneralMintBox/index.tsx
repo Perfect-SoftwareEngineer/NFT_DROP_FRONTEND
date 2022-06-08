@@ -4,6 +4,7 @@ import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
+import SupplyBox from '../../SupplyBox';
 
 type ComponentProps = {
     amountLeft: number;
@@ -139,6 +140,14 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
                 <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
                     <Image src={'/assets/curryshop/nf3-general-mint-banner.png'} layout="fill" objectFit="cover" />
+                    <Stack position="absolute" justifyContent="center" alignItems="flex-start" sx={{ inset: 0 }}>
+                        <SupplyBox
+                            amount={amountLeft}
+                            label="NF3 Basketballs Supply"
+                            headColor="#FFCA21"
+                            sx={{ flexGrow: 0, marginLeft: 4, paddingRight: 4 }}
+                        />
+                    </Stack>
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography
