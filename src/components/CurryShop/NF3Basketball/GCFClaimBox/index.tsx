@@ -87,12 +87,11 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                         Genesis Curry Flow Claims
                     </Typography>
                     <Typography>
-                        Introducing rarity to Genesis Curry Flows holders can claim one free NF3 basketball and one
-                        Serum tied to their traits. We will use a snapshot mechanism to open claiming for NF3 first, and
-                        serums at a later date!{' '}
-                        <span style={{ fontWeight: 700 }}>
-                            Claim before June 11th, 2022, 5:00:00 PM PST before it expires.
-                        </span>
+                        Introducing rarity to Genesis Curry Flow, holders can claim one free NF3 basketball and one
+                        Serum tied to their traits. We will use a snapshot mechanism to open claiming for NF3 Basketball
+                        and Serum!
+                        <br />
+                        <b>Claim your NF3 Basketball before June 11th, 2022, 5:00:00 PM PST before it expires.</b>
                     </Typography>
 
                     <Stack
