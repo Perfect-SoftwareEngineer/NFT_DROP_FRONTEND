@@ -8,7 +8,8 @@ import {
     GradientBox4,
     GradientBox5,
     GradientBox6,
-    RoadmapBtn,
+    HowItWorksBtn,
+    PartnerLogoListBox,
     PartnerLogoBox,
 } from './style';
 import Link from 'next/link';
@@ -61,29 +62,35 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1.2}
                                 marginTop={{ xs: 4, md: 10 }}
                             >
-                                Curry Brand is unifying the basketball community across the Metaverse in another first,
-                                an NFT that is both generative and customizable. Combine your NF3 Basketball with up to
-                                three Serums from the biggest and most exciting NFT communities to create one of 20,000
-                                unique Basketball Headz avatars. 'Night Night!'
+                                Curry brand is unifying basketball and positive communities across the Metaverse.
+                                <br />
+                                <br />
+                                Introducing Basketball Headz - a limited-edition 3D generative NFT project that unifies
+                                multiple communities to mix and match your favorite NFT traits
                             </Typography>
-                            <Stack marginTop={6}>
-                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                    Genesis Curry Flow NF3 Basketball Free Claiming:{' '}
-                                    <span style={{ color: '#FFCA21' }}>
-                                        June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
-                                    </span>
-                                </Typography>
-                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                    NF3 Basketball Mintlist Mint:{' '}
-                                    <span style={{ color: '#FFCA21' }}>
-                                        June 13th at 5:00:00 PST to June 15th at 5:00:00 PST.
-                                    </span>
-                                </Typography>
-                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                    NF3 Basketball General Mint:{' '}
-                                    <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PST.</span>
-                                </Typography>
-                            </Stack>
+                            <PartnerLogoListBox direction="row" flexWrap="wrap" gap={2} marginTop={6}>
+                                <Link href="https://discord.com/invite/cyberkongz" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/cyberkong.gif" alt="" />
+                                    </a>
+                                </Link>
+                                <Link href="https://discord.com/invite/hape" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/hape.png" alt="" />
+                                    </a>
+                                </Link>
+                                <Link href="https://discord.com/invite/dinos" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/chibi.png" alt="" />
+                                    </a>
+                                </Link>
+                                <Link href="https://discord.com/invite/smilesss" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/smilesss.png" alt="" />
+                                    </a>
+                                </Link>
+                            </PartnerLogoListBox>
+                            <HowItWorksBtn sx={{ marginTop: 4 }}>How it Works</HowItWorksBtn>
                         </Stack>
                     </Container>
                 </Stack>
