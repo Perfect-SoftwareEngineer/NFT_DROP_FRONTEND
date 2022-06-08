@@ -79,7 +79,7 @@ const roadmapLists = [
                 unique and generative Basketball Headz avatar.
                 <br />
                 <br />
-                <b>General Purchase for NF3 Basketballs and Serums::</b>
+                <b>General Purchase for NF3 Basketballs and Serums:</b>
                 <br />
                 <br />
                 NF3 Basketball Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span>

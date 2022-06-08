@@ -247,12 +247,19 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 now, just because we love our community!
                                 <br />
                                 <br />
+                                <u>NF3 BASKETBALL</u>
+                                <br />
                                 Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PST</span>
                                 <br />
                                 Freebies open:{' '}
                                 <span style={{ color: '#FFCA21' }}>
                                     June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
                                 </span>
+                                <br />
+                                <br />
+                                <u>Serums</u>
+                                <br />
+                                Freebies open: <span style={{ color: '#FFCA21' }}>June 19th at 5:00:00 PM PST</span>
                             </Typography>
                         </Stack>
                         <Stack
@@ -275,11 +282,12 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 Got a mintlist spot? We open up early purchase to community partner mintlists and
                                 Discord mintlists from{' '}
                                 <span style={{ color: '#FFCA21' }}>
-                                    June 13th at 5:00:00 PM PST to June 15th at 5:00:00 PM PST
-                                </span>
+                                    June 19th at 5:00:00 PM PST to June 21st at 5:00:00 PM PST
+                                </span>{' '}
+                                for NF3 Basketballs and Serums.
                                 <br />
                                 <br />
-                                On <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PM PST</span> the balance of
+                                On <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span> the balance of
                                 our 20,000 NF3 basketballs go on sale to anyone who hasn't got an NF3 already.
                             </Typography>
                         </Stack>
@@ -308,7 +316,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SERUM SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                And on <span style={{ color: '#FFCA21' }}>June 28th at 5:00:00 PM PST</span> the
+                                And on <span style={{ color: '#FFCA21' }}>June 22nd at 8:00:00 PM PST</span> the
                                 community serums go on sale.
                             </Typography>
                         </Stack>

@@ -241,8 +241,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                 CURRY SHOP
                             </Typography>
                             <Typography>
-                                The next iteration of Curry Brand's effort to create the most positive Basketball
-                                community of all time, championed by the greatest shooter of all time
+                                In Curry Brand's effort to create the most positive Basketball Community of all time,
+                                the Curry Shop is designed in a way to provide seamless claiming and purchasing
+                                experience for newcomers and the old guard alike.
                             </Typography>
                             <Stack direction="row" spacing={1}>
                                 <CategoryBtn
