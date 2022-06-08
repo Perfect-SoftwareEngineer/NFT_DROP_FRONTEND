@@ -232,53 +232,41 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     return (
         <>
-            <Box sx={{ background: '#1B1C22' }}>
-                <Container>
-                    <Stack paddingY={5} spacing={2}>
-                        <Typography fontSize={16} fontWeight={600}>
-                            Currently available
-                        </Typography>
-                        <Box>
-                            <Grid container columnSpacing={2} maxWidth={540}>
-                                <Grid item xs={6}>
-                                    <SupplyBox amount={supplyLeft} label="NF3 Basketballs Supply" headColor="#FFCA21" />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <SupplyBox amount={60000} label="Serum Supply" headColor="#B8FF97" />
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Stack>
-                </Container>
-            </Box>
-            <Container sx={{ marginY: 4, overflow: 'visible' }}>
-                <Stack direction="row" spacing={2}>
-                    <CounterBox title="MY BASKETBALLS" value={balance} />
-                    <CounterBox title="MY SERUMS" value={0} />
-                </Stack>
-                <Stack marginTop={4} spacing={3}>
-                    <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
-                        CURRY SHOP
-                    </Typography>
-                    <Typography width={{ xs: '100%', sm: '80%', md: '40%' }}>
-                        Claim, Reserve, and Mint your NF3 Basketball in the Curry Shop.
-                    </Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} marginTop={2}>
-                    <CategoryBtn
-                        selected={selCategory === CategoryType.NF3_BASKETBALL}
-                        onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
-                    >
-                        NF3 Basketball
-                    </CategoryBtn>
-                    <CategoryBtn
-                        selected={selCategory === CategoryType.SERUMS}
-                        // onClick={() => setSelCategory(CategoryType.SERUMS)}
-                    >
-                        SERUMS: COMING SOON
-                    </CategoryBtn>
-                </Stack>
-                <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
+            <Container sx={{ paddingY: 8, overflow: 'visible' }}>
+                <Grid container columnSpacing={4} alignItems="center">
+                    <Grid item xs={12} md={5}>
+                        <Stack spacing={3}>
+                            <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
+                                CURRY SHOP
+                            </Typography>
+                            <Typography>
+                                The next iteration of Curry Brand's effort to create the most positive Basketball
+                                community of all time, championed by the greatest shooter of all time
+                            </Typography>
+                            <Stack direction="row" spacing={1}>
+                                <CategoryBtn
+                                    selected={selCategory === CategoryType.NF3_BASKETBALL}
+                                    onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
+                                >
+                                    NF3 Basketball
+                                </CategoryBtn>
+                                <CategoryBtn
+                                    selected={selCategory === CategoryType.SERUMS}
+                                    // onClick={() => setSelCategory(CategoryType.SERUMS)}
+                                >
+                                    SERUMS: COMING SOON
+                                </CategoryBtn>
+                            </Stack>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={7}>
+                        <Stack direction="row" spacing={2} justifyContent="flex-end">
+                            <CounterBox title="MY NF3 BASKETBALLS" value={balance} />
+                            <CounterBox title="MY SERUMS" value={0} />
+                        </Stack>
+                    </Grid>
+                </Grid>
+                <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
                     <Grid item xs={12} md={5}>
                         <Stack spacing={3}>
                             {selCategory === CategoryType.NF3_BASKETBALL && (
