@@ -197,25 +197,18 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Stack>
-            <Box position="relative">
-                <video autoPlay muted loop style={{ width: '100%' }}>
-                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
-                </Stack>
-            </Box>
-            <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
-                <video autoPlay muted loop style={{ width: '50%' }}>
-                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
-                </Stack>
-            </Stack>
-            <Stack marginTop={20}>
+            <Stack marginTop={10}>
                 <Container>
-                    <Stack spacing={8}>
+                    <Typography
+                        fontSize={{ xs: 72, md: 128 }}
+                        fontWeight={800}
+                        lineHeight={1}
+                        sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
+                        className="neueplak_condensed"
+                    >
+                        SO HERE'S THE SCOOP
+                    </Typography>
+                    <Stack spacing={{ xs: 10, md: -10 }} marginTop={10}>
                         <Stack
                             width={{ xs: 260, md: 400 }}
                             spacing={{ xs: 3, md: 4 }}
@@ -228,11 +221,11 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 lineHeight={1}
                                 className="neueplak_condensed"
                             >
-                                SO HERE'S THE SCOOP
+                                CURRY COUNTER
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                Since the beginning of the Playoffs, we've been dropping free NF3 Basketballs every time
-                                Curry hits a three-pointer, and we know that happens a lot!
+                                Since the beginning of the playoffs we've been dropping free NF3 basketballs every time
+                                Stephen hits a 3, and we know that happens a lot!
                             </Typography>
                         </Stack>
                         <Stack
@@ -293,7 +286,17 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             spacing={{ xs: 3, md: 4 }}
                             alignSelf={{ xs: 'center', md: 'flex-end' }}
                         >
-                            <img src="/assets/home/img4.png" alt="" />
+                            <Stack direction="row">
+                                {[...Array(3).keys()].map((item) => (
+                                    <img
+                                        src="/assets/home/img4.png"
+                                        width="33%"
+                                        height="33%"
+                                        alt=""
+                                        style={{ borderRadius: 56 }}
+                                    />
+                                ))}
+                            </Stack>
                             <Typography
                                 fontSize={{ xs: 36, md: 48 }}
                                 fontWeight={700}
@@ -303,8 +306,8 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SERUM SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                On <span style={{ color: '#FFCA21' }}>June 28th, 2022 at 5:00:00 PM PST</span>, the
-                                Partner Serum sale goes live
+                                And on <span style={{ color: '#FFCA21' }}>June 28th at 5:00:00 PM PST</span> the
+                                community serums go on sale.
                             </Typography>
                         </Stack>
                     </Stack>
@@ -386,6 +389,22 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Stack>
                 </Container>
+            </Stack>
+            <Box position="relative">
+                <video autoPlay muted loop style={{ width: '100%' }}>
+                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
+            </Box>
+            <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
+                <video autoPlay muted loop style={{ width: '50%' }}>
+                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
             </Stack>
         </Stack>
     );
