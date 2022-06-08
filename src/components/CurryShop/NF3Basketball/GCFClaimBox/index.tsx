@@ -42,7 +42,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
         );
 
         nftContract.methods
