@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 const roadmapLists = [
     {
@@ -39,19 +39,34 @@ const roadmapLists = [
         img: '/assets/roadmap/04.png',
         title: '04/ YOU DESERVE THE MINTLIST',
         desc: (
-            <Typography>
-                To reward our loyal holders of the Genesis Curry Flow, as well as the Metaverse shoe holders (Sandbox,
-                Decentraland, RKL, Gala Games X Town Star), holders will be able to claim a free NF3 Basketball and a
-                free Serum based on the rarity of your Genesis Curry Flow!
-                <br />
-                <br />
-                Genesis Curry Flow Freebies:{' '}
-                <span style={{ fontWeight: 700 }}>From June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.</span>
-                <br />
-                This snapshot is for Genesis Curry Flow holders. If you are a holder before the snapshot time on{' '}
-                <span style={{ fontWeight: 700 }}>June 9th at 4:00:00 PST</span>, you will have 48 hours to claim a free
-                NF3.
-            </Typography>
+            <Stack>
+                <Typography>
+                    To reward our loyal holders of the Genesis Curry Flow, as well as the Metaverse shoe holders,
+                    holders will be able to claim a free NF3 Basketball and a free Serum based on the rarity of your
+                    Genesis Curry Flow!
+                </Typography>
+                <Typography lineHeight={1.2} marginTop={3}>
+                    <span style={{ fontWeight: 700 }}>Genesis Curry Flow Freebies for NF3 Basketballs:</span>
+                    <br />
+                    <br />
+                    Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PM PST</span>
+                    <br />
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 9th at 5:00:00 PM PST</span>
+                    <br />
+                    End Date: <span style={{ color: '#FFCA21' }}>June 11th at 5:00:00 PM PST</span>
+                    <br />
+                    <br />
+                    <span style={{ fontWeight: 700 }}>
+                        Early Purchase (Mintlist) for NF3 Basketballs and Serums and Genesis Curry Flow Freebies for
+                        Serums:
+                    </span>
+                    <br />
+                    <br />
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 19th at 5:00:00 PM PST</span>
+                    <br />
+                    Mintlist End Date: <span style={{ color: '#FFCA21' }}>June 21st at 5:00:00 PM PST</span>
+                </Typography>
+            </Stack>
         ),
     },
     {
