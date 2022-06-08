@@ -101,10 +101,11 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                     >
                         EARLY PURCHASE (MINTLIST)
                     </Typography>
-                    <Typography fontWeight={700}>
-                        Mintlist spots will also be given to all community supporters.
+                    <Typography>
+                        Got a mintlist spot? We open up early purchasing to community partner mintlists and Discord
+                        mintlist spots.
                     </Typography>
-                    <Stack>
+                    {/* <Stack>
                         <Typography>
                             ° FTX 2974 Holders: Enter your code{' '}
                             <Link href="/ftxholders" passHref>
@@ -116,11 +117,8 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                             </Link>{' '}
                             to qualify for the Mintlist.
                         </Typography>
-                        {/* <Typography>
-                            ° GCF Metaverse Shoe Holders: The mintlist snapshot will be taken on DATE-TIME.
-                        </Typography> */}
                         <Typography>° NFT Community: Mintlist spot winners will be able to claim here.</Typography>
-                    </Stack>
+                    </Stack> */}
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
                         alignItems={{ xs: 'flex-start', md: 'center' }}

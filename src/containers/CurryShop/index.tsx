@@ -115,7 +115,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
             let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            // let _dropPhase = '1';
+            // let _dropPhase = '3';
             setDropPhase(parseInt(_dropPhase));
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });

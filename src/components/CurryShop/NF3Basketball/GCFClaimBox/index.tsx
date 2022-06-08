@@ -86,21 +86,15 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                     >
                         Genesis Curry Flow Claims
                     </Typography>
-                    <Typography fontWeight={700}>
-                        Genesis Curry Flow holders will be able to claim a free NF3 Basketball
+                    <Typography>
+                        Introducing rarity to Genesis Curry Flows holders can claim one free NF3 basketball and one
+                        Serum tied to their traits. We will use a snapshot mechanism to open claiming for NF3 first, and
+                        serums at a later date!{' '}
+                        <span style={{ fontWeight: 700 }}>
+                            Claim before June 11th, 2022, 5:00:00 PM PST before it expires.
+                        </span>
                     </Typography>
-                    <Stack>
-                        <Typography>
-                            ° A snapshot for claiming will be taken on June 9th, 2022 at 5:00:00 PM PST
-                        </Typography>
-                        <Typography>
-                            ° On June 9th, 2022 at 5:00:00 PM PST, you may claim a free NF3 Basketball for every GCF you
-                            hold
-                        </Typography>
-                        <Typography>
-                            ° Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.
-                        </Typography>
-                    </Stack>
+
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
                         alignItems={{ xs: 'flex-start', md: 'center' }}
