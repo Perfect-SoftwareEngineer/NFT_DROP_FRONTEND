@@ -214,7 +214,9 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             spacing={{ xs: 3, md: 4 }}
                             alignSelf={{ xs: 'center', md: 'flex-start' }}
                         >
-                            <img src="/assets/home/img1.png" alt="" />
+                            <video autoPlay muted loop style={{ borderRadius: 500 }}>
+                                <source src={'/assets/home/video1.mp4'} type="video/mp4" />
+                            </video>
                             <Typography
                                 fontSize={{ xs: 36, md: 48 }}
                                 fontWeight={700}
