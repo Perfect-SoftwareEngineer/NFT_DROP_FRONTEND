@@ -57,63 +57,33 @@ const HowItWorks: React.FC<ComponentProps> = (): JSX.Element => {
                 >
                     IMPORTANT DATES
                 </Typography>
-                <Typography
-                    fontSize={{ xs: 24, md: 32 }}
-                    fontWeight={800}
-                    lineHeight={1}
-                    marginTop={6}
-                    className="neueplak_condensed"
-                >
-                    NF3 BASKETBALL
-                </Typography>
-                <Typography fontSize={20} lineHeight={1.2} marginTop={2}>
-                    <span style={{ fontWeight: 600 }}>Genesis Curry Flow Freebies:</span>
+                <Typography fontSize={20} lineHeight={1.2} marginTop={3}>
+                    <span style={{ fontWeight: 600 }}>Genesis Curry Flow Freebies for NF3 Basketballs:</span>
                     <br />
                     <br />
-                    Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PST</span>
+                    Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PM PST</span>
                     <br />
-                    Start Date: <span style={{ color: '#FFCA21' }}>June 9th at 5:00:00 PST</span>
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 9th at 5:00:00 PM PST</span>
                     <br />
-                    End Date: <span style={{ color: '#FFCA21' }}>June 11th at 5:00:00 PST.</span>
-                    <br />
-                    <br />
-                    <span style={{ fontWeight: 600 }}>Early Purchase (Mintlist):</span>
+                    End Date: <span style={{ color: '#FFCA21' }}>June 11th at 5:00:00 PM PST</span>
                     <br />
                     <br />
-                    Start Date: <span style={{ color: '#FFCA21' }}>June 13th at 5:00:00 PST</span>
+                    <span style={{ fontWeight: 600 }}>Early Purchase (Mintlist) for NF3 Basketballs and Serums:</span>
                     <br />
-                    End Date: <span style={{ color: '#FFCA21' }}>June 15th at 5:00:00 PST.</span>
-                    <br />
-                    <br />
-                    <span style={{ fontWeight: 600 }}>General Purchase:</span>
+                    <span style={{ fontWeight: 600 }}>Genesis Curry Flow Freebies for Serums:</span>
                     <br />
                     <br />
-                    Start Date: <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PST.</span>
-                </Typography>
-                <Typography
-                    fontSize={{ xs: 24, md: 32 }}
-                    fontWeight={800}
-                    lineHeight={1}
-                    marginTop={6}
-                    className="neueplak_condensed"
-                >
-                    SERUM
-                </Typography>
-                <Typography fontSize={20} lineHeight={1.2} marginTop={2}>
-                    <span style={{ fontWeight: 600 }}>Early Purchase (Mintlist):</span>
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 19th at 5:00:00 PM PST</span>
+                    <br />
+                    Mintlist End Date: <span style={{ color: '#FFCA21' }}>June 21st at 5:00:00 PM PST</span>
                     <br />
                     <br />
-                    Start Date: <span style={{ color: '#FFCA21' }}>June 25th at 5:00:00 PST</span>
-                    <br />
-                    End Date: <span style={{ color: '#FFCA21' }}>June 27th at 5:00:00 PST.</span>
+                    <span style={{ fontWeight: 600 }}>General Purchase for NF3 Basketballs and Serums:</span>
                     <br />
                     <br />
-                    <span style={{ fontWeight: 600 }}>General Purchase & Genesis Curry Flow Freebies:</span>
+                    NF3 Basketball Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span>
                     <br />
-                    <br />
-                    Genesis Curry Flow Snapshot Date: <span style={{ color: '#FFCA21' }}>June 28th at 4:00:00 PST</span>
-                    <br />
-                    Start Date: <span style={{ color: '#FFCA21' }}>June 28th at 5:00:00 PST</span>
+                    Serum Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 8:00:00 PM PST</span>
                 </Typography>
             </Grid>
         </Grid>

@@ -79,9 +79,12 @@ const roadmapLists = [
                 unique and generative Basketball Headz avatar.
                 <br />
                 <br />
-                <b>NF3 Basketball General Mints open on June 16th at 5:00:00 PST.</b>
+                <b>General Purchase for NF3 Basketballs and Serums::</b>
                 <br />
-                <b>Serum purchasing is available on June 28th at 5:00:00 PST.</b>
+                <br />
+                NF3 Basketball Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span>
+                <br />
+                Serum Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 8:00:00 PM PST</span>
             </Typography>
         ),
     },
