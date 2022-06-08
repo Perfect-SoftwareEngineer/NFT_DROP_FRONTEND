@@ -61,53 +61,54 @@ const HowItWorks: React.FC<ComponentProps> = (): JSX.Element => {
                 >
                     NF3 BASKETBALL
                 </Typography>
-                <Typography fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={3}>
-                    Genesis Curry Flow Freebies:
-                    <br />
-                    <span style={{ color: '#FFCA21' }}>June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.</span>
+                <Typography fontSize={20} lineHeight={1.2} marginTop={2}>
+                    <span style={{ fontWeight: 600 }}>Genesis Curry Flow Freebies:</span>
                     <br />
                     <br />
-                    Early Purchase (Mintlist):
+                    Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PST</span>
                     <br />
-                    <span style={{ color: '#FFCA21' }}>June 13th at 5:00:00 PST to June 15th at 5:00:00 PST.</span>
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 9th at 5:00:00 PST</span>
+                    <br />
+                    End Date: <span style={{ color: '#FFCA21' }}>June 11th at 5:00:00 PST.</span>
                     <br />
                     <br />
-                    General Purchase:
+                    <span style={{ fontWeight: 600 }}>Early Purchase (Mintlist):</span>
                     <br />
-                    <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PST.</span>
+                    <br />
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 13th at 5:00:00 PST</span>
+                    <br />
+                    End Date: <span style={{ color: '#FFCA21' }}>June 15th at 5:00:00 PST.</span>
+                    <br />
+                    <br />
+                    <span style={{ fontWeight: 600 }}>General Purchase:</span>
+                    <br />
+                    <br />
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PST.</span>
                 </Typography>
                 <Typography
                     fontSize={{ xs: 24, md: 32 }}
                     fontWeight={800}
                     lineHeight={1}
-                    marginTop={7}
+                    marginTop={6}
                     className="neueplak_condensed"
                 >
                     SERUM
                 </Typography>
-                <Typography fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={3}>
-                    Early Purchase (Mintlist):
-                    <br />
-                    <span style={{ color: '#FFCA21' }}>June 25th at 5:00:00 PST to June 27th at 5:00:00 PST.</span>
+                <Typography fontSize={20} lineHeight={1.2} marginTop={2}>
+                    <span style={{ fontWeight: 600 }}>Early Purchase (Mintlist):</span>
                     <br />
                     <br />
-                    General Purchase & Genesis Curry Flow Freebies:
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 25th at 5:00:00 PST</span>
                     <br />
-                    <span style={{ color: '#FFCA21' }}>June 28th at 5:00:00 PST</span>
-                </Typography>
-                <Typography
-                    fontSize={{ xs: 24, md: 32 }}
-                    fontWeight={800}
-                    lineHeight={1}
-                    marginTop={7}
-                    className="neueplak_condensed"
-                >
-                    MIXOLOGY ROOM
-                </Typography>
-                <Typography fontSize={20} fontWeight={600} lineHeight={1.2} marginTop={3}>
-                    Mixology Room:
+                    End Date: <span style={{ color: '#FFCA21' }}>June 27th at 5:00:00 PST.</span>
                     <br />
-                    <span style={{ color: '#FFCA21' }}>Stay Updated</span>
+                    <br />
+                    <span style={{ fontWeight: 600 }}>General Purchase & Genesis Curry Flow Freebies:</span>
+                    <br />
+                    <br />
+                    Genesis Curry Flow Snapshot Date: <span style={{ color: '#FFCA21' }}>June 28th at 4:00:00 PST</span>
+                    <br />
+                    Start Date: <span style={{ color: '#FFCA21' }}>June 28th at 5:00:00 PST</span>
                 </Typography>
             </Grid>
         </Grid>
