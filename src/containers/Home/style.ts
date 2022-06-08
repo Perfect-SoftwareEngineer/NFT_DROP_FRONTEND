@@ -85,3 +85,13 @@ export const PartnerLogoBox = styled(Box)`
         width: 60%;
     }
 `;
+
+export const HowItWorksBox = styled(Stack)<{ show: boolean }>`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: ${({ show }) => (show ? '70%' : 0)};
+    background: black;
+    transition: width 500ms;
+    overflow: hidden;
+`;

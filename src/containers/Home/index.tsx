@@ -1,5 +1,5 @@
-import React from 'react';
-import { Stack, Box, Grid, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Stack, Box, Typography, IconButton } from '@mui/material';
 import Container from '../Container';
 import {
     GradientBox1,
@@ -11,16 +11,20 @@ import {
     HowItWorksBtn,
     PartnerLogoListBox,
     PartnerLogoBox,
+    HowItWorksBox,
 } from './style';
 import Link from 'next/link';
 import roadmapLists from '../../constants/roadmapData';
 import RoadmapItemBox from '../../components/Roadmap/ItemBox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CloseIcon from '@mui/icons-material/Close';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
+    const [showHowItWorks, setShowHowItWorks] = useState<boolean>(false);
 
     return (
         <Stack sx={{ overflowX: 'hidden' }}>
@@ -90,10 +94,20 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                     </a>
                                 </Link>
                             </PartnerLogoListBox>
-                            <HowItWorksBtn sx={{ marginTop: 4 }}>How it Works</HowItWorksBtn>
+                            <HowItWorksBtn sx={{ marginTop: 4 }} onClick={() => setShowHowItWorks(true)}>
+                                How it Works
+                            </HowItWorksBtn>
                         </Stack>
                     </Container>
                 </Stack>
+                <HowItWorksBox show={showHowItWorks}>
+                    <IconButton
+                        sx={{ position: 'absolute', right: '24px', top: '24px' }}
+                        onClick={() => setShowHowItWorks(false)}
+                    >
+                        <CloseIcon sx={{ color: 'white' }} />
+                    </IconButton>
+                </HowItWorksBox>
             </Stack>
             <Stack position="relative" marginTop={-1}>
                 <img src={matchDownMd ? '/assets/home/bg2-mobile.png' : '/assets/home/bg2.png'} alt="" />
