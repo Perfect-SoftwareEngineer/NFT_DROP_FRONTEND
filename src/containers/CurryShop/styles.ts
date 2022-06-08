@@ -28,5 +28,5 @@ export const CategoryBtn = styled(Typography)<{ selected?: boolean }>`
     text-transform: uppercase;
     background: ${({ selected }) => (selected ? '#FFCA21' : 'none')};
     color: ${({ selected }) => (selected ? 'black' : 'white')};
-    cursor: pointer;
+    /* cursor: pointer; */
 `;

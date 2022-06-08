@@ -148,7 +148,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        General Mint
+                        GENERAL PURCHASE
                     </Typography>
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} marginTop={3}>
                         <Box minWidth={240} width={240} height={240} position="relative">
