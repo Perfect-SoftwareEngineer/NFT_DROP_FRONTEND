@@ -19,6 +19,7 @@ import RoadmapItemBox from '../../components/Roadmap/ItemBox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CloseIcon from '@mui/icons-material/Close';
+import HowItWorks from '../../components/Home/HowItWorks';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
@@ -107,6 +108,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     >
                         <CloseIcon sx={{ color: 'white' }} />
                     </IconButton>
+                    <HowItWorks />
                 </HowItWorksBox>
             </Stack>
             <Stack position="relative" marginTop={-1}>
