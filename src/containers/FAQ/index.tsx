@@ -41,7 +41,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="I am a Genesis Curry Flow holder, what happens next?">
                     <Typography>
                         For our long term Genesis Curry Flow holders, we will reward free NF3 Basketball claims. A
-                        snapshot will take place on June 9th at 5:00:00 PST, and all of those who have the Genesis Curry
+                        snapshot will take place on June 9th at 4:00:00 PST, and all of those who have the Genesis Curry
                         Flows in their wallet will be registered to claim on June 9th at 5:00:00 PST. We will give
                         holders 48 hours to claim their free mints.
                         <br></br>

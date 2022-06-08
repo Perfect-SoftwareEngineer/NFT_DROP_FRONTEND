@@ -250,15 +250,16 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 REWARD FOR GCF HOLDERS
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                Our loyal Genesis Curry Flow NFT owners can claim a free NF3 Basketball + a GCF Serum
-                                just because we love our community!
+                                Our loyal GCF NFT owners can claim a free NF3 basketball plus a community serum right
+                                now, just because we love our community!
                                 <br />
                                 <br />
-                                <i>*The Serum you claim will be based on the rarity of your Genesis Curry Flow</i>
+                                Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PST</span>
                                 <br />
-                                <p style={{ color: '#FFCA21' }}>
-                                    From June 9th at 5:00:00 PST to June 11th at 5:00:00 PST
-                                </p>
+                                Freebies open:{' '}
+                                <span style={{ color: '#FFCA21' }}>
+                                    June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
+                                </span>
                             </Typography>
                         </Stack>
                         <Stack
