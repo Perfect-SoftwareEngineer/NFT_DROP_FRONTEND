@@ -236,11 +236,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="Where can I view my NFT after I minted it?">
                     <Typography>After minting, you can view your NFT in Opensea.</Typography>
                 </FAQItem>
-                <FAQItem title="What if I'm a Genesis Curry Flow Holder?">
-                    <Typography>
-                        Please wait for future updates. We have not forgotten about our GCF holders.
-                    </Typography>
-                </FAQItem>
                 <FAQItem title="As an Under Armour employee, can I use my UA Employee discount on this purchase?">
                     <Typography>
                         Unfortunately, UA Employee discount is not available on the purchase of the NF3 Basketball.
