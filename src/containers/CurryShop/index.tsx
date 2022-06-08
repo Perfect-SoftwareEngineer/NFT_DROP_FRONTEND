@@ -302,7 +302,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                                 </Typography>
                                                 <Typography marginTop={3}>
                                                     Snapshot Date:{' '}
-                                                    <span style={{ fontWeight: 700 }}>June 9, 2022 at 5 PM PST</span>
+                                                    <span style={{ fontWeight: 700 }}>June 9, 2022 at 4 PM PST</span>
                                                     <br />
                                                     Start Date:{' '}
                                                     <span style={{ fontWeight: 700 }}>June 9, 2022 at 5 PM PST</span>
