@@ -65,7 +65,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 fontSize={{ xs: 16, md: 20 }}
                                 fontWeight={600}
                                 lineHeight={1.2}
-                                marginTop={{ xs: 4, md: 10 }}
+                                marginTop={{ xs: 4, md: 6 }}
                             >
                                 Curry brand is unifying basketball and positive communities across the Metaverse.
                                 <br />
@@ -277,8 +277,15 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 NF3 BASKETBALL SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                On <span style={{ color: '#FFCA21' }}>June 16th, 2022 at 5:00:00 PM PST</span>, the NF3
-                                Basketball general mint goes live.
+                                Got a mintlist spot? We open up early purchase to community partner mintlists and
+                                Discord mintlists from{' '}
+                                <span style={{ color: '#FFCA21' }}>
+                                    June 13th at 5:00:00 PM PST to June 15th at 5:00:00 PM PST
+                                </span>
+                                <br />
+                                <br />
+                                On <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PM PST</span> the balance of
+                                our 20,000 NF3 basketballs go on sale to anyone who hasn't got an NF3 already.
                             </Typography>
                         </Stack>
                         <Stack

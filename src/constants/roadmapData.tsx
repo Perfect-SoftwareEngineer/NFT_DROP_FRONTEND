@@ -48,8 +48,9 @@ const roadmapLists = [
                 Genesis Curry Flow Freebies:{' '}
                 <span style={{ fontWeight: 700 }}>From June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.</span>
                 <br />
-                This snapshot is for Genesis Curry Flow holders. If you are a holder before the snapshot time on June
-                9th at 4:00:00 PST, you will have 48 hours to claim a free NF3.
+                This snapshot is for Genesis Curry Flow holders. If you are a holder before the snapshot time on{' '}
+                <span style={{ fontWeight: 700 }}>June 9th at 4:00:00 PST</span>, you will have 48 hours to claim a free
+                NF3.
             </Typography>
         ),
     },
