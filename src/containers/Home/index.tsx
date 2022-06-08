@@ -400,14 +400,14 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Stack>
-            <Box position="relative">
+            {/* <Box position="relative">
                 <video autoPlay muted loop style={{ width: '100%' }}>
                     <source src={'/assets/home/video1.mp4'} type="video/mp4" />
                 </video>
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox4 />
                 </Stack>
-            </Box>
+            </Box> */}
             {/* <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
                 <video autoPlay muted loop style={{ width: '50%' }}>
                     <source src={'/assets/home/video2.mp4'} type="video/mp4" />
@@ -416,11 +416,11 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox4 />
                 </Stack>
             </Stack> */}
-            <Stack position="relative" height={{ xs: 50, md: 200 }} paddingY={{ xs: 4, md: 0 }}>
+            {/* <Stack position="relative" height={{ xs: 50, md: 200 }} paddingY={{ xs: 4, md: 0 }}>
                 <Stack position="absolute" sx={{ inset: 0 }}>
                     <GradientBox4 sx={{ height: '90%' }} />
                 </Stack>
-            </Stack>
+            </Stack> */}
         </Stack>
     );
 };

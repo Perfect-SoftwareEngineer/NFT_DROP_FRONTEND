@@ -50,13 +50,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         Basketballs as the number of Genesis Curry Flows in your wallet.
                     </Typography>
                 </FAQItem>
-                <FAQItem title="What if I am a Genesis Curry Flow Metaverse Sneaker Holder?">
-                    <Typography>
-                        Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist
-                        snapshot will be taken on June 13th at 5:00:00 PST and opened to purchase on June 13th at
-                        5:00:00 PST.
-                    </Typography>
-                </FAQItem>
                 <FAQItem title="What is a snapshot?">
                     <Typography>
                         A snapshot is a record of wallet addresses that have been collected at a given time. It is used
