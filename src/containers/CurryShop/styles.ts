@@ -25,6 +25,7 @@ export const CategoryBtn = styled(Typography)<{ selected?: boolean }>`
     padding: 4px 22px 8px;
     border-radius: 4px;
     font-weight: 600;
+    text-align: center;
     text-transform: uppercase;
     background: ${({ selected }) => (selected ? '#FFCA21' : 'none')};
     color: ${({ selected }) => (selected ? 'black' : 'white')};

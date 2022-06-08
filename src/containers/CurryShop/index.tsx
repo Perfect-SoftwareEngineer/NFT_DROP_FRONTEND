@@ -234,7 +234,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     return (
         <>
             <Container sx={{ paddingY: 8, overflow: 'visible' }}>
-                <Grid container columnSpacing={4} alignItems="center">
+                <Grid container columnSpacing={4} rowGap={2} alignItems="center">
                     <Grid item xs={12} md={5}>
                         <Stack spacing={3}>
                             <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
