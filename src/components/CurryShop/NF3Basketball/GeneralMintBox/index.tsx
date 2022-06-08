@@ -4,6 +4,7 @@ import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
+import SupplyBox from '../../SupplyBox';
 
 type ComponentProps = {
     amountLeft: number;
@@ -57,7 +58,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
         );
 
         try {
@@ -90,7 +91,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
         );
 
         try {
@@ -114,7 +115,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                    : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
 
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
@@ -139,6 +140,14 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
                 <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
                     <Image src={'/assets/curryshop/nf3-general-mint-banner.png'} layout="fill" objectFit="cover" />
+                    <Stack position="absolute" justifyContent="center" alignItems="flex-start" sx={{ inset: 0 }}>
+                        <SupplyBox
+                            amount={amountLeft}
+                            label="NF3 Basketballs Supply"
+                            headColor="#FFCA21"
+                            sx={{ flexGrow: 0, marginLeft: 4, paddingRight: 4 }}
+                        />
+                    </Stack>
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography
@@ -148,7 +157,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        General Mint
+                        GENERAL PURCHASE
                     </Typography>
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} marginTop={3}>
                         <Box minWidth={240} width={240} height={240} position="relative">
@@ -160,7 +169,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                NF3 BASKETBALL
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
                                 PRICE: 0.07 ETH{' '}

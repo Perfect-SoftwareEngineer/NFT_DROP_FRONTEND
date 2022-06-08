@@ -25,7 +25,7 @@ export const getLatestGameInfo = async () =>
 
 export const getFreeReserveBasketballs = async (gameID: string, walletAddr: string) =>
     new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get/${gameID}/${walletAddr}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/get/${gameID}/${walletAddr}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -40,7 +40,7 @@ export const getFreeReserveBasketballs = async (gameID: string, walletAddr: stri
 
 export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: string) =>
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/reserve`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/reserve`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { _id: _id, gameId: gameId, wallet: walletAddr };
@@ -68,7 +68,7 @@ export const reserveFreeBasketball = (_id: string, gameId: number, walletAddr: s
 
 export const getUnclaimedBasketballs = async (walletAddr: string) =>
     new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get_unclaimed/${walletAddr}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/get_unclaimed/${walletAddr}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -83,7 +83,7 @@ export const getUnclaimedBasketballs = async (walletAddr: string) =>
 
 export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
     new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/hex_proof/${gameID}/${walletAddr}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/hex_proof/${gameID}/${walletAddr}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -98,7 +98,7 @@ export const getHexProofForClaim = async (gameID: string, walletAddr: string) =>
 
 export const startClaim = (gameId: number, walletAddr: string) =>
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/claim_started`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/claim_started`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { gameId: gameId, wallet: walletAddr };
@@ -120,7 +120,7 @@ export const startClaim = (gameId: number, walletAddr: string) =>
 
 export const claimBasketball = (_id: string) =>
     new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { _id: _id };
@@ -146,7 +146,7 @@ export const claimBasketball = (_id: string) =>
 
 export const getWinners = (gameID: string) =>
     new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get_winner/${gameID}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/get_winner/${gameID}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -161,7 +161,7 @@ export const getWinners = (gameID: string) =>
 
 export const getCountValues = (gameID: string) =>
     new Promise((resolve: (value: any[]) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/free/basketball/get_count/${gameID}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/free/get_count/${gameID}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -176,7 +176,7 @@ export const getCountValues = (gameID: string) =>
 
 export const claimNF3GCF = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/gcf/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -191,7 +191,7 @@ export const claimNF3GCF = (wallet: string) =>
 
 export const confirmClaimNF3GCF = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/gcf/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };
@@ -215,7 +215,7 @@ export const confirmClaimNF3GCF = (wallet: string, token: string) =>
 
 export const claimSerumGCF = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/gcf/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -230,7 +230,7 @@ export const claimSerumGCF = (wallet: string) =>
 
 export const confirmClaimSerumGCF = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/gcf/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/gcf/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };
@@ -254,7 +254,7 @@ export const confirmClaimSerumGCF = (wallet: string, token: string) =>
 
 export const claimNF3CommunityNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -269,7 +269,7 @@ export const claimNF3CommunityNFT = (wallet: string) =>
 
 export const confirmClaimNF3Community = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/community/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };
@@ -293,7 +293,7 @@ export const confirmClaimNF3Community = (wallet: string, token: string) =>
 
 export const claimSerumCommunityNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/hex_proof/${wallet}`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
 
         axios
@@ -308,7 +308,7 @@ export const claimSerumCommunityNFT = (wallet: string) =>
 
 export const confirmClaimSerumCommunity = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/merkle/community/claim`;
+        let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/community/claim`;
         // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: wallet };

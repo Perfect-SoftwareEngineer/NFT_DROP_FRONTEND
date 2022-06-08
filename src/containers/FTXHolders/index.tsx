@@ -55,7 +55,7 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                                             You have successfully joined the Mintlist.
                                         </Typography>
                                         <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                                            You have 1 Mintlist spot. Mint your NFT3 Basketball in the Curry Shop.
+                                            You have 1 Mintlist spot. Mint your NF3 Basketball in the Curry Shop.
                                         </Typography>
                                     </Stack>
                                 </Stack>

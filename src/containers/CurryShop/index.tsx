@@ -13,67 +13,68 @@ import SerumMintlistMintBox from '../../components/CurryShop/Serums/MintlistMint
 import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBox';
 import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/fetch';
 import StatusBox from '../../components/CurryShop/StatusBox';
+import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
 import { ConnectMetamaskBtn, CategoryBtn } from './styles';
 import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
 import { useAppContext } from '../../context/AppContext';
 
-const nf3MintBoxes = [
-    {
-        img: '/assets/curryshop/gcf-claim.png',
-        title: 'Genesis Curry Flow Claims',
-        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball',
-        dateList: [
-            'Snapshot Date: June 3, 2022 at 5PM PST',
-            'Start Date: June 3, 2022 at 5PM PST',
-            'End Date: June 5, 2022 at 5PM PST',
-        ],
-        dropPhase: 1,
-    },
-    {
-        img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
-        title: 'Mintlist Mint',
-        desc: 'Our Community Holders will be able to mint before the Public Mint',
-        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
-        dropPhase: 2,
-    },
-    {
-        img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
-        title: 'General Mint',
-        desc: 'Public sale to mint or reserve mint an NF3 Basketball',
-        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
-        dropPhase: 3,
-    },
-];
+// const nf3MintBoxes = [
+//     {
+//         img: '/assets/curryshop/gcf-claim.png',
+//         title: 'Genesis Curry Flow Freebies',
+//         desc: 'Introducing rarity to Genesis Curry Flows holders can claim one free NF3 basketball and one Serum tied to their traits. We will use a snapshot mechanism to open claiming for NF3 first and Serums at a later date!',
+//         dateList: [
+//             'Snapshot Date: June 9, 2022 at 5:00:00 PM PST',
+//             'Start Date: June 9, 2022 at 5:00:00 PM PST',
+//             'End Date: June 11, 2022 at 5:00:00 PM PST',
+//         ],
+//         dropPhase: 1,
+//     },
+//     {
+//         img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
+//         title: 'Mintlist Mint',
+//         desc: 'Our Community Holders will be able to mint before the Public Mint.',
+//         dateList: ['Start Date: June 13, 2022 at 5:00:00 PM PST', 'End Date: June 15, 2022 at 5:00:00 PM PST'],
+//         dropPhase: 2,
+//     },
+//     {
+//         img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
+//         title: 'General Mint',
+//         desc: 'Public sale to mint or reserve mint an NF3 Basketball.',
+//         dateList: ['Start Date: June 16, 2022, at 5:00:00 PM PST'],
+//         dropPhase: 3,
+//     },
+// ];
 
-const serumMintBoxes = [
-    {
-        img: '/assets/curryshop/gcf-claim.png',
-        title: 'Genesis Curry Flow Claims',
-        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball',
-        dateList: [
-            'Snapshot Date: June 3, 2022 at 5PM PST',
-            'Start Date: June 3, 2022 at 5PM PST',
-            'End Date: June 5, 2022 at 5PM PST',
-        ],
-        dropPhase: 1,
-    },
-    {
-        img: '/assets/curryshop/serum-mintlist-general-mint.png',
-        title: 'Mintlist Mint',
-        desc: 'Our Community Holders will be able to mint before the Public Mint',
-        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
-        dropPhase: 2,
-    },
-    {
-        img: '/assets/curryshop/serum-mintlist-general-mint.png',
-        title: 'General Mint',
-        desc: 'Public sale to mint or reserve mint an NF3 Basketball',
-        dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
-        dropPhase: 3,
-    },
-];
+// const serumMintBoxes = [
+//     {
+//         img: '/assets/curryshop/gcf-claim.png',
+//         title: 'Genesis Curry Flow Claims',
+//         desc: 'If you are a GCF NFT Holder, mint a free NF3 Basketball',
+//         dateList: [
+//             'Snapshot Date: June 3, 2022 at 5PM PST',
+//             'Start Date: June 3, 2022 at 5PM PST',
+//             'End Date: June 5, 2022 at 5PM PST',
+//         ],
+//         dropPhase: 1,
+//     },
+//     {
+//         img: '/assets/curryshop/serum-mintlist-general-mint.png',
+//         title: 'Mintlist Mint',
+//         desc: 'Our Community Holders will be able to mint before the Public Mint',
+//         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+//         dropPhase: 2,
+//     },
+//     {
+//         img: '/assets/curryshop/serum-mintlist-general-mint.png',
+//         title: 'General Mint',
+//         desc: 'Public sale to mint or reserve mint an NF3 Basketball',
+//         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
+//         dropPhase: 3,
+//     },
+// ];
 
 enum CategoryType {
     NF3_BASKETBALL,
@@ -111,9 +112,10 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                    : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
             let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            // let _dropPhase = '3';
             setDropPhase(parseInt(_dropPhase));
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
@@ -208,6 +210,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
         } else if (dropPhase === 2) {
             return selCategory === CategoryType.NF3_BASKETBALL ? (
                 <NF3MintlistMintBox
+                    amountLeft={supplyLeft}
                     communityOwnedCount={nf3CommunityOwnedCount}
                     communityClaimHexProof={nf3CommunityClaimHexProof}
                     setNeedUpdateInfo={setNeedUpdateInfo}
@@ -230,65 +233,160 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     return (
         <>
-            <Box sx={{ background: '#1B1C22' }}>
-                <Container>
-                    <Stack paddingY={5} spacing={2}>
-                        <Typography fontSize={16} fontWeight={600}>
-                            Currently available
-                        </Typography>
-                        <Box>
-                            <Grid container columnSpacing={2} maxWidth={540}>
-                                <Grid item xs={6}>
-                                    <SupplyBox amount={supplyLeft} label="Basketballs supply" headColor="#FFCA21" />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <SupplyBox amount={60000} label="Serum supply" headColor="#B8FF97" />
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Stack>
-                </Container>
-            </Box>
-            <Container sx={{ marginY: 4, overflow: 'visible' }}>
-                <Stack direction="row" spacing={2}>
-                    <CounterBox title="MY BASKETBALLS" value={balance} />
-                    <CounterBox title="MY SERUMS" value={0} />
-                </Stack>
-                <Stack marginTop={4} spacing={3}>
-                    <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
-                        CURRY SHOP
-                    </Typography>
-                    <Typography width={{ xs: '100%', sm: '80%', md: '40%' }}>
-                        The next iteration of Curry Brand's effort to create the most positive Basketball community of
-                        all time, championed by the greatest shooter of all time
-                    </Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} marginTop={2}>
-                    <CategoryBtn
-                        selected={selCategory === CategoryType.NF3_BASKETBALL}
-                        onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
-                    >
-                        NF3 Basketball
-                    </CategoryBtn>
-                    <CategoryBtn
-                        selected={selCategory === CategoryType.SERUMS}
-                        onClick={() => setSelCategory(CategoryType.SERUMS)}
-                    >
-                        Serums
-                    </CategoryBtn>
-                </Stack>
-                <Grid container columnSpacing={4} rowGap={4} marginTop={6}>
+            <Container sx={{ paddingY: 8, overflow: 'visible' }}>
+                <Grid container columnSpacing={4} rowGap={2} alignItems="center">
                     <Grid item xs={12} md={5}>
                         <Stack spacing={3}>
-                            {(selCategory === CategoryType.NF3_BASKETBALL ? nf3MintBoxes : serumMintBoxes).map(
-                                (item, index) => (
-                                    <StatusBox
-                                        {...item}
-                                        selected={!!appState.jwtToken && item.dropPhase === dropPhase}
-                                        key={`status_box_key${index}`}
-                                    />
-                                )
+                            <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
+                                CURRY SHOP
+                            </Typography>
+                            <Typography>
+                                In Curry Brand's effort to create the most positive Basketball Community of all time,
+                                the Curry Shop is designed in a way to provide seamless claiming and purchasing
+                                experience for newcomers and the old guard alike.
+                            </Typography>
+                            <Stack direction="row" spacing={1}>
+                                <CategoryBtn
+                                    selected={selCategory === CategoryType.NF3_BASKETBALL}
+                                    onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
+                                >
+                                    NF3 Basketball
+                                </CategoryBtn>
+                                <CategoryBtn
+                                    selected={selCategory === CategoryType.SERUMS}
+                                    // onClick={() => setSelCategory(CategoryType.SERUMS)}
+                                >
+                                    SERUMS: COMING SOON
+                                </CategoryBtn>
+                            </Stack>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={7}>
+                        <Stack direction="row" spacing={2} justifyContent="flex-end">
+                            <CounterBox title="MY NF3 BASKETBALLS" value={balance} />
+                            <CounterBox title="MY SERUMS" value={0} />
+                        </Stack>
+                    </Grid>
+                </Grid>
+                <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
+                    <Grid item xs={12} md={5}>
+                        <Stack spacing={3}>
+                            {selCategory === CategoryType.NF3_BASKETBALL && (
+                                <>
+                                    {(!appState.jwtToken || dropPhase <= 1) && (
+                                        <Stack
+                                            direction="row"
+                                            padding={2}
+                                            spacing={2}
+                                            borderRadius={2}
+                                            sx={{
+                                                background:
+                                                    !!appState.jwtToken && dropPhase === 1 ? '#FFCA21' : '#1B1C22',
+                                            }}
+                                        >
+                                            <img
+                                                src="/assets/curryshop/gcf-claim.png"
+                                                width={80}
+                                                height={80}
+                                                alt=""
+                                                style={{ borderRadius: 8 }}
+                                            />
+                                            <Stack color={!!appState.jwtToken && dropPhase === 1 ? 'black' : 'white'}>
+                                                <Typography fontSize={20} fontWeight={800} marginTop={-1}>
+                                                    Genesis Curry Flow Freebies
+                                                </Typography>
+                                                <Typography marginTop={2}>
+                                                    Introducing rarity to Genesis Curry Flows holders can claim one free
+                                                    NF3 basketball and one Serum tied to their traits. We will use a
+                                                    snapshot mechanism to open claiming for NF3 first and Serums at a
+                                                    later date!
+                                                </Typography>
+                                                <Typography marginTop={3}>
+                                                    Snapshot Date:{' '}
+                                                    <span style={{ fontWeight: 700 }}>June 9, 2022 at 4 PM PST</span>
+                                                    <br />
+                                                    Start Date:{' '}
+                                                    <span style={{ fontWeight: 700 }}>June 9, 2022 at 5 PM PST</span>
+                                                    <br />
+                                                    End Date:{' '}
+                                                    <span style={{ fontWeight: 700 }}>June 11, 2022 at 5 PM PST</span>
+                                                </Typography>
+                                            </Stack>
+                                        </Stack>
+                                    )}
+                                    {(!appState.jwtToken || dropPhase <= 2) && false && (
+                                        <Stack
+                                            direction="row"
+                                            padding={2}
+                                            spacing={2}
+                                            borderRadius={2}
+                                            sx={{
+                                                background:
+                                                    !!appState.jwtToken && dropPhase === 2 ? '#FFCA21' : '#1B1C22',
+                                            }}
+                                        >
+                                            <img
+                                                src="/assets/curryshop/nf3-basketball-box.png"
+                                                width={80}
+                                                height={80}
+                                                alt=""
+                                                style={{ borderRadius: 8 }}
+                                            />
+                                            <Stack color={!!appState.jwtToken && dropPhase === 2 ? 'black' : 'white'}>
+                                                <Typography fontSize={20} fontWeight={800} marginTop={-1}>
+                                                    Early Purchase (Mintlist)
+                                                </Typography>
+                                                <Typography marginTop={2}>
+                                                    Got a mintlist spot? We open up early purchasing to community
+                                                    partner mintlists and Discord mintlist spots. See timing below for
+                                                    when early purchasing starts and ends.
+                                                </Typography>
+                                                <Typography marginTop={3}>
+                                                    Start Date:{' '}
+                                                    <span style={{ fontWeight: 700 }}>June 13, 2022 at 5 PM PST</span>
+                                                    <br />
+                                                    End Date:{' '}
+                                                    <span style={{ fontWeight: 700 }}>June 15, 2022 at 5 PM PST</span>
+                                                </Typography>
+                                            </Stack>
+                                        </Stack>
+                                    )}
+                                    {(!appState.jwtToken || dropPhase <= 3) && false && (
+                                        <Stack
+                                            direction="row"
+                                            padding={2}
+                                            spacing={2}
+                                            borderRadius={2}
+                                            sx={{
+                                                background:
+                                                    !!appState.jwtToken && dropPhase === 3 ? '#FFCA21' : '#1B1C22',
+                                            }}
+                                        >
+                                            <img
+                                                src="/assets/curryshop/nf3-basketball-box.png"
+                                                width={80}
+                                                height={80}
+                                                alt=""
+                                                style={{ borderRadius: 8 }}
+                                            />
+                                            <Stack color={!!appState.jwtToken && dropPhase === 3 ? 'black' : 'white'}>
+                                                <Typography fontSize={20} fontWeight={800} marginTop={-1}>
+                                                    General Purchase
+                                                </Typography>
+                                                <Typography marginTop={2}>
+                                                    Not on the mintlist? We have general sale available to everybody
+                                                    starting on the following time:
+                                                </Typography>
+                                                <Typography marginTop={3}>
+                                                    Start Date:{' '}
+                                                    <span style={{ fontWeight: 700 }}>June 16, 2022, at 5 PM PST</span>
+                                                </Typography>
+                                            </Stack>
+                                        </Stack>
+                                    )}
+                                </>
                             )}
+                            {selCategory === CategoryType.SERUMS && <SerumStatusBox selected={0} />}
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={7}>

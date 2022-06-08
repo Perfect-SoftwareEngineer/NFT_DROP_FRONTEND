@@ -8,9 +8,11 @@ import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimNF3Community } from '../../../../services/fetch';
 import { useAppContext } from '../../../../context/AppContext';
+import Link from 'next/link';
+import SupplyBox from '../../SupplyBox';
 
 type ComponentProps = {
-    // amountLeft: number;
+    amountLeft: number;
     communityOwnedCount: number;
     communityClaimHexProof: any[];
     setNeedUpdateInfo: (value: boolean) => void;
@@ -24,6 +26,7 @@ enum MintStatus {
 }
 
 const NF3MintlistMintBox: React.FC<ComponentProps> = ({
+    amountLeft,
     communityOwnedCount,
     communityClaimHexProof,
     setNeedUpdateInfo,
@@ -43,7 +46,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
         );
 
         let _mintPrice = 0.07;
@@ -79,6 +82,14 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
             <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
                 <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
                     <Image src={'/assets/curryshop/nf3-mintlist-mint-banner.png'} layout="fill" objectFit="cover" />
+                    <Stack position="absolute" justifyContent="center" alignItems="flex-start" sx={{ inset: 0 }}>
+                        <SupplyBox
+                            amount={amountLeft}
+                            label="NF3 Basketballs Supply"
+                            headColor="#FFCA21"
+                            sx={{ flexGrow: 0, marginLeft: 4, paddingRight: 4 }}
+                        />
+                    </Stack>
                 </Box>
                 <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
                     <Typography
@@ -88,18 +99,26 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        Mintlist Mint
+                        EARLY PURCHASE (MINTLIST)
                     </Typography>
-                    <Typography fontWeight={700}>
-                        Mintlist spots will also be given to all community supporters.
+                    <Typography>
+                        Got a mintlist spot? We open up early purchasing to community partner mintlists and Discord
+                        mintlist spots.
                     </Typography>
-                    <Stack>
-                        <Typography>° FTX 2974 Holders: Enter your code here to qualify for the Mintlist.</Typography>
+                    {/* <Stack>
                         <Typography>
-                            ° GCF Metaverse Shoe Holders: The mintlist snapshot will be taken on DATE-TIME.
+                            ° FTX 2974 Holders: Enter your code{' '}
+                            <Link href="/ftxholders" passHref>
+                                <a rel="noopener noreferrer">
+                                    <Typography color="#FFCA21" display="inline">
+                                        here
+                                    </Typography>
+                                </a>
+                            </Link>{' '}
+                            to qualify for the Mintlist.
                         </Typography>
                         <Typography>° NFT Community: Mintlist spot winners will be able to claim here.</Typography>
-                    </Stack>
+                    </Stack> */}
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
                         alignItems={{ xs: 'flex-start', md: 'center' }}
@@ -115,7 +134,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                NF3 BASKETBALL
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
                                 PRICE: 0.07 ETH{' '}

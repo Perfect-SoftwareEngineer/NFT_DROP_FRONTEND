@@ -1,5 +1,5 @@
-import React from 'react';
-import { Stack, Box, Grid, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Stack, Box, Typography, IconButton } from '@mui/material';
 import Container from '../Container';
 import {
     GradientBox1,
@@ -8,18 +8,24 @@ import {
     GradientBox4,
     GradientBox5,
     GradientBox6,
-    RoadmapBtn,
+    HowItWorksBtn,
+    PartnerLogoListBox,
     PartnerLogoBox,
+    HowItWorksBox,
 } from './style';
 import Link from 'next/link';
 import roadmapLists from '../../constants/roadmapData';
 import RoadmapItemBox from '../../components/Roadmap/ItemBox';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CloseIcon from '@mui/icons-material/Close';
+import HowItWorks from '../../components/Home/HowItWorks';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
+    const [showHowItWorks, setShowHowItWorks] = useState<boolean>(false);
 
     return (
         <Stack sx={{ overflowX: 'hidden' }}>
@@ -59,39 +65,51 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 fontSize={{ xs: 16, md: 20 }}
                                 fontWeight={600}
                                 lineHeight={1.2}
-                                marginTop={{ xs: 4, md: 10 }}
+                                marginTop={{ xs: 4, md: 6 }}
                             >
-                                One player changed the game for good, but it takes a community, in fact, some of the
-                                biggest and best communities in the Metaverse, to mutate the game. Therefore, Curry
-                                Brand is unifying the basketball community across the Metaverse in another first, an NFT
-                                that is both generative and customizable.
+                                Curry brand is unifying basketball and positive communities across the Metaverse.
                                 <br />
                                 <br />
-                                Introducing Basketball Headz. 20,000 unique Avatars created from a combination of NF3
-                                and Partner Serums. Combine up to three different Serums to customize your Avatar. So
-                                which one will be yours?
+                                Introducing Basketball Headz - a limited-edition 3D generative NFT project that unifies
+                                multiple communities to mix and match your favorite NFT traits
                             </Typography>
-                            <Stack marginTop={6}>
-                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                    Genesis Curry Flow NF3 Basketball Free Claiming:{' '}
-                                    <span style={{ color: '#FFCA21' }}>
-                                        June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
-                                    </span>
-                                </Typography>
-                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                    NF3 Basketball Mintlist Mint:{' '}
-                                    <span style={{ color: '#FFCA21' }}>
-                                        June 13th at 5:00:00 PST to June 15th at 5:00:00 PST.
-                                    </span>
-                                </Typography>
-                                <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                    NF3 Basketball General Mint:{' '}
-                                    <span style={{ color: '#FFCA21' }}>June 16th at 5:00:00 PST.</span>
-                                </Typography>
-                            </Stack>
+                            <PartnerLogoListBox direction="row" flexWrap="wrap" gap={2} marginTop={6}>
+                                <Link href="https://discord.com/invite/cyberkongz" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/cyberkong.gif" alt="" />
+                                    </a>
+                                </Link>
+                                <Link href="https://discord.com/invite/hape" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/hape.png" alt="" />
+                                    </a>
+                                </Link>
+                                <Link href="https://discord.com/invite/dinos" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/chibi.png" alt="" />
+                                    </a>
+                                </Link>
+                                <Link href="https://discord.com/invite/smilesss" passHref>
+                                    <a target="_blank" rel="noopener noreferrer">
+                                        <img src="/assets/home/logo/smilesss.png" alt="" />
+                                    </a>
+                                </Link>
+                            </PartnerLogoListBox>
+                            <HowItWorksBtn sx={{ marginTop: 4 }} onClick={() => setShowHowItWorks(true)}>
+                                How it Works
+                            </HowItWorksBtn>
                         </Stack>
                     </Container>
                 </Stack>
+                <HowItWorksBox show={showHowItWorks}>
+                    <IconButton
+                        sx={{ position: 'absolute', right: '24px', top: '24px' }}
+                        onClick={() => setShowHowItWorks(false)}
+                    >
+                        <CloseIcon sx={{ color: 'white' }} />
+                    </IconButton>
+                    <HowItWorks />
+                </HowItWorksBox>
             </Stack>
             <Stack position="relative" marginTop={-1}>
                 <img src={matchDownMd ? '/assets/home/bg2-mobile.png' : '/assets/home/bg2.png'} alt="" />
@@ -143,13 +161,20 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             </Link>
                         </PartnerLogoBox>
                         <PartnerLogoBox>
+                            <Link href="https://discord.com/invite/smilesss" passHref>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    <img src="/assets/home/logo/smilesss.png" alt="" />
+                                </a>
+                            </Link>
+                        </PartnerLogoBox>
+                        <PartnerLogoBox>
                             <Link href="https://discord.com/invite/ftxland" passHref>
                                 <a target="_blank" rel="noopener noreferrer">
                                     <img src="/assets/home/logo/ftx.png" alt="" />
                                 </a>
                             </Link>
                         </PartnerLogoBox>
-                        <PartnerLogoBox>
+                        {/* <PartnerLogoBox>
                             <Box width="100%" paddingTop="100%" position="relative">
                                 <Stack
                                     position="absolute"
@@ -168,46 +193,41 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Stack>
                             </Box>
-                        </PartnerLogoBox>
+                        </PartnerLogoBox> */}
                     </Stack>
                 </Container>
             </Stack>
-            <Box position="relative">
-                <video autoPlay muted loop style={{ width: '100%' }}>
-                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
-                </Stack>
-            </Box>
-            <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
-                <video autoPlay muted loop style={{ width: '50%' }}>
-                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
-                </Stack>
-            </Stack>
-            <Stack marginTop={20}>
+            <Stack marginTop={10}>
                 <Container>
-                    <Stack spacing={8}>
+                    <Typography
+                        fontSize={{ xs: 72, md: 128 }}
+                        fontWeight={800}
+                        lineHeight={1}
+                        sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
+                        className="neueplak_condensed"
+                    >
+                        SO HERE'S THE SCOOP
+                    </Typography>
+                    <Stack spacing={{ xs: 10, md: -10 }} marginTop={10}>
                         <Stack
                             width={{ xs: 260, md: 400 }}
                             spacing={{ xs: 3, md: 4 }}
                             alignSelf={{ xs: 'center', md: 'flex-start' }}
                         >
-                            <img src="/assets/home/img1.png" alt="" />
+                            <video autoPlay muted loop style={{ borderRadius: 500 }}>
+                                <source src={'/assets/home/video1.mp4'} type="video/mp4" />
+                            </video>
                             <Typography
                                 fontSize={{ xs: 36, md: 48 }}
                                 fontWeight={700}
                                 lineHeight={1}
                                 className="neueplak_condensed"
                             >
-                                SO HERE'S THE SCOOP
+                                CURRY COUNTER
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                Since the beginning of the Playoffs, we've been dropping free NF3 Basketballs every time
-                                Curry hits a three-pointer, and we know that happens a lot!
+                                Since the beginning of the playoffs we've been dropping free NF3 basketballs every time
+                                Stephen hits a 3, and we know that happens a lot!
                             </Typography>
                         </Stack>
                         <Stack
@@ -225,15 +245,23 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 REWARD FOR GCF HOLDERS
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                Our loyal Genesis Curry Flow NFT owners can claim a free NF3 Basketball + a GCF Serum
-                                just because we love our community!
+                                Our loyal GCF NFT owners can claim a free NF3 basketball plus a community serum right
+                                now, just because we love our community!
                                 <br />
                                 <br />
-                                <i>*The Serum you claim will be based on the rarity of your Genesis Curry Flow</i>
+                                <u>NF3 BASKETBALL</u>
                                 <br />
-                                <p style={{ color: '#FFCA21' }}>
-                                    From June 9th at 5:00:00 PST to June 11th at 5:00:00 PST
-                                </p>
+                                Snapshot Date: <span style={{ color: '#FFCA21' }}>June 9th at 4:00:00 PST</span>
+                                <br />
+                                Freebies open:{' '}
+                                <span style={{ color: '#FFCA21' }}>
+                                    June 9th at 5:00:00 PST to June 11th at 5:00:00 PST.
+                                </span>
+                                <br />
+                                <br />
+                                <u>Serums</u>
+                                <br />
+                                Freebies open: <span style={{ color: '#FFCA21' }}>June 19th at 5:00:00 PM PST</span>
                             </Typography>
                         </Stack>
                         <Stack
@@ -241,7 +269,9 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             spacing={{ xs: 3, md: 4 }}
                             alignSelf={{ xs: 'center', md: 'flex-start' }}
                         >
-                            <img src="/assets/home/img3.png" alt="" />
+                            <video autoPlay muted loop style={{ width: '150%', marginLeft: '-25%' }}>
+                                <source src={'/assets/home/video2.mp4'} type="video/mp4" />
+                            </video>
                             <Typography
                                 fontSize={{ xs: 36, md: 48 }}
                                 fontWeight={700}
@@ -251,8 +281,16 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 NF3 BASKETBALL SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                On <span style={{ color: '#FFCA21' }}>June 16th, 2022 at 5:00:00 PM PST</span>, the NF3
-                                Basketball general mint goes live.
+                                Got a mintlist spot? We open up early purchase to community partner mintlists and
+                                Discord mintlists from{' '}
+                                <span style={{ color: '#FFCA21' }}>
+                                    June 19th at 5:00:00 PM PST to June 21st at 5:00:00 PM PST
+                                </span>{' '}
+                                for NF3 Basketballs and Serums.
+                                <br />
+                                <br />
+                                On <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span> the balance of
+                                our 20,000 NF3 basketballs go on sale to anyone who hasn't got an NF3 already.
                             </Typography>
                         </Stack>
                         <Stack
@@ -260,7 +298,17 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             spacing={{ xs: 3, md: 4 }}
                             alignSelf={{ xs: 'center', md: 'flex-end' }}
                         >
-                            <img src="/assets/home/img4.png" alt="" />
+                            <Stack direction="row">
+                                {[...Array(3).keys()].map((item) => (
+                                    <img
+                                        src="/assets/home/img4.png"
+                                        width="33%"
+                                        height="33%"
+                                        alt=""
+                                        style={{ borderRadius: 56 }}
+                                    />
+                                ))}
+                            </Stack>
                             <Typography
                                 fontSize={{ xs: 36, md: 48 }}
                                 fontWeight={700}
@@ -270,8 +318,8 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SERUM SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                On <span style={{ color: '#FFCA21' }}>June 28th, 2022 at 5:00:00 PM PST</span>, the
-                                Partner Serum sale goes live
+                                And on <span style={{ color: '#FFCA21' }}>June 22nd at 8:00:00 PM PST</span> the
+                                community serums go on sale.
                             </Typography>
                         </Stack>
                     </Stack>
@@ -354,6 +402,27 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Stack>
+            {/* <Box position="relative">
+                <video autoPlay muted loop style={{ width: '100%' }}>
+                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
+            </Box> */}
+            {/* <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
+                <video autoPlay muted loop style={{ width: '50%' }}>
+                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
+                </video>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 />
+                </Stack>
+            </Stack> */}
+            {/* <Stack position="relative" height={{ xs: 50, md: 200 }} paddingY={{ xs: 4, md: 0 }}>
+                <Stack position="absolute" sx={{ inset: 0 }}>
+                    <GradientBox4 sx={{ height: '90%' }} />
+                </Stack>
+            </Stack> */}
         </Stack>
     );
 };

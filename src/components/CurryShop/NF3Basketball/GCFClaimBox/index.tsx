@@ -42,7 +42,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0xdb52bBC7bc3312B815E2978Aed339987D95D0444'
+                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
         );
 
         nftContract.methods
@@ -86,18 +86,14 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                     >
                         Genesis Curry Flow Claims
                     </Typography>
-                    <Typography fontWeight={700}>
-                        Genesis Curry Flow holders will be able to claim a free NF3 Basketball
+                    <Typography>
+                        Introducing rarity to Genesis Curry Flow, holders can claim one free NF3 basketball and one
+                        Serum tied to their traits. We will use a snapshot mechanism to open claiming for NF3 Basketball
+                        and Serum!
+                        <br />
+                        <b>Claim your NF3 Basketball before June 11th, 2022, 5:00:00 PM PST before it expires.</b>
                     </Typography>
-                    <Stack>
-                        <Typography>° A snapshot for claiming will be taken on XXX, 2022 at 5PM PST</Typography>
-                        <Typography>
-                            ° On XXX, 2022 at 5PM PST, you may mint an NF3 Basketball for every GCF you hold
-                        </Typography>
-                        <Typography>
-                            ° Please Note: You will need enough Ethereum in your wallet to pay for the gas fee.
-                        </Typography>
-                    </Stack>
+
                     <Stack
                         direction={{ xs: 'column', md: 'row' }}
                         alignItems={{ xs: 'flex-start', md: 'center' }}
@@ -113,7 +109,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                NF3 BASKETBALL
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
                                 PRICE: FREE{' '}

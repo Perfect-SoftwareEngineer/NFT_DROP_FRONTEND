@@ -41,20 +41,13 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="I am a Genesis Curry Flow holder, what happens next?">
                     <Typography>
                         For our long term Genesis Curry Flow holders, we will reward free NF3 Basketball claims. A
-                        snapshot will take place on June 9th at 5:00:00 PST, and all of those who have the Genesis Curry
+                        snapshot will take place on June 9th at 4:00:00 PST, and all of those who have the Genesis Curry
                         Flows in their wallet will be registered to claim on June 9th at 5:00:00 PST. We will give
                         holders 48 hours to claim their free mints.
                         <br></br>
                         <br></br>
                         If you have more than one Genesis Curry Flow, you will be able to claim the same amount of NF3
                         Basketballs as the number of Genesis Curry Flows in your wallet.
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="What if I am a Genesis Curry Flow Metaverse Sneaker Holder?">
-                    <Typography>
-                        Mintlist (aka whitelist) spots will also be given to all Metaverse shoe holders. The mintlist
-                        snapshot will be taken on June 13th at 5:00:00 PST and opened to purchase on June 13th at
-                        5:00:00 PST.
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What is a snapshot?">
@@ -235,11 +228,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 </FAQItem>
                 <FAQItem title="Where can I view my NFT after I minted it?">
                     <Typography>After minting, you can view your NFT in Opensea.</Typography>
-                </FAQItem>
-                <FAQItem title="What if I'm a Genesis Curry Flow Holder?">
-                    <Typography>
-                        Please wait for future updates. We have not forgotten about our GCF holders.
-                    </Typography>
                 </FAQItem>
                 <FAQItem title="As an Under Armour employee, can I use my UA Employee discount on this purchase?">
                     <Typography>

@@ -1,4 +1,4 @@
-import { styled, Box, Button } from '@mui/material';
+import { styled, Stack, Box, Button } from '@mui/material';
 
 export const GradientBox1 = styled(Box)`
     width: 65%;
@@ -53,7 +53,7 @@ export const GradientBox6 = styled(Box)`
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 `;
 
-export const RoadmapBtn = styled(Button)`
+export const HowItWorksBtn = styled(Button)`
     width: fit-content;
     height: 38px;
     padding: 0 16px;
@@ -63,6 +63,13 @@ export const RoadmapBtn = styled(Button)`
     color: black;
     &:hover {
         background: #ffca21;
+    }
+`;
+
+export const PartnerLogoListBox = styled(Stack)`
+    img {
+        width: 120px;
+        border-radius: 16px;
     }
 `;
 
@@ -77,4 +84,14 @@ export const PartnerLogoBox = styled(Box)`
     ${(props) => props.theme.breakpoints.down('md')} {
         width: 60%;
     }
+`;
+
+export const HowItWorksBox = styled(Stack)<{ show: boolean }>`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: ${({ show }) => (show ? '100vw' : 0)};
+    background: black;
+    transition: width 500ms;
+    overflow: hidden;
 `;
