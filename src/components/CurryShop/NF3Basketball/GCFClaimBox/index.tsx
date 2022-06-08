@@ -116,7 +116,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                NF3 BASKETBALL
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
                                 PRICE: FREE{' '}

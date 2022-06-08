@@ -126,7 +126,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                         </Box>
                         <Stack>
                             <Typography fontSize={20} fontWeight={700}>
-                                NFT3 BASKETBALL
+                                NF3 BASKETBALL
                             </Typography>
                             <Typography fontSize={32} fontWeight={700} marginTop={2}>
                                 PRICE: 0.07 ETH{' '}

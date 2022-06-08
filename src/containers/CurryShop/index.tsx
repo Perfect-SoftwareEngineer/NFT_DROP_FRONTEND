@@ -24,7 +24,7 @@ const nf3MintBoxes = [
     {
         img: '/assets/curryshop/gcf-claim.png',
         title: 'Genesis Curry Flow Claims',
-        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball.',
+        desc: 'If you are a GCF NFT Holder, mint a free NF3 Basketball.',
         dateList: [
             'Snapshot Date: June 9, 2022 at 5:00:00 PM PST',
             'Start Date: June 9, 2022 at 5:00:00 PM PST',
@@ -52,7 +52,7 @@ const serumMintBoxes = [
     {
         img: '/assets/curryshop/gcf-claim.png',
         title: 'Genesis Curry Flow Claims',
-        desc: 'If you are a GCF NFT Holder, mint a free NFT3 Basketball',
+        desc: 'If you are a GCF NFT Holder, mint a free NF3 Basketball',
         dateList: [
             'Snapshot Date: June 3, 2022 at 5PM PST',
             'Start Date: June 3, 2022 at 5PM PST',

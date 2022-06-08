@@ -52,7 +52,7 @@ const TermsPageContainer: React.FC = (): JSX.Element => {
                 subject to the terms and conditions set forth therein.
                 <br></br>
                 <br></br>
-                NFT3. The Site features certain NF3 NFTs (the “NF3 NFT(s)”) for sale. The claiming of a NF3 NFT entitles
+                NF3. The Site features certain NF3 NFTs (the “NF3 NFT(s)”) for sale. The claiming of a NF3 NFT entitles
                 you to one of the total number of NF3 NFTs which can be used at a later date. The total supply of NF3 is
                 rolling and is based on the number of 3 pointers scored by Stephen Curry in the 2022 playoff games. We
                 reserve the right to increase the total supply of NF3 NFT in future sales.
