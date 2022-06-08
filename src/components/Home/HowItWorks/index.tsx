@@ -6,7 +6,7 @@ type ComponentProps = {};
 
 const HowItWorks: React.FC<ComponentProps> = (): JSX.Element => {
     return (
-        <Grid width={1400} container padding={5} columnSpacing={6}>
+        <Grid width="100vw" container padding={5} columnSpacing={6}>
             <Grid item xs={6}>
                 <Typography
                     fontSize={{ xs: 32, md: 48 }}
