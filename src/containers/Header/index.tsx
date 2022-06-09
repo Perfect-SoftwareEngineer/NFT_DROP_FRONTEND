@@ -35,7 +35,7 @@ const appMenuList = [
 
     { title: 'FAQ', url: '/faq' },
 
-    // { title: 'FTX Holders', url: '/ftxholders' },
+    { title: 'FTX Holders', url: '/ftxholders' },
     // { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
 ];
 

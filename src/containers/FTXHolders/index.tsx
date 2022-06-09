@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, Typography, Link } from '@mui/material';
 import Container from '../Container';
 import { CodeInputField, ConnectWalletBtn, SubmitBtn } from './styles';
@@ -6,9 +6,42 @@ import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorIcon from '@mui/icons-material/ErrorOutline';
 import { useWeb3React } from '@web3-react/core';
 import { connect } from '../../web3/connect';
+import { getFtx, setFtx } from '../../services/api/ftx';
+import { useAppContext } from '../../context/AppContext';
+import { reduceHexAddress } from '../../services/common';
 
 const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
+    const [appState, setAppState] = useAppContext();
+    const [ftxInfo, setFtxInfo] = useState<any>();
+    const [code, setCode] = useState<string>('');
+
+    const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCode(event.target.value);
+    };
+
+    const onSubmit = () => {
+        if (!account) return;
+
+        setFtx(account, code, appState.jwtToken)
+            .then((response: any) => {
+                console.log('resonse:', response);
+            })
+            .catch((error) => {
+                console.log('error:', error);
+            });
+    };
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            if (!account) return;
+
+            const response = await getFtx(account);
+            if (response !== '') setFtxInfo(response);
+        }
+
+        updateAppState();
+    }, [account]);
 
     return (
         <Container sx={{ paddingY: 8 }}>
@@ -32,16 +65,18 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                         sx={{ background: '#32343F' }}
                     >
                         <Typography>MY WALLET ADDRESS:</Typography>
-                        <Typography fontWeight={800}>Wallet not connected</Typography>
+                        <Typography fontWeight={800}>
+                            {account ? reduceHexAddress(account, 4) : 'Wallet not connected'}
+                        </Typography>
                     </Stack>
                     <Stack spacing={1}>
                         <Typography fontSize={14}>Enter Code</Typography>
-                        <CodeInputField />
+                        <CodeInputField value={code} onChange={handleCodeChange} />
                     </Stack>
                     <Stack spacing={3}>
                         {account ? (
                             <>
-                                <SubmitBtn>SUBMIT</SubmitBtn>
+                                <SubmitBtn onClick={onSubmit}>SUBMIT</SubmitBtn>
                                 <Stack
                                     direction="row"
                                     spacing={2}
