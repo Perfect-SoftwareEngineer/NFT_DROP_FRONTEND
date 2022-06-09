@@ -41,9 +41,8 @@ const roadmapLists = [
         desc: (
             <Stack>
                 <Typography>
-                    To reward our loyal holders of the Genesis Curry Flow, as well as the Metaverse shoe holders,
-                    holders will be able to claim a free NF3 Basketball and a free Serum based on the rarity of your
-                    Genesis Curry Flow!
+                    To reward our loyal holders of the Genesis Curry Flow, holders will be able to claim a free NF3
+                    Basketball and a free Serum based on the rarity of your Genesis Curry Flow!
                 </Typography>
                 <Typography lineHeight={1.2} marginTop={3}>
                     <span style={{ fontWeight: 700 }}>Genesis Curry Flow Freebies for NF3 Basketballs:</span>
@@ -57,7 +56,7 @@ const roadmapLists = [
                     <br />
                     <br />
                     <span style={{ fontWeight: 700 }}>
-                        Early Purchase (Mintlist) for NF3 Basketballs and Serums and Genesis Curry Flow Freebies for
+                        Early Purchase (Mintlist) for NF3 Basketballs and Serums, and Genesis Curry Flow Freebies for
                         Serums:
                     </span>
                     <br />
