@@ -241,9 +241,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                 CURRY SHOP
                             </Typography>
                             <Typography>
-                                In Curry Brand's effort to create the most positive Basketball Community of all time,
-                                the Curry Shop is designed in a way to provide seamless claiming and purchasing
-                                experience for newcomers and the old guard alike.
+                                Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along
+                                with Serums from our communities.
                             </Typography>
                             <Stack direction="row" spacing={1}>
                                 <CategoryBtn
