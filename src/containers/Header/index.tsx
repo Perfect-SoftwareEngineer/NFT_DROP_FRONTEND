@@ -23,8 +23,8 @@ const appMenuList = [
 
     { title: 'NF3 Counter', url: '/currycounter' },
 
-    { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
-    // { title: 'Curry Shop', url: '/curryshop' },
+    // { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
+    { title: 'Curry Shop', url: '/curryshop' },
 
     { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
 
