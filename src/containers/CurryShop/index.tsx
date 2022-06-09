@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
-import { Stack, Box, Grid, Typography } from '@mui/material';
+import { Stack, Box, Grid, Typography, Divider } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
@@ -14,7 +14,7 @@ import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBo
 import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/api/fetch';
 import NF3GCFInfoBox from '../../components/CurryShop/NF3InfoBox/GCFBox';
 import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
-import { ConnectMetamaskBtn, CategoryBtn } from './styles';
+import { ConnectMetamaskBtn, CategoryBtn, PhaseTypo } from './styles';
 import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
@@ -350,6 +350,36 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             )}
                             {selCategory === CategoryType.SERUMS && <SerumStatusBox selected={0} />}
                         </Stack>
+                        {/* <Stack spacing={4} marginRight={8}>
+                            <Stack spacing={3}>
+                                <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                    GENERAL MINTING
+                                </Typography>
+                                <Stack spacing={1.5}>
+                                    <PhaseTypo selected>NF3 Basketball</PhaseTypo>
+                                    <PhaseTypo>Serum</PhaseTypo>
+                                </Stack>
+                                <Divider sx={{ borderColor: '#969AA1' }} />
+                            </Stack>
+                            <Stack spacing={3}>
+                                <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                    MINTLISTS
+                                </Typography>
+                                <Stack spacing={1.5}>
+                                    <PhaseTypo>NF3 Basketball</PhaseTypo>
+                                    <PhaseTypo>Serum</PhaseTypo>
+                                </Stack>
+                                <Divider sx={{ borderColor: '#969AA1' }} />
+                            </Stack>
+                            <Stack spacing={3}>
+                                <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                    SERUM FREEBEES
+                                </Typography>
+                                <Stack spacing={1.5}>
+                                    <PhaseTypo>Serum</PhaseTypo>
+                                </Stack>
+                            </Stack>
+                        </Stack> */}
                     </Grid>
                     <Grid item xs={12} md={7}>
                         {account ? (
