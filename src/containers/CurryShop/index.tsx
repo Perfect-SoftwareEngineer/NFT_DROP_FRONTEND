@@ -293,15 +293,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                             />
                                             <Stack color={!!appState.jwtToken && dropPhase === 1 ? 'black' : 'white'}>
                                                 <Typography fontSize={20} fontWeight={800} marginTop={-1}>
-                                                    Genesis Curry Flow Freebies
+                                                    Genesis Curry Flow Freebies: NF3 Basketball
                                                 </Typography>
                                                 <Typography marginTop={2}>
-                                                    Introducing rarity to Genesis Curry Flows holders can claim one free
-                                                    NF3 basketball and one Serum tied to their traits. We will use a
-                                                    snapshot mechanism to open claiming for NF3 first and Serums at a
-                                                    later date!
-                                                </Typography>
-                                                <Typography marginTop={3}>
                                                     Snapshot Date:{' '}
                                                     <span style={{ fontWeight: 700 }}>June 9, 2022 at 4 PM PST</span>
                                                     <br />
