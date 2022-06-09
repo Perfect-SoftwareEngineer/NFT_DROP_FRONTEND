@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MintBtn } from './styles';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimNF3GCF } from '../../../../services/fetch';
+import { confirmClaimNF3GCF } from '../../../../services/api/fetch';
 import { useAppContext } from '../../../../context/AppContext';
 
 type ComponentProps = {

@@ -13,7 +13,7 @@ import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
 import { connect } from '../../web3/connect';
 import LockIcon from '@mui/icons-material/LockOutlined';
-import { getUserInfo, createUser, userSignIn } from '../../services/fetch';
+import { getUserInfo, createUser, userSignIn } from '../../services/api/fetch';
 import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {};

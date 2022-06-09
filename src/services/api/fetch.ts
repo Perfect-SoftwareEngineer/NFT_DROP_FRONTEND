@@ -1,5 +1,5 @@
 import axios from 'axios';
-import SERVER_URL from '../constants/server';
+import SERVER_URL from '../../constants/server';
 
 export const FETCH_CONFIG_JSON = {
     headers: {

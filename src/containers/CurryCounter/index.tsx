@@ -39,7 +39,7 @@ import {
     claimBasketball,
     getWinners,
     getCountValues
-} from '../../services/fetch';
+} from '../../services/api/fetch';
 import { usePrevious } from 'react-use';
 
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
