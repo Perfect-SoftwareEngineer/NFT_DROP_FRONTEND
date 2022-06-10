@@ -122,7 +122,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        Genesis Curry Flow Claims
+                        GCF SERUMS
                     </Typography>
                     <Typography fontWeight={700}>
                         Genesis Curry Flow holders will be able to claim a free NF3 Basketball

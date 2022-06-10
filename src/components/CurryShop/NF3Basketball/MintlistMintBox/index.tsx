@@ -99,7 +99,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        EARLY PURCHASE (MINTLIST)
+                        NF3 BASKETBALL MINTLIST
                     </Typography>
                     <Typography>
                         Got a mintlist spot? We open up early purchasing to community partner mintlists and Discord

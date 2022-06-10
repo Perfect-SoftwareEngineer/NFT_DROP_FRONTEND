@@ -118,8 +118,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
-            // let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            let _dropPhase = '2';
+            let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            // let _dropPhase = '2';
 
             if (parseInt(_dropPhase) === 1) setCurStep(StepType.GCF_NF3);
             else if (parseInt(_dropPhase) === 2) setCurStep(StepType.MINTLIST_NF3);

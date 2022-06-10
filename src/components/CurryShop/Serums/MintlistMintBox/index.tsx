@@ -126,7 +126,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({
                         textTransform="uppercase"
                         className="neueplak_condensed"
                     >
-                        SERUM MINTLIST MINT
+                        SERUM MINTLIST
                     </Typography>
                     <Typography fontWeight={700}>
                         Mintlist spots will also be given to all community supporters.
