@@ -36,4 +36,5 @@ export const PhaseTypo = styled(Typography)<{ selected?: boolean }>`
     padding: 2px 16px 8px;
     border-left: ${({ selected }) => (selected ? '2px solid #FFCA21' : '2px solid transparent')};
     color: ${({ selected }) => (selected ? 'white' : '#969AA1')};
+    cursor: pointer;
 `;

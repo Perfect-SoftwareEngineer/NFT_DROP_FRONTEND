@@ -76,16 +76,20 @@ import { useAppContext } from '../../context/AppContext';
 //     },
 // ];
 
-enum CategoryType {
-    NF3_BASKETBALL,
-    SERUMS,
+enum StepType {
+    GCF_NF3,
+    MINTLIST_NF3,
+    MINTLIST_SERUM,
+    GCF_SERUM,
+    GENERALMINT_NF3,
+    GENERALMINT_SERUM,
 }
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [appState, setAppState] = useAppContext();
 
-    const [selCategory, setSelCategory] = useState<CategoryType>(CategoryType.NF3_BASKETBALL);
+    const [curStep, setCurStep] = useState<StepType>(StepType.GCF_NF3);
 
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
@@ -114,8 +118,13 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
-            let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            // let _dropPhase = '3';
+            // let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            let _dropPhase = '2';
+
+            if (parseInt(_dropPhase) === 1) setCurStep(StepType.GCF_NF3);
+            else if (parseInt(_dropPhase) === 2) setCurStep(StepType.MINTLIST_NF3);
+            else if (parseInt(_dropPhase) === 3) setCurStep(StepType.GENERALMINT_NF3);
+
             setDropPhase(parseInt(_dropPhase));
 
             const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
@@ -125,7 +134,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
             const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
 
-            if (selCategory === CategoryType.NF3_BASKETBALL) {
+            if (curStep === StepType.GCF_NF3) {
                 const NF3GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
 
                 if (NF3GCFFlag == true) {
@@ -138,7 +147,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         setNF3GCFClaimHexProof(response.hexProof);
                     }
                 }
-            } else {
+            } else if (curStep === StepType.GCF_SERUM) {
                 const SerumGCFFlag = true;
 
                 if (SerumGCFFlag == true) {
@@ -151,9 +160,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         setSerumGCFClaimHexProof(response.hexProof);
                     }
                 }
-            }
-
-            if (selCategory === CategoryType.NF3_BASKETBALL) {
+            } else if (curStep === StepType.MINTLIST_NF3 || curStep === StepType.GENERALMINT_NF3) {
                 const NF3CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
 
                 if (NF3CommunityFlag == true) {
@@ -166,7 +173,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         setNF3CommunityClaimHexProof(response.hexProof);
                     }
                 }
-            } else {
+            } else if (curStep === StepType.MINTLIST_SERUM || curStep === StepType.GENERALMINT_SERUM) {
                 const SerumCommunityFlag = true;
 
                 if (SerumCommunityFlag == true) {
@@ -189,46 +196,118 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             setNeedUpdateInfo(false);
         }
-    }, [account, selCategory, needUpdateInfo]);
+    }, [account, curStep, needUpdateInfo]);
+
+    const selectBox = () => {
+        if (dropPhase === 1) {
+            return <NF3GCFInfoBox jwtToken={appState.jwtToken} dropPhase={dropPhase} />;
+        } else {
+            return (
+                <Stack spacing={4} marginRight={8}>
+                    {dropPhase === 2 && (
+                        <Stack spacing={3}>
+                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                MINTLISTS
+                            </Typography>
+                            <Stack spacing={1.5}>
+                                <PhaseTypo
+                                    onClick={() => setCurStep(StepType.MINTLIST_NF3)}
+                                    selected={curStep === StepType.MINTLIST_NF3}
+                                >
+                                    NF3 Basketball
+                                </PhaseTypo>
+                                <PhaseTypo
+                                    onClick={() => setCurStep(StepType.MINTLIST_SERUM)}
+                                    selected={curStep === StepType.MINTLIST_SERUM}
+                                >
+                                    Serums
+                                </PhaseTypo>
+                            </Stack>
+                            <Divider sx={{ borderColor: '#969AA1' }} />
+                        </Stack>
+                    )}
+                    {dropPhase === 3 && (
+                        <Stack spacing={3}>
+                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                GENERAL MINTING
+                            </Typography>
+                            <Stack spacing={1.5}>
+                                <PhaseTypo
+                                    onClick={() => setCurStep(StepType.GENERALMINT_NF3)}
+                                    selected={curStep === StepType.GENERALMINT_NF3}
+                                >
+                                    NF3 Basketball
+                                </PhaseTypo>
+                                <PhaseTypo
+                                    onClick={() => setCurStep(StepType.GENERALMINT_SERUM)}
+                                    selected={curStep === StepType.GENERALMINT_SERUM}
+                                >
+                                    Serums
+                                </PhaseTypo>
+                            </Stack>
+                            <Divider sx={{ borderColor: '#969AA1' }} />
+                        </Stack>
+                    )}
+                    <Stack spacing={3}>
+                        <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                            SERUM FREEBEES
+                        </Typography>
+                        <Stack spacing={1.5}>
+                            <PhaseTypo
+                                onClick={() => setCurStep(StepType.GCF_SERUM)}
+                                selected={curStep === StepType.GCF_SERUM}
+                            >
+                                GCF Serums
+                            </PhaseTypo>
+                        </Stack>
+                    </Stack>
+                </Stack>
+            );
+        }
+    };
 
     const dropBox = () => {
         if (!appState.jwtToken) return '';
-        else if (dropPhase === 1) {
-            return selCategory === CategoryType.NF3_BASKETBALL ? (
-                <NF3GCFClaimBox
-                    gcfOwnedCount={nf3GCFOwnedCount}
-                    gcfClaimHexProof={nf3GCFClaimHexProof}
-                    setNeedUpdateInfo={setNeedUpdateInfo}
-                />
-            ) : (
-                <SerumGCFClaimBox
-                    gcfOwnedCount={serumGCFOwnedCount}
-                    gcfClaimHexProof={serumGCFClaimHexProof}
-                    setNeedUpdateInfo={setNeedUpdateInfo}
-                />
-            );
-        } else if (dropPhase === 2) {
-            return selCategory === CategoryType.NF3_BASKETBALL ? (
-                <NF3MintlistMintBox
-                    amountLeft={supplyLeft}
-                    communityOwnedCount={nf3CommunityOwnedCount}
-                    communityClaimHexProof={nf3CommunityClaimHexProof}
-                    setNeedUpdateInfo={setNeedUpdateInfo}
-                />
-            ) : (
-                <SerumMintlistMintBox
-                    communityOwnedCount={serumCommunityOwnedCount}
-                    communityClaimHexProof={serumCommunityClaimHexProof}
-                    setNeedUpdateInfo={setNeedUpdateInfo}
-                />
-            );
-        } else if (dropPhase === 3) {
-            return selCategory === CategoryType.NF3_BASKETBALL ? (
-                <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
-            ) : (
-                <SerumGeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
-            );
-        }
+
+        return (
+            <>
+                {curStep === StepType.GCF_NF3 && (
+                    <NF3GCFClaimBox
+                        gcfOwnedCount={nf3GCFOwnedCount}
+                        gcfClaimHexProof={nf3GCFClaimHexProof}
+                        setNeedUpdateInfo={setNeedUpdateInfo}
+                    />
+                )}
+                {curStep === StepType.MINTLIST_NF3 && (
+                    <NF3MintlistMintBox
+                        amountLeft={supplyLeft}
+                        communityOwnedCount={nf3CommunityOwnedCount}
+                        communityClaimHexProof={nf3CommunityClaimHexProof}
+                        setNeedUpdateInfo={setNeedUpdateInfo}
+                    />
+                )}
+                {curStep === StepType.MINTLIST_SERUM && (
+                    <SerumMintlistMintBox
+                        communityOwnedCount={serumCommunityOwnedCount}
+                        communityClaimHexProof={serumCommunityClaimHexProof}
+                        setNeedUpdateInfo={setNeedUpdateInfo}
+                    />
+                )}
+                {curStep === StepType.GCF_SERUM && (
+                    <SerumGCFClaimBox
+                        gcfOwnedCount={serumGCFOwnedCount}
+                        gcfClaimHexProof={serumGCFClaimHexProof}
+                        setNeedUpdateInfo={setNeedUpdateInfo}
+                    />
+                )}
+                {curStep === StepType.GENERALMINT_NF3 && (
+                    <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
+                )}
+                {curStep === StepType.GENERALMINT_SERUM && (
+                    <SerumGeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
+                )}
+            </>
+        );
     };
 
     return (
@@ -244,20 +323,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                 Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along
                                 with Serums from our communities.
                             </Typography>
-                            {/* <Stack direction="row" spacing={1}>
-                                <CategoryBtn
-                                    selected={selCategory === CategoryType.NF3_BASKETBALL}
-                                    onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
-                                >
-                                    NF3 Basketball
-                                </CategoryBtn>
-                                <CategoryBtn
-                                    selected={selCategory === CategoryType.SERUMS}
-                                    // onClick={() => setSelCategory(CategoryType.SERUMS)}
-                                >
-                                    SERUMS: COMING SOON
-                                </CategoryBtn>
-                            </Stack> */}
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={7}>
@@ -269,68 +334,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 </Grid>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
                     <Grid item xs={12} md={5}>
-                        {account && (
-                            <>
-                                {dropPhase === 1 && selCategory === CategoryType.NF3_BASKETBALL ? (
-                                    <NF3GCFInfoBox jwtToken={appState.jwtToken} dropPhase={dropPhase} />
-                                ) : (
-                                    <Stack spacing={4} marginRight={8}>
-                                        <Stack spacing={3}>
-                                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
-                                                GENERAL MINTING
-                                            </Typography>
-                                            <Stack spacing={1.5}>
-                                                <PhaseTypo
-                                                    selected={
-                                                        dropPhase === 2 && selCategory === CategoryType.NF3_BASKETBALL
-                                                    }
-                                                >
-                                                    NF3 Basketball
-                                                </PhaseTypo>
-                                                <PhaseTypo
-                                                    selected={dropPhase === 2 && selCategory === CategoryType.SERUMS}
-                                                >
-                                                    Serum
-                                                </PhaseTypo>
-                                            </Stack>
-                                            <Divider sx={{ borderColor: '#969AA1' }} />
-                                        </Stack>
-                                        <Stack spacing={3}>
-                                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
-                                                MINTLISTS
-                                            </Typography>
-                                            <Stack spacing={1.5}>
-                                                <PhaseTypo
-                                                    selected={
-                                                        dropPhase === 3 && selCategory === CategoryType.NF3_BASKETBALL
-                                                    }
-                                                >
-                                                    NF3 Basketball
-                                                </PhaseTypo>
-                                                <PhaseTypo
-                                                    selected={dropPhase === 3 && selCategory === CategoryType.SERUMS}
-                                                >
-                                                    Serum
-                                                </PhaseTypo>
-                                            </Stack>
-                                            <Divider sx={{ borderColor: '#969AA1' }} />
-                                        </Stack>
-                                        <Stack spacing={3}>
-                                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
-                                                SERUM FREEBEES
-                                            </Typography>
-                                            <Stack spacing={1.5}>
-                                                <PhaseTypo
-                                                    selected={dropPhase === 1 && selCategory === CategoryType.SERUMS}
-                                                >
-                                                    Serum
-                                                </PhaseTypo>
-                                            </Stack>
-                                        </Stack>
-                                    </Stack>
-                                )}
-                            </>
-                        )}
+                        {account && selectBox()}
                     </Grid>
                     <Grid item xs={12} md={7}>
                         {account ? (
