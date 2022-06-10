@@ -244,7 +244,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                 Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along
                                 with Serums from our communities.
                             </Typography>
-                            <Stack direction="row" spacing={1}>
+                            {/* <Stack direction="row" spacing={1}>
                                 <CategoryBtn
                                     selected={selCategory === CategoryType.NF3_BASKETBALL}
                                     onClick={() => setSelCategory(CategoryType.NF3_BASKETBALL)}
@@ -257,7 +257,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                 >
                                     SERUMS: COMING SOON
                                 </CategoryBtn>
-                            </Stack>
+                            </Stack> */}
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={7}>
@@ -269,116 +269,68 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 </Grid>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
                     <Grid item xs={12} md={5}>
-                        <Stack spacing={3}>
-                            {selCategory === CategoryType.NF3_BASKETBALL && (
-                                <>
-                                    {(!appState.jwtToken || dropPhase <= 1) && (
-                                        <NF3GCFInfoBox jwtToken={appState.jwtToken} dropPhase={dropPhase} />
-                                    )}
-                                    {(!appState.jwtToken || dropPhase <= 2) && false && (
-                                        <Stack
-                                            direction="row"
-                                            padding={2}
-                                            spacing={2}
-                                            borderRadius={2}
-                                            sx={{
-                                                background:
-                                                    !!appState.jwtToken && dropPhase === 2 ? '#FFCA21' : '#1B1C22',
-                                            }}
-                                        >
-                                            <img
-                                                src="/assets/curryshop/nf3-basketball-box.png"
-                                                width={80}
-                                                height={80}
-                                                alt=""
-                                                style={{ borderRadius: 8 }}
-                                            />
-                                            <Stack color={!!appState.jwtToken && dropPhase === 2 ? 'black' : 'white'}>
-                                                <Typography fontSize={20} fontWeight={800} marginTop={-1}>
-                                                    Early Purchase (Mintlist)
-                                                </Typography>
-                                                <Typography marginTop={2}>
-                                                    Got a mintlist spot? We open up early purchasing to community
-                                                    partner mintlists and Discord mintlist spots. See timing below for
-                                                    when early purchasing starts and ends.
-                                                </Typography>
-                                                <Typography marginTop={3}>
-                                                    Start Date:{' '}
-                                                    <span style={{ fontWeight: 700 }}>June 13, 2022 at 5 PM PST</span>
-                                                    <br />
-                                                    End Date:{' '}
-                                                    <span style={{ fontWeight: 700 }}>June 15, 2022 at 5 PM PST</span>
-                                                </Typography>
+                        {account && (
+                            <>
+                                {dropPhase === 1 && selCategory === CategoryType.NF3_BASKETBALL ? (
+                                    <NF3GCFInfoBox jwtToken={appState.jwtToken} dropPhase={dropPhase} />
+                                ) : (
+                                    <Stack spacing={4} marginRight={8}>
+                                        <Stack spacing={3}>
+                                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                                GENERAL MINTING
+                                            </Typography>
+                                            <Stack spacing={1.5}>
+                                                <PhaseTypo
+                                                    selected={
+                                                        dropPhase === 2 && selCategory === CategoryType.NF3_BASKETBALL
+                                                    }
+                                                >
+                                                    NF3 Basketball
+                                                </PhaseTypo>
+                                                <PhaseTypo
+                                                    selected={dropPhase === 2 && selCategory === CategoryType.SERUMS}
+                                                >
+                                                    Serum
+                                                </PhaseTypo>
+                                            </Stack>
+                                            <Divider sx={{ borderColor: '#969AA1' }} />
+                                        </Stack>
+                                        <Stack spacing={3}>
+                                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                                MINTLISTS
+                                            </Typography>
+                                            <Stack spacing={1.5}>
+                                                <PhaseTypo
+                                                    selected={
+                                                        dropPhase === 3 && selCategory === CategoryType.NF3_BASKETBALL
+                                                    }
+                                                >
+                                                    NF3 Basketball
+                                                </PhaseTypo>
+                                                <PhaseTypo
+                                                    selected={dropPhase === 3 && selCategory === CategoryType.SERUMS}
+                                                >
+                                                    Serum
+                                                </PhaseTypo>
+                                            </Stack>
+                                            <Divider sx={{ borderColor: '#969AA1' }} />
+                                        </Stack>
+                                        <Stack spacing={3}>
+                                            <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                                                SERUM FREEBEES
+                                            </Typography>
+                                            <Stack spacing={1.5}>
+                                                <PhaseTypo
+                                                    selected={dropPhase === 1 && selCategory === CategoryType.SERUMS}
+                                                >
+                                                    Serum
+                                                </PhaseTypo>
                                             </Stack>
                                         </Stack>
-                                    )}
-                                    {(!appState.jwtToken || dropPhase <= 3) && false && (
-                                        <Stack
-                                            direction="row"
-                                            padding={2}
-                                            spacing={2}
-                                            borderRadius={2}
-                                            sx={{
-                                                background:
-                                                    !!appState.jwtToken && dropPhase === 3 ? '#FFCA21' : '#1B1C22',
-                                            }}
-                                        >
-                                            <img
-                                                src="/assets/curryshop/nf3-basketball-box.png"
-                                                width={80}
-                                                height={80}
-                                                alt=""
-                                                style={{ borderRadius: 8 }}
-                                            />
-                                            <Stack color={!!appState.jwtToken && dropPhase === 3 ? 'black' : 'white'}>
-                                                <Typography fontSize={20} fontWeight={800} marginTop={-1}>
-                                                    General Purchase
-                                                </Typography>
-                                                <Typography marginTop={2}>
-                                                    Not on the mintlist? We have general sale available to everybody
-                                                    starting on the following time:
-                                                </Typography>
-                                                <Typography marginTop={3}>
-                                                    Start Date:{' '}
-                                                    <span style={{ fontWeight: 700 }}>June 16, 2022, at 5 PM PST</span>
-                                                </Typography>
-                                            </Stack>
-                                        </Stack>
-                                    )}
-                                </>
-                            )}
-                            {selCategory === CategoryType.SERUMS && <SerumStatusBox selected={0} />}
-                        </Stack>
-                        {/* <Stack spacing={4} marginRight={8}>
-                            <Stack spacing={3}>
-                                <Typography fontSize={20} fontWeight={800} color="#969AA1">
-                                    GENERAL MINTING
-                                </Typography>
-                                <Stack spacing={1.5}>
-                                    <PhaseTypo selected>NF3 Basketball</PhaseTypo>
-                                    <PhaseTypo>Serum</PhaseTypo>
-                                </Stack>
-                                <Divider sx={{ borderColor: '#969AA1' }} />
-                            </Stack>
-                            <Stack spacing={3}>
-                                <Typography fontSize={20} fontWeight={800} color="#969AA1">
-                                    MINTLISTS
-                                </Typography>
-                                <Stack spacing={1.5}>
-                                    <PhaseTypo>NF3 Basketball</PhaseTypo>
-                                    <PhaseTypo>Serum</PhaseTypo>
-                                </Stack>
-                                <Divider sx={{ borderColor: '#969AA1' }} />
-                            </Stack>
-                            <Stack spacing={3}>
-                                <Typography fontSize={20} fontWeight={800} color="#969AA1">
-                                    SERUM FREEBEES
-                                </Typography>
-                                <Stack spacing={1.5}>
-                                    <PhaseTypo>Serum</PhaseTypo>
-                                </Stack>
-                            </Stack>
-                        </Stack> */}
+                                    </Stack>
+                                )}
+                            </>
+                        )}
                     </Grid>
                     <Grid item xs={12} md={7}>
                         {account ? (
