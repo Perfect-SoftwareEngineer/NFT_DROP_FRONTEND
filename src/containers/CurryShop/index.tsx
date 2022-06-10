@@ -11,7 +11,7 @@ import NF3GeneralMintBox from '../../components/CurryShop/NF3Basketball/GeneralM
 import SerumGCFClaimBox from '../../components/CurryShop/Serums/GCFClaimBox';
 import SerumMintlistMintBox from '../../components/CurryShop/Serums/MintlistMintBox';
 import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBox';
-import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/api/fetch';
+import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/api/curryshop';
 import NF3GCFInfoBox from '../../components/CurryShop/NF3InfoBox/GCFBox';
 import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
 import { ConnectMetamaskBtn, CategoryBtn, PhaseTypo } from './styles';

@@ -13,7 +13,7 @@ import { useWeb3React } from '@web3-react/core';
 import WalletConnectDlg from '../../components/WalletConnectDlg';
 import { connect } from '../../web3/connect';
 import LockIcon from '@mui/icons-material/LockOutlined';
-import { getUserInfo, createUser, userSignIn } from '../../services/api/fetch';
+import { getUserInfo, createUser, userSignIn } from '../../services/api/auth';
 import { useAppContext } from '../../context/AppContext';
 
 type ComponentProps = {};
@@ -35,7 +35,7 @@ const appMenuList = [
 
     { title: 'FAQ', url: '/faq' },
 
-    // { title: 'FTX Holders', url: '/ftxholders' },
+    { title: 'FTX Holders', url: '/ftxholders' },
     // { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
 ];
 

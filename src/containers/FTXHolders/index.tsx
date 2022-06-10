@@ -37,6 +37,7 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
             if (!account) return;
 
             const response = await getFtx(account);
+            console.log('getFtx resonse:', response);
             if (response !== '') setFtxInfo(response);
         }
 

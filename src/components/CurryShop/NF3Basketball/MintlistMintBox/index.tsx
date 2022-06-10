@@ -6,7 +6,7 @@ import web3 from 'web3';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimNF3Community } from '../../../../services/api/fetch';
+import { confirmClaimNF3Community } from '../../../../services/api/curryshop';
 import { useAppContext } from '../../../../context/AppContext';
 import Link from 'next/link';
 import SupplyBox from '../../SupplyBox';
