@@ -87,7 +87,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             setNeedUpdateInfo(false);
         }
-    }, [account, curStep, needUpdateInfo]);
+    }, [account, needUpdateInfo]);
 
     React.useEffect(() => {
         async function updateAppState() {
