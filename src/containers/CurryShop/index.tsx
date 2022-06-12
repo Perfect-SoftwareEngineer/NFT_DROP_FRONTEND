@@ -62,8 +62,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
-            // let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            let _dropPhase = '3';
+            let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
+            // let _dropPhase = '3';
 
             if (parseInt(_dropPhase) === 1) setCurStep(StepType.GCF_NF3);
             else if (parseInt(_dropPhase) === 2) setCurStep(StepType.MINTLIST_NF3);
@@ -257,25 +257,24 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     return (
         <>
             <Container sx={{ paddingY: 8, overflow: 'visible' }}>
-                <Grid container columnSpacing={4} rowGap={2} alignItems="center">
-                    <Grid item xs={12} md={5}>
-                        <Stack spacing={3}>
-                            <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
-                                CURRY SHOP
-                            </Typography>
-                            <Typography>
-                                Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along
-                                with Serums from our communities.
-                            </Typography>
-                        </Stack>
-                    </Grid>
-                    <Grid item xs={12} md={7}>
-                        <Stack direction="row" spacing={2} justifyContent="flex-end">
-                            <CounterBox title="MY NF3 BASKETBALLS" value={balance} />
-                            <CounterBox title="MY SERUMS" value={0} />
-                        </Stack>
-                    </Grid>
-                </Grid>
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    justifyContent="space-between"
+                    alignItems={{ xs: 'flex-start', md: 'center' }}
+                    spacing={2}
+                >
+                    <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
+                        CURRY SHOP
+                    </Typography>
+                    <Stack direction="row" width={{ xs: '100%', md: 'auto' }} spacing={2} justifyContent="flex-end">
+                        <CounterBox title="MY NF3 BASKETBALLS" value={balance} />
+                        <CounterBox title="MY SERUMS" value={0} />
+                    </Stack>
+                </Stack>
+                <Typography marginTop={4}>
+                    Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along with Serums
+                    from our communities.
+                </Typography>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
                     <Grid item xs={12} md={5}>
                         {account && selectBox()}
@@ -285,10 +284,10 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                             dropBox()
                         ) : (
                             <Stack marginLeft={3}>
-                                <Typography fontSize={48} fontWeight={700}>
-                                    Connect MetaMask Wallet
+                                <Typography fontSize={48} fontWeight={700} lineHeight={1.1}>
+                                    To Get Started, Connect MetaMask Wallet
                                 </Typography>
-                                <Typography marginTop={2}>
+                                <Typography marginTop={4}>
                                     Make sure to download Metamask. Once you create or connect your MetaMask account,
                                     connect your wallet.
                                 </Typography>
