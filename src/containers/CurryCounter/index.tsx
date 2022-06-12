@@ -16,7 +16,7 @@ import BackgroundImg from '../../assets/currycounter/background.png';
 import { GradientBox, MetamaskNotiBox, DiscordNotiBox, PrimaryBtn, TblHeaderCellTypo } from './styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LearnMoreIcon from '@mui/icons-material/KeyboardArrowDown';
-import SupplyBox from '../../components/CurryShop/SupplyBox';
+import SupplyBox from '../../components/CurryCounter/SupplyBox';
 import RaffleWinerItem from '../../components/CurryCounter/RaffleWinerItem';
 import { RaffleWinnerItemType } from '../../types';
 import { raffleWinnersList } from '../../constants/dummyData';
