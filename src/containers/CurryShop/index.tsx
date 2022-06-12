@@ -20,62 +20,6 @@ import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
 import { useAppContext } from '../../context/AppContext';
 
-// const nf3MintBoxes = [
-//     {
-//         img: '/assets/curryshop/gcf-claim.png',
-//         title: 'Genesis Curry Flow Freebies',
-//         desc: 'Introducing rarity to Genesis Curry Flows holders can claim one free NF3 basketball and one Serum tied to their traits. We will use a snapshot mechanism to open claiming for NF3 first and Serums at a later date!',
-//         dateList: [
-//             'Snapshot Date: June 9, 2022 at 5:00:00 PM PST',
-//             'Start Date: June 9, 2022 at 5:00:00 PM PST',
-//             'End Date: June 11, 2022 at 5:00:00 PM PST',
-//         ],
-//         dropPhase: 1,
-//     },
-//     {
-//         img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
-//         title: 'Mintlist Mint',
-//         desc: 'Our Community Holders will be able to mint before the Public Mint.',
-//         dateList: ['Start Date: June 13, 2022 at 5:00:00 PM PST', 'End Date: June 15, 2022 at 5:00:00 PM PST'],
-//         dropPhase: 2,
-//     },
-//     {
-//         img: '/assets/curryshop/nf3-mintlist-general-mint.svg',
-//         title: 'General Mint',
-//         desc: 'Public sale to mint or reserve mint an NF3 Basketball.',
-//         dateList: ['Start Date: June 16, 2022, at 5:00:00 PM PST'],
-//         dropPhase: 3,
-//     },
-// ];
-
-// const serumMintBoxes = [
-//     {
-//         img: '/assets/curryshop/gcf-claim.png',
-//         title: 'Genesis Curry Flow Claims',
-//         desc: 'If you are a GCF NFT Holder, mint a free NF3 Basketball',
-//         dateList: [
-//             'Snapshot Date: June 3, 2022 at 5PM PST',
-//             'Start Date: June 3, 2022 at 5PM PST',
-//             'End Date: June 5, 2022 at 5PM PST',
-//         ],
-//         dropPhase: 1,
-//     },
-//     {
-//         img: '/assets/curryshop/serum-mintlist-general-mint.png',
-//         title: 'Mintlist Mint',
-//         desc: 'Our Community Holders will be able to mint before the Public Mint',
-//         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
-//         dropPhase: 2,
-//     },
-//     {
-//         img: '/assets/curryshop/serum-mintlist-general-mint.png',
-//         title: 'General Mint',
-//         desc: 'Public sale to mint or reserve mint an NF3 Basketball',
-//         dateList: ['Start Date: XXX, 2022 at 5PM PST', 'End Date: XXX, 2022 at 5PM PST'],
-//         dropPhase: 3,
-//     },
-// ];
-
 enum StepType {
     GCF_NF3,
     MINTLIST_NF3,
@@ -119,7 +63,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
             // let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            let _dropPhase = '2';
+            let _dropPhase = '3';
 
             if (parseInt(_dropPhase) === 1) setCurStep(StepType.GCF_NF3);
             else if (parseInt(_dropPhase) === 2) setCurStep(StepType.MINTLIST_NF3);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
+import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
@@ -137,56 +137,50 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
 
     return (
         <>
-            <Stack borderRadius={2} overflow="hidden" sx={{ background: '#1B1C22' }}>
-                <Box position="relative" width="100%" height={{ xs: 160, md: 220 }}>
-                    <Image src={'/assets/curryshop/nf3-general-mint-banner.png'} layout="fill" objectFit="cover" />
-                    <Stack position="absolute" justifyContent="center" alignItems="flex-start" sx={{ inset: 0 }}>
-                        <SupplyBox
-                            amount={amountLeft}
-                            label="NF3 Basketballs Supply"
-                            headColor="#FFCA21"
-                            sx={{ flexGrow: 0, marginLeft: 4, paddingRight: 4 }}
-                        />
-                    </Stack>
-                </Box>
-                <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
-                    <Typography
-                        fontSize={48}
-                        fontWeight={800}
-                        lineHeight={1.1}
-                        textTransform="uppercase"
-                        className="neueplak_condensed"
-                    >
-                        NF3 BASKETBALL GENERAL MINT
-                    </Typography>
-                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} marginTop={3}>
-                        <Box minWidth={240} width={240} height={240} position="relative">
-                            <Image
-                                src={'/assets/curryshop/nf3-basketball-box.png'}
-                                layout="fill"
-                                style={{ borderRadius: 16 }}
-                            />
-                        </Box>
-                        <Stack>
-                            <Typography fontSize={20} fontWeight={700}>
-                                NF3 BASKETBALL
+            <Stack
+                spacing={4}
+                padding={{ xs: 2, md: 4 }}
+                borderRadius={2}
+                overflow="hidden"
+                sx={{ background: '#1B1C22' }}
+            >
+                <Grid container columns={8} columnSpacing={4} rowGap={2}>
+                    <Grid item xs={8} md={3}>
+                        <img src="/assets/curryshop/nf3-basketball-box.png" width="100%" style={{ borderRadius: 16 }} />
+                    </Grid>
+                    <Grid item xs={8} md={5}>
+                        <Stack spacing={3}>
+                            <Typography
+                                fontSize={48}
+                                fontWeight={800}
+                                lineHeight={1.1}
+                                textTransform="uppercase"
+                                className="neueplak_condensed"
+                            >
+                                NF3 BASKETBALL GENERAL MINT
                             </Typography>
-                            <Typography fontSize={32} fontWeight={700} marginTop={2}>
+                            <SupplyBox amount={amountLeft} label="NF3 Basketballs" headColor="#FFCA21" />
+                            <Typography color="#969AA1">
+                                Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to trigger a transaction where
+                                you pay for the amount of NFTs you specify. Mint your reserved NFTs at a later time. No
+                                time limits for when you can mint your reserved NFTs.
+                            </Typography>
+                            <Typography fontSize={32} fontWeight={700}>
                                 PRICE: 0.07 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
-                            <Stack spacing={1} marginTop={3}>
+                            <Stack spacing={1}>
                                 <Typography fontSize={14} fontWeight={400} color="white">
-                                    # of Basketball Heads (Max 3)
+                                    # of NF3 Basketball Heads (Max 3)
                                 </Typography>
                                 <AmountInputWrapper sx={{ width: 184 }}>
                                     <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
                                     <MaxBtn onClick={setMaxMintCount}>Max</MaxBtn>
                                 </AmountInputWrapper>
                             </Stack>
-                            <Stack spacing={1} marginTop={2}>
+                            <Stack spacing={1}>
                                 <Typography fontWeight={700} color="white">
                                     {disabled
                                         ? 'Currently Unavailable'
@@ -204,8 +198,8 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                 </Stack>
                             </Stack>
                         </Stack>
-                    </Stack>
-                </Stack>
+                    </Grid>
+                </Grid>
             </Stack>
             <Dialog
                 open={mintState === MintStatus.MINTING || reserveState === ReserveStatus.RESERVING}
