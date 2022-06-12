@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
+import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
+import SupplyBox from '../../SupplyBox';
 
 type ComponentProps = {
     amountLeft: number;
@@ -168,41 +169,35 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
 
     return (
         <>
-            <Stack borderRadius={2} sx={{ background: '#1B1C22' }}>
-                <Box
-                    position="relative"
-                    width="100%"
-                    height={{ xs: 160, md: 220 }}
-                    overflow="hidden"
-                    sx={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
-                >
-                    <Image src={'/assets/curryshop/serum-general-mint-banner.png'} layout="fill" objectFit="cover" />
-                </Box>
-                <Stack spacing={3} padding={{ xs: 2, md: 4 }}>
-                    <Typography
-                        fontSize={48}
-                        fontWeight={800}
-                        lineHeight={1.1}
-                        textTransform="uppercase"
-                        className="neueplak_condensed"
-                    >
-                        SERUM GENERAL MINT
-                    </Typography>
-                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} marginTop={3}>
-                        <Box minWidth={240} width={240} height={240} position="relative">
-                            <Image src={'/assets/curryshop/serum-box.png'} layout="fill" style={{ borderRadius: 16 }} />
-                        </Box>
-                        <Stack>
-                            <Typography fontSize={20} fontWeight={700}>
-                                Serums
+            <Stack spacing={4} padding={{ xs: 2, md: 4 }} borderRadius={2} sx={{ background: '#1B1C22' }}>
+                <Grid container columns={8} columnSpacing={4} rowGap={2}>
+                    <Grid item xs={8} md={3}>
+                        <img src="/assets/curryshop/serum-box.png" width="100%" style={{ borderRadius: 16 }} />
+                    </Grid>
+                    <Grid item xs={8} md={5}>
+                        <Stack spacing={3}>
+                            <Typography
+                                fontSize={48}
+                                fontWeight={800}
+                                lineHeight={1.1}
+                                textTransform="uppercase"
+                                className="neueplak_condensed"
+                            >
+                                SERUM GENERAL MINT
                             </Typography>
-                            <Typography fontSize={32} fontWeight={700} marginTop={2}>
+                            <SupplyBox amount={0} label="Serums" headColor="#018FB3" />
+                            <Typography color="#969AA1">
+                                Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to trigger a transaction where
+                                you pay for the amount of NFTs you specify. Mint your reserved NFTs at a later time. No
+                                time limits for when you can mint your reserved NFTs.
+                            </Typography>
+                            <Typography fontSize={32} fontWeight={700}>
                                 PRICE: 0.03 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
-                            <Stack direction="row" spacing={2} marginTop={3}>
+                            <Stack direction="row" spacing={2}>
                                 <Stack spacing={1}>
                                     <Typography fontSize={14}>Serum Type</Typography>
                                     <SerumTypeSelect
@@ -221,7 +216,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                                     </AmountInputWrapper>
                                 </Stack>
                             </Stack>
-                            <Stack spacing={1} marginTop={2}>
+                            <Stack spacing={1}>
                                 <Typography fontWeight={700} color="white">
                                     {disabled
                                         ? 'Currently Unavailable'
@@ -239,8 +234,8 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                                 </Stack>
                             </Stack>
                         </Stack>
-                    </Stack>
-                </Stack>
+                    </Grid>
+                </Grid>
             </Stack>
             <Dialog
                 open={mintState === MintStatus.MINTING || reserveState === ReserveStatus.RESERVING}
