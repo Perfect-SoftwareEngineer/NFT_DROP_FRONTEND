@@ -63,7 +63,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
             let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            // console.log('_dropPhase:', _dropPhase);
+            console.log('_dropPhase:', _dropPhase);
             // let _dropPhase = '3';
 
             if (parseInt(_dropPhase) === 1) setCurStep(StepType.GCF_NF3);
@@ -78,6 +78,27 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
             const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
+
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
+        }
+
+        if (account && needUpdateInfo) {
+            updateAppState();
+
+            setNeedUpdateInfo(false);
+        }
+    }, [account, curStep, needUpdateInfo]);
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            const nftContract = new library.eth.Contract(
+                BasketballHeadABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
+                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+            );
+
+            console.log('curStep:', curStep);
 
             if (curStep === StepType.GCF_NF3) {
                 const NF3GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
@@ -132,16 +153,10 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     }
                 }
             }
-
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
         }
 
-        if (account && needUpdateInfo) {
-            updateAppState();
-
-            setNeedUpdateInfo(false);
-        }
-    }, [account, curStep, needUpdateInfo]);
+        if (account) updateAppState();
+    }, [curStep]);
 
     const selectBox = () => {
         if (dropPhase === 1) {
