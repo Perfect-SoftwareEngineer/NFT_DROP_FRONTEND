@@ -10,11 +10,19 @@ import { getFtx, setFtx } from '../../services/api/ftx';
 import { useAppContext } from '../../context/AppContext';
 import { reduceHexAddress } from '../../services/common';
 
+enum SubmitResult {
+    NONE,
+    SUCCESS,
+    CODE_INVALID,
+    CODE_ALREADY_USED,
+}
+
 const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [appState, setAppState] = useAppContext();
     const [ftxInfo, setFtxInfo] = useState<any>();
     const [code, setCode] = useState<string>('');
+    const [submitResult, setSubmitResult] = useState<SubmitResult>(SubmitResult.NONE);
 
     const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCode(event.target.value);
@@ -25,24 +33,30 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
 
         setFtx(account, code, appState.jwtToken)
             .then((response: any) => {
-                console.log('resonse:', response);
+                // console.log('setFtx response:', response);
+                setSubmitResult(SubmitResult.SUCCESS);
             })
-            .catch((error) => {
-                console.log('error:', error);
+            .catch((error: any) => {
+                // console.log('error:', error);
+                if (error === 'Code invalid') {
+                    setSubmitResult(SubmitResult.CODE_INVALID);
+                } else if (error === 'Code already used') {
+                    setSubmitResult(SubmitResult.CODE_ALREADY_USED);
+                }
             });
     };
 
-    React.useEffect(() => {
-        async function updateAppState() {
-            if (!account) return;
+    // React.useEffect(() => {
+    //     async function updateAppState() {
+    //         if (!account) return;
 
-            const response = await getFtx(account);
-            console.log('getFtx resonse:', response);
-            if (response !== '') setFtxInfo(response);
-        }
+    //         const response = await getFtx(account);
+    //         console.log('getFtx response:', response);
+    //         if (response !== '') setFtxInfo(response);
+    //     }
 
-        updateAppState();
-    }, [account]);
+    //     updateAppState();
+    // }, [account]);
 
     return (
         <Container sx={{ paddingY: 8 }}>
@@ -78,40 +92,47 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                         {account ? (
                             <>
                                 <SubmitBtn onClick={onSubmit}>SUBMIT</SubmitBtn>
-                                <Stack
-                                    direction="row"
-                                    spacing={2}
-                                    padding={2}
-                                    borderRadius={1}
-                                    sx={{ background: '#EDF7ED' }}
-                                >
-                                    <CompleteIcon sx={{ marginTop: 0.5, color: '#4CAF50' }} />
-                                    <Stack>
-                                        <Typography fontWeight={700} color="#1E4620">
-                                            You have successfully joined the Mintlist.
-                                        </Typography>
-                                        <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                                            You have 1 Mintlist spot. Mint your NF3 Basketball in the Curry Shop.
-                                        </Typography>
+                                {submitResult === SubmitResult.SUCCESS && (
+                                    <Stack
+                                        direction="row"
+                                        spacing={2}
+                                        padding={2}
+                                        borderRadius={1}
+                                        sx={{ background: '#EDF7ED' }}
+                                    >
+                                        <CompleteIcon sx={{ marginTop: 0.5, color: '#4CAF50' }} />
+                                        <Stack>
+                                            <Typography fontWeight={700} color="#1E4620">
+                                                You have successfully joined the Mintlist.
+                                            </Typography>
+                                            <Typography fontSize={14} fontWeight={500} color="#1E4620">
+                                                You have 1 Mintlist spot. Mint your NF3 Basketball in the Curry Shop.
+                                            </Typography>
+                                        </Stack>
                                     </Stack>
-                                </Stack>
-                                <Stack
-                                    direction="row"
-                                    spacing={2}
-                                    padding={2}
-                                    borderRadius={1}
-                                    sx={{ background: '#FEECEB' }}
-                                >
-                                    <ErrorIcon sx={{ marginTop: 0.5, color: '#F44336' }} />
-                                    <Stack>
-                                        <Typography fontWeight={700} color="#621B16">
-                                            Error
-                                        </Typography>
-                                        <Typography fontSize={14} fontWeight={500} color="#621B16">
-                                            You have entered an invalid code. Please try again.
-                                        </Typography>
+                                )}
+                                {(submitResult === SubmitResult.CODE_INVALID ||
+                                    submitResult === SubmitResult.CODE_ALREADY_USED) && (
+                                    <Stack
+                                        direction="row"
+                                        spacing={2}
+                                        padding={2}
+                                        borderRadius={1}
+                                        sx={{ background: '#FEECEB' }}
+                                    >
+                                        <ErrorIcon sx={{ marginTop: 0.5, color: '#F44336' }} />
+                                        <Stack>
+                                            <Typography fontWeight={700} color="#621B16">
+                                                Error
+                                            </Typography>
+                                            <Typography fontSize={14} fontWeight={500} color="#621B16">
+                                                {submitResult === SubmitResult.CODE_INVALID
+                                                    ? 'You have entered an invalid code. Please try again.'
+                                                    : 'This code has already been used. '}
+                                            </Typography>
+                                        </Stack>
                                     </Stack>
-                                </Stack>
+                                )}
                             </>
                         ) : (
                             <ConnectWalletBtn onClick={() => connect(activate)}>CONNECT WALLET</ConnectWalletBtn>

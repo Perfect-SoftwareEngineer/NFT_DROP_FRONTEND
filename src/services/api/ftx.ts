@@ -17,13 +17,13 @@ export const getFtx = async (address: string) =>
     });
 
 export const setFtx = (address: string, code: string, token: string) =>
-    new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
+    new Promise((resolve: (value: any) => void, reject: (value: any) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/basketball/ftx/save`;
-        console.log('reqUrl:', reqUrl);
+        // console.log('reqUrl:', reqUrl);
 
         const body = { wallet: address, code: code };
-        console.log('body:', body);
-        console.log('token:', token);
+        // console.log('body:', body);
+        // console.log('token:', token);
 
         const config = {
             headers: {
