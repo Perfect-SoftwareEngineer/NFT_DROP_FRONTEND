@@ -43,8 +43,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [nf3GCFOwnedCount, setNF3GCFOwnedCount] = useState<number>(0);
     const [nf3GCFClaimHexProof, setNF3GCFClaimHexProof] = React.useState<any[]>([]);
 
-    const [serumGCFOwnedCount, setSerumGCFOwnedCount] = useState<number>(0);
-    const [serumGCFClaimHexProof, setSerumGCFClaimHexProof] = React.useState<any[]>([]);
+    const [serumGCFData, setSerumGCFData] = useState<any>();
 
     const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
     const [nf3CommunityClaimHexProof, setNF3CommunityClaimHexProof] = React.useState<any[]>([]);
@@ -116,14 +115,14 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             } else if (curStep === StepType.GCF_SERUM) {
                 const SerumGCFFlag = true;
 
-                if (SerumGCFFlag == true) {
+                /*if (SerumGCFFlag === true) {
                     setSerumGCFOwnedCount(0);
                     setSerumGCFClaimHexProof([]);
-                } else {
+                } else*/ {
                     if (account) {
                         const response = await claimSerumGCF(account);
-                        setSerumGCFOwnedCount(response.quantity);
-                        setSerumGCFClaimHexProof(response.hexProof);
+                        console.log('claimSerumGCF:', response);
+                        setSerumGCFData(response);
                     }
                 }
             } else if (curStep === StepType.MINTLIST_NF3 || curStep === StepType.GENERALMINT_NF3) {
@@ -254,11 +253,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     />
                 )}
                 {curStep === StepType.GCF_SERUM && (
-                    <SerumGCFClaimBox
-                        gcfOwnedCount={serumGCFOwnedCount}
-                        gcfClaimHexProof={serumGCFClaimHexProof}
-                        setNeedUpdateInfo={setNeedUpdateInfo}
-                    />
+                    <SerumGCFClaimBox gcfData={serumGCFData} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_NF3 && (
                     <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />

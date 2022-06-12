@@ -10,10 +10,10 @@ import { confirmClaimSerumGCF } from '../../../../services/api/curryshop';
 import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
+import serumTokensList from '../../../../constants/serumTokenData';
 
 type ComponentProps = {
-    gcfOwnedCount: number;
-    gcfClaimHexProof: any[];
+    gcfData: any;
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -24,46 +24,41 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-export const serumTypeOptions: Array<SelectItemType> = [
-    {
-        label: 'Unanimous',
-        value: '1',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Broken History',
-        value: '2',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Flow',
-        value: '3',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Warp',
-        value: '4',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'The Lab',
-        value: '5',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-];
-
-const SerumGCFClaimBox: React.FC<ComponentProps> = ({
-    gcfOwnedCount,
-    gcfClaimHexProof,
-    setNeedUpdateInfo,
-}): JSX.Element => {
+const SerumGCFClaimBox: React.FC<ComponentProps> = ({ gcfData, setNeedUpdateInfo }): JSX.Element => {
     const { account, library } = useWeb3React();
     const [appState, setAppState] = useAppContext();
+
+    const [gcfOwnedCount, setGcfOwnedCount] = useState<number>(0);
+    const [gcfClaimHexProof, setGcfClaimHexProof] = useState<any[]>([]);
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [claimedCount, setclaimedCount] = useState<number>(0);
 
-    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
+    const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([]);
+    const [serumType, setSerumType] = useState<SelectItemType>();
+
+    React.useEffect(() => {
+        if (!!gcfData) {
+            console.log('gcfData keys:', Object.keys(gcfData));
+            let serumOptions: Array<SelectItemType> = [];
+
+            Object.keys(gcfData).map((id) => {
+                serumOptions = [...serumOptions, serumTokensList[id]];
+            });
+            setSerumTypeOptions(serumOptions);
+
+            if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+        }
+    }, [gcfData]);
+
+    React.useEffect(() => {
+        if (!!serumType) {
+            console.log('serumType:', serumType);
+
+            setGcfOwnedCount(gcfData[serumType.value].quantity);
+            setGcfClaimHexProof(gcfData[serumType.value].hexProof);
+        }
+    }, [serumType]);
 
     const mint = async () => {
         if (!account) return;

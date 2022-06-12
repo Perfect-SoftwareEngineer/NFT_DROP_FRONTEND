@@ -7,7 +7,7 @@ import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { SelectItemType } from '../../../types';
 
 type ComponentProps = {
-    serumType: SelectItemType;
+    serumType?: SelectItemType;
     setSerumType: (value: SelectItemType) => void;
     serumTypeOptions: Array<SelectItemType>;
 };
@@ -20,8 +20,12 @@ const SerumTypeSelect: React.FC<ComponentProps> = ({ serumType, setSerumType, se
     return (
         <Select
             titlebox={
-                <SelectBtn fullWidth isopen={serumTypeSelectOpen ? 1 : 0}>
-                    {!!serumType.label ? (
+                <SelectBtn
+                    fullWidth
+                    isopen={serumTypeSelectOpen ? 1 : 0}
+                    sx={{ justifyContent: !!serumType?.label ? 'space-between' : 'flex-end' }}
+                >
+                    {!!serumType?.label ? (
                         <Stack direction="row" alignItems="center" spacing={1}>
                             {serumType.icon}
                             <Typography padding="2px 0 6px" color="white">
@@ -29,7 +33,7 @@ const SerumTypeSelect: React.FC<ComponentProps> = ({ serumType, setSerumType, se
                             </Typography>
                         </Stack>
                     ) : (
-                        'Select'
+                        ''
                     )}
                     <ArrowDownIcon sx={{ color: '#9E9E9E' }} className="arrow-icon" />
                 </SelectBtn>
