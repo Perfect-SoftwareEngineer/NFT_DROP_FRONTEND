@@ -28,28 +28,33 @@ enum MintStatus {
 
 export const serumTypeOptions: Array<SelectItemType> = [
     {
-        label: 'Unanimous1',
-        value: 'Unanimous1',
+        label: 'Smilesss',
+        value: '6',
         icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
     },
     {
-        label: 'Unanimous2',
-        value: 'Unanimous2',
+        label: 'Chibi Dinos',
+        value: '7',
         icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
     },
     {
-        label: 'Unanimous3',
-        value: 'Unanimous3',
+        label: 'Hape',
+        value: '8',
         icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
     },
     {
-        label: 'Unanimous4',
-        value: 'Unanimous4',
+        label: 'CyberKongz',
+        value: '9',
         icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
     },
     {
-        label: 'Unanimous5',
-        value: 'Unanimous5',
+        label: 'Under Armour',
+        value: '10',
+        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
+    },
+    {
+        label: 'Curry Brand',
+        value: '11',
         icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
     },
 ];
