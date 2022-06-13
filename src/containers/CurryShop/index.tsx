@@ -63,8 +63,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
             let _dropPhase = await nftContract.methods.dropPhase().call({ from: account });
-            console.log('_dropPhase:', _dropPhase);
             // let _dropPhase = '3';
+            console.log('_dropPhase:', _dropPhase);
 
             if (parseInt(_dropPhase) === 1) setCurStep(StepType.GCF_NF3);
             else if (parseInt(_dropPhase) === 2) setCurStep(StepType.MINTLIST_NF3);

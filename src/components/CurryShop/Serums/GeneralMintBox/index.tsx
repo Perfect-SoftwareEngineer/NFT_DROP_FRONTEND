@@ -211,7 +211,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                                 </Stack>
                                 <Stack spacing={1}>
                                     <Typography fontSize={14} fontWeight={400} color="white">
-                                        # of Basketball Heads (Max 3)
+                                        # of Serums (Max 6)
                                     </Typography>
                                     <AmountInputWrapper sx={{ width: 184 }}>
                                         <AmountInputTextField value={mintAmount} onChange={handleInputChange} />
