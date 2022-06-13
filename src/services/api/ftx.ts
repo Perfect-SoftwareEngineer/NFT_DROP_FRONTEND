@@ -1,6 +1,21 @@
 import axios from 'axios';
 import SERVER_URL from '../../constants/server';
 
+export const getStatus = async () =>
+    new Promise((resolve: (value: boolean) => void, reject: (value: string) => void) => {
+        let reqUrl = `${SERVER_URL}/api/curryv2/basketball/ftx/get_status`;
+        // console.log('reqUrl:', reqUrl);
+
+        axios
+            .get(reqUrl)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+
 export const getFtx = async (address: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/basketball/ftx/get/${address}`;

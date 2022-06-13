@@ -6,7 +6,7 @@ import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorIcon from '@mui/icons-material/ErrorOutline';
 import { useWeb3React } from '@web3-react/core';
 import { connect } from '../../web3/connect';
-import { getFtx, setFtx } from '../../services/api/ftx';
+import { getStatus, getFtx, setFtx } from '../../services/api/ftx';
 import { useAppContext } from '../../context/AppContext';
 import { reduceHexAddress } from '../../services/common';
 
@@ -23,6 +23,7 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
     const [ftxInfo, setFtxInfo] = useState<any>();
     const [code, setCode] = useState<string>('');
     const [submitResult, setSubmitResult] = useState<SubmitResult>(SubmitResult.NONE);
+    const [enableSubmit, setEnableSubmit] = useState<boolean>(false);
 
     const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCode(event.target.value);
@@ -45,6 +46,15 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                 }
             });
     };
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            const response = await getStatus();
+            setEnableSubmit(response);
+        }
+
+        updateAppState();
+    }, []);
 
     // React.useEffect(() => {
     //     async function updateAppState() {
@@ -91,7 +101,7 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                     <Stack spacing={3}>
                         {account ? (
                             <>
-                                <SubmitBtn onClick={onSubmit}>SUBMIT</SubmitBtn>
+                                <SubmitBtn disabled={!enableSubmit} onClick={onSubmit}>SUBMIT</SubmitBtn>
                                 {submitResult === SubmitResult.SUCCESS && (
                                     <Stack
                                         direction="row"

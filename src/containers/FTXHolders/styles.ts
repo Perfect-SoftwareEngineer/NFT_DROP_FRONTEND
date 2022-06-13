@@ -27,6 +27,9 @@ export const ConnectWalletBtn = styled(Button)`
     font-weight: 600;
     color: black;
     background: #ffca21;
+    &:disabled {
+        background: gray;
+    }
     &:hover {
         background: #ffca21;
     }
