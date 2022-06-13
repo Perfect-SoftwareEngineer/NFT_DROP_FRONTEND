@@ -69,36 +69,36 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
-                ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+                ? ''
+                : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
         let _mintPrice = 0.07;
         let value = (_mintPrice * communityOwnedCount).toString();
         value = web3.utils.toWei(value, 'ether');
-        await nftContract.methods
-            .mint(communityOwnedCount, communityClaimHexProof)
-            .send({ from: account, value: value })
-            .then(
-                //to do : update db
-                () => {
-                    setclaimedCount(communityOwnedCount);
-                    setMintState(MintStatus.MINT_SUCCESS);
-                    setNeedUpdateInfo(true);
+        nftContract.methods
+        .mint(serumType?.value, communityOwnedCount, communityClaimHexProof)
+        .send({ from: account, value: value })
+        .then(
+            //to do : update db
+            () => {
+                setclaimedCount(communityOwnedCount);
+                setMintState(MintStatus.MINT_SUCCESS);
+                setNeedUpdateInfo(true);
 
-                    confirmClaimSerumCommunity(account, appState.jwtToken)
-                        .then((response: any) => {
-                            // console.log('resonse:', response);
-                        })
-                        .catch((error) => {
-                            // console.log(error);
-                        });
-                }
-            )
-            .catch((e: any) => {
-                setMintState(MintStatus.MINT_FAILED);
-                // console.log(e);
-            });
+                confirmClaimSerumCommunity(account, appState.jwtToken)
+                    .then((response: any) => {
+                        // console.log('resonse:', response);
+                    })
+                    .catch((error) => {
+                        // console.log(error);
+                    });
+            }
+        )
+        .catch((e: any) => {
+            setMintState(MintStatus.MINT_FAILED);
+            // console.log(e);
+        });
     };
 
     return (
