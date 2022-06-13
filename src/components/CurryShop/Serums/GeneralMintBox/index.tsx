@@ -149,8 +149,8 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+                    ? ''
+                    : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
             );
 
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
