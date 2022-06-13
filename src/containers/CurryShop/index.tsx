@@ -71,23 +71,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             else if (parseInt(_dropPhase) === 3) setCurStep(StepType.GENERALMINT_NF3);
 
             setDropPhase(parseInt(_dropPhase));
-
-            const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
-            setBalance(parseInt(balance));
-
-            const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
-            const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
-            const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
-
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
         }
 
-        if (account && needUpdateInfo) {
+        if (account) {
             updateAppState();
-
-            setNeedUpdateInfo(false);
         }
-    }, [account, needUpdateInfo]);
+    }, [account]);
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -97,6 +86,15 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
+
+            const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
+            setBalance(parseInt(balance));
+
+            const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
+            const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
+            const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
+
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
 
             console.log('curStep:', curStep);
 
@@ -152,8 +150,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             }
         }
 
-        if (account) updateAppState();
-    }, [curStep]);
+        if (account && needUpdateInfo) {
+            updateAppState();
+
+            setNeedUpdateInfo(false);
+        }
+    }, [account, curStep, needUpdateInfo]);
 
     const selectBox = () => {
         if (dropPhase === 1) {
