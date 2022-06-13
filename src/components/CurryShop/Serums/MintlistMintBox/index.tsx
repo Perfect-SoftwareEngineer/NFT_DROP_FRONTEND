@@ -11,11 +11,10 @@ import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
 import SupplyBox from '../../SupplyBox';
+import serumTokensList from '../../../../constants/serumTokenData';
 
 type ComponentProps = {
-    // amountLeft: number;
-    communityOwnedCount: number;
-    communityClaimHexProof: any[];
+    mintData: any;
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -26,51 +25,41 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-export const serumTypeOptions: Array<SelectItemType> = [
-    {
-        label: 'Smilesss',
-        value: '6',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Chibi Dinos',
-        value: '7',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Hape',
-        value: '8',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'CyberKongz',
-        value: '9',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Under Armour',
-        value: '10',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Curry Brand',
-        value: '11',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-];
-
-const SerumMintlistMintBox: React.FC<ComponentProps> = ({
-    communityOwnedCount,
-    communityClaimHexProof,
-    setNeedUpdateInfo,
-}): JSX.Element => {
+const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInfo }): JSX.Element => {
     const { account, library } = useWeb3React();
     const [appState, setAppState] = useAppContext();
+
+    const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
+    const [communityClaimHexProof, setCommunityClaimHexProof] = useState<any[]>([]);
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [claimedCount, setclaimedCount] = useState<number>(0);
 
-    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
+    const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([]);
+    const [serumType, setSerumType] = useState<SelectItemType>();
+
+    React.useEffect(() => {
+        if (!!mintData) {
+            // console.log('mintData keys:', Object.keys(mintData));
+            let serumOptions: Array<SelectItemType> = [];
+
+            Object.keys(mintData).map((id) => {
+                serumOptions = [...serumOptions, serumTokensList[id]];
+            });
+            setSerumTypeOptions(serumOptions);
+
+            if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+        }
+    }, [mintData]);
+
+    React.useEffect(() => {
+        if (!!serumType) {
+            // console.log('serumType:', serumType);
+
+            setCommunityOwnedCount(mintData[serumType.value].quantity);
+            setCommunityClaimHexProof(mintData[serumType.value].hexProof);
+        }
+    }, [serumType]);
 
     const mint = async () => {
         if (!account) return;

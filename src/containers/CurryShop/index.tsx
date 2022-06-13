@@ -45,6 +45,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [serumGCFData, setSerumGCFData] = useState<any>();
 
+    const [serumMintlistData, setSerumMintlistData] = useState<any>();
+
     const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
     const [nf3CommunityClaimHexProof, setNF3CommunityClaimHexProof] = React.useState<any[]>([]);
 
@@ -138,7 +140,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         setNF3CommunityClaimHexProof(response.hexProof);
                     }
                 }
-            } else if (curStep === StepType.MINTLIST_SERUM || curStep === StepType.GENERALMINT_SERUM) {
+            } else if (curStep === StepType.MINTLIST_SERUM) {
+                if (account) {
+                    const response = await claimSerumCommunityNFT(account);
+                    setSerumMintlistData(response);
+                }
+            } else if (curStep === StepType.GENERALMINT_SERUM) {
                 const SerumCommunityFlag = true;
 
                 if (SerumCommunityFlag == true) {
@@ -246,14 +253,10 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     />
                 )}
                 {curStep === StepType.MINTLIST_SERUM && (
-                    <SerumMintlistMintBox
-                        communityOwnedCount={serumCommunityOwnedCount}
-                        communityClaimHexProof={serumCommunityClaimHexProof}
-                        setNeedUpdateInfo={setNeedUpdateInfo}
-                    />
+                    <SerumMintlistMintBox mintData={serumMintlistData} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GCF_SERUM && (
-                    <SerumGCFClaimBox gcfData={serumGCFData} setNeedUpdateInfo={setNeedUpdateInfo} />
+                    <SerumGCFClaimBox mintData={serumGCFData} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_NF3 && (
                     <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />

@@ -13,7 +13,7 @@ import SerumTypeSelect from '../../SerumTypeSelect';
 import serumTokensList from '../../../../constants/serumTokenData';
 
 type ComponentProps = {
-    gcfData: any;
+    mintData: any;
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -24,7 +24,7 @@ enum MintStatus {
     MINT_SUCCESS,
 }
 
-const SerumGCFClaimBox: React.FC<ComponentProps> = ({ gcfData, setNeedUpdateInfo }): JSX.Element => {
+const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInfo }): JSX.Element => {
     const { account, library } = useWeb3React();
     const [appState, setAppState] = useAppContext();
 
@@ -38,25 +38,25 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ gcfData, setNeedUpdateInfo
     const [serumType, setSerumType] = useState<SelectItemType>();
 
     React.useEffect(() => {
-        if (!!gcfData) {
-            console.log('gcfData keys:', Object.keys(gcfData));
+        if (!!mintData) {
+            // console.log('mintData keys:', Object.keys(mintData));
             let serumOptions: Array<SelectItemType> = [];
 
-            Object.keys(gcfData).map((id) => {
+            Object.keys(mintData).map((id) => {
                 serumOptions = [...serumOptions, serumTokensList[id]];
             });
             setSerumTypeOptions(serumOptions);
 
             if (serumOptions.length > 0) setSerumType(serumOptions[0]);
         }
-    }, [gcfData]);
+    }, [mintData]);
 
     React.useEffect(() => {
         if (!!serumType) {
-            console.log('serumType:', serumType);
+            // console.log('serumType:', serumType);
 
-            setGcfOwnedCount(gcfData[serumType.value].quantity);
-            setGcfClaimHexProof(gcfData[serumType.value].hexProof);
+            setGcfOwnedCount(mintData[serumType.value].quantity);
+            setGcfClaimHexProof(mintData[serumType.value].hexProof);
         }
     }, [serumType]);
 
