@@ -41,14 +41,6 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        if (isNaN(Number(value))) return;
-
-        const maxCount = reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL : reservedAmount;
-        setMintAmount(Math.min(Number(value), maxCount).toString());
-    };
-
     const mint = async () => {
         if (!account) return;
 
@@ -129,6 +121,14 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
         }
     }, [account]);
 
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        if (isNaN(Number(value))) return;
+
+        const maxCount = reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL : reservedAmount;
+        setMintAmount(Math.min(Number(value), maxCount).toString());
+    };
+
     const setMaxMintCount = () => {
         setMintAmount(
             reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL.toString() : reservedAmount.toString()
@@ -188,10 +188,13 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                 </Typography>
                                 <Stack direction="row" alignItems="center" spacing={2}>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                        <MintBtn disabled={disabled} onClick={mint}>
+                                        <MintBtn disabled={mintAmount === '' || mintAmount === '0'} onClick={mint}>
                                             MINT
                                         </MintBtn>
-                                        <ReserveBtn disabled={disabled} onClick={reserve}>
+                                        <ReserveBtn
+                                            disabled={mintAmount === '' || mintAmount === '0'}
+                                            onClick={reserve}
+                                        >
                                             RESERVE
                                         </ReserveBtn>
                                     </Stack>

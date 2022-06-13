@@ -76,14 +76,6 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         }
     }, [serumType]);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        if (isNaN(Number(value))) return;
-
-        const maxCount = reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL : reservedAmount;
-        setMintAmount(Math.min(Number(value), maxCount).toString());
-    };
-
     const mint = async () => {
         if (!account) return;
 
@@ -91,16 +83,16 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production'
-                ? ''
-                : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
         try {
             let reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
             if (parseInt(reservedCount)) {
                 await nftContract.methods.mint(mintAmount, communityClaimHexProof).send({ from: account, value: 0 });
-                reservedCount = await nftContract.methods.reserveCount(account, serumType?.value).call({ from: account });
+                reservedCount = await nftContract.methods
+                    .reserveCount(account, serumType?.value)
+                    .call({ from: account });
                 setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
@@ -124,9 +116,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
 
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
-            process.env.NEXT_PUBLIC_ENV == 'production'
-                ? ''
-                : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
         try {
@@ -148,9 +138,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
-                process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? ''
-                    : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
             );
 
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
@@ -163,6 +151,14 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
             updateAppState();
         }
     }, [account]);
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        if (isNaN(Number(value))) return;
+
+        const maxCount = reservedAmount === 0 || reservedAmount >= MAX_VAL ? MAX_VAL : reservedAmount;
+        setMintAmount(Math.min(Number(value), maxCount).toString());
+    };
 
     const setMaxMintCount = () => {
         setMintAmount(
@@ -227,10 +223,13 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                                 </Typography>
                                 <Stack direction="row" alignItems="center" spacing={2}>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                        <MintBtn disabled={disabled} onClick={mint}>
+                                        <MintBtn disabled={mintAmount === '' || mintAmount === '0'} onClick={mint}>
                                             MINT
                                         </MintBtn>
-                                        <ReserveBtn disabled={disabled} onClick={reserve}>
+                                        <ReserveBtn
+                                            disabled={mintAmount === '' || mintAmount === '0'}
+                                            onClick={reserve}
+                                        >
                                             RESERVE
                                         </ReserveBtn>
                                     </Stack>
