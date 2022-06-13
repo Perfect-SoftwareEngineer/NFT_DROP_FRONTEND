@@ -47,11 +47,10 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [serumMintlistData, setSerumMintlistData] = useState<any>();
 
+    const [serumGeneralMintData, setSerumGeneralMintData] = useState<any>();
+
     const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
     const [nf3CommunityClaimHexProof, setNF3CommunityClaimHexProof] = React.useState<any[]>([]);
-
-    const [serumCommunityOwnedCount, setSerumCommunityOwnedCount] = useState<number>(0);
-    const [serumCommunityClaimHexProof, setSerumCommunityClaimHexProof] = React.useState<any[]>([]);
 
     const [needUpdateInfo, setNeedUpdateInfo] = useState<boolean>(true);
 
@@ -146,17 +145,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     setSerumMintlistData(response);
                 }
             } else if (curStep === StepType.GENERALMINT_SERUM) {
-                const SerumCommunityFlag = true;
-
-                if (SerumCommunityFlag == true) {
-                    setSerumCommunityOwnedCount(0);
-                    setSerumCommunityClaimHexProof([]);
-                } else {
-                    if (account) {
-                        const response = await claimSerumCommunityNFT(account);
-                        setSerumCommunityOwnedCount(response.quantity);
-                        setSerumCommunityClaimHexProof(response.hexProof);
-                    }
+                if (account) {
+                    const response = await claimSerumCommunityNFT(account);
+                    setSerumGeneralMintData(response);
                 }
             }
         }
@@ -262,7 +253,11 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_SERUM && (
-                    <SerumGeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
+                    <SerumGeneralMintBox
+                        mintData={serumGeneralMintData}
+                        amountLeft={supplyLeft}
+                        setNeedUpdateInfo={setNeedUpdateInfo}
+                    />
                 )}
             </>
         );

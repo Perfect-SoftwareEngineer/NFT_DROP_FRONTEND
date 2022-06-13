@@ -7,14 +7,16 @@ import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn }
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
 import SupplyBox from '../../SupplyBox';
+import serumTokensList from '../../../../constants/serumTokenData';
 
 type ComponentProps = {
+    mintData: any;
     amountLeft: number;
     disabled?: boolean;
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
-const MAX_VAL = 3;
+const MAX_VAL = 6;
 
 enum MintStatus {
     NOT_MINTED,
@@ -30,45 +32,17 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-export const serumTypeOptions: Array<SelectItemType> = [
-    {
-        label: 'Smilesss',
-        value: '6',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Chibi Dinos',
-        value: '7',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Hape',
-        value: '8',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'CyberKongz',
-        value: '9',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Under Armour',
-        value: '10',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-    {
-        label: 'Curry Brand',
-        value: '11',
-        icon: <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} />,
-    },
-];
-
 const SerumGeneralMintBox: React.FC<ComponentProps> = ({
+    mintData,
     amountLeft,
     disabled = false,
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
+
+    const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
+    const [communityClaimHexProof, setCommunityClaimHexProof] = useState<any[]>([]);
+
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
     const [reservedAmount, setReservedAmount] = useState<number>(0);
@@ -76,7 +50,31 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
 
-    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
+    const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([]);
+    const [serumType, setSerumType] = useState<SelectItemType>();
+
+    React.useEffect(() => {
+        if (!!mintData) {
+            // console.log('mintData keys:', Object.keys(mintData));
+            let serumOptions: Array<SelectItemType> = [];
+
+            Object.keys(mintData).map((id) => {
+                serumOptions = [...serumOptions, serumTokensList[id]];
+            });
+            setSerumTypeOptions(serumOptions);
+
+            if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+        }
+    }, [mintData]);
+
+    React.useEffect(() => {
+        if (!!serumType) {
+            // console.log('serumType:', serumType);
+
+            setCommunityOwnedCount(mintData[serumType.value].quantity);
+            setCommunityClaimHexProof(mintData[serumType.value].hexProof);
+        }
+    }, [serumType]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -101,12 +99,12 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         try {
             let reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
             if (parseInt(reservedCount)) {
-                await nftContract.methods.mint(mintAmount, []).send({ from: account, value: 0 });
+                await nftContract.methods.mint(mintAmount, communityClaimHexProof).send({ from: account, value: 0 });
                 reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
                 setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
-                    .mint(mintAmount, [])
+                    .mint(mintAmount, communityClaimHexProof)
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
