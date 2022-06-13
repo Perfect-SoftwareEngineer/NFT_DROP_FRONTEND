@@ -19,6 +19,7 @@ import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
 import { useAppContext } from '../../context/AppContext';
+import { usePrevious } from 'react-use';
 
 enum StepType {
     GCF_NF3,
@@ -34,6 +35,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     const [curStep, setCurStep] = useState<StepType>(StepType.GCF_NF3);
+    const curStepPrev = usePrevious(curStep);
 
     const [balance, setBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
@@ -150,7 +152,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             }
         }
 
-        if (account && needUpdateInfo) {
+        if (account && (needUpdateInfo || curStep !== curStepPrev)) {
             updateAppState();
 
             setNeedUpdateInfo(false);
