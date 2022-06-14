@@ -5,6 +5,7 @@ import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
 import SupplyBox from '../../SupplyBox';
+import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 
 type ComponentProps = {
     amountLeft: number;
@@ -41,6 +42,8 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
 
+    const [mintedCount, setMintedCount] = useState<number>(0);
+
     const mint = async () => {
         if (!account) return;
 
@@ -65,8 +68,9 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
-            setNeedUpdateInfo(true);
+            setMintedCount(parseInt(mintAmount));
             setMintState(MintStatus.MINT_SUCCESS);
+            setNeedUpdateInfo(true);
         } catch (err: any) {
             setMintState(MintStatus.MINT_FAILED);
             console.error(err);
@@ -203,6 +207,26 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                         </Stack>
                     </Grid>
                 </Grid>
+                {mintState === MintStatus.MINT_SUCCESS && (
+                    <Stack
+                        direction="row"
+                        alignItems="center"
+                        spacing={2}
+                        padding={2}
+                        borderRadius={1}
+                        marginTop={3}
+                        sx={{ background: '#FFFFFFE5' }}
+                    >
+                        <CompleteIcon sx={{ color: '#4CAF50' }} />
+                        <Typography fontSize={14} fontWeight={500} color="#1E4620">
+                            {`You have claimed ${mintedCount} NF3 Basketball, please check your `}
+                            <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
+                                Opensea
+                            </a>{' '}
+                            profile to check if the NF3 Basketball is in your wallet
+                        </Typography>
+                    </Stack>
+                )}
             </Stack>
             <Dialog
                 open={mintState === MintStatus.MINTING || reserveState === ReserveStatus.RESERVING}
