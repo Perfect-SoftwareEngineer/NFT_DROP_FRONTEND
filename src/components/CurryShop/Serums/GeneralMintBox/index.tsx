@@ -87,16 +87,20 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         );
 
         try {
-            let reservedCount = await nftContract.methods.reserveCount(account, serumType?.value).call({ from: account });
+            let reservedCount = await nftContract.methods
+                .reserveCount(account, serumType?.value)
+                .call({ from: account });
             if (parseInt(reservedCount)) {
-                await nftContract.methods.mint(serumType?.value, mintAmount, communityClaimHexProof).send({ from: account, value: 0 });
+                await nftContract.methods
+                    .mint(serumType?.value, mintAmount, communityClaimHexProof)
+                    .send({ from: account, value: 0 });
                 reservedCount = await nftContract.methods
                     .reserveCount(account, serumType?.value)
                     .call({ from: account });
                 setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
-                    .mint(serumType?.value, mintAmount, communityClaimHexProof) 
+                    .mint(serumType?.value, mintAmount, communityClaimHexProof)
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
@@ -123,7 +127,9 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
             await nftContract.methods
                 .reserve(serumType?.value, mintAmount)
                 .send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            const reservedCount = await nftContract.methods.reserveCount(account, serumType?.value).call({ from: account });
+            const reservedCount = await nftContract.methods
+                .reserveCount(account, serumType?.value)
+                .call({ from: account });
             setReservedAmount(parseInt(reservedCount));
             setNeedUpdateInfo(true);
             setReserveState(ReserveStatus.RESERVE_SUCCESS);
@@ -136,14 +142,16 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
 
     React.useEffect(() => {
         async function updateAppState() {
-            if(serumType != undefined) {
+            if (serumType != undefined) {
                 const nftContract = new library.eth.Contract(
                     SerumABI,
                     process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
                 );
-    
-                const reservedCount = await nftContract.methods.reserveCount(account, serumType?.value).call({ from: account });
-    
+
+                const reservedCount = await nftContract.methods
+                    .reserveCount(account, serumType?.value)
+                    .call({ from: account });
+
                 console.log(reservedCount);
                 // console.log('reservedCount:', reservedCount);
                 const mPrice = await nftContract.methods.mintprice().call({ from: account });

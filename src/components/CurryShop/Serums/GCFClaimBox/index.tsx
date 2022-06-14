@@ -38,7 +38,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
     const [serumType, setSerumType] = useState<SelectItemType>();
 
     React.useEffect(() => {
-        async function updateSerumType() {
+        async function updateSerumTokenList() {
             const nftContract = new library.eth.Contract(
                 SerumABI,
                 process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
@@ -48,13 +48,8 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
 
             for (let id in mintData) {
                 let minted = await nftContract.methods.mintedForGCF(account, id).call({ from: account });
-
-                console.log(typeof minted);
-                console.log(minted);
-
                 if (!minted) {
                     serumOptions = [...serumOptions, serumTokensList[id]];
-                    console.log(serumOptions);
                 }
             }
 
@@ -64,7 +59,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
         }
         if (!!mintData) {
             // console.log('mintData keys:', Object.keys(mintData));
-            updateSerumType();
+            updateSerumTokenList();
         }
     }, [mintData]);
 
@@ -97,13 +92,15 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    confirmClaimSerumGCF(account, appState.jwtToken)
-                        .then((response: any) => {
-                            // console.log('resonse:', response);
-                        })
-                        .catch((error) => {
-                            // console.log(error);
-                        });
+                    setTimeout(() => setMintState(MintStatus.NOT_MINTED), 2000);
+
+                    // confirmClaimSerumGCF(account, appState.jwtToken)
+                    //     .then((response: any) => {
+                    //         // console.log('resonse:', response);
+                    //     })
+                    //     .catch((error) => {
+                    //         // console.log(error);
+                    //     });
                 }
             )
             .catch((e: any) => {
