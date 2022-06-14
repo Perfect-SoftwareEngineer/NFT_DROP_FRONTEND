@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import SerumABI from '../../lib/ABI/Serum.json';
 import { Stack, Box, Grid, Typography, Divider } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
@@ -37,7 +38,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [curStep, setCurStep] = useState<StepType>(StepType.GCF_NF3);
     const curStepPrev = usePrevious(curStep);
 
-    const [balance, setBalance] = useState<number>(0);
+    const [basketballBalance, setBasketballBalance] = useState<number>(0);
+    const [serumBalance, setSerumBalance] = useState<number>(0);
     const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
     const [dropPhase, setDropPhase] = useState<number>(0);
@@ -89,8 +91,23 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
             );
 
-            const balance = await nftContract.methods.balanceOf(account, 1).call({ from: account });
-            setBalance(parseInt(balance));
+            const nftContract1 = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? ''
+                    : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            );
+
+            const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
+            setBasketballBalance(parseInt(balance1));
+
+            let balance2 = 0;
+            for(let i = 1; i <= 11; i++) {
+                const temp = await nftContract1.methods.balanceOf(account, 1).call({ from: account });
+                balance2 = (balance2 + parseInt(temp));
+            }
+
+            setSerumBalance(balance2);
 
             const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
             const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
@@ -280,8 +297,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         CURRY SHOP
                     </Typography>
                     <Stack direction="row" width={{ xs: '100%', md: 'auto' }} spacing={2} justifyContent="flex-end">
-                        <CounterBox title="MY NF3 BASKETBALLS" value={balance} />
-                        <CounterBox title="MY SERUMS" value={0} />
+                        <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
+                        <CounterBox title="MY SERUMS" value={serumBalance} />
                     </Stack>
                 </Stack>
                 <Typography marginTop={4}>
