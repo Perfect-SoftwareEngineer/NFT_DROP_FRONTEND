@@ -42,7 +42,7 @@ export default function MyApp(props: MyAppProps) {
                         />
 
                         {/* Metadata */}
-                        <meta property="og:title" content="Curry Brand NF3 Basketball" />
+                        <meta property="og:title" content="Basketball Headz" />
                         <meta
                             property="og:image"
                             content="https://luna-bucket.s3.us-east-2.amazonaws.com/400x400_CURRY.png"
@@ -51,18 +51,18 @@ export default function MyApp(props: MyAppProps) {
                         <meta property="og:image:height" content="256" />
                         <meta property="og:image:type" content="image/png" />
                         <meta property="og:url" content="https://lab.currybrand.com" />
-                        <meta property="og:site_name" content="Curry Brand NF3 Basketball" />
+                        <meta property="og:site_name" content="Basketball Headz" />
                         <meta property="og:type" content="website" />
                         <meta
                             property="og:description"
-                            content="Every three-pointer that Stephen makes during the playoffs, Curry Brand will release three NFT basketballs free of charge to fans on a first-come, first-serve basis."
+                            content="Curry brand is unifying basketball and positive communities across the Metaverse. Introducing Basketball Headz - a limited-edition 3D generative NFT project that unifies multiple communities to mix and match your favorite NFT traits"
                         />
 
                         {/* Twitter Cards */}
-                        <meta name="twitter:title" content="Curry Brand NF3 Basketball" />
+                        <meta name="twitter:title" content="Basketball Headz" />
                         <meta
                             name="twitter:description"
-                            content="Every three-pointer that Stephen makes during the playoffs, Curry Brand will release three NFT basketballs free of charge to fans on a first-come, first-serve basis."
+                            content="Curry brand is unifying basketball and positive communities across the Metaverse. Introducing Basketball Headz - a limited-edition 3D generative NFT project that unifies multiple communities to mix and match your favorite NFT traits"
                         />
                         <meta
                             name="twitter:image"
