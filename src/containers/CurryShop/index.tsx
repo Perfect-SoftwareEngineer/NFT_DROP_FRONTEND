@@ -296,15 +296,23 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         {account ? (
                             dropBox()
                         ) : (
-                            <Stack marginLeft={3}>
-                                <Typography fontSize={48} fontWeight={700} lineHeight={1.1}>
-                                    To Get Started, Connect MetaMask Wallet
+                            <Stack marginLeft={{ xs: 0, md: 3 }}>
+                                <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
+                                    To Get Started, Connect Your MetaMask Wallet
                                 </Typography>
-                                <Typography marginTop={4}>
+                                <Typography
+                                    width={{ xs: '80%', sm: '60%', md: 536 }}
+                                    marginTop={4}
+                                    marginX="auto"
+                                    textAlign="center"
+                                >
                                     Make sure to download Metamask. Once you create or connect your MetaMask account,
                                     connect your wallet.
                                 </Typography>
-                                <ConnectMetamaskBtn sx={{ marginTop: 5 }} onClick={() => connect(activate)}>
+                                <ConnectMetamaskBtn
+                                    sx={{ marginTop: 5, marginX: 'auto' }}
+                                    onClick={() => connect(activate)}
+                                >
                                     <Image src={MetamaskImg} width={56} height={56} />
                                     <Typography
                                         fontSize={{ xs: 22, sm: 26, md: 32 }}
