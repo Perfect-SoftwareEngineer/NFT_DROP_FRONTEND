@@ -69,6 +69,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             }
 
             setclaimedCount(parseInt(mintAmount));
+            setMintAmount('');
             setMintState(MintStatus.MINT_SUCCESS);
             setNeedUpdateInfo(true);
         } catch (err: any) {

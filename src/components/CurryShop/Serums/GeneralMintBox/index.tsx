@@ -102,6 +102,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, s
             }
 
             setclaimedCount(parseInt(mintAmount));
+            setMintAmount('');
             setMintState(MintStatus.MINT_SUCCESS);
             setNeedUpdateInfo(true);
 
