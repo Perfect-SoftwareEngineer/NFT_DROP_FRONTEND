@@ -4,7 +4,7 @@ import web3 from 'web3';
 import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import { MintBtn } from './styles';
-import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
+import SerumABI from '../../../../lib/ABI/Serum.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimSerumGCF } from '../../../../services/api/curryshop';
 import { useAppContext } from '../../../../context/AppContext';
@@ -66,7 +66,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
         setMintState(MintStatus.MINTING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            SerumABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? ''
                 : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
