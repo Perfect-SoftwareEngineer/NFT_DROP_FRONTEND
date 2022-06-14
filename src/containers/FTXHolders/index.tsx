@@ -75,11 +75,12 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                     FTX 2974 HOLDERS
                 </Typography>
                 <Typography>
-                    All FTX 2974 Holders can join the NF3 mintlist by inputting a given code into the box below.
+                    All FTX 2974 Holders can join the NF3 Basketball mintlist by inputting their code into the box
+                    below. One mintlist spot per code.
                 </Typography>
                 <Stack spacing={3} padding={4} borderRadius={4} sx={{ background: '#1B1C22BF' }}>
                     <Typography fontSize={32} fontWeight={800} className="neueplak_condensed">
-                        JOIN NF3 MINTLIST
+                        JOIN THE NF3 BASKETBALL MINTLIST
                     </Typography>
                     <Stack
                         direction="row"
@@ -101,7 +102,9 @@ const FTXHoldersPageContainer: React.FC = (): JSX.Element => {
                     <Stack spacing={3}>
                         {account ? (
                             <>
-                                <SubmitBtn disabled={!enableSubmit} onClick={onSubmit}>SUBMIT</SubmitBtn>
+                                <SubmitBtn disabled={!enableSubmit} onClick={onSubmit}>
+                                    SUBMIT
+                                </SubmitBtn>
                                 {submitResult === SubmitResult.SUCCESS && (
                                     <Stack
                                         direction="row"
