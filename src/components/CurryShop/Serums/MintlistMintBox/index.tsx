@@ -177,11 +177,11 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                     >
                         <CompleteIcon sx={{ color: '#4CAF50' }} />
                         <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                            {`You have claimed ${claimedCount} NF3 Basketball, please check your `}
+                            {`You have claimed ${claimedCount} Serums, please check your `}
                             <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
                                 Opensea
                             </a>{' '}
-                            profile to check if the NF3 Basketball is in your wallet
+                            profile to check if the Serums is in your wallet
                         </Typography>
                     </Stack>
                 )}

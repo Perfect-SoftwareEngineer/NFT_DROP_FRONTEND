@@ -42,7 +42,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
 
-    const [mintedCount, setMintedCount] = useState<number>(0);
+    const [claimedCount, setclaimedCount] = useState<number>(0);
 
     const mint = async () => {
         if (!account) return;
@@ -68,7 +68,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
-            setMintedCount(parseInt(mintAmount));
+            setclaimedCount(parseInt(mintAmount));
             setMintState(MintStatus.MINT_SUCCESS);
             setNeedUpdateInfo(true);
         } catch (err: any) {
@@ -219,7 +219,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                     >
                         <CompleteIcon sx={{ color: '#4CAF50' }} />
                         <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                            {`You have claimed ${mintedCount} NF3 Basketball, please check your `}
+                            {`You have claimed ${claimedCount} NF3 Basketball, please check your `}
                             <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
                                 Opensea
                             </a>{' '}

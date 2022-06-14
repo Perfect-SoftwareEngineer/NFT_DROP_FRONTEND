@@ -13,7 +13,6 @@ import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 type ComponentProps = {
     mintData: any;
     amountLeft: number;
-    disabled?: boolean;
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -33,12 +32,7 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-const SerumGeneralMintBox: React.FC<ComponentProps> = ({
-    mintData,
-    amountLeft,
-    disabled = false,
-    setNeedUpdateInfo,
-}): JSX.Element => {
+const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, setNeedUpdateInfo }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
 
     const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
@@ -51,7 +45,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
 
-    const [mintedCount, setMintedCount] = useState<number>(0);
+    const [claimedCount, setclaimedCount] = useState<number>(0);
 
     const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([]);
     const [serumType, setSerumType] = useState<SelectItemType>();
@@ -107,9 +101,11 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
-            setMintedCount(parseInt(mintAmount));
+            setclaimedCount(parseInt(mintAmount));
             setMintState(MintStatus.MINT_SUCCESS);
             setNeedUpdateInfo(true);
+
+            setTimeout(() => setMintState(MintStatus.NOT_MINTED), 2000);
         } catch (err: any) {
             setMintState(MintStatus.MINT_FAILED);
             console.error(err);
@@ -233,9 +229,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                             </Stack>
                             <Stack spacing={1}>
                                 <Typography fontWeight={700} color="white">
-                                    {disabled
-                                        ? 'Currently Unavailable'
-                                        : 'You have ' + reservedAmount + ' reserve mints'}
+                                    {`You have ${reservedAmount} reserve mints`}
                                 </Typography>
                                 <Stack direction="row" alignItems="center" spacing={2}>
                                     <Stack direction="row" alignItems="center" spacing={1}>
@@ -266,7 +260,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
                     >
                         <CompleteIcon sx={{ color: '#4CAF50' }} />
                         <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                            {`You have claimed ${mintedCount} Serums, please check your `}
+                            {`You have claimed ${claimedCount} Serums, please check your `}
                             <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
                                 Opensea
                             </a>{' '}
