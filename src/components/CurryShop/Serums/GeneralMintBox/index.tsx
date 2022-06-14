@@ -89,14 +89,14 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         try {
             let reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });
             if (parseInt(reservedCount)) {
-                await nftContract.methods.mint(mintAmount, communityClaimHexProof).send({ from: account, value: 0 });
+                await nftContract.methods.mint(serumType?.value, mintAmount, communityClaimHexProof).send({ from: account, value: 0 });
                 reservedCount = await nftContract.methods
                     .reserveCount(account, serumType?.value)
                     .call({ from: account });
                 setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
-                    .mint(serumType?.value, mintAmount, communityClaimHexProof)
+                    .mint(serumType?.value, mintAmount, communityClaimHexProof) 
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 

@@ -39,16 +39,33 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
     const [serumType, setSerumType] = useState<SelectItemType>();
 
     React.useEffect(() => {
-        if (!!mintData) {
-            // console.log('mintData keys:', Object.keys(mintData));
+        async function updateSerumType() {
+            const nftContract = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            );
+
             let serumOptions: Array<SelectItemType> = [];
 
-            Object.keys(mintData).map((id) => {
-                serumOptions = [...serumOptions, serumTokensList[id]];
-            });
+            for (let id in mintData) {
+                let minted = await nftContract.methods.mintedForCommunity(account, id).call({ from: account });
+
+                console.log(typeof minted);
+                console.log(minted);
+
+                if (!minted) {
+                    serumOptions = [...serumOptions, serumTokensList[id]];
+                    console.log(serumOptions);
+                }
+            }
+
             setSerumTypeOptions(serumOptions);
 
             if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+        }
+        if (!!mintData) {
+            // console.log('mintData keys:', Object.keys(mintData));
+            updateSerumType();
         }
     }, [mintData]);
 
@@ -68,37 +85,35 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
 
         const nftContract = new library.eth.Contract(
             SerumABI,
-            process.env.NEXT_PUBLIC_ENV == 'production'
-                ? ''
-                : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
         let _mintPrice = 0.07;
         let value = (_mintPrice * communityOwnedCount).toString();
         value = web3.utils.toWei(value, 'ether');
         nftContract.methods
-        .mint(serumType?.value, communityOwnedCount, communityClaimHexProof)
-        .send({ from: account, value: value })
-        .then(
-            //to do : update db
-            () => {
-                setclaimedCount(communityOwnedCount);
-                setMintState(MintStatus.MINT_SUCCESS);
-                setNeedUpdateInfo(true);
+            .mint(serumType?.value, communityOwnedCount, communityClaimHexProof)
+            .send({ from: account, value: value })
+            .then(
+                //to do : update db
+                () => {
+                    setclaimedCount(communityOwnedCount);
+                    setMintState(MintStatus.MINT_SUCCESS);
+                    setNeedUpdateInfo(true);
 
-                confirmClaimSerumCommunity(account, appState.jwtToken)
-                    .then((response: any) => {
-                        // console.log('resonse:', response);
-                    })
-                    .catch((error) => {
-                        // console.log(error);
-                    });
-            }
-        )
-        .catch((e: any) => {
-            setMintState(MintStatus.MINT_FAILED);
-            // console.log(e);
-        });
+                    confirmClaimSerumCommunity(account, appState.jwtToken)
+                        .then((response: any) => {
+                            // console.log('resonse:', response);
+                        })
+                        .catch((error) => {
+                            // console.log(error);
+                        });
+                }
+            )
+            .catch((e: any) => {
+                setMintState(MintStatus.MINT_FAILED);
+                // console.log(e);
+            });
     };
 
     return (

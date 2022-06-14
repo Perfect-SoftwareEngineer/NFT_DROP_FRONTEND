@@ -38,16 +38,33 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
     const [serumType, setSerumType] = useState<SelectItemType>();
 
     React.useEffect(() => {
-        if (!!mintData) {
-            // console.log('mintData keys:', Object.keys(mintData));
+        async function updateSerumType() {
+            const nftContract = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            );
+
             let serumOptions: Array<SelectItemType> = [];
 
-            Object.keys(mintData).map((id) => {
-                serumOptions = [...serumOptions, serumTokensList[id]];
-            });
+            for (let id in mintData) {
+                let minted = await nftContract.methods.mintedForGCF(account, id).call({ from: account });
+
+                console.log(typeof minted);
+                console.log(minted);
+
+                if (!minted) {
+                    serumOptions = [...serumOptions, serumTokensList[id]];
+                    console.log(serumOptions);
+                }
+            }
+
             setSerumTypeOptions(serumOptions);
 
             if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+        }
+        if (!!mintData) {
+            // console.log('mintData keys:', Object.keys(mintData));
+            updateSerumType();
         }
     }, [mintData]);
 
@@ -67,34 +84,32 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
 
         const nftContract = new library.eth.Contract(
             SerumABI,
-            process.env.NEXT_PUBLIC_ENV == 'production'
-                ? ''
-                : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
         nftContract.methods
-        .claimForGCFHolders(serumType?.value, gcfOwnedCount, gcfClaimHexProof)
-        .send({ from: account, value: 0 })
-        .then(
-            //to do : update db
-            () => {
-                setclaimedCount(gcfOwnedCount);
-                setMintState(MintStatus.MINT_SUCCESS);
-                setNeedUpdateInfo(true);
+            .claimForGCFHolders(serumType?.value, gcfOwnedCount, gcfClaimHexProof)
+            .send({ from: account, value: 0 })
+            .then(
+                //to do : update db
+                () => {
+                    setclaimedCount(gcfOwnedCount);
+                    setMintState(MintStatus.MINT_SUCCESS);
+                    setNeedUpdateInfo(true);
 
-                confirmClaimSerumGCF(account, appState.jwtToken)
-                    .then((response: any) => {
-                        // console.log('resonse:', response);
-                    })
-                    .catch((error) => {
-                        // console.log(error);
-                    });
-            }
-        )
-        .catch((e: any) => {
-            setMintState(MintStatus.MINT_FAILED);
-            // console.log(e);
-        });
+                    confirmClaimSerumGCF(account, appState.jwtToken)
+                        .then((response: any) => {
+                            // console.log('resonse:', response);
+                        })
+                        .catch((error) => {
+                            // console.log(error);
+                        });
+                }
+            )
+            .catch((e: any) => {
+                setMintState(MintStatus.MINT_FAILED);
+                // console.log(e);
+            });
     };
 
     return (
