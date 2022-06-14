@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
+import SerumABI from '../../../../lib/ABI/Serum.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
 import { SelectItemType } from '../../../../types';
@@ -82,7 +82,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         setMintState(MintStatus.MINTING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            SerumABI,
             process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
@@ -115,7 +115,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
         setReserveState(ReserveStatus.RESERVING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            SerumABI,
             process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
@@ -137,7 +137,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
-                BasketballHeadABI,
+                SerumABI,
                 process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
             );
 
