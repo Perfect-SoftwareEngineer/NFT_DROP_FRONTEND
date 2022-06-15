@@ -16,6 +16,13 @@ export type MutantItemType = {
     desc: string;
 };
 
+export type GCFTokenInfoType = {
+    title: string;
+    image: string;
+    count: number;
+    tokenId: number;
+};
+
 export type WearableItemType = {
     id: number;
     type: number;

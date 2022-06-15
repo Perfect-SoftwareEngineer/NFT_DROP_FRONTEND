@@ -125,14 +125,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             if (curStep === StepType.GCF_NF3) {
                 const NF3GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
-                console.log('NF3GCFFlag:', NF3GCFFlag);
                 if (NF3GCFFlag == true) {
                     setNF3GCFOwnedCount(0);
                     setNF3GCFClaimHexProof([]);
                 } else {
                     if (account) {
                         const response = await claimNF3GCF(account);
-                        console.log('claimNF3GCF response quantity:', response.quantity);
                         setNF3GCFOwnedCount(response.quantity);
                         setNF3GCFClaimHexProof(response.hexProof);
                     }
@@ -146,7 +144,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 } else*/ {
                     if (account) {
                         const response = await claimSerumGCF(account);
-                        console.log('claimSerumGCF:', response);
                         setSerumGCFData(response);
                     }
                 }

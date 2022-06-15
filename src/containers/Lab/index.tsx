@@ -7,6 +7,7 @@ import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/TheLab/BasketballBox';
 import SerumBox from '../../components/SerumBox';
+import GCFBox from '../../components/TheLab/GCFBox';
 import WearableBox from '../../components/WearableBox';
 import ProductDetails from './ProductDetails';
 import { useWeb3React } from '@web3-react/core';
@@ -14,6 +15,8 @@ import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import serumTokensList from '../../constants/serumTokenData';
 import { getLocker } from '../../services/api/thelab';
+import gcfTokenData from '../../constants/gcfTokenData';
+import { GCFTokenInfoType } from '../../types';
 
 export enum Categories {
     ALL,
@@ -30,6 +33,11 @@ const getBasketballCount = (data: any[]) => {
     return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
 };
 
+const getGCFTokenCount = (data: any[], tokenId?: string) => {
+    let obj = data.find((item) => item['platform'] === 'Drop1Nft' && item['tokenId'] === tokenId);
+    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
+};
+
 const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const { active, account, library, activate } = useWeb3React();
@@ -40,6 +48,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [category, setCategory] = useState<Categories>(Categories.ALL);
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
+    const [gcfTokensList, setGCFTokensList] = useState<GCFTokenInfoType[]>(gcfTokenData);
 
     const [basketballCount, setBasketballCount] = useState<number>(0);
 
@@ -112,6 +121,12 @@ const LabPageContainer: React.FC = (): JSX.Element => {
 
     React.useEffect(() => {
         setBasketballCount(getBasketballCount(ownedNFTTokensList));
+
+        let newList = gcfTokenData.map((item) => {
+            let count = getGCFTokenCount(ownedNFTTokensList, item.tokenId.toString());
+            return { ...item, count };
+        });
+        setGCFTokensList(newList);
     }, [ownedNFTTokensList]);
 
     return (
@@ -180,6 +195,24 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                             onSelect={onSerumItemSelect}
                                             key={`serum_box_${index}`}
                                         />
+                                    ))}
+                                </Stack>
+                            </Stack>
+                        )}
+                        {(category === Categories.ALL || category === Categories.GCF) && (
+                            <Stack spacing={3}>
+                                <Typography fontSize={32} fontWeight={700} color="white">
+                                    Genesis Curry Flow
+                                </Typography>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
+                                    {gcfTokensList.map((item, index) => (
+                                        <GCFBox data={item} key={`gcf_box_${index}`} />
                                     ))}
                                 </Stack>
                             </Stack>
