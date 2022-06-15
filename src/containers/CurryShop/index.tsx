@@ -23,6 +23,7 @@ import { useAppContext } from '../../context/AppContext';
 import { usePrevious } from 'react-use';
 
 enum StepType {
+    NONE,
     GCF_NF3,
     MINTLIST_NF3,
     MINTLIST_SERUM,
@@ -35,7 +36,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
     const [appState, setAppState] = useAppContext();
 
-    const [curStep, setCurStep] = useState<StepType>(StepType.GCF_NF3);
+    const [curStep, setCurStep] = useState<StepType>(StepType.NONE);
     const curStepPrev = usePrevious(curStep);
 
     const [basketballBalance, setBasketballBalance] = useState<number>(0);
@@ -124,13 +125,14 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             if (curStep === StepType.GCF_NF3) {
                 const NF3GCFFlag = await nftContract.methods.mintedForGCF(account).call({ from: account });
-
+                console.log('NF3GCFFlag:', NF3GCFFlag);
                 if (NF3GCFFlag == true) {
                     setNF3GCFOwnedCount(0);
                     setNF3GCFClaimHexProof([]);
                 } else {
                     if (account) {
                         const response = await claimNF3GCF(account);
+                        console.log('claimNF3GCF response quantity:', response.quantity);
                         setNF3GCFOwnedCount(response.quantity);
                         setNF3GCFClaimHexProof(response.hexProof);
                     }
