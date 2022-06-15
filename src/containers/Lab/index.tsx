@@ -5,7 +5,7 @@ import CounterBox from '../../components/CounterBox';
 import { CategoryBtn } from './styles';
 import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
-import BasketballBox from '../../components/BasketballBox';
+import BasketballBox from '../../components/TheLab/BasketballBox';
 import SerumBox from '../../components/SerumBox';
 import WearableBox from '../../components/WearableBox';
 import ProductDetails from './ProductDetails';
@@ -13,6 +13,7 @@ import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import serumTokensList from '../../constants/serumTokenData';
+import { getLocker } from '../../services/api/thelab';
 
 export enum Categories {
     ALL,
@@ -24,6 +25,11 @@ export enum Categories {
 
 const categoryButtonsList = ['ALL', 'MUTANTS', 'BASKETBALLS', 'SERUMS', 'WEARABLES'];
 
+const getBasketballCount = (data: any[]) => {
+    let obj = data.find((item) => item['platform'] === 'Basketball');
+    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
+};
+
 const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const { active, account, library, activate } = useWeb3React();
@@ -32,6 +38,10 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [serumBalance, setSerumBalance] = useState<number>(0);
 
     const [category, setCategory] = useState<Categories>(Categories.ALL);
+
+    const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
+
+    const [basketballCount, setBasketballCount] = useState<number>(0);
 
     const [selectedProductId, setSelectedProductId] = useState<number>(-1);
 
@@ -80,6 +90,29 @@ const LabPageContainer: React.FC = (): JSX.Element => {
             updateAppState();
         }
     }, [account]);
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            if (account) {
+                getLocker(account)
+                    .then((response: any[]) => {
+                        console.log('getLocker response:', response);
+                        setOwnedNFTTokensList(response);
+                    })
+                    .catch((error) => {
+                        setOwnedNFTTokensList([]);
+                    });
+            }
+        }
+
+        if (account) {
+            updateAppState();
+        }
+    }, [account]);
+
+    React.useEffect(() => {
+        setBasketballCount(getBasketballCount(ownedNFTTokensList));
+    }, [ownedNFTTokensList]);
 
     return (
         <>
@@ -147,13 +180,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     columnGap={4}
                                     rowGap={4}
                                 >
-                                    <BasketballBox
-                                        // item={item}
-                                        // selected={selectedProductId === item.id}
-                                        selectable
-                                        onSelect={onBasketballItemSelect}
-                                        // key={`basketball_box_${index}`}
-                                    />
+                                    <BasketballBox count={basketballCount} />
                                 </Stack>
                             </Stack>
                         )}
