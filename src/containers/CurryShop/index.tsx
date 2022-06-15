@@ -98,16 +98,14 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
             setBasketballBalance(parseInt(balance1));
-            console.log('balance1: ' + balance1);
+            // console.log('balance1: ' + balance1);
 
             let balance2 = 0;
             for (let i = 1; i <= 11; i++) {
                 const temp = await nftContract1.methods.balanceOf(account, i).call({ from: account });
                 balance2 = balance2 + parseInt(temp);
             }
-
-            console.log('balance1: ' + balance2);
-
+            // console.log('balance2: ' + balance2);
             setSerumBalance(balance2);
 
             const maxsupply1 = await nftContract.methods.maxsupply().call({ from: account });

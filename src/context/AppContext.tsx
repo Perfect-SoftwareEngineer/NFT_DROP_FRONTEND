@@ -14,12 +14,15 @@ interface AppState {
 
 const defaultState: AppState = {
     mixologyCurStep: 0,
+
     basketballsList: [
         { id: 100, title: 'UA Basketball #10923', traits: [] },
         { id: 101, title: 'UA Basketball #10924', traits: [] },
         { id: 102, title: 'UA Basketball #10925', traits: [] },
     ],
+
     selectedBasketballId: -1,
+
     serumsList: [
         { id: 200, title: 'Serum #10923', desc: 'Sesame Street' },
         { id: 201, title: 'Serum #10924', desc: 'Sesame Street' },
@@ -31,11 +34,14 @@ const defaultState: AppState = {
         { id: 207, title: 'Serum #10930', desc: 'Sesame Street' },
         { id: 208, title: 'Serum #10931', desc: 'Sesame Street' },
     ],
+
     selectedSerumId: [],
+
     mutantsList: [
         { id: 300, title: 'Mutant #10923', desc: '3 Sesame Street Traits' },
         { id: 301, title: 'Mutant #10924', desc: '3 Sesame Street Traits' },
     ],
+
     wearablesList: [
         {
             id: 400,
@@ -66,6 +72,7 @@ const defaultState: AppState = {
             desc: 'RKL',
         },
     ],
+
     jwtToken: '',
 };
 

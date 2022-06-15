@@ -9,6 +9,9 @@ import BasketballBox from '../../components/BasketballBox';
 import SerumBox from '../../components/SerumBox';
 import WearableBox from '../../components/WearableBox';
 import ProductDetails from './ProductDetails';
+import { useWeb3React } from '@web3-react/core';
+import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import SerumABI from '../../lib/ABI/Serum.json';
 
 export enum Categories {
     ALL,
@@ -22,6 +25,11 @@ const categoryButtonsList = ['ALL', 'MUTANTS', 'BASKETBALLS', 'SERUMS', 'WEARABL
 
 const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
+    const { active, account, library, activate } = useWeb3React();
+
+    const [basketballBalance, setBasketballBalance] = useState<number>(0);
+    const [serumBalance, setSerumBalance] = useState<number>(0);
+
     const [category, setCategory] = useState<Categories>(Categories.ALL);
 
     const [selectedProductId, setSelectedProductId] = useState<number>(-1);
@@ -42,15 +50,45 @@ const LabPageContainer: React.FC = (): JSX.Element => {
         setSelectedProductId(id);
     };
 
+    React.useEffect(() => {
+        async function updateAppState() {
+            const nftContract = new library.eth.Contract(
+                BasketballHeadABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
+                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+            );
+
+            const nftContract1 = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            );
+
+            const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
+            setBasketballBalance(parseInt(balance1));
+
+            let balance2 = 0;
+            for (let i = 1; i <= 11; i++) {
+                const temp = await nftContract1.methods.balanceOf(account, i).call({ from: account });
+                balance2 = balance2 + parseInt(temp);
+            }
+            setSerumBalance(balance2);
+        }
+
+        if (account) {
+            updateAppState();
+        }
+    }, [account]);
+
     return (
         <>
             {selectedProductId === -1 ? (
                 <Container sx={{ paddingY: 5, overflow: 'visible' }}>
                     <Stack spacing={5}>
                         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                            <CounterBox title="MY BASKETBALLS" value={3} />
-                            <CounterBox title="MY SERUMS" value={9} />
-                            <CounterBox title="MUTANT BASKETBALLS" value={1} />
+                            <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
+                            <CounterBox title="MY SERUMS" value={serumBalance} />
+                            <CounterBox title="MUTANT BASKETBALLS" value={0} />
                         </Stack>
                         <Typography fontSize={48} fontWeight={700} color="white">
                             The Lab
