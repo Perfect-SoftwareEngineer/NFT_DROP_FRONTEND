@@ -11,7 +11,6 @@ import serumTokensList from '../../../../constants/serumTokenData';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 
 type ComponentProps = {
-    mintData: any;
     amountLeft: number;
     setNeedUpdateInfo: (value: boolean) => void;
 };
@@ -32,11 +31,8 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, setNeedUpdateInfo }): JSX.Element => {
+const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpdateInfo }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
-
-    const [communityOwnedCount, setCommunityOwnedCount] = useState<number>(0);
-    const [communityClaimHexProof, setCommunityClaimHexProof] = useState<any[]>([]);
 
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
@@ -47,31 +43,15 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, s
 
     const [claimedCount, setclaimedCount] = useState<number>(0);
 
-    const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([]);
-    const [serumType, setSerumType] = useState<SelectItemType>();
-
-    React.useEffect(() => {
-        if (!!mintData) {
-            // console.log('mintData keys:', Object.keys(mintData));
-            let serumOptions: Array<SelectItemType> = [];
-
-            Object.keys(mintData).map((id) => {
-                serumOptions = [...serumOptions, serumTokensList[id]];
-            });
-            setSerumTypeOptions(serumOptions);
-
-            if (serumOptions.length > 0) setSerumType(serumOptions[0]);
-        }
-    }, [mintData]);
-
-    React.useEffect(() => {
-        if (!!serumType) {
-            // console.log('serumType:', serumType);
-
-            setCommunityOwnedCount(mintData[serumType.value].quantity);
-            setCommunityClaimHexProof(mintData[serumType.value].hexProof);
-        }
-    }, [serumType]);
+    const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([
+        serumTokensList['6'],
+        serumTokensList['7'],
+        serumTokensList['8'],
+        serumTokensList['9'],
+        serumTokensList['10'],
+        serumTokensList['11'],
+    ]);
+    const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
 
     const mint = async () => {
         if (!account) return;
@@ -88,16 +68,14 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, s
                 .reserveCount(account, serumType?.value)
                 .call({ from: account });
             if (parseInt(reservedCount)) {
-                await nftContract.methods
-                    .mint(serumType?.value, mintAmount, communityClaimHexProof)
-                    .send({ from: account, value: 0 });
+                await nftContract.methods.mint(serumType?.value, mintAmount, []).send({ from: account, value: 0 });
                 reservedCount = await nftContract.methods
                     .reserveCount(account, serumType?.value)
                     .call({ from: account });
                 setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
-                    .mint(serumType?.value, mintAmount, communityClaimHexProof)
+                    .mint(serumType?.value, mintAmount, [])
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
@@ -143,7 +121,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, s
 
     React.useEffect(() => {
         async function updateAppState() {
-            if (serumType != undefined) {
+            if (serumType !== undefined) {
                 const nftContract = new library.eth.Contract(
                     SerumABI,
                     process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'

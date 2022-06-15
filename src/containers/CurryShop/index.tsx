@@ -53,8 +53,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [serumMintlistData, setSerumMintlistData] = useState<any>();
 
-    const [serumGeneralMintData, setSerumGeneralMintData] = useState<any>();
-
     const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
     const [nf3CommunityClaimHexProof, setNF3CommunityClaimHexProof] = React.useState<any[]>([]);
 
@@ -95,9 +93,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const nftContract1 = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? ''
-                    : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
             );
 
             const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
@@ -105,9 +101,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             console.log('balance1: ' + balance1);
 
             let balance2 = 0;
-            for(let i = 1; i <= 11; i++) {
+            for (let i = 1; i <= 11; i++) {
                 const temp = await nftContract1.methods.balanceOf(account, i).call({ from: account });
-                balance2 = (balance2 + parseInt(temp));
+                balance2 = balance2 + parseInt(temp);
             }
 
             console.log('balance1: ' + balance2);
@@ -173,10 +169,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     setSerumMintlistData(response);
                 }
             } else if (curStep === StepType.GENERALMINT_SERUM) {
-                if (account) {
-                    const response = await claimSerumCommunityNFT(account);
-                    setSerumGeneralMintData(response);
-                }
             }
         }
 
@@ -285,11 +277,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <NF3GeneralMintBox amountLeft={basketballSupplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_SERUM && (
-                    <SerumGeneralMintBox
-                        mintData={serumGeneralMintData}
-                        amountLeft={serumSupplyLeft}
-                        setNeedUpdateInfo={setNeedUpdateInfo}
-                    />
+                    <SerumGeneralMintBox amountLeft={serumSupplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
             </>
         );
