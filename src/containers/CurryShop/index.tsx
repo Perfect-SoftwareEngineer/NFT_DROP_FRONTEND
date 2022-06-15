@@ -131,6 +131,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 } else {
                     if (account) {
                         const response = await claimNF3GCF(account);
+                        console.log(account, response);
                         setNF3GCFOwnedCount(response.quantity);
                         setNF3GCFClaimHexProof(response.hexProof);
                     }
