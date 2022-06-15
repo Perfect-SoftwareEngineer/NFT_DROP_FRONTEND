@@ -79,7 +79,7 @@ export const claimSerumGCF = (wallet: string) =>
 //             });
 //     });
 
-export const claimNF3CommunityNFT = (wallet: string) =>
+export const claimNF3MintlistNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);
@@ -94,7 +94,7 @@ export const claimNF3CommunityNFT = (wallet: string) =>
             });
     });
 
-export const confirmClaimNF3Community = (wallet: string, token: string) =>
+export const confirmClaimNF3Mintlist = (wallet: string, token: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/basketball/merkle/community/claim`;
         // console.log('reqUrl:', reqUrl);
@@ -118,7 +118,7 @@ export const confirmClaimNF3Community = (wallet: string, token: string) =>
             });
     });
 
-export const claimSerumCommunityNFT = (wallet: string) =>
+export const claimSerumMintlistNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
         let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/community/hex_proof/${wallet}`;
         // console.log('reqUrl:', reqUrl);

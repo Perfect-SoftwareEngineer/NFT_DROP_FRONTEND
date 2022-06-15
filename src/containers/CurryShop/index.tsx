@@ -12,7 +12,7 @@ import NF3GeneralMintBox from '../../components/CurryShop/NF3Basketball/GeneralM
 import SerumGCFClaimBox from '../../components/CurryShop/Serums/GCFClaimBox';
 import SerumMintlistMintBox from '../../components/CurryShop/Serums/MintlistMintBox';
 import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBox';
-import { claimNF3GCF, claimSerumGCF, claimNF3CommunityNFT, claimSerumCommunityNFT } from '../../services/api/curryshop';
+import { claimNF3GCF, claimSerumGCF, claimNF3MintlistNFT, claimSerumMintlistNFT } from '../../services/api/curryshop';
 import NF3GCFInfoBox from '../../components/CurryShop/NF3InfoBox/GCFBox';
 import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
 import { ConnectMetamaskBtn, CategoryBtn, PhaseTypo } from './styles';
@@ -53,8 +53,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [serumMintlistData, setSerumMintlistData] = useState<any>();
 
-    const [nf3CommunityOwnedCount, setNF3CommunityOwnedCount] = useState<number>(0);
-    const [nf3CommunityClaimHexProof, setNF3CommunityClaimHexProof] = React.useState<any[]>([]);
+    const [nf3MintlistOwnedCount, setNF3MintlistOwnedCount] = useState<number>(0);
+    const [nf3MintlistClaimHexProof, setNF3MintlistClaimHexProof] = React.useState<any[]>([]);
 
     const [needUpdateInfo, setNeedUpdateInfo] = useState<boolean>(true);
 
@@ -150,24 +150,25 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         setSerumGCFData(response);
                     }
                 }
-            } else if (curStep === StepType.MINTLIST_NF3 || curStep === StepType.GENERALMINT_NF3) {
+            } else if (curStep === StepType.MINTLIST_NF3) {
                 const NF3CommunityFlag = await nftContract.methods.mintedForCommunity(account).call({ from: account });
 
                 if (NF3CommunityFlag == true) {
-                    setNF3CommunityOwnedCount(0);
-                    setNF3CommunityClaimHexProof([]);
+                    setNF3MintlistOwnedCount(0);
+                    setNF3MintlistClaimHexProof([]);
                 } else {
                     if (account) {
-                        const response = await claimNF3CommunityNFT(account);
-                        setNF3CommunityOwnedCount(response.quantity);
-                        setNF3CommunityClaimHexProof(response.hexProof);
+                        const response = await claimNF3MintlistNFT(account);
+                        setNF3MintlistOwnedCount(response.quantity);
+                        setNF3MintlistClaimHexProof(response.hexProof);
                     }
                 }
             } else if (curStep === StepType.MINTLIST_SERUM) {
                 if (account) {
-                    const response = await claimSerumCommunityNFT(account);
+                    const response = await claimSerumMintlistNFT(account);
                     setSerumMintlistData(response);
                 }
+            } else if (curStep === StepType.GENERALMINT_NF3) {
             } else if (curStep === StepType.GENERALMINT_SERUM) {
             }
         }
@@ -262,8 +263,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 {curStep === StepType.MINTLIST_NF3 && (
                     <NF3MintlistMintBox
                         amountLeft={basketballSupplyLeft}
-                        communityOwnedCount={nf3CommunityOwnedCount}
-                        communityClaimHexProof={nf3CommunityClaimHexProof}
+                        communityOwnedCount={nf3MintlistOwnedCount}
+                        communityClaimHexProof={nf3MintlistClaimHexProof}
                         setNeedUpdateInfo={setNeedUpdateInfo}
                     />
                 )}
