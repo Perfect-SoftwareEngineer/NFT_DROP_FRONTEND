@@ -6,7 +6,7 @@ import web3 from 'web3';
 import SerumABI from '../../../../lib/ABI/Serum.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimSerumCommunity } from '../../../../services/api/curryshop';
+// import { confirmClaimSerumCommunity } from '../../../../services/api/curryshop';
 import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';

@@ -55,29 +55,29 @@ export const claimSerumGCF = (wallet: string) =>
             });
     });
 
-export const confirmClaimSerumGCF = (wallet: string, token: string) =>
-    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/gcf/claim`;
-        // console.log('reqUrl:', reqUrl);
+// export const confirmClaimSerumGCF = (wallet: string, token: string) =>
+//     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+//         let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/gcf/claim`;
+//         // console.log('reqUrl:', reqUrl);
 
-        const body = { wallet: wallet };
+//         const body = { wallet: wallet };
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token,
-            },
-        };
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: token,
+//             },
+//         };
 
-        axios
-            .post(reqUrl, body, config)
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((error) => {
-                reject(error.response.data);
-            });
-    });
+//         axios
+//             .post(reqUrl, body, config)
+//             .then((response) => {
+//                 resolve(response.data);
+//             })
+//             .catch((error) => {
+//                 reject(error.response.data);
+//             });
+//     });
 
 export const claimNF3CommunityNFT = (wallet: string) =>
     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
@@ -133,26 +133,26 @@ export const claimSerumCommunityNFT = (wallet: string) =>
             });
     });
 
-export const confirmClaimSerumCommunity = (wallet: string, token: string) =>
-    new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
-        let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/community/claim`;
-        // console.log('reqUrl:', reqUrl);
+// export const confirmClaimSerumCommunity = (wallet: string, token: string) =>
+//     new Promise((resolve: (value: any) => void, reject: (value: string) => void) => {
+//         let reqUrl = `${SERVER_URL}/api/curryv2/serum/merkle/community/claim`;
+//         // console.log('reqUrl:', reqUrl);
 
-        const body = { wallet: wallet };
+//         const body = { wallet: wallet };
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token,
-            },
-        };
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: token,
+//             },
+//         };
 
-        axios
-            .post(reqUrl, body, config)
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((error) => {
-                reject(error.response.data);
-            });
-    });
+//         axios
+//             .post(reqUrl, body, config)
+//             .then((response) => {
+//                 resolve(response.data);
+//             })
+//             .catch((error) => {
+//                 reject(error.response.data);
+//             });
+//     });

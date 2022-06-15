@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MintBtn } from './styles';
 import SerumABI from '../../../../lib/ABI/Serum.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
-import { confirmClaimSerumGCF } from '../../../../services/api/curryshop';
+// import { confirmClaimSerumGCF } from '../../../../services/api/curryshop';
 import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
