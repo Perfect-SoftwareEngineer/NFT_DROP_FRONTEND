@@ -17,13 +17,13 @@ import { getLocker } from '../../services/api/thelab';
 
 export enum Categories {
     ALL,
-    MUTANTS,
-    BASKETBALLS,
+    NF3_BASKETBALLS,
     SERUMS,
-    WEARABLES,
+    GCF,
+    METAVERSE_SHOES,
 }
 
-const categoryButtonsList = ['ALL', 'MUTANTS', 'BASKETBALLS', 'SERUMS', 'WEARABLES'];
+const categoryButtonsList = ['ALL', 'NF3 BASKETBALLS', 'SERUMS', 'GENESIS CURRY FLOW', 'METAVERSE SHOES'];
 
 const getBasketballCount = (data: any[]) => {
     let obj = data.find((item) => item['platform'] === 'Basketball');
@@ -144,31 +144,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </CategoryBtn>
                             ))}
                         </Stack>
-                        {(category === Categories.ALL || category === Categories.MUTANTS) && (
-                            <Stack spacing={3}>
-                                <Typography fontSize={32} fontWeight={700} color="white">
-                                    Mutants
-                                </Typography>
-                                <Stack
-                                    direction="row"
-                                    flexWrap="wrap"
-                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                                    columnGap={4}
-                                    rowGap={4}
-                                >
-                                    {appState.mutantsList.map((item, index) => (
-                                        <MutantBox
-                                            item={item}
-                                            selected={selectedProductId === item.id}
-                                            selectable
-                                            onSelect={onMutantItemSelect}
-                                            key={`mutant_box_${index}`}
-                                        />
-                                    ))}
-                                </Stack>
-                            </Stack>
-                        )}
-                        {(category === Categories.ALL || category === Categories.BASKETBALLS) && (
+                        {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && (
                             <Stack spacing={3}>
                                 <Typography fontSize={32} fontWeight={700} color="white">
                                     Basketballs
@@ -208,10 +184,10 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </Stack>
                             </Stack>
                         )}
-                        {(category === Categories.ALL || category === Categories.WEARABLES) && (
+                        {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) && (
                             <Stack spacing={3}>
                                 <Typography fontSize={32} fontWeight={700} color="white">
-                                    Wearables
+                                    Metaverse Shoes
                                 </Typography>
                                 <Stack
                                     direction="row"
