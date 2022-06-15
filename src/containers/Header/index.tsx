@@ -28,8 +28,8 @@ const appMenuList = [
 
     { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
 
-    { title: 'The Lab', url: '', comingSoon: { rightPos: -10 } },
-    // { title: 'The Lab', url: '/lab' },
+    // { title: 'The Lab', url: '', comingSoon: { rightPos: -10 } },
+    { title: 'The Lab', url: '/lab' },
 
     // { title: 'Roadmap', url: '', comingSoon: { rightPos: -10 } },
     { title: 'Roadmap', url: '/roadmap' },
