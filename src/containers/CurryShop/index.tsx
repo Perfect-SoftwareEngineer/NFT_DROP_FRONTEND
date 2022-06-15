@@ -40,7 +40,9 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
     const [basketballBalance, setBasketballBalance] = useState<number>(0);
     const [serumBalance, setSerumBalance] = useState<number>(0);
-    const [supplyLeft, setSupplyLeft] = useState<number>(0);
+    const [basketballSupplyLeft, setBasketballSupplyLeft] = useState<number>(0);
+
+    const [serumSupplyLeft, setSerumSupplyLeft] = useState<number>(0);
 
     const [dropPhase, setDropPhase] = useState<number>(0);
 
@@ -100,20 +102,29 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
             setBasketballBalance(parseInt(balance1));
+            console.log('balance1: ' + balance1);
 
             let balance2 = 0;
             for(let i = 1; i <= 11; i++) {
-                const temp = await nftContract1.methods.balanceOf(account, 1).call({ from: account });
+                const temp = await nftContract1.methods.balanceOf(account, i).call({ from: account });
                 balance2 = (balance2 + parseInt(temp));
             }
 
+            console.log('balance1: ' + balance2);
+
             setSerumBalance(balance2);
 
-            const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
-            const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
-            const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
+            const maxsupply1 = await nftContract.methods.maxsupply().call({ from: account });
+            const totalsupply1 = await nftContract.methods.totalsupply().call({ from: account });
+            const totalReservedSupply1 = await nftContract.methods.totalReservedSupply().call({ from: account });
 
-            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
+            setBasketballSupplyLeft(parseInt(maxsupply1) - parseInt(totalsupply1) - parseInt(totalReservedSupply1));
+
+            const maxsupply2 = await nftContract1.methods.maxsupply().call({ from: account });
+            const totalsupply2 = await nftContract.methods.totalsupply().call({ from: account });
+            const totalReservedSupply2 = await nftContract.methods.totalReservedSupply().call({ from: account });
+
+            setSerumSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
 
             console.log('curStep:', curStep);
 
@@ -258,7 +269,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                 )}
                 {curStep === StepType.MINTLIST_NF3 && (
                     <NF3MintlistMintBox
-                        amountLeft={supplyLeft}
+                        amountLeft={basketballSupplyLeft}
                         communityOwnedCount={nf3CommunityOwnedCount}
                         communityClaimHexProof={nf3CommunityClaimHexProof}
                         setNeedUpdateInfo={setNeedUpdateInfo}
@@ -271,12 +282,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <SerumGCFClaimBox mintData={serumGCFData} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_NF3 && (
-                    <NF3GeneralMintBox amountLeft={supplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
+                    <NF3GeneralMintBox amountLeft={basketballSupplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_SERUM && (
                     <SerumGeneralMintBox
                         mintData={serumGeneralMintData}
-                        amountLeft={supplyLeft}
+                        amountLeft={serumSupplyLeft}
                         setNeedUpdateInfo={setNeedUpdateInfo}
                     />
                 )}

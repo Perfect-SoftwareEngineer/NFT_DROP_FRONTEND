@@ -197,7 +197,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ mintData, amountLeft, s
                             >
                                 SERUM GENERAL MINT
                             </Typography>
-                            <SupplyBox amount={0} label="Serums" headColor="#018FB3" />
+                            <SupplyBox amount={amountLeft} label="Serums" headColor="#018FB3" />
                             <Typography color="#969AA1">
                                 Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to trigger a transaction where
                                 you pay for the amount of NFTs you specify. Mint your reserved NFTs at a later time. No
