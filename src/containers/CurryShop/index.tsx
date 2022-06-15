@@ -29,7 +29,7 @@ enum StepType {
     MINTLIST_SERUM,
     GCF_SERUM,
     GENERALMINT_NF3,
-    GENERALMINT_SERUM,
+    GENERALMINT_SERUM
 }
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
