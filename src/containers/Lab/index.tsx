@@ -8,7 +8,7 @@ import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/TheLab/BasketballBox';
 import SerumBox from '../../components/SerumBox';
 import GCFBox from '../../components/TheLab/GCFBox';
-import WearableBox from '../../components/WearableBox';
+import WearableBox from '../../components/TheLab/WearableBox';
 import ProductDetails from './ProductDetails';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
@@ -16,7 +16,8 @@ import SerumABI from '../../lib/ABI/Serum.json';
 import serumTokensList from '../../constants/serumTokenData';
 import { getLocker } from '../../services/api/thelab';
 import gcfTokenData from '../../constants/gcfTokenData';
-import { GCFTokenInfoType } from '../../types';
+import metaverseShoesTokenData from '../../constants/metaverseShoesTokenData';
+import { GCFTokenInfoType, MetaverseShoesTokenInfoType } from '../../types';
 
 export enum Categories {
     ALL,
@@ -38,6 +39,17 @@ const getGCFTokenCount = (data: any[], tokenId?: string) => {
     return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
 };
 
+const getEcosystemTokenCount = (data: any[], platform: string) => {
+    let obj = data.find((item) => item['platform'] === platform);
+    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
+};
+
+const getEcosystemTokenURI = (data: any[], platform: string) => {
+    let obj = data.find((item) => item['platform'] === platform);
+    if (obj === undefined || obj === null) return '';
+    else return obj['uri'] !== null ? obj['uri'] : '';
+};
+
 const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const { active, account, library, activate } = useWeb3React();
@@ -49,6 +61,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
     const [gcfTokensList, setGCFTokensList] = useState<GCFTokenInfoType[]>(gcfTokenData);
+    const [metaverseShoesTokenList, setMetaverseShoesTokenList] =
+        useState<MetaverseShoesTokenInfoType[]>(metaverseShoesTokenData);
 
     const [basketballCount, setBasketballCount] = useState<number>(0);
 
@@ -127,6 +141,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
             return { ...item, count };
         });
         setGCFTokensList(newList);
+
+        let newList1 = metaverseShoesTokenData.map((item) => {
+            let count = getEcosystemTokenCount(ownedNFTTokensList, item.platform);
+            let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
+            return { ...item, count, image };
+        });
+        setMetaverseShoesTokenList(newList1);
     }, [ownedNFTTokensList]);
 
     return (
@@ -229,13 +250,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     columnGap={4}
                                     rowGap={4}
                                 >
-                                    {appState.wearablesList.map((item, index) => (
-                                        <WearableBox
-                                            item={item}
-                                            selectable
-                                            onSelect={onWearableItemSelect}
-                                            key={`wearable_box_${index}`}
-                                        />
+                                    {metaverseShoesTokenList.map((item, index) => (
+                                        <WearableBox data={item} key={`wearable_box_${index}`} />
                                     ))}
                                 </Stack>
                             </Stack>

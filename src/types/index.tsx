@@ -23,6 +23,14 @@ export type GCFTokenInfoType = {
     tokenId: number;
 };
 
+export type MetaverseShoesTokenInfoType = {
+    title: string;
+    platform: string;
+    image: string;
+    count: number;
+};
+
+
 export type WearableItemType = {
     id: number;
     type: number;

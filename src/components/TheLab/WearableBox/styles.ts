@@ -1,6 +1,6 @@
 import { styled, Stack } from '@mui/material';
 
-export const Container = styled(Stack)<{ selected: boolean; selectable: boolean }>`
+export const Container = styled(Stack)<{ selected?: boolean; selectable?: boolean }>`
     padding: 16px;
     background: #1b1c22;
     border-radius: 8px;
