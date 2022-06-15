@@ -12,6 +12,7 @@ import ProductDetails from './ProductDetails';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
+import serumTokensList from '../../constants/serumTokenData';
 
 export enum Categories {
     ALL,
@@ -146,15 +147,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     columnGap={4}
                                     rowGap={4}
                                 >
-                                    {appState.basketballsList.map((item, index) => (
-                                        <BasketballBox
-                                            item={item}
-                                            selected={selectedProductId === item.id}
-                                            selectable
-                                            onSelect={onBasketballItemSelect}
-                                            key={`basketball_box_${index}`}
-                                        />
-                                    ))}
+                                    <BasketballBox
+                                        // item={item}
+                                        // selected={selectedProductId === item.id}
+                                        selectable
+                                        onSelect={onBasketballItemSelect}
+                                        // key={`basketball_box_${index}`}
+                                    />
                                 </Stack>
                             </Stack>
                         )}
@@ -170,10 +169,10 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     columnGap={4}
                                     rowGap={4}
                                 >
-                                    {appState.serumsList.map((item, index) => (
+                                    {Object.keys(serumTokensList).map((id, index) => (
                                         <SerumBox
-                                            item={item}
-                                            selected={selectedProductId === item.id}
+                                            item={serumTokensList[id]}
+                                            // selected={selectedProductId === item.id}
                                             selectable
                                             onSelect={onSerumItemSelect}
                                             key={`serum_box_${index}`}

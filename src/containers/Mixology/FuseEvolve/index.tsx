@@ -32,11 +32,11 @@ const FuseEvolve: React.FC = (): JSX.Element => {
                     item={appState.basketballsList.find((item) => item.id === appState.selectedBasketballId)}
                     selected={true}
                 />
-                {appState.selectedSerumId
+                {/* {appState.selectedSerumId
                     .sort((a, b) => a - b)
                     .map((serumId) => (
                         <SerumBox item={appState.serumsList.find((item) => item.id === serumId)} selected={true} />
-                    ))}
+                    ))} */}
             </Stack>
         </Stack>
     );
