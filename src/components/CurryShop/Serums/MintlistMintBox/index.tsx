@@ -118,7 +118,11 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
             <Stack spacing={4} padding={{ xs: 2, md: 4 }} borderRadius={2} sx={{ background: '#1B1C22' }}>
                 <Grid container columns={8} columnSpacing={4} rowGap={2}>
                     <Grid item xs={8} md={3}>
-                        <img src="/assets/curryshop/serum-box.png" width="100%" style={{ borderRadius: 16 }} />
+                        <img
+                            src={`/assets/curryshop/serumtypes/${serumType ? serumType.value : 'default'}.png`}
+                            width="100%"
+                            style={{ borderRadius: 16 }}
+                        />
                     </Grid>
                     <Grid item xs={8} md={5}>
                         <Stack spacing={3}>
@@ -131,7 +135,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                             >
                                 SERUM MINTLIST
                             </Typography>
-                            <SupplyBox amount={0} label="Serums" headColor="#018FB3" />
+                            <SupplyBox amount={0} label="Serums" headColor={serumType ? serumType.color : '#018FB3'} />
                             <Typography color="#969AA1">
                                 Early purchasing is open to community partner mintlists and Discord mintlist spots.
                             </Typography>

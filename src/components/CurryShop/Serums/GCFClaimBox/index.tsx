@@ -114,7 +114,11 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
             <Stack spacing={4} padding={{ xs: 2, md: 4 }} borderRadius={2} sx={{ background: '#1B1C22' }}>
                 <Grid container columns={8} columnSpacing={4} rowGap={2}>
                     <Grid item xs={8} md={3}>
-                        <img src="/assets/curryshop/serum-box.png" width="100%" style={{ borderRadius: 16 }} />
+                        <img
+                            src={`/assets/curryshop/serumtypes/${serumType ? serumType.value : 'default'}.png`}
+                            width="100%"
+                            style={{ borderRadius: 16 }}
+                        />
                     </Grid>
                     <Grid item xs={8} md={5}>
                         <Stack spacing={3}>

@@ -7,27 +7,31 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         icon: (
             <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} style={{ borderRadius: 24 }} />
         ),
+        color: '',
     },
     '2': {
         label: 'Broken History',
         value: '2',
         icon: (
-            <img src="/assets/curryshop/serumtypes/broken-history.png" width={24} height={24} style={{ borderRadius: 24 }} />
+            <img
+                src="/assets/curryshop/serumtypes/broken-history.png"
+                width={24}
+                height={24}
+                style={{ borderRadius: 24 }}
+            />
         ),
     },
     '3': {
         label: 'Flow',
         value: '3',
-        icon: (
-            <img src="/assets/curryshop/serumtypes/flow.png" width={24} height={24} style={{ borderRadius: 24 }} />
-        ),
+        icon: <img src="/assets/curryshop/serumtypes/flow.png" width={24} height={24} style={{ borderRadius: 24 }} />,
+        color: '',
     },
     '4': {
         label: 'Warp',
         value: '4',
-        icon: (
-            <img src="/assets/curryshop/serumtypes/warp.png" width={24} height={24} style={{ borderRadius: 24 }} />
-        ),
+        icon: <img src="/assets/curryshop/serumtypes/warp.png" width={24} height={24} style={{ borderRadius: 24 }} />,
+        color: '',
     },
     '5': {
         label: 'The Lab',
@@ -35,6 +39,7 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         icon: (
             <img src="/assets/curryshop/serumtypes/the-lab.png" width={24} height={24} style={{ borderRadius: 24 }} />
         ),
+        color: '',
     },
     '6': {
         label: 'Smilesss',
@@ -42,41 +47,65 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         icon: (
             <img src="/assets/curryshop/serumtypes/smilesss.png" width={24} height={24} style={{ borderRadius: 24 }} />
         ),
+        color: '#FD0021',
     },
     '7': {
         label: 'Chibi Dinos',
         value: '7',
         icon: (
-            <img src="/assets/curryshop/serumtypes/chibi-dinos.png" width={24} height={24} style={{ borderRadius: 24 }} />
+            <img
+                src="/assets/curryshop/serumtypes/chibi-dinos.png"
+                width={24}
+                height={24}
+                style={{ borderRadius: 24 }}
+            />
         ),
+        color: '#EF00DA',
     },
     '8': {
         label: 'Hape',
         value: '8',
-        icon: (
-            <img src="/assets/curryshop/serumtypes/hape.png" width={24} height={24} style={{ borderRadius: 24 }} />
-        ),
+        icon: <img src="/assets/curryshop/serumtypes/hape.png" width={24} height={24} style={{ borderRadius: 24 }} />,
+        color: '#0015DD',
     },
     '9': {
         label: 'CyberKongz',
         value: '9',
         icon: (
-            <img src="/assets/curryshop/serumtypes/cyberkongz.png" width={24} height={24} style={{ borderRadius: 24 }} />
+            <img
+                src="/assets/curryshop/serumtypes/cyberkongz.png"
+                width={24}
+                height={24}
+                style={{ borderRadius: 24 }}
+            />
         ),
+        color: '#0BAF00',
     },
     '10': {
         label: 'Under Armour',
         value: '10',
         icon: (
-            <img src="/assets/curryshop/serumtypes/under-armour.png" width={24} height={24} style={{ borderRadius: 24 }} />
+            <img
+                src="/assets/curryshop/serumtypes/under-armour.png"
+                width={24}
+                height={24}
+                style={{ borderRadius: 24 }}
+            />
         ),
+        color: '#607A7F',
     },
     '11': {
         label: 'Curry Brand',
         value: '11',
         icon: (
-            <img src="/assets/curryshop/serumtypes/curry-brand.png" width={24} height={24} style={{ borderRadius: 24 }} />
+            <img
+                src="/assets/curryshop/serumtypes/curry-brand.png"
+                width={24}
+                height={24}
+                style={{ borderRadius: 24 }}
+            />
         ),
+        color: '#B2B065',
     },
 };
 

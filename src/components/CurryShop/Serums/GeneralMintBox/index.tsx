@@ -162,7 +162,11 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpda
             <Stack spacing={4} padding={{ xs: 2, md: 4 }} borderRadius={2} sx={{ background: '#1B1C22' }}>
                 <Grid container columns={8} columnSpacing={4} rowGap={2}>
                     <Grid item xs={8} md={3}>
-                        <img src="/assets/curryshop/serum-box.png" width="100%" style={{ borderRadius: 16 }} />
+                        <img
+                            src={`/assets/curryshop/serumtypes/${serumType.value}.png`}
+                            width="100%"
+                            style={{ borderRadius: 16 }}
+                        />
                     </Grid>
                     <Grid item xs={8} md={5}>
                         <Stack spacing={3}>
@@ -175,7 +179,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpda
                             >
                                 SERUM GENERAL MINT
                             </Typography>
-                            <SupplyBox amount={amountLeft} label="Serums" headColor="#018FB3" />
+                            <SupplyBox amount={amountLeft} label="Serums" headColor={serumType.color} />
                             <Typography color="#969AA1">
                                 Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to purchase the amount of NFTs
                                 you have selected. Mint your reserved NFTs at any time, without limitation.

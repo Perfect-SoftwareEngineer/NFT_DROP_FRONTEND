@@ -30,7 +30,6 @@ export type MetaverseShoesTokenInfoType = {
     count: number;
 };
 
-
 export type WearableItemType = {
     id: number;
     type: number;
@@ -54,4 +53,5 @@ export type SelectItemType = {
     label: string;
     value: string;
     icon?: React.ReactNode;
+    color: string;
 };
