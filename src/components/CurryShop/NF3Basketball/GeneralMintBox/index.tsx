@@ -177,7 +177,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                             </Typography>
                             <Stack spacing={1}>
                                 <Typography fontSize={14} fontWeight={400} color="white">
-                                    # of NF3 Basketball Heads (Max 3)
+                                    # of NF3 Basketball (Max 3)
                                 </Typography>
                                 <AmountInputWrapper sx={{ width: 184 }}>
                                     <AmountInputTextField value={mintAmount} onChange={handleInputChange} />

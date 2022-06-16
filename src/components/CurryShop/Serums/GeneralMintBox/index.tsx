@@ -205,7 +205,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
-                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                            <Stack direction="row" flexWrap="wrap" gap={2}>
                                 <Stack spacing={1}>
                                     <Typography fontSize={14}>Serum Type</Typography>
                                     <SerumTypeSelect
