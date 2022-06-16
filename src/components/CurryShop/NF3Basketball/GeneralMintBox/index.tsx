@@ -171,7 +171,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                 time limits for when you can mint your reserved NFTs.
                             </Typography>
                             <Typography fontSize={32} fontWeight={700}>
-                                PRICE: 0.07 ETH{' '}
+                                PRICE: 0.08 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>

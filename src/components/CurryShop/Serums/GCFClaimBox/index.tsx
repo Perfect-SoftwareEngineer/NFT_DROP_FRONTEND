@@ -154,7 +154,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
                                     disabled={mintState === MintStatus.MINT_SUCCESS || !gcfOwnedCount}
                                     onClick={mint}
                                 >
-                                    MINT
+                                    CLAIM
                                 </MintBtn>
                             </Stack>
                         </Stack>

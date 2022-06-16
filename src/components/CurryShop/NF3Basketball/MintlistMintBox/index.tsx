@@ -103,11 +103,10 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                             </Typography>
                             <SupplyBox amount={amountLeft} label="NF3 Basketballs" headColor="#FFCA21" />
                             <Typography color="#969AA1">
-                                Got a mintlist spot? We open up early purchasing to community partner mintlists and
-                                Discord mintlist spots.
+                                Early purchasing is open to community partner mintlists and Discord mintlist spots.
                             </Typography>
                             <Typography fontSize={32} fontWeight={700}>
-                                PRICE: 0.07 ETH{' '}
+                                PRICE: 0.08 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>

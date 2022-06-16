@@ -133,11 +133,10 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                             </Typography>
                             <SupplyBox amount={0} label="Serums" headColor="#018FB3" />
                             <Typography color="#969AA1">
-                                Got a mintlist spot? We open up early purchasing to community partner mintlists and
-                                Discord mintlist spots.
+                                Early purchasing is open to community partner mintlists and Discord mintlist spots.
                             </Typography>
                             <Typography fontSize={32} fontWeight={700}>
-                                PRICE: 0.03 ETH{' '}
+                                PRICE: 0.027 ETH{' '}
                                 <Typography fontWeight={700} display="inline">
                                     (+GAS FEE)
                                 </Typography>
