@@ -63,7 +63,6 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
             }
         }
         if (!!mintData) {
-            // console.log('mintData keys:', Object.keys(mintData));
             updateSerumTokenList();
         }
     }, [mintData]);

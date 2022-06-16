@@ -6,18 +6,18 @@ import { CategoryBtn } from './styles';
 import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/TheLab/BasketballBox';
-import SerumBox from '../../components/SerumBox';
+import SerumBox from '../../components/TheLab/SerumBox';
 import GCFBox from '../../components/TheLab/GCFBox';
 import WearableBox from '../../components/TheLab/WearableBox';
 import ProductDetails from './ProductDetails';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
-import serumTokensList from '../../constants/serumTokenData';
+import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { getLocker } from '../../services/api/thelab';
 import gcfTokenData from '../../constants/gcfTokenData';
 import metaverseShoesTokenData from '../../constants/metaverseShoesTokenData';
-import { GCFTokenInfoType, MetaverseShoesTokenInfoType } from '../../types';
+import { SerumTokenInfoType, GCFTokenInfoType, MetaverseShoesTokenInfoType } from '../../types';
 
 export enum Categories {
     ALL,
@@ -28,6 +28,11 @@ export enum Categories {
 }
 
 const categoryButtonsList = ['ALL', 'NF3 BASKETBALLS', 'SERUMS', 'GENESIS CURRY FLOW', 'METAVERSE SHOES'];
+
+const getSerumTokenCount = (data: any[], tokenId: string) => {
+    let obj = data.find((item) => item['platform'] === 'Serum' && item['tokenId'] === tokenId);
+    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
+};
 
 const getBasketballCount = (data: any[]) => {
     let obj = data.find((item) => item['platform'] === 'Basketball');
@@ -60,6 +65,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [category, setCategory] = useState<Categories>(Categories.ALL);
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
+
+    const [serumTokensList, setSerumTokensList] = useState<SerumTokenInfoType[]>(serumTokenInfoData);
     const [gcfTokensList, setGCFTokensList] = useState<GCFTokenInfoType[]>(gcfTokenData);
     const [metaverseShoesTokenList, setMetaverseShoesTokenList] =
         useState<MetaverseShoesTokenInfoType[]>(metaverseShoesTokenData);
@@ -148,6 +155,12 @@ const LabPageContainer: React.FC = (): JSX.Element => {
             return { ...item, count };
         });
         setMetaverseShoesTokenList(newList1);
+
+        let newSerumTokenList = serumTokenInfoData.map((item) => {
+            let count = getSerumTokenCount(ownedNFTTokensList, item.tokenId);
+            return { ...item, count };
+        });
+        setSerumTokensList(newSerumTokenList);
     }, [ownedNFTTokensList]);
 
     return (
@@ -208,14 +221,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     columnGap={4}
                                     rowGap={4}
                                 >
-                                    {Object.keys(serumTokensList).map((id, index) => (
-                                        <SerumBox
-                                            item={serumTokensList[id]}
-                                            // selected={selectedProductId === item.id}
-                                            selectable
-                                            onSelect={onSerumItemSelect}
-                                            key={`serum_box_${index}`}
-                                        />
+                                    {serumTokensList.map((id, index) => (
+                                        <SerumBox item={id} key={`serum_box_${index}`} />
                                     ))}
                                 </Stack>
                             </Stack>

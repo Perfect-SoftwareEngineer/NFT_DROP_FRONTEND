@@ -1,4 +1,4 @@
-import { SelectItemType } from '../types';
+import { SelectItemType, SerumTokenInfoType } from '../types';
 
 export const serumTokensList: { [key: string]: SelectItemType } = {
     '1': {
@@ -98,6 +98,75 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         ),
     },
 };
+
+export const serumTokenInfoData: SerumTokenInfoType[] = [
+    {
+        title: 'Unanimous',
+        tokenId: '1',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Broken History',
+        tokenId: '2',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Flow',
+        tokenId: '3',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Warp',
+        tokenId: '4',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'The Lab',
+        tokenId: '5',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Smilesss',
+        tokenId: '6',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Chibi Dinos',
+        tokenId: '7',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Hape',
+        tokenId: '8',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'CyberKongz',
+        tokenId: '9',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Under Armour',
+        tokenId: '10',
+        count: 0,
+        image: '',
+    },
+    {
+        title: 'Curry Brand',
+        tokenId: '11',
+        count: 0,
+        image: '',
+    },
+];
 
 export const serumTokensColor: { [key: string]: string } = {
     '1': '',

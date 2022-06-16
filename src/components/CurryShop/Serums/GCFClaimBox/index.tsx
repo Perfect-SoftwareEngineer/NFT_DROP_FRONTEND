@@ -62,7 +62,6 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
             }
         }
         if (!!mintData) {
-            // console.log('mintData keys:', Object.keys(mintData));
             updateSerumTokenList();
         }
     }, [mintData]);
