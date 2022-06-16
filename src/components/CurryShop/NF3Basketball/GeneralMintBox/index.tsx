@@ -192,11 +192,18 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                 </Typography>
                                 <Stack direction="row" alignItems="center" spacing={2}>
                                     <Stack direction="row" alignItems="center" spacing={1}>
-                                        <MintBtn disabled={mintAmount === '' || mintAmount === '0'} onClick={mint}>
+                                        <MintBtn
+                                            disabled={
+                                                mintAmount === '' ||
+                                                mintAmount === '0' ||
+                                                (amountLeft === 0 && reservedAmount === 0)
+                                            }
+                                            onClick={mint}
+                                        >
                                             MINT
                                         </MintBtn>
                                         <ReserveBtn
-                                            disabled={mintAmount === '' || mintAmount === '0'}
+                                            disabled={mintAmount === '' || mintAmount === '0' || amountLeft === 0}
                                             onClick={reserve}
                                         >
                                             RESERVE
