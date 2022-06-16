@@ -17,7 +17,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
             </Typography>
             <Typography width={{ xs: '80%', md: '35%' }} marginTop={3}>
                 Got a question? We're here to answer! If you don't see your answer here, contact us through our{' '}
-                <a href="https://discord.com/invite/M5dZ2GJSpQ" target="_blank" style={{ color: '#FFCA21' }}>
+                <a href="https://discord.gg/currybrand" target="_blank" style={{ color: '#FFCA21' }}>
                     Discord
                 </a>
                 .
@@ -237,7 +237,7 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 <FAQItem title="How can I get Support?">
                     <Typography>
                         You can join our{' '}
-                        <a href="https://discord.com/invite/M5dZ2GJSpQ" target="_blank" style={{ color: '#FFCA21' }}>
+                        <a href="https://discord.gg/currybrand" target="_blank" style={{ color: '#FFCA21' }}>
                             Discord
                         </a>{' '}
                         and open up a Ticket or email us at{' '}

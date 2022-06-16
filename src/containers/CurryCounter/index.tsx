@@ -363,7 +363,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
                                 <Typography width={320} fontSize={12} fontWeight={400}>
                                     Let's watch the game together!{' '}
                                     <MuiLink
-                                        href="https://discord.com/invite/M5dZ2GJSpQ"
+                                        href="https://discord.gg/currybrand"
                                         color="#FFCA21"
                                         underline="none"
                                         target="_blank"
