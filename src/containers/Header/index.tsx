@@ -44,7 +44,7 @@ const socialLinksList = [
     { title: 'Discord', url: 'https://discord.gg/currybrand', icon: <DiscordIcon /> },
     { title: 'Twitter', url: 'https://twitter.com/bball_headz', icon: <TwitterIcon /> },
     { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
-    { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
+    // { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
 ];
 
 const Header: React.FC<ComponentProps> = ({}) => {
@@ -53,6 +53,8 @@ const Header: React.FC<ComponentProps> = ({}) => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const [showOpenseaMenuBox, setShowOpenseaMenuBox] = useState(false);
 
     const [appState, setAppState] = useAppContext();
 
@@ -171,6 +173,32 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     </a>
                                 </Link>
                             ))}
+                            <Box position="relative" onClick={() => setShowOpenseaMenuBox(!showOpenseaMenuBox)}>
+                                <IconButton>
+                                    <OpenseaIcon />
+                                </IconButton>
+                                <Stack
+                                    position="absolute"
+                                    left={0}
+                                    top="100%"
+                                    spacing={2}
+                                    padding={2}
+                                    borderRadius={2}
+                                    visibility={showOpenseaMenuBox ? 'visible' : 'hidden'}
+                                    sx={{ background: '#1B1C22' }}
+                                >
+                                    <Link href="https://opensea.io/collection/nf3-basketball" passHref>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography whiteSpace="nowrap">NF3 Basketball</Typography>
+                                        </a>
+                                    </Link>
+                                    <Link href="https://opensea.io/collection/nf3-basketball" passHref>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography whiteSpace="nowrap">Serums</Typography>
+                                        </a>
+                                    </Link>
+                                </Stack>
+                            </Box>
                             <ConnectWalletBtn
                                 onClick={() => {
                                     if (!active) setOpenConnectWalletDlg(true);
@@ -232,6 +260,44 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                         </a>
                                     </Link>
                                 ))}
+                                <Stack
+                                    position="relative"
+                                    direction="row"
+                                    alignItems="center"
+                                    justifyContent="space-between"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setShowOpenseaMenuBox(!showOpenseaMenuBox);
+                                    }}
+                                >
+                                    <Typography fontSize={14} fontWeight={500}>
+                                        Opensea
+                                    </Typography>
+                                    <IconButton sx={{ padding: 0 }}>
+                                        <OpenseaIcon />
+                                    </IconButton>
+                                    <Stack
+                                        position="absolute"
+                                        left={0}
+                                        top={24}
+                                        spacing={2}
+                                        padding={2}
+                                        borderRadius={2}
+                                        visibility={showOpenseaMenuBox ? 'visible' : 'hidden'}
+                                        sx={{ background: '#1B1C22' }}
+                                    >
+                                        <Link href="https://opensea.io/collection/nf3-basketball" passHref>
+                                            <a target="_blank" rel="noopener noreferrer">
+                                                <Typography whiteSpace="nowrap">NF3 Basketball</Typography>
+                                            </a>
+                                        </Link>
+                                        <Link href="https://opensea.io/collection/nf3-basketball" passHref>
+                                            <a target="_blank" rel="noopener noreferrer">
+                                                <Typography whiteSpace="nowrap">Serums</Typography>
+                                            </a>
+                                        </Link>
+                                    </Stack>
+                                </Stack>
                             </BurgerMenuBox>
                         </StyledBurger>
                     </Stack>
