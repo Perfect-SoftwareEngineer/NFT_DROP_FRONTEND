@@ -55,7 +55,11 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
 
             setSerumTypeOptions(serumOptions);
 
-            if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+            if (serumOptions.length > 0) {
+                setSerumType(serumOptions[0]);
+            } else {
+                setSerumType(undefined);
+            }
         }
         if (!!mintData) {
             // console.log('mintData keys:', Object.keys(mintData));
@@ -66,9 +70,11 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
     React.useEffect(() => {
         if (!!serumType) {
             // console.log('serumType:', serumType);
-
             setGcfOwnedCount(mintData[serumType.value].quantity);
             setGcfClaimHexProof(mintData[serumType.value].hexProof);
+        } else {
+            setGcfOwnedCount(0);
+            setGcfClaimHexProof([]);
         }
     }, [serumType]);
 
@@ -92,7 +98,7 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    setTimeout(() => setMintState(MintStatus.NOT_MINTED), 2000);
+                    setTimeout(() => setMintState(MintStatus.NOT_MINTED), 3000);
 
                     // confirmClaimSerumGCF(account, appState.jwtToken)
                     //     .then((response: any) => {
@@ -151,7 +157,8 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
                             </Stack>
                             <Stack>
                                 <Typography fontWeight={700}>{`You have ${
-                                    mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
+                                    // mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
+                                    gcfOwnedCount
                                 } Genesis Curry Flow claims`}</Typography>
                                 <MintBtn
                                     sx={{ marginTop: 1 }}
