@@ -1,9 +1,10 @@
 import { styled, Box, Button, TextField } from '@mui/material';
 
 export const AmountInputWrapper = styled(Box)`
+    height: 40px;
     display: flex;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid #979797;
     padding-right: 12px;
 `;
