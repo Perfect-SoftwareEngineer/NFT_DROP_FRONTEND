@@ -166,9 +166,8 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                             </Typography>
                             <SupplyBox amount={amountLeft} label="NF3 Basketballs" headColor="#FFCA21" />
                             <Typography color="#969AA1">
-                                Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to trigger a transaction where
-                                you pay for the amount of NFTs you specify. Mint your reserved NFTs at a later time. No
-                                time limits for when you can mint your reserved NFTs.
+                                Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to purchase the amount of NFTs
+                                you have selected. Mint your reserved NFTs at any time, without limitation.
                             </Typography>
                             <Typography fontSize={32} fontWeight={700}>
                                 PRICE: 0.08 ETH{' '}

@@ -65,15 +65,15 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                 .reserveCount(account, serumType?.value)
                 .call({ from: account });
 
-            console.log(reservedCount);
-            // console.log('reservedCount:', reservedCount);
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
             setReservedAmount(parseInt(reservedCount));
             setMintPrice(parseInt(mPrice));
 
             const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
             const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
-            const totalReservedSupply2 = await nftContract.methods.totalReservedSupplyById(serumType?.value).call({ from: account });
+            const totalReservedSupply2 = await nftContract.methods
+                .totalReservedSupplyById(serumType?.value)
+                .call({ from: account });
 
             setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
         }
@@ -205,7 +205,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                                     (+GAS FEE)
                                 </Typography>
                             </Typography>
-                            <Stack direction="row" spacing={2}>
+                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
                                 <Stack spacing={1}>
                                     <Typography fontSize={14}>Serum Type</Typography>
                                     <SerumTypeSelect
