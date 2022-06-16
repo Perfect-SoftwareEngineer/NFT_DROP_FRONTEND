@@ -69,7 +69,6 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
 
     React.useEffect(() => {
         if (!!serumType) {
-            // console.log('serumType:', serumType);
             setGcfOwnedCount(mintData[serumType.value].quantity);
             setGcfClaimHexProof(mintData[serumType.value].hexProof);
         } else {

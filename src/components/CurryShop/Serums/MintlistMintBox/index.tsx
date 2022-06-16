@@ -56,7 +56,11 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
 
             setSerumTypeOptions(serumOptions);
 
-            if (serumOptions.length > 0) setSerumType(serumOptions[0]);
+            if (serumOptions.length > 0) {
+                setSerumType(serumOptions[0]);
+            } else {
+                setSerumType(undefined);
+            }
         }
         if (!!mintData) {
             // console.log('mintData keys:', Object.keys(mintData));
@@ -66,10 +70,11 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
 
     React.useEffect(() => {
         if (!!serumType) {
-            // console.log('serumType:', serumType);
-
             setCommunityOwnedCount(mintData[serumType.value].quantity);
             setCommunityClaimHexProof(mintData[serumType.value].hexProof);
+        } else {
+            setCommunityOwnedCount(0);
+            setCommunityClaimHexProof([]);
         }
     }, [serumType]);
 
@@ -96,7 +101,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
-                    setTimeout(() => setMintState(MintStatus.NOT_MINTED), 2000);
+                    setTimeout(() => setMintState(MintStatus.NOT_MINTED), 3000);
 
                     // confirmClaimSerumCommunity(account, appState.jwtToken)
                     //     .then((response: any) => {
@@ -159,7 +164,8 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                             </Stack>
                             <Stack>
                                 <Typography fontWeight={700}>{`You have ${
-                                    mintState === MintStatus.MINT_SUCCESS ? 0 : communityOwnedCount
+                                    // mintState === MintStatus.MINT_SUCCESS ? 0 : communityOwnedCount
+                                    communityOwnedCount
                                 } Mintlist Spots`}</Typography>
                                 <MintBtn
                                     sx={{ marginTop: 1 }}
