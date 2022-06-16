@@ -11,7 +11,6 @@ import serumTokensList, { serumTokensColor } from '../../../../constants/serumTo
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 
 type ComponentProps = {
-    amountLeft: number;
     setNeedUpdateInfo: (value: boolean) => void;
 };
 
@@ -31,7 +30,7 @@ enum ReserveStatus {
     RESERVE_SUCCESS,
 }
 
-const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpdateInfo }): JSX.Element => {
+const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
 
     const [mintAmount, setMintAmount] = useState<string>('');
@@ -42,6 +41,8 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpda
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
 
     const [claimedCount, setclaimedCount] = useState<number>(0);
+
+    const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
     const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([
         serumTokensList['6'],
@@ -136,6 +137,12 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpda
                 const mPrice = await nftContract.methods.mintprice().call({ from: account });
                 setReservedAmount(parseInt(reservedCount));
                 setMintPrice(parseInt(mPrice));
+
+                const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
+                const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
+                const totalReservedSupply2 = await nftContract.methods.totalReservedSupplyById(serumType?.value).call({ from: account });
+
+                setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
             }
         }
         if (account) {
@@ -180,7 +187,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpda
                                 SERUM GENERAL MINT
                             </Typography>
                             <SupplyBox
-                                amount={amountLeft}
+                                amount={supplyLeft}
                                 label="Serums"
                                 headColor={serumTokensColor[serumType.value]}
                             />

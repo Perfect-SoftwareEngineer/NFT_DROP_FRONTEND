@@ -43,8 +43,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [serumBalance, setSerumBalance] = useState<number>(0);
     const [basketballSupplyLeft, setBasketballSupplyLeft] = useState<number>(0);
 
-    const [serumSupplyLeft, setSerumSupplyLeft] = useState<number>(0);
-
     const [dropPhase, setDropPhase] = useState<number>(0);
 
     const [nf3GCFOwnedCount, setNF3GCFOwnedCount] = useState<number>(0);
@@ -114,12 +112,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
             const totalReservedSupply1 = await nftContract.methods.totalReservedSupply().call({ from: account });
 
             setBasketballSupplyLeft(parseInt(maxsupply1) - parseInt(totalsupply1) - parseInt(totalReservedSupply1));
-
-            const maxsupply2 = await nftContract1.methods.maxsupply().call({ from: account });
-            const totalsupply2 = await nftContract.methods.totalsupply().call({ from: account });
-            const totalReservedSupply2 = await nftContract.methods.totalReservedSupply().call({ from: account });
-
-            setSerumSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
 
             console.log('curStep:', curStep);
 
@@ -276,7 +268,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     <NF3GeneralMintBox amountLeft={basketballSupplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
                 {curStep === StepType.GENERALMINT_SERUM && (
-                    <SerumGeneralMintBox amountLeft={serumSupplyLeft} setNeedUpdateInfo={setNeedUpdateInfo} />
+                    <SerumGeneralMintBox setNeedUpdateInfo={setNeedUpdateInfo} />
                 )}
             </>
         );
