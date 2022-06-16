@@ -36,13 +36,11 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
     const [reservedAmount, setReservedAmount] = useState<number>(0);
+    const [claimedAmount, setclaimedAmount] = useState<number>(0);
+    const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
-
-    const [claimedCount, setclaimedCount] = useState<number>(0);
-
-    const [supplyLeft, setSupplyLeft] = useState<number>(0);
 
     const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([
         serumTokensList['6'],
@@ -64,18 +62,18 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
             const reservedCount = await nftContract.methods
                 .reserveCount(account, serumType?.value)
                 .call({ from: account });
+            setReservedAmount(parseInt(reservedCount));
 
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
-            setReservedAmount(parseInt(reservedCount));
             setMintPrice(parseInt(mPrice));
 
-            const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
-            const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
-            const totalReservedSupply2 = await nftContract.methods
+            const maxSupply = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
+            const totalSupply = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
+            const totalReservedSupply = await nftContract.methods
                 .totalReservedSupplyById(serumType?.value)
                 .call({ from: account });
 
-            setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
+            setSupplyLeft(parseInt(maxSupply) - parseInt(totalSupply) - parseInt(totalReservedSupply));
         }
     }
 
@@ -93,30 +91,26 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
             let reservedCount = await nftContract.methods
                 .reserveCount(account, serumType?.value)
                 .call({ from: account });
+
             if (parseInt(reservedCount)) {
                 await nftContract.methods.mint(serumType?.value, mintAmount, []).send({ from: account, value: 0 });
-                reservedCount = await nftContract.methods
-                    .reserveCount(account, serumType?.value)
-                    .call({ from: account });
-                setReservedAmount(parseInt(reservedCount));
             } else {
                 await nftContract.methods
                     .mint(serumType?.value, mintAmount, [])
                     .send({ from: account, value: mintPrice * parseInt(mintAmount) });
             }
 
-            setclaimedCount(parseInt(mintAmount));
+            setclaimedAmount(parseInt(mintAmount));
             setMintAmount('');
             setMintState(MintStatus.MINT_SUCCESS);
             setNeedUpdateInfo(true);
 
             updateAppState();
 
-            setTimeout(() => setMintState(MintStatus.NOT_MINTED), 2000);
+            setTimeout(() => setMintState(MintStatus.NOT_MINTED), 3000);
         } catch (err: any) {
             setMintState(MintStatus.MINT_FAILED);
             console.error(err);
-            return;
         }
     };
 
@@ -134,17 +128,14 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
             await nftContract.methods
                 .reserve(serumType?.value, mintAmount)
                 .send({ from: account, value: mintPrice * parseInt(mintAmount) });
-            const reservedCount = await nftContract.methods
-                .reserveCount(account, serumType?.value)
-                .call({ from: account });
-            setReservedAmount(parseInt(reservedCount));
-            setNeedUpdateInfo(true);
+
             setReserveState(ReserveStatus.RESERVE_SUCCESS);
+            setNeedUpdateInfo(true);
+
             updateAppState();
         } catch (err: any) {
             setReserveState(ReserveStatus.RESERVE_FAILED);
             console.error(err);
-            return;
         }
     };
 
@@ -264,7 +255,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                     >
                         <CompleteIcon sx={{ color: '#4CAF50' }} />
                         <Typography fontSize={14} fontWeight={500} color="#1E4620">
-                            {`You have claimed ${claimedCount} Serums, please check your `}
+                            {`You have claimed ${claimedAmount} Serums, please check your `}
                             <a href="https://opensea.io/" target="_blank" style={{ color: '#2986F2' }}>
                                 Opensea
                             </a>{' '}
