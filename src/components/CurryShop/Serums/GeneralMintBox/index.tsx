@@ -7,7 +7,7 @@ import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn }
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
 import SupplyBox from '../../SupplyBox';
-import serumTokensList from '../../../../constants/serumTokenData';
+import serumTokensList, { serumTokensColor } from '../../../../constants/serumTokenData';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 
 type ComponentProps = {
@@ -179,7 +179,11 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ amountLeft, setNeedUpda
                             >
                                 SERUM GENERAL MINT
                             </Typography>
-                            <SupplyBox amount={amountLeft} label="Serums" headColor={serumType.color} />
+                            <SupplyBox
+                                amount={amountLeft}
+                                label="Serums"
+                                headColor={serumTokensColor[serumType.value]}
+                            />
                             <Typography color="#969AA1">
                                 Press <span style={{ color: '#FFCA21' }}>"Reserve"</span> to purchase the amount of NFTs
                                 you have selected. Mint your reserved NFTs at any time, without limitation.

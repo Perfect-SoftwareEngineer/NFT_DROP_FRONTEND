@@ -11,7 +11,7 @@ import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
 import SupplyBox from '../../SupplyBox';
-import serumTokensList from '../../../../constants/serumTokenData';
+import serumTokensList, { serumTokensColor } from '../../../../constants/serumTokenData';
 
 type ComponentProps = {
     mintData: any;
@@ -135,7 +135,11 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                             >
                                 SERUM MINTLIST
                             </Typography>
-                            <SupplyBox amount={0} label="Serums" headColor={serumType ? serumType.color : '#018FB3'} />
+                            <SupplyBox
+                                amount={0}
+                                label="Serums"
+                                headColor={serumType ? serumTokensColor[serumType.value] : '#018FB3'}
+                            />
                             <Typography color="#969AA1">
                                 Early purchasing is open to community partner mintlists and Discord mintlist spots.
                             </Typography>

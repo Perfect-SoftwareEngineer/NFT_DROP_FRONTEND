@@ -7,7 +7,6 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         icon: (
             <img src="/assets/curryshop/serumtypes/unanimous.png" width={24} height={24} style={{ borderRadius: 24 }} />
         ),
-        color: '',
     },
     '2': {
         label: 'Broken History',
@@ -25,13 +24,11 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         label: 'Flow',
         value: '3',
         icon: <img src="/assets/curryshop/serumtypes/flow.png" width={24} height={24} style={{ borderRadius: 24 }} />,
-        color: '',
     },
     '4': {
         label: 'Warp',
         value: '4',
         icon: <img src="/assets/curryshop/serumtypes/warp.png" width={24} height={24} style={{ borderRadius: 24 }} />,
-        color: '',
     },
     '5': {
         label: 'The Lab',
@@ -39,7 +36,6 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         icon: (
             <img src="/assets/curryshop/serumtypes/the-lab.png" width={24} height={24} style={{ borderRadius: 24 }} />
         ),
-        color: '',
     },
     '6': {
         label: 'Smilesss',
@@ -47,7 +43,6 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
         icon: (
             <img src="/assets/curryshop/serumtypes/smilesss.png" width={24} height={24} style={{ borderRadius: 24 }} />
         ),
-        color: '#FD0021',
     },
     '7': {
         label: 'Chibi Dinos',
@@ -60,13 +55,11 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
                 style={{ borderRadius: 24 }}
             />
         ),
-        color: '#EF00DA',
     },
     '8': {
         label: 'Hape',
         value: '8',
         icon: <img src="/assets/curryshop/serumtypes/hape.png" width={24} height={24} style={{ borderRadius: 24 }} />,
-        color: '#0015DD',
     },
     '9': {
         label: 'CyberKongz',
@@ -79,7 +72,6 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
                 style={{ borderRadius: 24 }}
             />
         ),
-        color: '#0BAF00',
     },
     '10': {
         label: 'Under Armour',
@@ -92,7 +84,6 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
                 style={{ borderRadius: 24 }}
             />
         ),
-        color: '#607A7F',
     },
     '11': {
         label: 'Curry Brand',
@@ -105,8 +96,21 @@ export const serumTokensList: { [key: string]: SelectItemType } = {
                 style={{ borderRadius: 24 }}
             />
         ),
-        color: '#B2B065',
     },
+};
+
+export const serumTokensColor: { [key: string]: string } = {
+    '1': '',
+    '2': '',
+    '3': '',
+    '4': '',
+    '5': '',
+    '6': '#FD0021',
+    '7': '#EF00DA',
+    '8': '#0015DD',
+    '9': '#0BAF00',
+    '10': '#607A7F',
+    '11': '#B2B065',
 };
 
 export default serumTokensList;
