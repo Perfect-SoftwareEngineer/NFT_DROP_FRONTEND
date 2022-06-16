@@ -19,6 +19,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@google/model-viewer": "^1.12.0",
     "@iconify/react": "^3.1.3",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",

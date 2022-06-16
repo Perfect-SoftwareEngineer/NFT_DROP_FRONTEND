@@ -144,8 +144,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
 
         let newList1 = metaverseShoesTokenData.map((item) => {
             let count = getEcosystemTokenCount(ownedNFTTokensList, item.platform);
-            let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
-            return { ...item, count, image };
+            // let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
+            return { ...item, count };
         });
         setMetaverseShoesTokenList(newList1);
     }, [ownedNFTTokensList]);
