@@ -54,6 +54,31 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
     ]);
     const [serumType, setSerumType] = useState<SelectItemType>(serumTypeOptions[0]);
 
+    async function updateAppState() {
+        if (serumType !== undefined) {
+            const nftContract = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            );
+
+            const reservedCount = await nftContract.methods
+                .reserveCount(account, serumType?.value)
+                .call({ from: account });
+
+            console.log(reservedCount);
+            // console.log('reservedCount:', reservedCount);
+            const mPrice = await nftContract.methods.mintprice().call({ from: account });
+            setReservedAmount(parseInt(reservedCount));
+            setMintPrice(parseInt(mPrice));
+
+            const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
+            const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
+            const totalReservedSupply2 = await nftContract.methods.totalReservedSupplyById(serumType?.value).call({ from: account });
+
+            setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
+        }
+    }
+
     const mint = async () => {
         if (!account) return;
 
@@ -85,6 +110,8 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
             setMintState(MintStatus.MINT_SUCCESS);
             setNeedUpdateInfo(true);
 
+            updateAppState();
+
             setTimeout(() => setMintState(MintStatus.NOT_MINTED), 2000);
         } catch (err: any) {
             setMintState(MintStatus.MINT_FAILED);
@@ -113,6 +140,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
             setReservedAmount(parseInt(reservedCount));
             setNeedUpdateInfo(true);
             setReserveState(ReserveStatus.RESERVE_SUCCESS);
+            updateAppState();
         } catch (err: any) {
             setReserveState(ReserveStatus.RESERVE_FAILED);
             console.error(err);
@@ -121,30 +149,6 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
     };
 
     React.useEffect(() => {
-        async function updateAppState() {
-            if (serumType !== undefined) {
-                const nftContract = new library.eth.Contract(
-                    SerumABI,
-                    process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
-                );
-
-                const reservedCount = await nftContract.methods
-                    .reserveCount(account, serumType?.value)
-                    .call({ from: account });
-
-                console.log(reservedCount);
-                // console.log('reservedCount:', reservedCount);
-                const mPrice = await nftContract.methods.mintprice().call({ from: account });
-                setReservedAmount(parseInt(reservedCount));
-                setMintPrice(parseInt(mPrice));
-
-                const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
-                const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
-                const totalReservedSupply2 = await nftContract.methods.totalReservedSupplyById(serumType?.value).call({ from: account });
-
-                setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
-            }
-        }
         if (account) {
             updateAppState();
         }
