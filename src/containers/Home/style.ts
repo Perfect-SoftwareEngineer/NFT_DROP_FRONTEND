@@ -10,14 +10,14 @@ export const GradientBox1 = styled(Box)`
 
 export const GradientBox2 = styled(Box)`
     width: 100%;
-    height: 35%;
+    height: 70%;
     position: absolute;
     background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
 `;
 
 export const GradientBox3 = styled(Box)`
     width: 100%;
-    height: 30%;
+    height: 70%;
     position: absolute;
     bottom: 0;
     background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);

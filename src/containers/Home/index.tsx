@@ -117,46 +117,72 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox2 />
                     <GradientBox3 />
                 </Stack>
-                <Stack position="absolute" direction="row" justifyContent="center" paddingY="12%" sx={{ inset: 0 }}>
-                    <Stack>
-                        <Typography
-                            fontSize={{ xs: 36, md: 48 }}
-                            fontWeight={800}
-                            color="#FFCA21"
-                            lineHeight={1}
-                            className="neueplak_condensed"
+                <Box position="absolute" sx={{ inset: 0 }}>
+                    <Container sx={{ height: '100%' }}>
+                        <Stack
+                            height="100%"
+                            direction={{ xs: 'column', md: 'row' }}
+                            justifyContent={{ xs: 'center', md: 'space-between' }}
+                            spacing={{ xs: 20, md: 0 }}
+                            paddingY="12%"
                         >
-                            NF3 BASKETBALL
-                        </Typography>
-                        <Typography
-                            fontSize={{ xs: 72, md: 128 }}
-                            fontWeight={800}
-                            lineHeight={1}
-                            className="neueplak_condensed"
-                        >
-                            0.08 ETH
-                        </Typography>
-                    </Stack>
-                    <Stack alignItems="flex-end" alignSelf="flex-end">
-                        <Typography
-                            fontSize={{ xs: 36, md: 48 }}
-                            fontWeight={800}
-                            color="#FFCA21"
-                            lineHeight={1}
-                            className="neueplak_condensed"
-                        >
-                            SERUMS
-                        </Typography>
-                        <Typography
-                            fontSize={{ xs: 72, md: 128 }}
-                            fontWeight={800}
-                            lineHeight={1}
-                            className="neueplak_condensed"
-                        >
-                            0.027 ETH
-                        </Typography>
-                    </Stack>
-                </Stack>
+                            <Stack direction="row" alignItems="center" alignSelf="flex-start" spacing={4}>
+                                <img
+                                    src="/assets/home/basketball.png"
+                                    width={matchDownMd ? 136 : 272}
+                                    height={matchDownMd ? 136 : 272}
+                                    alt=""
+                                />
+                                <Stack>
+                                    <Typography
+                                        fontSize={{ xs: 36, md: 48 }}
+                                        fontWeight={800}
+                                        color="#FFCA21"
+                                        lineHeight={1}
+                                        className="neueplak_condensed"
+                                    >
+                                        NF3 BASKETBALL
+                                    </Typography>
+                                    <Typography
+                                        fontSize={{ xs: 72, md: 128 }}
+                                        fontWeight={800}
+                                        lineHeight={1}
+                                        className="neueplak_condensed"
+                                    >
+                                        0.08 ETH
+                                    </Typography>
+                                </Stack>
+                            </Stack>
+                            <Stack direction="row" alignItems="center" alignSelf="flex-end" spacing={4}>
+                                <Stack alignItems="flex-end">
+                                    <Typography
+                                        fontSize={{ xs: 36, md: 48 }}
+                                        fontWeight={800}
+                                        color="#FFCA21"
+                                        lineHeight={1}
+                                        className="neueplak_condensed"
+                                    >
+                                        SERUMS
+                                    </Typography>
+                                    <Typography
+                                        fontSize={{ xs: 72, md: 128 }}
+                                        fontWeight={800}
+                                        lineHeight={1}
+                                        className="neueplak_condensed"
+                                    >
+                                        0.027 ETH
+                                    </Typography>
+                                </Stack>
+                                <img
+                                    src="/assets/home/serum.png"
+                                    width={matchDownMd ? 114 : 228}
+                                    height={matchDownMd ? 136 : 272}
+                                    alt=""
+                                />
+                            </Stack>
+                        </Stack>
+                    </Container>
+                </Box>
             </Stack>
             <Stack paddingY={{ xs: 16, md: 24 }}>
                 <Container>
