@@ -13,11 +13,18 @@ import ProductDetails from './ProductDetails';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
+import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { getLocker } from '../../services/api/thelab';
 import gcfTokenData from '../../constants/gcfTokenData';
 import metaverseShoesTokenData from '../../constants/metaverseShoesTokenData';
-import { SerumTokenInfoType, GCFTokenInfoType, MetaverseShoesTokenInfoType } from '../../types';
+import {
+    BasketballTokenInfoType,
+    SerumTokenInfoType,
+    GCFTokenInfoType,
+    MetaverseShoesTokenInfoType,
+} from '../../types';
+import axios from 'axios';
 
 export enum Categories {
     ALL,
@@ -34,9 +41,20 @@ const getSerumTokenCount = (data: any[], tokenId: string) => {
     return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
 };
 
-const getBasketballCount = (data: any[]) => {
+const getBasketballInfo = async (data: any[]) => {
     let obj = data.find((item) => item['platform'] === 'Basketball');
-    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
+    if (obj === undefined || obj === null) return { count: 0, image: '' };
+
+    let count = parseInt(obj['quantity']);
+    let uri = obj['uri'];
+    if (!uri) return { count: count, image: '' };
+
+    const response: any = await axios({
+        method: 'GET',
+        url: uri,
+    });
+    let imageUri = response.status === 200 ? response.data.image : '';
+    return { count: count, image: imageUri };
 };
 
 const getGCFTokenCount = (data: any[], tokenId?: string) => {
@@ -66,12 +84,11 @@ const LabPageContainer: React.FC = (): JSX.Element => {
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
 
+    const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
     const [serumTokensList, setSerumTokensList] = useState<SerumTokenInfoType[]>(serumTokenInfoData);
     const [gcfTokensList, setGCFTokensList] = useState<GCFTokenInfoType[]>(gcfTokenData);
     const [metaverseShoesTokenList, setMetaverseShoesTokenList] =
         useState<MetaverseShoesTokenInfoType[]>(metaverseShoesTokenData);
-
-    const [basketballCount, setBasketballCount] = useState<number>(0);
 
     const [selectedProductId, setSelectedProductId] = useState<number>(-1);
 
@@ -128,7 +145,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
             if (account) {
                 getLocker(account)
                     .then((response: any[]) => {
-                        console.log('getLocker response:', response);
+                        // console.log('getLocker response:', response);
                         setOwnedNFTTokensList(response);
                     })
                     .catch((error) => {
@@ -143,133 +160,134 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     }, [account]);
 
     React.useEffect(() => {
-        setBasketballCount(getBasketballCount(ownedNFTTokensList));
+        async function getTokensData() {
+            let basketballInfo = await getBasketballInfo(ownedNFTTokensList);
 
-        let newList = gcfTokenData.map((item) => {
-            let count = getGCFTokenCount(ownedNFTTokensList, item.tokenId.toString());
-            return { ...item, count };
-        });
-        setGCFTokensList(newList);
+            let newBasketballToken = { ...basketballToken, count: basketballInfo.count, image: basketballInfo.image };
+            setBasketballToken(newBasketballToken);
 
-        let newList1 = metaverseShoesTokenData.map((item) => {
-            let count = getEcosystemTokenCount(ownedNFTTokensList, item.platform);
-            // let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
-            return { ...item, count };
-        });
-        setMetaverseShoesTokenList(newList1);
+            let newList = gcfTokenData.map((item) => {
+                let count = getGCFTokenCount(ownedNFTTokensList, item.tokenId.toString());
+                return { ...item, count };
+            });
+            setGCFTokensList(newList);
 
-        let newSerumTokenList = serumTokenInfoData.map((item) => {
-            let count = getSerumTokenCount(ownedNFTTokensList, item.tokenId);
-            return { ...item, count };
-        });
-        setSerumTokensList(newSerumTokenList);
+            let newList1 = metaverseShoesTokenData.map((item) => {
+                let count = getEcosystemTokenCount(ownedNFTTokensList, item.platform);
+                // let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
+                return { ...item, count };
+            });
+            setMetaverseShoesTokenList(newList1);
+
+            let newSerumTokenList = serumTokenInfoData.map((item) => {
+                let count = getSerumTokenCount(ownedNFTTokensList, item.tokenId);
+                return { ...item, count };
+            });
+            setSerumTokensList(newSerumTokenList);
+        }
+
+        getTokensData();
     }, [ownedNFTTokensList]);
 
     return (
-        <>
-            {selectedProductId === -1 ? (
-                <Container sx={{ paddingY: 5, overflow: 'visible' }}>
-                    <Stack spacing={5}>
-                        <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                            <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
-                            <CounterBox title="MY SERUMS" value={serumBalance} />
-                        </Stack>
-                        <Typography fontSize={48} fontWeight={800} color="white" className="neueplak_condensed">
-                            THE LAB
+        <Container sx={{ paddingY: 5, overflow: 'visible' }}>
+            <Stack spacing={5}>
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
+                    <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
+                    <CounterBox title="MY SERUMS" value={serumBalance} />
+                </Stack>
+                <Typography fontSize={48} fontWeight={800} color="white" className="neueplak_condensed">
+                    THE LAB
+                </Typography>
+                <Stack
+                    direction="row"
+                    flexWrap="wrap"
+                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                    columnGap={2}
+                    rowGap={2}
+                >
+                    {categoryButtonsList.map((item, index) => (
+                        <CategoryBtn
+                            key={`category-btn-${index}`}
+                            selected={category === index}
+                            onClick={() => setCategory(index)}
+                        >
+                            {item}
+                        </CategoryBtn>
+                    ))}
+                </Stack>
+                {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            NF3 Basketball
                         </Typography>
                         <Stack
                             direction="row"
                             flexWrap="wrap"
                             justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                            columnGap={2}
-                            rowGap={2}
+                            columnGap={4}
+                            rowGap={4}
                         >
-                            {categoryButtonsList.map((item, index) => (
-                                <CategoryBtn
-                                    key={`category-btn-${index}`}
-                                    selected={category === index}
-                                    onClick={() => setCategory(index)}
-                                >
-                                    {item}
-                                </CategoryBtn>
+                            <BasketballBox data={basketballToken} />
+                        </Stack>
+                    </Stack>
+                )}
+                {(category === Categories.ALL || category === Categories.SERUMS) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            Serums
+                        </Typography>
+                        <Stack
+                            direction="row"
+                            flexWrap="wrap"
+                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                            columnGap={4}
+                            rowGap={4}
+                        >
+                            {serumTokensList.map((id, index) => (
+                                <SerumBox item={id} key={`serum_box_${index}`} />
                             ))}
                         </Stack>
-                        {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && (
-                            <Stack spacing={3}>
-                                <Typography fontSize={32} fontWeight={700} color="white">
-                                    NF3 Basketball
-                                </Typography>
-                                <Stack
-                                    direction="row"
-                                    flexWrap="wrap"
-                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                                    columnGap={4}
-                                    rowGap={4}
-                                >
-                                    <BasketballBox count={basketballCount} />
-                                </Stack>
-                            </Stack>
-                        )}
-                        {(category === Categories.ALL || category === Categories.SERUMS) && (
-                            <Stack spacing={3}>
-                                <Typography fontSize={32} fontWeight={700} color="white">
-                                    Serums
-                                </Typography>
-                                <Stack
-                                    direction="row"
-                                    flexWrap="wrap"
-                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                                    columnGap={4}
-                                    rowGap={4}
-                                >
-                                    {serumTokensList.map((id, index) => (
-                                        <SerumBox item={id} key={`serum_box_${index}`} />
-                                    ))}
-                                </Stack>
-                            </Stack>
-                        )}
-                        {(category === Categories.ALL || category === Categories.GCF) && (
-                            <Stack spacing={3}>
-                                <Typography fontSize={32} fontWeight={700} color="white">
-                                    Genesis Curry Flow
-                                </Typography>
-                                <Stack
-                                    direction="row"
-                                    flexWrap="wrap"
-                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                                    columnGap={4}
-                                    rowGap={4}
-                                >
-                                    {gcfTokensList.map((item, index) => (
-                                        <GCFBox data={item} key={`gcf_box_${index}`} />
-                                    ))}
-                                </Stack>
-                            </Stack>
-                        )}
-                        {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) && (
-                            <Stack spacing={3}>
-                                <Typography fontSize={32} fontWeight={700} color="white">
-                                    Metaverse Shoes
-                                </Typography>
-                                <Stack
-                                    direction="row"
-                                    flexWrap="wrap"
-                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                                    columnGap={4}
-                                    rowGap={4}
-                                >
-                                    {metaverseShoesTokenList.map((item, index) => (
-                                        <WearableBox data={item} key={`wearable_box_${index}`} />
-                                    ))}
-                                </Stack>
-                            </Stack>
-                        )}
                     </Stack>
-                </Container>
-            ) : (
-                <ProductDetails id={selectedProductId} />
-            )}
-        </>
+                )}
+                {(category === Categories.ALL || category === Categories.GCF) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            Genesis Curry Flow
+                        </Typography>
+                        <Stack
+                            direction="row"
+                            flexWrap="wrap"
+                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                            columnGap={4}
+                            rowGap={4}
+                        >
+                            {gcfTokensList.map((item, index) => (
+                                <GCFBox data={item} key={`gcf_box_${index}`} />
+                            ))}
+                        </Stack>
+                    </Stack>
+                )}
+                {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) && (
+                    <Stack spacing={3}>
+                        <Typography fontSize={32} fontWeight={700} color="white">
+                            Metaverse Shoes
+                        </Typography>
+                        <Stack
+                            direction="row"
+                            flexWrap="wrap"
+                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                            columnGap={4}
+                            rowGap={4}
+                        >
+                            {metaverseShoesTokenList.map((item, index) => (
+                                <WearableBox data={item} key={`wearable_box_${index}`} />
+                            ))}
+                        </Stack>
+                    </Stack>
+                )}
+            </Stack>
+        </Container>
     );
 };
 

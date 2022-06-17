@@ -1,22 +1,22 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
-import Image from 'next/image';
 import { Container } from './styles';
+import { BasketballTokenInfoType } from '../../../types';
 
 type ComponentProps = {
-    count: number;
+    data: BasketballTokenInfoType;
 };
 
-const BasketballBox: React.FC<ComponentProps> = ({ count }): JSX.Element => {
+const BasketballBox: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     return (
         <Container spacing={2}>
-            <Image src="/assets/nft-items/basketball.png" width={166} height={166} alt="" className="basketball_img" />
+            <img src={data.image} width={166} height={166} alt="" className="basketball_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
-                    NF3 Basketball
+                    {data.title}
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#979797">
-                    {count}
+                    {data.count}
                 </Typography>
             </Stack>
         </Container>
