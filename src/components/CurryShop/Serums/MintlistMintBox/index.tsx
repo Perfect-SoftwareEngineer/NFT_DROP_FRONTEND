@@ -118,7 +118,6 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         );
 
         let value = (mintPrice * communityOwnedCount).toString();
-        value = web3.utils.toWei(value, 'ether');
         nftContract.methods
             .mint(serumType?.value, communityOwnedCount, communityClaimHexProof)
             .send({ from: account, value: value })
@@ -170,7 +169,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                                 SERUM MINTLIST
                             </Typography>
                             <SupplyBox
-                                amount={0}
+                                amount={supplyLeft}
                                 label="Serums"
                                 headColor={serumType ? serumTokensColor[serumType.value] : '#018FB3'}
                             />
