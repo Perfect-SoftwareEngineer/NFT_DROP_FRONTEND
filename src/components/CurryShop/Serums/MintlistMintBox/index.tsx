@@ -38,6 +38,27 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
     const [serumTypeOptions, setSerumTypeOptions] = useState<Array<SelectItemType>>([]);
     const [serumType, setSerumType] = useState<SelectItemType>();
 
+    const [mintPrice, setMintPrice] = useState<number>(0);
+    const [supplyLeft, setSupplyLeft] = useState<number>(0);
+
+    async function updateAppState() {
+        if (serumType !== undefined) {
+            const nftContract = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            );
+
+            const mPrice = await nftContract.methods.mintprice().call({ from: account });
+            setMintPrice(parseInt(mPrice));
+
+            const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
+            const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
+            const totalReservedSupply2 = await nftContract.methods.totalReservedSupplyById(serumType?.value).call({ from: account });
+
+            setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
+        }
+    }
+
     React.useEffect(() => {
         async function updateSerumTokenList() {
             const nftContract = new library.eth.Contract(
@@ -71,6 +92,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         if (!!serumType) {
             setCommunityOwnedCount(mintData[serumType.value].quantity);
             setCommunityClaimHexProof(mintData[serumType.value].hexProof);
+            updateAppState();
         } else {
             setCommunityOwnedCount(0);
             setCommunityClaimHexProof([]);
@@ -87,8 +109,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
             process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
         );
 
-        let _mintPrice = 0.07;
-        let value = (_mintPrice * communityOwnedCount).toString();
+        let value = (mintPrice * communityOwnedCount).toString();
         value = web3.utils.toWei(value, 'ether');
         nftContract.methods
             .mint(serumType?.value, communityOwnedCount, communityClaimHexProof)
@@ -100,6 +121,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                     setMintState(MintStatus.MINT_SUCCESS);
                     setNeedUpdateInfo(true);
 
+                    updateAppState();
                     setTimeout(() => setMintState(MintStatus.NOT_MINTED), 3000);
 
                     // confirmClaimSerumCommunity(account, appState.jwtToken)
