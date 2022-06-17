@@ -173,10 +173,9 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
                             <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
                             <CounterBox title="MY SERUMS" value={serumBalance} />
-                            <CounterBox title="MUTANT BASKETBALLS" value={0} />
                         </Stack>
-                        <Typography fontSize={48} fontWeight={700} color="white">
-                            The Lab
+                        <Typography fontSize={48} fontWeight={800} color="white" className="neueplak_condensed">
+                            THE LAB
                         </Typography>
                         <Stack
                             direction="row"
@@ -198,7 +197,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                         {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && (
                             <Stack spacing={3}>
                                 <Typography fontSize={32} fontWeight={700} color="white">
-                                    Basketballs
+                                    NF3 Basketball
                                 </Typography>
                                 <Stack
                                     direction="row"
