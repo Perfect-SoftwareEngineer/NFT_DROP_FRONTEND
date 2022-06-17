@@ -20,6 +20,8 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CloseIcon from '@mui/icons-material/Close';
 import HowItWorks from '../../components/Home/HowItWorks';
+import TwitterIcon from '../../assets/twitter.svg';
+import InstagramIcon from '../../assets/instagram.svg';
 
 const HomePageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
@@ -454,7 +456,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     />
                     <GradientBox6 />
                 </Stack>
-                <Container sx={{ paddingY: 20 }}>
+                <Container sx={{ marginTop: 20 }}>
                     <Stack spacing={8}>
                         <Typography
                             fontSize={{ xs: 72, md: 128 }}
@@ -478,27 +480,55 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Container>
             </Stack>
-            {/* <Box position="relative">
-                <video autoPlay muted loop style={{ width: '100%' }}>
-                    <source src={'/assets/home/video1.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
+            <Stack width={{ xs: '80%', md: '30%' }} marginX="auto" alignItems="center" marginY={20}>
+                <Typography
+                    fontSize={{ xs: 32, md: 48 }}
+                    fontWeight={700}
+                    lineHeight={1}
+                    color="#FFCA21"
+                    className="neueplak_condensed"
+                >
+                    ABOUT THE ARTIST
+                </Typography>
+                <Typography
+                    fontSize={{ xs: 72, md: 128 }}
+                    fontWeight={800}
+                    lineHeight={1}
+                    sx={{ textDecoration: 'underline', textDecorationThickness: 'from-font' }}
+                    className="neueplak_condensed"
+                >
+                    SANDY
+                </Typography>
+                <img src="/assets/home/artist.png" width="100%" style={{ marginTop: 80 }} alt="" />
+                <Typography marginTop={5}>
+                    Sandra is an artist based in London. She works in many mediums and has been enjoying exploring ways
+                    to translate her ideas into a 3D world.
+                    <br />
+                    <br />
+                    Originally a painter and illustrator, she combines her love for culture, music, and fashion in most
+                    of her styles and storytelling.
+                    <br />
+                    <br />
+                    Selling her work over the years to many collectors and musicians, she hopes to continue connecting
+                    and exploring the creative space with like-minded souls.
+                </Typography>
+                <Stack direction="row" spacing={2} alignItems="center" marginRight="auto" marginTop={5}>
+                    <Link href={`https://twitter.com/justsandy_?s=21&t=H9Rx3LHs2FkKWCmMFYOj7g`} passHref>
+                        <a target="_blank" rel="noopener noreferrer">
+                            <IconButton>
+                                <TwitterIcon />
+                            </IconButton>
+                        </a>
+                    </Link>
+                    <Link href="https://www.instagram.com/justsandy____/" passHref>
+                        <a target="_blank" rel="noopener noreferrer">
+                            <IconButton>
+                                <InstagramIcon />
+                            </IconButton>
+                        </a>
+                    </Link>
                 </Stack>
-            </Box> */}
-            {/* <Stack position="relative" alignItems="center" paddingY={{ xs: 4, md: 0 }}>
-                <video autoPlay muted loop style={{ width: '50%' }}>
-                    <source src={'/assets/home/video2.mp4'} type="video/mp4" />
-                </video>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 />
-                </Stack>
-            </Stack> */}
-            {/* <Stack position="relative" height={{ xs: 50, md: 200 }} paddingY={{ xs: 4, md: 0 }}>
-                <Stack position="absolute" sx={{ inset: 0 }}>
-                    <GradientBox4 sx={{ height: '90%' }} />
-                </Stack>
-            </Stack> */}
+            </Stack>
         </Stack>
     );
 };
