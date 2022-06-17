@@ -21,15 +21,15 @@ type ComponentProps = {};
 const appMenuList = [
     // { title: 'Home', url: '/' },
 
-    { title: 'NF3 Counter', url: '/currycounter' },
-
     // { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
     { title: 'Curry Shop', url: '/curryshop' },
 
-    { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
-
     // { title: 'The Lab', url: '', comingSoon: { rightPos: -10 } },
     { title: 'The Lab', url: '/lab' },
+
+    { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
+
+    { title: 'NF3 Counter', url: '/currycounter' },
 
     // { title: 'Roadmap', url: '', comingSoon: { rightPos: -10 } },
     { title: 'Roadmap', url: '/roadmap' },
