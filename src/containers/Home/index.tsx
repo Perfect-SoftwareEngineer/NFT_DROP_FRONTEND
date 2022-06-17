@@ -126,7 +126,12 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             spacing={{ xs: 20, md: 0 }}
                             paddingY="12%"
                         >
-                            <Stack direction="row" alignItems="center" alignSelf="flex-start" spacing={4}>
+                            <Stack
+                                direction={{ xs: 'column', sm: 'row' }}
+                                alignItems={{ xs: 'flex-start', sm: 'center' }}
+                                alignSelf="flex-start"
+                                spacing={4}
+                            >
                                 <img
                                     src="/assets/home/basketball.png"
                                     width={matchDownMd ? 136 : 272}
@@ -153,7 +158,12 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                     </Typography>
                                 </Stack>
                             </Stack>
-                            <Stack direction="row" alignItems="center" alignSelf="flex-end" spacing={4}>
+                            <Stack
+                                direction={{ xs: 'column-reverse', sm: 'row' }}
+                                alignItems={{ xs: 'flex-end', sm: 'center' }}
+                                alignSelf="flex-end"
+                                spacing={4}
+                            >
                                 <Stack alignItems="flex-end">
                                     <Typography
                                         fontSize={{ xs: 36, md: 48 }}
