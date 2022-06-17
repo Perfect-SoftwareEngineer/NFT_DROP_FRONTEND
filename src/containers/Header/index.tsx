@@ -192,9 +192,9 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             <Typography whiteSpace="nowrap">NF3 Basketball</Typography>
                                         </a>
                                     </Link>
-                                    <Link href="https://opensea.io/collection/nf3-basketball" passHref>
-                                        <a target="_blank" rel="noopener noreferrer">
-                                            <Typography whiteSpace="nowrap">Serums</Typography>
+                                    <Link href="" passHref>
+                                        <a target="" rel="noopener noreferrer">
+                                            <Typography whiteSpace="nowrap">Serums: Coming Soon</Typography>
                                         </a>
                                     </Link>
                                 </Stack>
@@ -291,9 +291,9 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                                 <Typography whiteSpace="nowrap">NF3 Basketball</Typography>
                                             </a>
                                         </Link>
-                                        <Link href="https://opensea.io/collection/nf3-basketball" passHref>
-                                            <a target="_blank" rel="noopener noreferrer">
-                                                <Typography whiteSpace="nowrap">Serums</Typography>
+                                        <Link href="" passHref>
+                                            <a target="" rel="noopener noreferrer">
+                                                <Typography whiteSpace="nowrap">Serums: Coming Soon</Typography>
                                             </a>
                                         </Link>
                                     </Stack>
