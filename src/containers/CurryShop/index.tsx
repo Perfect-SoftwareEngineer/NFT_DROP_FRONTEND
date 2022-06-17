@@ -92,7 +92,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
 
             const nftContract1 = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
             );
 
             const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });

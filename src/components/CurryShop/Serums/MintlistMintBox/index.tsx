@@ -45,7 +45,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         if (serumType !== undefined) {
             const nftContract = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
             );
 
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
@@ -63,7 +63,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         async function updateSerumTokenList() {
             const nftContract = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
             );
 
             let serumOptions: Array<SelectItemType> = [];
@@ -106,7 +106,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
 
         const nftContract = new library.eth.Contract(
             SerumABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x0ec788eA9C07dB16374B4bddd4Fd586a8844B4dE'
+            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
         );
 
         let value = (mintPrice * communityOwnedCount).toString();
