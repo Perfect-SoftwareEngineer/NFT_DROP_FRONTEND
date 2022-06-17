@@ -196,15 +196,22 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     }, [ownedNFTTokensList]);
 
     return (
-        <Container sx={{ paddingY: 5, overflow: 'visible' }}>
-            <Stack spacing={5}>
-                <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                    <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
-                    <CounterBox title="MY SERUMS" value={serumBalance} />
+        <Container sx={{ paddingY: 8, overflow: 'visible' }}>
+            <Stack>
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    justifyContent="space-between"
+                    alignItems={{ xs: 'flex-start', md: 'center' }}
+                    spacing={2}
+                >
+                    <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
+                        THE LAB
+                    </Typography>
+                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
+                        <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
+                        <CounterBox title="MY SERUMS" value={serumBalance} />
+                    </Stack>
                 </Stack>
-                <Typography fontSize={48} fontWeight={800} color="white" className="neueplak_condensed">
-                    THE LAB
-                </Typography>
                 {account ? (
                     <>
                         <Stack
@@ -213,6 +220,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             justifyContent={{ xs: 'center', sm: 'flex-start' }}
                             columnGap={2}
                             rowGap={2}
+                            marginTop={8}
                         >
                             {categoryButtonsList.map((item, index) => (
                                 <CategoryBtn
@@ -302,7 +310,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             )}
                     </>
                 ) : (
-                    <Stack alignItems="center" marginLeft={{ xs: 0, md: 3 }}>
+                    <Stack alignItems="center" marginTop={{ xs: 8, md: 20 }} marginLeft={{ xs: 0, md: 3 }}>
                         <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
                             To Get Started, Connect Your MetaMask Wallet
                         </Typography>
