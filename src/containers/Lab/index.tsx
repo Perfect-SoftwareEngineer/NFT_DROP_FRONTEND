@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
-import { CategoryBtn } from './styles';
+import { ConnectMetamaskBtn, CategoryBtn } from './styles';
 import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/TheLab/BasketballBox';
@@ -25,6 +25,9 @@ import {
     MetaverseShoesTokenInfoType,
 } from '../../types';
 import axios from 'axios';
+import Image from 'next/image';
+import MetamaskImg from '../../assets/metamask.png';
+import { connect } from '../../web3/connect';
 
 export enum Categories {
     ALL,
@@ -202,94 +205,130 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                 <Typography fontSize={48} fontWeight={800} color="white" className="neueplak_condensed">
                     THE LAB
                 </Typography>
-                <Stack
-                    direction="row"
-                    flexWrap="wrap"
-                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                    columnGap={2}
-                    rowGap={2}
-                >
-                    {categoryButtonsList.map((item, index) => (
-                        <CategoryBtn
-                            key={`category-btn-${index}`}
-                            selected={category === index}
-                            onClick={() => setCategory(index)}
-                        >
-                            {item}
-                        </CategoryBtn>
-                    ))}
-                </Stack>
-                {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && basketballToken.count > 0 && (
-                    <Stack spacing={3}>
-                        <Typography fontSize={32} fontWeight={700} color="white">
-                            NF3 Basketball
-                        </Typography>
+                {account ? (
+                    <>
                         <Stack
                             direction="row"
                             flexWrap="wrap"
                             justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                            columnGap={4}
-                            rowGap={4}
+                            columnGap={2}
+                            rowGap={2}
                         >
-                            <BasketballBox data={basketballToken} />
+                            {categoryButtonsList.map((item, index) => (
+                                <CategoryBtn
+                                    key={`category-btn-${index}`}
+                                    selected={category === index}
+                                    onClick={() => setCategory(index)}
+                                >
+                                    {item}
+                                </CategoryBtn>
+                            ))}
                         </Stack>
-                    </Stack>
-                )}
-                {(category === Categories.ALL || category === Categories.SERUMS) && totalSerumTokensCount > 0 && (
-                    <Stack spacing={3}>
-                        <Typography fontSize={32} fontWeight={700} color="white">
-                            Serums
-                        </Typography>
-                        <Stack
-                            direction="row"
-                            flexWrap="wrap"
-                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                            columnGap={4}
-                            rowGap={4}
-                        >
-                            {serumTokensList.map((item, index) => {
-                                return item.count > 0 && <SerumBox item={item} key={`serum_box_${index}`} />;
-                            })}
-                        </Stack>
-                    </Stack>
-                )}
-                {(category === Categories.ALL || category === Categories.GCF) && totalGCFTokensCount > 0 && (
-                    <Stack spacing={3}>
-                        <Typography fontSize={32} fontWeight={700} color="white">
-                            Genesis Curry Flow
-                        </Typography>
-                        <Stack
-                            direction="row"
-                            flexWrap="wrap"
-                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                            columnGap={4}
-                            rowGap={4}
-                        >
-                            {gcfTokensList.map((item, index) => {
-                                return item.count > 0 && <GCFBox data={item} key={`gcf_box_${index}`} />;
-                            })}
-                        </Stack>
-                    </Stack>
-                )}
-                {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) &&
-                    totalMetaverseTokensCount > 0 && (
-                        <Stack spacing={3}>
-                            <Typography fontSize={32} fontWeight={700} color="white">
-                                Metaverse Shoes
-                            </Typography>
-                            <Stack
-                                direction="row"
-                                flexWrap="wrap"
-                                justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                                columnGap={4}
-                                rowGap={4}
-                            >
-                                {metaverseShoesTokenList.map((item, index) => {
-                                    return item.count > 0 && <WearableBox data={item} key={`wearable_box_${index}`} />;
-                                })}
+                        {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) &&
+                            basketballToken.count > 0 && (
+                                <Stack spacing={3}>
+                                    <Typography fontSize={32} fontWeight={700} color="white">
+                                        NF3 Basketball
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        flexWrap="wrap"
+                                        justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                        columnGap={4}
+                                        rowGap={4}
+                                    >
+                                        <BasketballBox data={basketballToken} />
+                                    </Stack>
+                                </Stack>
+                            )}
+                        {(category === Categories.ALL || category === Categories.SERUMS) && totalSerumTokensCount > 0 && (
+                            <Stack spacing={3}>
+                                <Typography fontSize={32} fontWeight={700} color="white">
+                                    Serums
+                                </Typography>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
+                                    {serumTokensList.map((item, index) => {
+                                        return item.count > 0 && <SerumBox item={item} key={`serum_box_${index}`} />;
+                                    })}
+                                </Stack>
                             </Stack>
+                        )}
+                        {(category === Categories.ALL || category === Categories.GCF) && totalGCFTokensCount > 0 && (
+                            <Stack spacing={3}>
+                                <Typography fontSize={32} fontWeight={700} color="white">
+                                    Genesis Curry Flow
+                                </Typography>
+                                <Stack
+                                    direction="row"
+                                    flexWrap="wrap"
+                                    justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                    columnGap={4}
+                                    rowGap={4}
+                                >
+                                    {gcfTokensList.map((item, index) => {
+                                        return item.count > 0 && <GCFBox data={item} key={`gcf_box_${index}`} />;
+                                    })}
+                                </Stack>
+                            </Stack>
+                        )}
+                        {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) &&
+                            totalMetaverseTokensCount > 0 && (
+                                <Stack spacing={3}>
+                                    <Typography fontSize={32} fontWeight={700} color="white">
+                                        Metaverse Shoes
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        flexWrap="wrap"
+                                        justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                        columnGap={4}
+                                        rowGap={4}
+                                    >
+                                        {metaverseShoesTokenList.map((item, index) => {
+                                            return (
+                                                item.count > 0 && (
+                                                    <WearableBox data={item} key={`wearable_box_${index}`} />
+                                                )
+                                            );
+                                        })}
+                                    </Stack>
+                                </Stack>
+                            )}
+                    </>
+                ) : (
+                    <Stack alignItems="center" marginLeft={{ xs: 0, md: 3 }}>
+                        <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
+                            To Get Started, Connect Your MetaMask Wallet
+                        </Typography>
+                        <Stack width={{ xs: '80%', sm: '60%', md: 536 }} marginTop={4}>
+                            <Typography marginX="auto" textAlign="center">
+                                Make sure to download Metamask. Once you create or connect your MetaMask account,
+                                connect your wallet.
+                            </Typography>
+                            <ConnectMetamaskBtn
+                                sx={{ marginTop: 5, marginX: 'auto' }}
+                                onClick={() => connect(activate)}
+                            >
+                                <Image src={MetamaskImg} width={56} height={56} />
+                                <Typography
+                                    fontSize={{ xs: 22, sm: 26, md: 32 }}
+                                    fontWeight={600}
+                                    lineHeight={1.1}
+                                    marginLeft={{ xs: 1, sm: 2, md: 4 }}
+                                    sx={{ padding: '0 0 8px' }}
+                                >
+                                    Connect Metamask
+                                </Typography>
+                            </ConnectMetamaskBtn>
                         </Stack>
-                    )}
+                    </Stack>
+                )}
             </Stack>
         </Container>
     );
