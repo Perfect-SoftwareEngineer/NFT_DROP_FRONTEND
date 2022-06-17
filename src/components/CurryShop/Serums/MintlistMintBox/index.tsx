@@ -60,6 +60,22 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
                 .call({ from: account });
 
             setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
+        } else {
+            const nftContract = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
+            );
+
+            const mPrice = await nftContract.methods.mintprice().call({ from: account });
+            setMintPrice(parseInt(mPrice));
+
+            const maxsupply = await nftContract.methods.maxsupply().call({ from: account });
+            const totalsupply = await nftContract.methods.totalsupply().call({ from: account });
+            const totalReservedSupply = await nftContract.methods.totalReservedSupply().call({ from: account });
+
+            setSupplyLeft(parseInt(maxsupply) - parseInt(totalsupply) - parseInt(totalReservedSupply));
         }
     }
 
@@ -102,6 +118,7 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         } else {
             setCommunityOwnedCount(0);
             setCommunityClaimHexProof([]);
+            updateAppState();
         }
     }, [serumType]);
 
