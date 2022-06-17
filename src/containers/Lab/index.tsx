@@ -28,6 +28,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
+import Link from 'next/link';
 
 export enum Categories {
     ALL,
@@ -213,7 +214,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                     </Stack>
                 </Stack>
                 {account ? (
-                    <>
+                    <Stack spacing={5}>
                         <Stack
                             direction="row"
                             flexWrap="wrap"
@@ -232,6 +233,28 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </CategoryBtn>
                             ))}
                         </Stack>
+                        {basketballToken.count +
+                            totalSerumTokensCount +
+                            totalGCFTokensCount +
+                            totalMetaverseTokensCount ===
+                            0 && (
+                            <Stack spacing={2}>
+                                <Typography fontSize={32} fontWeight={700}>
+                                    You have no NFTs in The Lab.
+                                </Typography>
+                                <Typography width={{ xs: '100%', md: '40%' }}>
+                                    We could not find any of our collection's NFTs in your wallet. Go to our{' '}
+                                    <Link href="/curryshop" passHref>
+                                        <a rel="noopener noreferrer">
+                                            <Typography color="#FFCA21" display="inline">
+                                                Curry Shop
+                                            </Typography>
+                                        </a>
+                                    </Link>{' '}
+                                    or Opensea links to get the 'goods'.
+                                </Typography>
+                            </Stack>
+                        )}
                         {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) &&
                             basketballToken.count > 0 && (
                                 <Stack spacing={3}>
@@ -308,7 +331,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     </Stack>
                                 </Stack>
                             )}
-                    </>
+                    </Stack>
                 ) : (
                     <Stack alignItems="center" marginTop={{ xs: 8, md: 20 }} marginLeft={{ xs: 0, md: 3 }}>
                         <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
