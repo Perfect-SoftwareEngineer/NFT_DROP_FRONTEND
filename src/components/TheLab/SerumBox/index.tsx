@@ -10,7 +10,7 @@ type ComponentProps = {
 const SerumBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
     return (
         <Container spacing={2}>
-            <img src={item.image} width={166} height={166} alt="" className="serum_img" />
+            <img src={item.image} width={166} height={210} alt="" className="serum_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
                     {item.title}

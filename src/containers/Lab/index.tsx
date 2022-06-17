@@ -85,28 +85,18 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
 
     const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
+
     const [serumTokensList, setSerumTokensList] = useState<SerumTokenInfoType[]>(serumTokenInfoData);
+    const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
+
     const [gcfTokensList, setGCFTokensList] = useState<GCFTokenInfoType[]>(gcfTokenData);
+    const [totalGCFTokensCount, setTotalGCFTokensCount] = useState<number>(0);
+
     const [metaverseShoesTokenList, setMetaverseShoesTokenList] =
         useState<MetaverseShoesTokenInfoType[]>(metaverseShoesTokenData);
+    const [totalMetaverseTokensCount, setTotalMetaverseTokensCount] = useState<number>(0);
 
     const [selectedProductId, setSelectedProductId] = useState<number>(-1);
-
-    const onMutantItemSelect = (id: number) => {
-        setSelectedProductId(id);
-    };
-
-    const onBasketballItemSelect = (id: number) => {
-        setSelectedProductId(id);
-    };
-
-    const onSerumItemSelect = (id: number) => {
-        setSelectedProductId(id);
-    };
-
-    const onWearableItemSelect = (id: number) => {
-        setSelectedProductId(id);
-    };
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -163,27 +153,40 @@ const LabPageContainer: React.FC = (): JSX.Element => {
         async function getTokensData() {
             let basketballInfo = await getBasketballInfo(ownedNFTTokensList);
 
+            // get basketball tokens info
             let newBasketballToken = { ...basketballToken, count: basketballInfo.count, image: basketballInfo.image };
             setBasketballToken(newBasketballToken);
 
-            let newList = gcfTokenData.map((item) => {
-                let count = getGCFTokenCount(ownedNFTTokensList, item.tokenId.toString());
-                return { ...item, count };
-            });
-            setGCFTokensList(newList);
-
-            let newList1 = metaverseShoesTokenData.map((item) => {
-                let count = getEcosystemTokenCount(ownedNFTTokensList, item.platform);
-                // let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
-                return { ...item, count };
-            });
-            setMetaverseShoesTokenList(newList1);
-
+            // get serum tokens info
             let newSerumTokenList = serumTokenInfoData.map((item) => {
                 let count = getSerumTokenCount(ownedNFTTokensList, item.tokenId);
                 return { ...item, count };
             });
             setSerumTokensList(newSerumTokenList);
+
+            let totalSerumTokenCnt = newSerumTokenList.reduce((prev, cur) => prev + cur.count, 0);
+            setTotalSerumTokensCount(totalSerumTokenCnt);
+
+            // get GCF tokens info
+            let newGCFTokensList = gcfTokenData.map((item) => {
+                let count = getGCFTokenCount(ownedNFTTokensList, item.tokenId.toString());
+                return { ...item, count };
+            });
+            setGCFTokensList(newGCFTokensList);
+
+            let totalGCFTokenCnt = newGCFTokensList.reduce((prev, cur) => prev + cur.count, 0);
+            setTotalGCFTokensCount(totalGCFTokenCnt);
+
+            //get Metaverse shoes tokens info
+            let newMetaverseTokensList = metaverseShoesTokenData.map((item) => {
+                let count = getEcosystemTokenCount(ownedNFTTokensList, item.platform);
+                // let image = getEcosystemTokenURI(ownedNFTTokensList, item.platform);
+                return { ...item, count };
+            });
+            setMetaverseShoesTokenList(newMetaverseTokensList);
+
+            let totalMetaverseTokenCnt = newMetaverseTokensList.reduce((prev, cur) => prev + cur.count, 0);
+            setTotalMetaverseTokensCount(totalMetaverseTokenCnt);
         }
 
         getTokensData();
@@ -216,7 +219,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                         </CategoryBtn>
                     ))}
                 </Stack>
-                {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && (
+                {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) && basketballToken.count > 0 && (
                     <Stack spacing={3}>
                         <Typography fontSize={32} fontWeight={700} color="white">
                             NF3 Basketball
@@ -232,7 +235,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Stack>
                 )}
-                {(category === Categories.ALL || category === Categories.SERUMS) && (
+                {(category === Categories.ALL || category === Categories.SERUMS) && totalSerumTokensCount > 0 && (
                     <Stack spacing={3}>
                         <Typography fontSize={32} fontWeight={700} color="white">
                             Serums
@@ -244,13 +247,13 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             columnGap={4}
                             rowGap={4}
                         >
-                            {serumTokensList.map((id, index) => (
-                                <SerumBox item={id} key={`serum_box_${index}`} />
-                            ))}
+                            {serumTokensList.map((item, index) => {
+                                return item.count > 0 && <SerumBox item={item} key={`serum_box_${index}`} />;
+                            })}
                         </Stack>
                     </Stack>
                 )}
-                {(category === Categories.ALL || category === Categories.GCF) && (
+                {(category === Categories.ALL || category === Categories.GCF) && totalGCFTokensCount > 0 && (
                     <Stack spacing={3}>
                         <Typography fontSize={32} fontWeight={700} color="white">
                             Genesis Curry Flow
@@ -262,30 +265,31 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             columnGap={4}
                             rowGap={4}
                         >
-                            {gcfTokensList.map((item, index) => (
-                                <GCFBox data={item} key={`gcf_box_${index}`} />
-                            ))}
+                            {gcfTokensList.map((item, index) => {
+                                return item.count > 0 && <GCFBox data={item} key={`gcf_box_${index}`} />;
+                            })}
                         </Stack>
                     </Stack>
                 )}
-                {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) && (
-                    <Stack spacing={3}>
-                        <Typography fontSize={32} fontWeight={700} color="white">
-                            Metaverse Shoes
-                        </Typography>
-                        <Stack
-                            direction="row"
-                            flexWrap="wrap"
-                            justifyContent={{ xs: 'center', sm: 'flex-start' }}
-                            columnGap={4}
-                            rowGap={4}
-                        >
-                            {metaverseShoesTokenList.map((item, index) => (
-                                <WearableBox data={item} key={`wearable_box_${index}`} />
-                            ))}
+                {(category === Categories.ALL || category === Categories.METAVERSE_SHOES) &&
+                    totalMetaverseTokensCount > 0 && (
+                        <Stack spacing={3}>
+                            <Typography fontSize={32} fontWeight={700} color="white">
+                                Metaverse Shoes
+                            </Typography>
+                            <Stack
+                                direction="row"
+                                flexWrap="wrap"
+                                justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                columnGap={4}
+                                rowGap={4}
+                            >
+                                {metaverseShoesTokenList.map((item, index) => {
+                                    return item.count > 0 && <WearableBox data={item} key={`wearable_box_${index}`} />;
+                                })}
+                            </Stack>
                         </Stack>
-                    </Stack>
-                )}
+                    )}
             </Stack>
         </Container>
     );
