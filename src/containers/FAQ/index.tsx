@@ -23,6 +23,46 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 .
             </Typography>
             <Stack spacing={2} marginTop={6}>
+                <FAQItem title="What are Serums?">
+                    <Typography>
+                        With the launch of Curry partner Serums, we go from changing the game to mutating the game. Our
+                        Serums, from some of the most exciting communities in the Metaverse, are designed to produce
+                        some truly game-winning results when brought together with the Curry NF3 Basketball. While the
+                        traits are transparent, how they mutate is really the fun part of this project, adding rarity,
+                        collectability, and surprise. So how will you mutate the game?
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What kinds of Serums are Available?">
+                    <Typography>
+                        <b>Genesis Curry Flow Serums</b> <i>(Genesis Curry Flow Snapshot Wallets only)</i>: 2974 Total
+                        Supply
+                        <br />
+                        Unanimous Serum
+                        <br />
+                        Broken History Serum
+                        <br />
+                        Flow Serum
+                        <br />
+                        Warp Serum
+                        <br />
+                        The Lab Serum
+                        <br />
+                        <br />
+                        <b>Community Serums</b>
+                        <br />
+                        Smilesss Serum: 6000 Total Supply
+                        <br />
+                        Chibi Dinos Serum: 6000 Total Supply
+                        <br />
+                        HAPE Serum: 6000 Total Supply
+                        <br />
+                        CyberKongz Serum: 6000 Total Supply
+                        <br />
+                        Under Armour Serum: 6000 Total Supply
+                        <br />
+                        Curry Brand Serum: 6000 Total Supply
+                    </Typography>
+                </FAQItem>
                 <FAQItem title="What is an NFT?">
                     <Typography>
                         NFT are ”non-fungible tokens” — a fancy way of saying it's a unique, one-of-a-kind digital item
@@ -147,12 +187,6 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                         <br></br>
                         <br></br>
                         <i>Please note: New game means a new start!</i>
-                    </Typography>
-                </FAQItem>
-                <FAQItem title="What can I do with my NF3 Basketball?">
-                    <Typography>
-                        We will announce more updates as we build the most fanatic basketball community ever! So don't
-                        miss any updates by following us on Twitter and joining our Discord!
                     </Typography>
                 </FAQItem>
                 <FAQItem title="What if I wasn't able to get an NF3 Basketball?">
