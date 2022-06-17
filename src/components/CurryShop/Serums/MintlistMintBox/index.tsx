@@ -45,7 +45,9 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         if (serumType !== undefined) {
             const nftContract = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
             );
 
             const mPrice = await nftContract.methods.mintprice().call({ from: account });
@@ -53,7 +55,9 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
 
             const maxsupply2 = await nftContract.methods.maxsupplyById(serumType?.value).call({ from: account });
             const totalsupply2 = await nftContract.methods.totalsupplyById(serumType?.value).call({ from: account });
-            const totalReservedSupply2 = await nftContract.methods.totalReservedSupplyById(serumType?.value).call({ from: account });
+            const totalReservedSupply2 = await nftContract.methods
+                .totalReservedSupplyById(serumType?.value)
+                .call({ from: account });
 
             setSupplyLeft(parseInt(maxsupply2) - parseInt(totalsupply2) - parseInt(totalReservedSupply2));
         }
@@ -63,7 +67,9 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
         async function updateSerumTokenList() {
             const nftContract = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
             );
 
             let serumOptions: Array<SelectItemType> = [];
@@ -106,7 +112,9 @@ const SerumMintlistMintBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdat
 
         const nftContract = new library.eth.Contract(
             SerumABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
         );
 
         let value = (mintPrice * communityOwnedCount).toString();

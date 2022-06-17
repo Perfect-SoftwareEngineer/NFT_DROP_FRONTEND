@@ -52,8 +52,8 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
-                ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
         );
 
         try {
@@ -87,8 +87,8 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
         const nftContract = new library.eth.Contract(
             BasketballHeadABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
-                ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
         );
 
         try {
@@ -111,8 +111,8 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
             );
 
             const reservedCount = await nftContract.methods.reserveCount(account).call({ from: account });

@@ -41,7 +41,9 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
         async function updateSerumTokenList() {
             const nftContract = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
             );
 
             let serumOptions: Array<SelectItemType> = [];
@@ -83,7 +85,9 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
 
         const nftContract = new library.eth.Contract(
             SerumABI,
-            process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
         );
 
         nftContract.methods

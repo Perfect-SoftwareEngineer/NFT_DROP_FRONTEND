@@ -96,13 +96,15 @@ const LabPageContainer: React.FC = (): JSX.Element => {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? '0x75615677d9cd50cb5D9660Ffb84eCd4d333E0B76'
-                    : '0x22899ed83366ef867265A98413f1f332aD4Aa168'
+                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
             );
 
             const nftContract1 = new library.eth.Contract(
                 SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production' ? '' : '0x16FfE3b0EABe99575b7aEf94Ea14Defaff59aACa'
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
             );
 
             const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
