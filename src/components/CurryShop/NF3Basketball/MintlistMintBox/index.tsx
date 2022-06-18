@@ -49,9 +49,8 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
                 : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
         );
 
-        let _mintPrice = 0.07;
-        let value = (_mintPrice * communityOwnedCount).toString();
-        value = web3.utils.toWei(value, 'ether');
+        const mPrice = await nftContract.methods.mintprice().call({ from: account });
+        let value = (mPrice * communityOwnedCount).toString();
         await nftContract.methods
             .mint(communityOwnedCount, communityClaimHexProof)
             .send({ from: account, value: value })
