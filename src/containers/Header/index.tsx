@@ -34,7 +34,7 @@ const appMenuList = [
     // { title: 'Roadmap', url: '', comingSoon: { rightPos: -10 } },
     { title: 'Roadmap', url: '/roadmap' },
 
-    { title: 'FAQ', url: '/faq' },
+    { title: 'FAQ', url: '/faq' }
 
     // { title: 'FTX Holders', url: '/ftxholders' },
     // { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
@@ -43,7 +43,7 @@ const appMenuList = [
 const socialLinksList = [
     { title: 'Discord', url: 'https://discord.gg/currybrand', icon: <DiscordIcon /> },
     { title: 'Twitter', url: 'https://twitter.com/bball_headz', icon: <TwitterIcon /> },
-    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> }
     // { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
 ];
 
@@ -77,7 +77,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                     // console.log('userSignIn resonse:', response);
                     setAppState({ ...appState, jwtToken: response });
                 })
-                .catch((error) => {
+                .catch(error => {
                     // console.log(error);
                 });
         };
@@ -93,14 +93,14 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                 // console.log('createUser resonse:', response);
                                 signIn(response.nonce, account);
                             })
-                            .catch((error) => {
+                            .catch(error => {
                                 // console.log(error);
                             });
                     } else {
                         signIn(response.nonce, account);
                     }
                 })
-                .catch((error) => {
+                .catch(error => {
                     // console.log(error);
                 });
         }
@@ -112,7 +112,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                 .then(() => {
                     setOpenConnectWalletDlg(false);
                 })
-                .catch((error) => {
+                .catch(error => {
                     // console.log(error);
                     setOpenConnectWalletDlg(false);
                 });
@@ -192,9 +192,9 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                             <Typography whiteSpace="nowrap">NF3 Basketball</Typography>
                                         </a>
                                     </Link>
-                                    <Link href="" passHref>
+                                    <Link href="https://opensea.io/collection/basketball-headz-serums" passHref>
                                         <a target="" rel="noopener noreferrer">
-                                            <Typography whiteSpace="nowrap">Serums: Coming Soon</Typography>
+                                            <Typography whiteSpace="nowrap">Serums</Typography>
                                         </a>
                                     </Link>
                                 </Stack>
@@ -265,7 +265,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     direction="row"
                                     alignItems="center"
                                     justifyContent="space-between"
-                                    onClick={(e) => {
+                                    onClick={e => {
                                         e.stopPropagation();
                                         setShowOpenseaMenuBox(!showOpenseaMenuBox);
                                     }}
