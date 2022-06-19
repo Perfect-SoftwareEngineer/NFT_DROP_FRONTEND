@@ -11,7 +11,7 @@ import {
     HowItWorksBtn,
     PartnerLogoListBox,
     PartnerLogoBox,
-    HowItWorksBox,
+    HowItWorksBox
 } from './style';
 import Link from 'next/link';
 import roadmapLists from '../../constants/roadmapData';
@@ -368,7 +368,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 <br />
                                 <br />
                                 On <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span> the balance of
-                                our 20,000 NF3 basketballs go on sale to anyone who hasn't got an NF3 already.
+                                our 15,000 NF3 basketballs go on sale to anyone who hasn't got an NF3 already.
                             </Typography>
                         </Stack>
                         <Stack
@@ -377,7 +377,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             alignSelf={{ xs: 'center', md: 'flex-end' }}
                         >
                             <Stack direction="row">
-                                {[...Array(3).keys()].map((item) => (
+                                {[...Array(3).keys()].map(item => (
                                     <img
                                         src="/assets/home/img4.png"
                                         width="33%"
