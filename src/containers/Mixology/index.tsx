@@ -14,12 +14,47 @@ import SelectSerum from './SelectSerum';
 import FuseEvolve from './FuseEvolve';
 import FuseSuccess from './FuseSuccess';
 import { useWeb3React } from '@web3-react/core';
+import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import SerumABI from '../../lib/ABI/Serum.json';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
-    // console.log('account:', account);
+    const [basketballBalance, setBasketballBalance] = useState<number>(0);
+    const [serumBalance, setSerumBalance] = useState<number>(0);
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            const nftContract = new library.eth.Contract(
+                BasketballHeadABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
+            );
+
+            const nftContract1 = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
+            );
+
+            const balance1 = await nftContract.methods.balanceOf(account, 1).call({ from: account });
+            setBasketballBalance(parseInt(balance1));
+
+            let balance2 = 0;
+            for (let i = 1; i <= 11; i++) {
+                const temp = await nftContract1.methods.balanceOf(account, i).call({ from: account });
+                balance2 = balance2 + parseInt(temp);
+            }
+            setSerumBalance(balance2);
+        }
+
+        if (account) {
+            updateAppState();
+        }
+    }, [account]);
 
     return (
         <>
@@ -27,20 +62,30 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 <NotWalletConnect sx={{ marginTop: 10 }} />
             ) : appState.mixologyCurStep < 3 ? (
                 <>
-                    <Container sx={{ paddingY: 5 }}>
-                        <Stack direction="row" spacing={2}>
-                            <CounterBox title="MY BASKETBALLS" value={0} />
-                            <CounterBox title="MY SERUMS" value={0} />
-                        </Stack>
-                        <Stack marginTop={4}>
-                            <Typography fontSize={{ xs: 42, sm: 48 }} fontWeight={700}>
-                                Mixology Room
+                    <Container sx={{ paddingY: 8 }}>
+                        <Stack
+                            direction={{ xs: 'column', md: 'row' }}
+                            justifyContent="space-between"
+                            alignItems={{ xs: 'flex-start', md: 'center' }}
+                            spacing={2}
+                        >
+                            <Typography fontSize={48} fontWeight={800} lineHeight={1} className="neueplak_condensed">
+                                MIXOLOGY ROOM
                             </Typography>
-                            <Typography fontSize={16} fontWeight={400} width={{ xs: '90%', md: '30%' }} marginTop={2}>
-                                Select 1 Basketball and 3 Serums to create a new NFT. The fiinal product will look
-                                different depending on selected items.
-                            </Typography>
+                            <Stack
+                                direction="row"
+                                width={{ xs: '100%', md: 'auto' }}
+                                spacing={2}
+                                justifyContent="flex-end"
+                            >
+                                <CounterBox title="MY NF3 BASKETBALLS" value={basketballBalance} />
+                                <CounterBox title="MY SERUMS" value={serumBalance} />
+                            </Stack>
                         </Stack>
+                        <Typography marginTop={4}>
+                            Select 1 Basketball and 3 Serums to create a new NFT. The fiinal product will look different
+                            depending on selected items.
+                        </Typography>
                         <Grid container marginTop={5} columnSpacing={8} rowGap={4}>
                             <Grid item xs={12} md={4} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>
                                 <Stack
