@@ -1,6 +1,7 @@
 import React from 'react';
-import { Stack, Grid, Typography, Link } from '@mui/material';
+import { Stack, Grid, Typography } from '@mui/material';
 import { CurryShopBtn, CurryCounterBtn } from './styles';
+import Link from 'next/link';
 
 const NotOwnBasketball: React.FC = (): JSX.Element => {
     return (
@@ -16,15 +17,23 @@ const NotOwnBasketball: React.FC = (): JSX.Element => {
                     You cannot start the Mixology process without owning a Basketball or Serum. You can either mint a
                     Basketball or Serum, mint after every 3 point shot Stephen Curry makes, or buy them off the
                     secondary market in{' '}
-                    <Link href="https://opensea.io" color="#FFCA21" underline="none" target="_blank">
-                        OpenSea
-                    </Link>
+                    <a href="https://opensea.io/" target="_blank" style={{ color: '#FFCA21' }}>
+                        Opensea
+                    </a>
                     .
                 </Typography>
             </Stack>
             <Stack direction="row" spacing={1}>
-                <CurryShopBtn>Curry Shop</CurryShopBtn>
-                <CurryCounterBtn>Curry Counter</CurryCounterBtn>
+                <Link href="/curryshop" passHref>
+                    <a rel="noopener noreferrer">
+                        <CurryShopBtn>Curry Shop</CurryShopBtn>
+                    </a>
+                </Link>
+                <Link href="/currycounter" passHref>
+                    <a rel="noopener noreferrer">
+                        <CurryCounterBtn>Curry Counter</CurryCounterBtn>
+                    </a>
+                </Link>
             </Stack>
         </Stack>
     );

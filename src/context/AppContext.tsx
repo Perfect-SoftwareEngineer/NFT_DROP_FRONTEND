@@ -16,9 +16,9 @@ const defaultState: AppState = {
     mixologyCurStep: 0,
 
     basketballsList: [
-        { id: 100, title: 'UA Basketball #10923', traits: [] },
-        { id: 101, title: 'UA Basketball #10924', traits: [] },
-        { id: 102, title: 'UA Basketball #10925', traits: [] },
+        // { id: 100, title: 'UA Basketball #10923', traits: [] },
+        // { id: 101, title: 'UA Basketball #10924', traits: [] },
+        // { id: 102, title: 'UA Basketball #10925', traits: [] },
     ],
 
     selectedBasketballId: -1,

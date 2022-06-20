@@ -21,10 +21,9 @@ const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
     return (
         <Stack alignItems="center" sx={{ ...sx }}>
             <Typography fontSize={{ xs: 32, md: 48 }} fontWeight={700} lineHeight={1.1} paddingX={2} textAlign="center">
-                You need a MetaMask wallet to use the{' '}
-                <Typography fontSize={{ xs: 32, md: 48 }} fontWeight={700} lineHeight={1.1} color="#FFCA21">
-                    Mixology Room
-                </Typography>
+                You need a MetaMask wallet to use the
+                <br />
+                <span style={{ color: '#FFCA21' }}>Mixology Room</span>
             </Typography>
             <Box width={{ xs: '80%', sm: '60%', md: '30%' }}>
                 <Typography fontSize={16} fontWeight={400} textAlign="center" marginTop={3}>
