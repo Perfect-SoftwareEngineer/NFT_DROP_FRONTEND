@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useAppContext } from '../../../context/AppContext';
-import SerumBox from '../../../components/SerumBox';
+import SerumBox from '../../../components/Mixology/SerumBox';
 
 const SelectSerum: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -45,14 +45,14 @@ const SelectSerum: React.FC = (): JSX.Element => {
                     columnGap={3}
                     rowGap={3}
                 >
-                    {/* {appState.serumsList.map((item) => (
+                    {appState.serumsList.map((item) => (
                         <SerumBox
                             item={item}
                             selected={appState.selectedSerumId.includes(item.id)}
                             selectable
                             onSelect={onItemSelect}
                         />
-                    ))} */}
+                    ))}
                 </Stack>
             </Stack>
         </Stack>
