@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useAppContext } from '../../../context/AppContext';
-import BasketballBox from '../../../components/BasketballBox';
+import BasketballBox from '../../../components/Mixology/BasketballBox';
 import SerumBox from '../../../components/SerumBox';
 
 const FuseEvolve: React.FC = (): JSX.Element => {

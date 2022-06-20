@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Container } from './styles';
-import { BasketballItemType } from '../../types';
-import { useAppContext } from '../../context/AppContext';
+import { BasketballItemType } from '../../../types';
+import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
     item?: BasketballItemType;

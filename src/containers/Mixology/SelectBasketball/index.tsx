@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack, Grid, Typography } from '@mui/material';
-import BasketballBox from '../../../components/BasketballBox';
+import BasketballBox from '../../../components/Mixology/BasketballBox';
 import { useAppContext } from '../../../context/AppContext';
 
 const SelectBasketball: React.FC = (): JSX.Element => {
