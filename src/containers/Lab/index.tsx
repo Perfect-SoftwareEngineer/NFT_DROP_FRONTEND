@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
-import { ConnectMetamaskBtn, CategoryBtn } from './styles';
+import { ConnectWalletBtn, CategoryBtn } from './styles';
 import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
 import BasketballBox from '../../components/TheLab/BasketballBox';
@@ -26,7 +26,6 @@ import {
 } from '../../types';
 import axios from 'axios';
 import Image from 'next/image';
-import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
 import Link from 'next/link';
 
@@ -333,7 +332,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                             )}
                     </Stack>
                 ) : (
-                    <Stack alignItems="center" marginTop={{ xs: 8, md: 20 }} marginLeft={{ xs: 0, md: 3 }}>
+                    <Stack alignItems="center" marginTop={{ xs: 6, md: 12 }} marginLeft={{ xs: 0, md: 3 }}>
                         <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
                             To Get Started, Connect Your MetaMask Wallet
                         </Typography>
@@ -342,11 +341,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 Make sure to download Metamask. Once you create or connect your MetaMask account,
                                 connect your wallet.
                             </Typography>
-                            <ConnectMetamaskBtn
-                                sx={{ marginTop: 5, marginX: 'auto' }}
-                                onClick={() => connect(activate)}
-                            >
-                                <Image src={MetamaskImg} width={56} height={56} />
+                            <ConnectWalletBtn sx={{ marginTop: 5, marginX: 'auto' }} onClick={() => connect(activate)}>
+                                <Image src="/assets/wallet/metamask.png" width={56} height={56} />
                                 <Typography
                                     fontSize={{ xs: 22, sm: 26, md: 32 }}
                                     fontWeight={600}
@@ -354,9 +350,24 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                     marginLeft={{ xs: 1, sm: 2, md: 4 }}
                                     sx={{ padding: '0 0 8px' }}
                                 >
-                                    Connect Metamask
+                                    Connect MetaMask
                                 </Typography>
-                            </ConnectMetamaskBtn>
+                            </ConnectWalletBtn>
+                            <ConnectWalletBtn
+                                sx={{ marginTop: 2, marginX: 'auto' }}
+                                onClick={() => connect(activate, 'coinbase')}
+                            >
+                                <Image src="/assets/wallet/coinbase.png" width={56} height={56} />
+                                <Typography
+                                    fontSize={{ xs: 22, sm: 26, md: 32 }}
+                                    fontWeight={600}
+                                    lineHeight={1.1}
+                                    marginLeft={{ xs: 1, sm: 2, md: 4 }}
+                                    sx={{ padding: '0 0 8px' }}
+                                >
+                                    Connect Coinbase
+                                </Typography>
+                            </ConnectWalletBtn>
                         </Stack>
                     </Stack>
                 )}
