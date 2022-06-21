@@ -125,7 +125,7 @@ const Header: React.FC<ComponentProps> = ({}) => {
                     setOpenConnectWalletDlg(false);
                 });
         } else if (data.type === 'Coinbase Wallet') {
-            connect(activate, 1)
+            connect(activate, 'coinbase')
                 .then(() => {
                     setOpenConnectWalletDlg(false);
                 })

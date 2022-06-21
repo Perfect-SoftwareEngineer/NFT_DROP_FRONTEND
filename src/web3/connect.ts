@@ -22,7 +22,7 @@ export function activateInjectedProvider(providerName: 'MetaMask' | 'CoinBase') 
     }
 }
 
-export async function connect(activate: any, type: number = 0) {
+export async function connect(activate: any, type: 'metamask' | 'coinbase' = 'metamask') {
     try {
         const w: any = window;
         // await w.ethereum.request({
@@ -40,7 +40,7 @@ export async function connect(activate: any, type: number = 0) {
         //     ],
         // });
 
-        if (type === 0) {
+        if (type === 'metamask') {
             activateInjectedProvider('MetaMask');
 
             await w.ethereum.request({
@@ -49,7 +49,7 @@ export async function connect(activate: any, type: number = 0) {
             });
 
             await activate(injected);
-        } else if (type === 1) {
+        } else if (type === 'coinbase') {
             activateInjectedProvider('CoinBase');
 
             await w.ethereum.request({

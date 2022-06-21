@@ -15,9 +15,8 @@ import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBo
 import { claimNF3GCF, claimSerumGCF, claimNF3MintlistNFT, claimSerumMintlistNFT } from '../../services/api/curryshop';
 import NF3GCFInfoBox from '../../components/CurryShop/NF3InfoBox/GCFBox';
 import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
-import { ConnectMetamaskBtn, CategoryBtn, PhaseTypo } from './styles';
+import { ConnectWalletBtn, CategoryBtn, PhaseTypo } from './styles';
 import Image from 'next/image';
-import MetamaskImg from '../../assets/metamask.png';
 import { connect } from '../../web3/connect';
 import { useAppContext } from '../../context/AppContext';
 import { usePrevious } from 'react-use';
@@ -29,7 +28,7 @@ enum StepType {
     MINTLIST_SERUM,
     GCF_SERUM,
     GENERALMINT_NF3,
-    GENERALMINT_SERUM
+    GENERALMINT_SERUM,
 }
 
 const CurryShopPageContainer: React.FC = (): JSX.Element => {
@@ -311,18 +310,18 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                         <Grid item xs={12}>
                             <Stack alignItems="center" marginLeft={{ xs: 0, md: 3 }}>
                                 <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
-                                    To Get Started, Connect Your MetaMask Wallet
+                                    To Get Started, Connect Your Wallet
                                 </Typography>
                                 <Stack width={{ xs: '80%', sm: '60%', md: 536 }} marginTop={4}>
                                     <Typography marginX="auto" textAlign="center">
                                         Make sure to download Metamask. Once you create or connect your MetaMask
                                         account, connect your wallet.
                                     </Typography>
-                                    <ConnectMetamaskBtn
+                                    <ConnectWalletBtn
                                         sx={{ marginTop: 5, marginX: 'auto' }}
                                         onClick={() => connect(activate)}
                                     >
-                                        <Image src={MetamaskImg} width={56} height={56} />
+                                        <Image src="/assets/wallet/metamask.png" width={56} height={56} />
                                         <Typography
                                             fontSize={{ xs: 22, sm: 26, md: 32 }}
                                             fontWeight={600}
@@ -330,9 +329,24 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                             marginLeft={{ xs: 1, sm: 2, md: 4 }}
                                             sx={{ padding: '0 0 8px' }}
                                         >
-                                            Connect Metamask
+                                            Connect MetaMask
                                         </Typography>
-                                    </ConnectMetamaskBtn>
+                                    </ConnectWalletBtn>
+                                    <ConnectWalletBtn
+                                        sx={{ marginTop: 2, marginX: 'auto' }}
+                                        onClick={() => connect(activate, 'coinbase')}
+                                    >
+                                        <Image src="/assets/wallet/coinbase.png" width={56} height={56} />
+                                        <Typography
+                                            fontSize={{ xs: 22, sm: 26, md: 32 }}
+                                            fontWeight={600}
+                                            lineHeight={1.1}
+                                            marginLeft={{ xs: 1, sm: 2, md: 4 }}
+                                            sx={{ padding: '0 0 8px' }}
+                                        >
+                                            Connect Coinbase
+                                        </Typography>
+                                    </ConnectWalletBtn>
                                 </Stack>
                             </Stack>
                         </Grid>
