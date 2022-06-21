@@ -1,5 +1,27 @@
 import { injected, CoinbaseWallet } from './Connector';
 
+export function activateInjectedProvider(providerName: 'MetaMask' | 'CoinBase') {
+    const { ethereum } = window;
+
+    if (!ethereum?.providers) {
+        return undefined;
+    }
+
+    let provider;
+    switch (providerName) {
+        case 'CoinBase':
+            provider = ethereum.providers.find((obj: any) => obj.isCoinbaseWallet);
+            break;
+        case 'MetaMask':
+            provider = ethereum.providers.find((obj: any) => obj.isMetaMask);
+            break;
+    }
+    console.log('provider:', provider);
+    if (provider) {
+        ethereum.setSelectedProvider(provider);
+    }
+}
+
 export async function connect(activate: any, type: number = 0) {
     try {
         const w: any = window;
@@ -18,28 +40,23 @@ export async function connect(activate: any, type: number = 0) {
         //     ],
         // });
 
-        // await w.ethereum.request({
-        //     method: 'wallet_switchEthereumChain',
-        //     params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x1' : '0x4' }],
-        // });
-
-        // if (typeof window.ethereum !== 'undefined') {
-        //     let provider = window.ethereum;
-        //     // edge case if MM and CBW are both installed
-        //     if (window.ethereum.providers?.length) {
-        //         window.ethereum.providers.forEach(async (p: any) => {
-        //             if (p.isMetaMask) provider = p;
-        //         });
-        //     }
-        //     await provider.request({
-        //         method: 'eth_requestAccounts',
-        //         params: [],
-        //     });
-        // }
-
         if (type === 0) {
+            activateInjectedProvider('MetaMask');
+
+            await w.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x1' : '0x4' }],
+            });
+
             await activate(injected);
         } else if (type === 1) {
+            activateInjectedProvider('CoinBase');
+
+            await w.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: process.env.NEXT_PUBLIC_ENV == 'production' ? '0x1' : '0x4' }],
+            });
+
             await activate(CoinbaseWallet);
         }
     } catch (ex: Error | any) {
