@@ -334,7 +334,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                 ) : (
                     <Stack alignItems="center" marginTop={{ xs: 6, md: 12 }} marginLeft={{ xs: 0, md: 3 }}>
                         <Typography fontSize={48} fontWeight={700} lineHeight={1.1} textAlign="center">
-                            To Get Started, Connect Your MetaMask Wallet
+                            To Get Started, Connect Your Wallet
                         </Typography>
                         <Stack width={{ xs: '80%', sm: '60%', md: 536 }} marginTop={4}>
                             <Typography marginX="auto" textAlign="center">

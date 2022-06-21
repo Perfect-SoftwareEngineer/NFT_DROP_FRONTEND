@@ -1,6 +1,6 @@
 import { styled, Stack, Button } from '@mui/material';
 
-export const ConnectMetamaskBtn = styled(Button)`
+export const ConnectWalletBtn = styled(Button)`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
