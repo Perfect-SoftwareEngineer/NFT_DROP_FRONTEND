@@ -1,6 +1,5 @@
 import React from 'react';
 import { Stack, Typography, Button } from '@mui/material';
-import Metamask from '../../assets/metamask.png';
 
 interface WalletConnectBtnProps {
     name: string;
@@ -11,7 +10,7 @@ interface WalletConnectBtnProps {
 const WalletConnectButton = ({ name, icon, onClick }: WalletConnectBtnProps) => {
     return (
         <Button
-            startIcon={<img src={icon} width={60} height={60} />}
+            startIcon={<img src={icon} width={60} height={60} alt="" />}
             sx={{
                 justifyContent: 'flex-start',
                 color: 'black',
@@ -37,8 +36,8 @@ const WalletConnectDlg = (props: WalletConnectDlgProps) => {
     const { onChange } = props;
 
     const walletConnectButtons = [
-        { name: 'Metamask', icon: Metamask.src },
-        { name: 'Coinbase Wallet', icon: Metamask.src },
+        { name: 'Metamask', icon: '/assets/wallet/metamask.png' },
+        { name: 'Coinbase Wallet', icon: '/assets/wallet/coinbase.png' },
     ];
 
     return (
