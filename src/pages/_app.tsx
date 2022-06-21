@@ -11,9 +11,14 @@ import theme from '../styles/theme';
 import createEmotionCache from '../utils/createEmotionCache';
 import { AppContextProvider } from '../context/AppContext';
 import { RecoilRoot } from 'recoil';
+import { ethers } from 'ethers';
 
 function getLibrary(provider: any) {
     return new Web3(provider);
+
+    // const library = new ethers.providers.Web3Provider(provider);
+    // library.pollingInterval = 8000; // frequency provider is polling
+    // return library;
 }
 
 // Client-side cache, shared for the whole session of the user in the browser.

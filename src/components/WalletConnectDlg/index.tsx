@@ -36,7 +36,10 @@ interface WalletConnectDlgProps {
 const WalletConnectDlg = (props: WalletConnectDlgProps) => {
     const { onChange } = props;
 
-    const walletConnectButtons = [{ name: 'Metamask', icon: Metamask.src }];
+    const walletConnectButtons = [
+        { name: 'Metamask', icon: Metamask.src },
+        { name: 'Coinbase Wallet', icon: Metamask.src },
+    ];
 
     return (
         <Stack>

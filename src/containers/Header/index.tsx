@@ -15,6 +15,7 @@ import { connect } from '../../web3/connect';
 import LockIcon from '@mui/icons-material/LockOutlined';
 import { getUserInfo, createUser, userSignIn } from '../../services/api/auth';
 import { useAppContext } from '../../context/AppContext';
+import { injected, CoinbaseWallet } from '../../web3/Connector';
 
 type ComponentProps = {};
 
@@ -61,8 +62,15 @@ const Header: React.FC<ComponentProps> = ({}) => {
     React.useEffect(() => {
         const getSignature = async (nonce: number, wallet: string) => {
             const msg = `Luna Backend user one-time Nonce: ${nonce}`;
+
             const sig = await library.eth.personal.sign(msg, wallet);
             return sig;
+
+            // const signature = await library.provider.request({
+            //     method: 'personal_sign',
+            //     params: [msg, wallet],
+            // });
+            // return signature;
         };
 
         const signIn = async (nonce: number, wallet: string) => {
@@ -109,6 +117,15 @@ const Header: React.FC<ComponentProps> = ({}) => {
     const onConnect = (data: any) => {
         if (data.type === 'Metamask') {
             connect(activate)
+                .then(() => {
+                    setOpenConnectWalletDlg(false);
+                })
+                .catch((error) => {
+                    // console.log(error);
+                    setOpenConnectWalletDlg(false);
+                });
+        } else if (data.type === 'Coinbase Wallet') {
+            connect(activate, 1)
                 .then(() => {
                     setOpenConnectWalletDlg(false);
                 })
