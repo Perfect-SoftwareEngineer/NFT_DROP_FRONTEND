@@ -8,10 +8,11 @@ import {
     GradientBox4,
     GradientBox5,
     GradientBox6,
+    MintNowBtn,
     HowItWorksBtn,
     PartnerLogoListBox,
     PartnerLogoBox,
-    HowItWorksBox
+    HowItWorksBox,
 } from './style';
 import Link from 'next/link';
 import roadmapLists from '../../constants/roadmapData';
@@ -97,9 +98,12 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                     </a>
                                 </Link>
                             </PartnerLogoListBox>
-                            <HowItWorksBtn sx={{ marginTop: 4 }} onClick={() => setShowHowItWorks(true)}>
-                                How it Works
-                            </HowItWorksBtn>
+                            <Stack direction="row" spacing={2} marginTop={4}>
+                                <Link href="/curryshop" passHref>
+                                    <MintNowBtn>Mint Now</MintNowBtn>
+                                </Link>
+                                <HowItWorksBtn onClick={() => setShowHowItWorks(true)}>How it Works</HowItWorksBtn>
+                            </Stack>
                         </Stack>
                     </Container>
                 </Stack>
@@ -377,7 +381,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             alignSelf={{ xs: 'center', md: 'flex-end' }}
                         >
                             <Stack direction="row">
-                                {[...Array(3).keys()].map(item => (
+                                {[...Array(3).keys()].map((item) => (
                                     <img
                                         src="/assets/home/img4.png"
                                         width="33%"

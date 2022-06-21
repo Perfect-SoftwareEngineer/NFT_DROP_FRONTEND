@@ -53,7 +53,7 @@ export const GradientBox6 = styled(Box)`
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 `;
 
-export const HowItWorksBtn = styled(Button)`
+export const MintNowBtn = styled(Button)`
     width: fit-content;
     height: 38px;
     padding: 0 16px;
@@ -64,6 +64,16 @@ export const HowItWorksBtn = styled(Button)`
     &:hover {
         background: #ffca21;
     }
+`;
+
+export const HowItWorksBtn = styled(Button)`
+    width: fit-content;
+    height: 38px;
+    padding: 0 16px;
+    border: 1px solid #ffca21;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffca21;
 `;
 
 export const PartnerLogoListBox = styled(Stack)`
