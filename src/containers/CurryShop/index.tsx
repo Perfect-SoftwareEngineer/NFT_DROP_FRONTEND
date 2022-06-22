@@ -380,7 +380,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     },
                 }}
             >
-                <video autoPlay muted loop style={{ borderRadius: 16 }}>
+                <video autoPlay loop style={{ borderRadius: 16 }}>
                     <source src={'/assets/curryshop/how-it-works.MOV'} type="video/mp4" />
                 </video>
             </Dialog>
