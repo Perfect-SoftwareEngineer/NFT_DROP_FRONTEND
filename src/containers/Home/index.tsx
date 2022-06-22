@@ -38,19 +38,27 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox1 />
                 </Stack>
                 <Stack position="absolute" sx={{ inset: 0 }}>
-                    <Container sx={{ height: '100%' }}>
-                        <Stack
-                            height="100%"
-                            justifyContent={{ xs: 'flex-start', md: 'center' }}
-                            marginTop={{ xs: 10, md: 0 }}
+                    <Stack width="100%" paddingTop={2} paddingBottom={3} sx={{ background: '#FFCA21' }}>
+                        <Typography
+                            fontSize={{ xs: 32, md: 48 }}
+                            fontWeight={700}
+                            lineHeight={1}
+                            color="black"
+                            textAlign="center"
+                            className="neueplak_condensed"
                         >
+                            General Mint Moved: June 29th at 5:00:00 PM PST
+                        </Typography>
+                    </Stack>
+                    <Container>
+                        <Stack justifyContent={{ xs: 'flex-start', md: 'center' }} marginTop={{ xs: 10, md: 15 }}>
                             <Typography
                                 fontSize={{ xs: 32, md: 48 }}
                                 fontWeight={700}
                                 lineHeight={1}
                                 color="#FFCA21"
                                 className="neueplak_condensed"
-                                marginTop={{ xs: 0, md: -20 }}
+                                // marginTop={{ xs: 0, md: -20 }}
                             >
                                 BASKETBALL HEADZ
                             </Typography>
@@ -107,18 +115,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         </Stack>
                     </Container>
                 </Stack>
-                <Stack position="absolute" width="100%" paddingTop={2} paddingBottom={3} sx={{ background: '#FFCA21' }}>
-                    <Typography
-                        fontSize={{ xs: 32, md: 48 }}
-                        fontWeight={700}
-                        lineHeight={1}
-                        color="black"
-                        textAlign="center"
-                        className="neueplak_condensed"
-                    >
-                        General Mint Moved: June 29th at 5:00:00 PM PST
-                    </Typography>
-                </Stack>
+
                 <HowItWorksBox show={showHowItWorks}>
                     <IconButton
                         sx={{ position: 'absolute', right: '24px', top: '24px' }}
