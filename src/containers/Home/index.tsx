@@ -412,7 +412,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SERUM SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                And on <span style={{ color: '#FFCA21' }}>June 29th at 8:00:00 PM PST</span> the
+                                And on <span style={{ color: '#FFCA21' }}>June 29th at 5:00:00 PM PST</span> the
                                 community serums go on sale.
                             </Typography>
                         </Stack>
