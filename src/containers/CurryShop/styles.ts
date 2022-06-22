@@ -39,3 +39,15 @@ export const PhaseTypo = styled(Typography)<{ selected?: boolean }>`
     color: ${({ selected }) => (selected ? 'white' : '#969AA1')};
     cursor: pointer;
 `;
+
+export const WatchVideoBtn = styled(Button)`
+    height: 36px;
+    padding: 6px 12px 10px;
+    background: #ffca21;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    &:hover {
+        background: #ffca21;
+    }
+`;

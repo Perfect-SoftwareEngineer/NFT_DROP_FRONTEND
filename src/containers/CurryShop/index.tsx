@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
-import { Stack, Box, Grid, Typography, Divider } from '@mui/material';
+import { Stack, Box, Grid, Typography, Divider, Dialog } from '@mui/material';
 import Container from '../Container';
 import SupplyBox from '../../components/CurryShop/SupplyBox';
 import CounterBox from '../../components/CounterBox';
@@ -15,7 +15,7 @@ import SerumGeneralMintBox from '../../components/CurryShop/Serums/GeneralMintBo
 import { claimNF3GCF, claimSerumGCF, claimNF3MintlistNFT, claimSerumMintlistNFT } from '../../services/api/curryshop';
 import NF3GCFInfoBox from '../../components/CurryShop/NF3InfoBox/GCFBox';
 import SerumStatusBox from '../../components/CurryShop/SerumStatusBox';
-import { ConnectWalletBtn, CategoryBtn, PhaseTypo } from './styles';
+import { ConnectWalletBtn, CategoryBtn, PhaseTypo, WatchVideoBtn } from './styles';
 import Image from 'next/image';
 import { connect } from '../../web3/connect';
 import { useAppContext } from '../../context/AppContext';
@@ -55,6 +55,8 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     const [nf3MintlistClaimHexProof, setNF3MintlistClaimHexProof] = React.useState<any[]>([]);
 
     const [needUpdateInfo, setNeedUpdateInfo] = useState<boolean>(true);
+
+    const [watchVideo, setWatchVideo] = useState<boolean>(false);
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -296,6 +298,20 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along with Serums
                     from our communities.
                 </Typography>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    padding={3}
+                    borderRadius={2}
+                    marginTop={4}
+                    sx={{ background: '#1B1C22' }}
+                >
+                    <Typography fontSize={20} fontWeight={800} color="#969AA1" lineHeight={1}>
+                        HOW IT WORKS
+                    </Typography>
+                    <WatchVideoBtn onClick={() => setWatchVideo(true)}>WATCH VIDEO</WatchVideoBtn>
+                </Stack>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
                     {account ? (
                         <>
@@ -353,6 +369,21 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     )}
                 </Grid>
             </Container>
+            <Dialog
+                open={watchVideo}
+                onClose={() => setWatchVideo(false)}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: 0,
+                        background: 'none',
+                    },
+                }}
+            >
+                <video autoPlay muted loop style={{ borderRadius: 16 }}>
+                    <source src={'/assets/curryshop/how-it-works.MOV'} type="video/mp4" />
+                </video>
+            </Dialog>
         </>
     );
 };
