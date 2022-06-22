@@ -371,8 +371,8 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 for NF3 Basketballs and Serums.
                                 <br />
                                 <br />
-                                On <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span> the balance of
-                                our 15,000 NF3 basketballs go on sale to anyone who hasn't got an NF3 already.
+                                On <span style={{ color: '#FFCA21' }}>June 29th at 5:00:00 PM PST</span> NF3 Basketballs
+                                go on sale to anyone who hasn't got an NF3 already.
                             </Typography>
                         </Stack>
                         <Stack
@@ -400,7 +400,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 SERUM SALES
                             </Typography>
                             <Typography fontSize={{ xs: 16, md: 20 }} fontWeight={600} lineHeight={1.2}>
-                                And on <span style={{ color: '#FFCA21' }}>June 22nd at 8:00:00 PM PST</span> the
+                                And on <span style={{ color: '#FFCA21' }}>June 29th at 8:00:00 PM PST</span> the
                                 community serums go on sale.
                             </Typography>
                         </Stack>

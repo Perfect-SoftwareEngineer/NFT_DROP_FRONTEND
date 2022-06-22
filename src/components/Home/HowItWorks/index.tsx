@@ -81,9 +81,9 @@ const HowItWorks: React.FC<ComponentProps> = (): JSX.Element => {
                     <span style={{ fontWeight: 600 }}>General Purchase for NF3 Basketballs and Serums:</span>
                     <br />
                     <br />
-                    NF3 Basketball Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 5:00:00 PM PST</span>
+                    NF3 Basketball Start Date: <span style={{ color: '#FFCA21' }}>June 29th at 5:00:00 PM PST</span>
                     <br />
-                    Serum Start Date: <span style={{ color: '#FFCA21' }}>June 22nd at 8:00:00 PM PST</span>
+                    Serum Start Date: <span style={{ color: '#FFCA21' }}>June 29th at 8:00:00 PM PST</span>
                 </Typography>
             </Grid>
         </Grid>
