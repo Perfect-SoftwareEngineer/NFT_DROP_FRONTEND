@@ -8,7 +8,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     const onBackToMixologyRoom = () => {
-        setAppState({ ...appState, mixologyCurStep: 0, selectedBasketballId: -1, selectedSerumId: [] });
+        // setAppState({ ...appState, mixologyCurStep: 0, selectedBasketballId: -1, selectedSerumId: [] });
     };
 
     return (

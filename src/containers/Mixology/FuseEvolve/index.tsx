@@ -28,7 +28,7 @@ const FuseEvolve: React.FC = (): JSX.Element => {
                 columnGap={3}
                 rowGap={3}
             >
-                <BasketballBox
+                {/* <BasketballBox
                     item={appState.basketballsList.find((item) => item.id === appState.selectedBasketballId)}
                     selected={true}
                 />
@@ -36,7 +36,7 @@ const FuseEvolve: React.FC = (): JSX.Element => {
                     .sort((a, b) => a - b)
                     .map((serumId) => (
                         <SerumBox item={appState.serumsList.find((item) => item.id === serumId)} selected={true} />
-                    ))}
+                    ))} */}
             </Stack>
         </Stack>
     );
