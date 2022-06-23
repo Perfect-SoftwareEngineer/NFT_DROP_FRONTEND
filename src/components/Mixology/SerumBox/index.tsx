@@ -1,24 +1,45 @@
-import React, { useState } from 'react';
-import { Stack, Typography } from '@mui/material';
-import { Container } from './styles';
+import React, { useState, useRef } from 'react';
+import { Stack, Box, Button, Typography } from '@mui/material';
+import { Container, AddBtnBox, AddTokenBox } from './styles';
 import { SerumTokenInfoType } from '../../../types';
 import { useAppContext } from '../../../context/AppContext';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import useOnClickOutside from '../../../hooks/useOnClickOutside';
 
 type ComponentProps = {
     item: SerumTokenInfoType;
-    selected?: boolean;
-    onSelect?: (id: number) => void;
 };
 
-const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, onSelect }): JSX.Element => {
+const SerumBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
+    const nodeTokenBox = useRef<HTMLDivElement>(null);
+    const [showTokenBox, setShowTokenBox] = useState<boolean>(false);
+    useOnClickOutside(nodeTokenBox, () => setShowTokenBox(false));
+
+    let count = !!appState.selectedSerumCount[item.tokenId] ? appState.selectedSerumCount[item.tokenId] : 0;
+    let totalSelectedCount =
+        Object.keys(appState.selectedSerumCount).length > 0
+            ? Object.values(appState.selectedSerumCount).reduce((prev, cur) => prev + cur)
+            : 0;
+
+    const onAddToken = () => {
+        if (totalSelectedCount < 3) {
+            let newData = { ...appState.selectedSerumCount };
+            newData[item.tokenId] = count + 1;
+            setAppState({ ...appState, selectedSerumCount: newData });
+        }
+    };
+
+    const onDeleteToken = () => {
+        let newData = { ...appState.selectedSerumCount };
+        delete newData[item.tokenId];
+        setAppState({ ...appState, selectedSerumCount: newData });
+    };
+
     return (
-        <Container
-            spacing={2}
-            selected={selected}
-            // onClick={selectable && onSelect && item ? () => onSelect(item.id) : undefined}
-        >
+        <Container spacing={2} selected={count > 0}>
             <img src={item.image} width={166} height={210} alt="" className="serum_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
@@ -28,6 +49,20 @@ const SerumBox: React.FC<ComponentProps> = ({ item, selected = false, onSelect }
                     {item.count}
                 </Typography>
             </Stack>
+            <AddBtnBox onClick={() => setShowTokenBox(true)}>
+                <AddIcon sx={{ fontSize: 24 }} />
+            </AddBtnBox>
+            {showTokenBox && (
+                <AddTokenBox direction="row" spacing={2} ref={nodeTokenBox}>
+                    <Stack sx={{ cursor: 'pointer' }} onClick={onDeleteToken}>
+                        <DeleteIcon sx={{ color: 'white', fontSize: 20 }} />
+                    </Stack>
+                    <Typography padding="0 0 4px">{count}</Typography>
+                    <Stack sx={{ cursor: 'pointer' }} onClick={onAddToken}>
+                        <AddIcon sx={{ fontSize: 22 }} />
+                    </Stack>
+                </AddTokenBox>
+            )}
         </Container>
     );
 };

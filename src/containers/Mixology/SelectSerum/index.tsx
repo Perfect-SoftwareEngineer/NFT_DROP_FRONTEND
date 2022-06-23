@@ -11,15 +11,6 @@ type ComponentProps = {
 const SelectSerum: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
-    const onItemSelect = (id: number) => {
-        let selectedId = [...appState.selectedSerumId];
-        const index = selectedId.indexOf(id);
-        if (index > -1) selectedId.splice(index, 1);
-        else selectedId.push(id);
-
-        if (selectedId.length <= 3) setAppState({ ...appState, selectedSerumId: selectedId });
-    };
-
     return (
         <Stack spacing={3}>
             <Stack spacing={2}>
@@ -50,16 +41,7 @@ const SelectSerum: React.FC<ComponentProps> = ({ data }): JSX.Element => {
                     columnGap={3}
                     rowGap={3}
                 >
-                    {data.map(
-                        (item) =>
-                            item.count > 0 && (
-                                <SerumBox
-                                    item={item}
-                                    // selected={appState.selectedSerumId.includes(item.id)}
-                                    onSelect={onItemSelect}
-                                />
-                            )
-                    )}
+                    {data.map((item) => item.count > 0 && <SerumBox item={item} />)}
                 </Stack>
             </Stack>
         </Stack>

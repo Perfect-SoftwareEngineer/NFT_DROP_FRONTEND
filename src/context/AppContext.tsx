@@ -7,6 +7,7 @@ interface AppState {
     selectedBasketball: boolean;
     serumsList: Array<SerumTokenInfoType>;
     selectedSerumId: Array<number>;
+    selectedSerumCount: { [key: string]: number };
     mutantsList: Array<MutantItemType>;
     wearablesList: Array<WearableItemType>;
     jwtToken: string;
@@ -45,6 +46,7 @@ const defaultState: AppState = {
     ],
 
     selectedSerumId: [],
+    selectedSerumCount: {},
 
     mutantsList: [
         { id: 300, title: 'Mutant #10923', desc: '3 Sesame Street Traits' },
