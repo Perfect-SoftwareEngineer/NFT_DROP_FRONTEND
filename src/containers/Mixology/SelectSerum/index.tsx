@@ -2,8 +2,13 @@ import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useAppContext } from '../../../context/AppContext';
 import SerumBox from '../../../components/Mixology/SerumBox';
+import { SerumTokenInfoType } from '../../../types';
 
-const SelectSerum: React.FC = (): JSX.Element => {
+type ComponentProps = {
+    data: SerumTokenInfoType[];
+};
+
+const SelectSerum: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     const onItemSelect = (id: number) => {
@@ -45,14 +50,16 @@ const SelectSerum: React.FC = (): JSX.Element => {
                     columnGap={3}
                     rowGap={3}
                 >
-                    {appState.serumsList.map((item) => (
-                        <SerumBox
-                            item={item}
-                            selected={appState.selectedSerumId.includes(item.id)}
-                            selectable
-                            onSelect={onItemSelect}
-                        />
-                    ))}
+                    {data.map(
+                        (item) =>
+                            item.count > 0 && (
+                                <SerumBox
+                                    item={item}
+                                    // selected={appState.selectedSerumId.includes(item.id)}
+                                    onSelect={onItemSelect}
+                                />
+                            )
+                    )}
                 </Stack>
             </Stack>
         </Stack>

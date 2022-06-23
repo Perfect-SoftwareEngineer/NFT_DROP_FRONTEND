@@ -17,9 +17,10 @@ import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import { getLocker } from '../../services/api/thelab';
-import { getBasketballInfo } from '../../services/thelab';
-import { BasketballTokenInfoType } from '../../types';
+import { getBasketballInfo, getSerumTokenCount } from '../../services/thelab';
+import { BasketballTokenInfoType, SerumTokenInfoType } from '../../types';
 import basketballTokenData from '../../constants/basketballTokenData';
+import { serumTokenInfoData } from '../../constants/serumTokenData';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -30,6 +31,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
     const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
+    const [serumTokensList, setSerumTokensList] = useState<SerumTokenInfoType[]>(serumTokenInfoData);
+    const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -89,6 +92,16 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             // get basketball tokens info
             let newBasketballToken = { ...basketballToken, count: basketballInfo.count, image: basketballInfo.image };
             setBasketballToken(newBasketballToken);
+
+            // get serum tokens info
+            let newSerumTokenList = serumTokenInfoData.map((item) => {
+                let count = getSerumTokenCount(ownedNFTTokensList, item.tokenId);
+                return { ...item, count };
+            });
+            setSerumTokensList(newSerumTokenList);
+
+            let totalSerumTokenCnt = newSerumTokenList.reduce((prev, cur) => prev + cur.count, 0);
+            setTotalSerumTokensCount(totalSerumTokenCnt);
         }
 
         getTokensData();
@@ -158,7 +171,11 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                                         <NotOwnBasketball />
                                     ))}
                                 {appState.mixologyCurStep === 1 &&
-                                    (appState.serumsList.length > 0 ? <SelectSerum /> : <NotOwnSerum />)}
+                                    (totalSerumTokensCount > 0 ? (
+                                        <SelectSerum data={serumTokensList} />
+                                    ) : (
+                                        <NotOwnSerum />
+                                    ))}
                                 {appState.mixologyCurStep === 2 && <FuseEvolve />}
                             </Grid>
                         </Grid>

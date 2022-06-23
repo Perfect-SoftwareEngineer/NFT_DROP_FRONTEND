@@ -1,11 +1,11 @@
 import React, { createContext, useState, useContext } from 'react';
-import { BasketballItemType, SerumItemType, MutantItemType, WearableItemType } from '../types';
+import { BasketballItemType, SerumTokenInfoType, MutantItemType, WearableItemType } from '../types';
 
 interface AppState {
     mixologyCurStep: number;
     basketballsList: Array<BasketballItemType>;
     selectedBasketball: boolean;
-    serumsList: Array<SerumItemType>;
+    serumsList: Array<SerumTokenInfoType>;
     selectedSerumId: Array<number>;
     mutantsList: Array<MutantItemType>;
     wearablesList: Array<WearableItemType>;
@@ -24,15 +24,24 @@ const defaultState: AppState = {
     selectedBasketball: false,
 
     serumsList: [
-        { id: 200, title: 'Serum #10923', desc: 'Sesame Street' },
-        { id: 201, title: 'Serum #10924', desc: 'Sesame Street' },
-        { id: 202, title: 'Serum #10925', desc: 'Sesame Street' },
-        { id: 203, title: 'Serum #10926', desc: 'Sesame Street' },
-        { id: 204, title: 'Serum #10927', desc: 'Sesame Street' },
-        { id: 205, title: 'Serum #10928', desc: 'Sesame Street' },
-        { id: 206, title: 'Serum #10929', desc: 'Sesame Street' },
-        { id: 207, title: 'Serum #10930', desc: 'Sesame Street' },
-        { id: 208, title: 'Serum #10931', desc: 'Sesame Street' },
+        {
+            title: 'Unanimous',
+            tokenId: '1',
+            count: 0,
+            image: 'https://luna-bucket.s3.us-east-2.amazonaws.com/Unanimous.png',
+        },
+        {
+            title: 'Broken History',
+            tokenId: '2',
+            count: 0,
+            image: 'https://luna-bucket.s3.us-east-2.amazonaws.com/Broken_History.png',
+        },
+        {
+            title: 'Flow',
+            tokenId: '3',
+            count: 0,
+            image: 'https://luna-bucket.s3.us-east-2.amazonaws.com/Flow.png',
+        },
     ],
 
     selectedSerumId: [],

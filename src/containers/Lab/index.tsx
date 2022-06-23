@@ -28,7 +28,13 @@ import axios from 'axios';
 import Image from 'next/image';
 import { connect } from '../../web3/connect';
 import Link from 'next/link';
-import { getBasketballInfo } from '../../services/thelab';
+import {
+    getBasketballInfo,
+    getSerumTokenCount,
+    getGCFTokenCount,
+    getEcosystemTokenCount,
+    getEcosystemTokenURI,
+} from '../../services/thelab';
 
 export enum Categories {
     ALL,
@@ -39,27 +45,6 @@ export enum Categories {
 }
 
 const categoryButtonsList = ['ALL', 'NF3 BASKETBALLS', 'SERUMS', 'GENESIS CURRY FLOW', 'METAVERSE SHOES'];
-
-const getSerumTokenCount = (data: any[], tokenId: string) => {
-    let obj = data.find((item) => item['platform'] === 'Serum' && item['tokenId'] === tokenId);
-    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
-};
-
-const getGCFTokenCount = (data: any[], tokenId?: string) => {
-    let obj = data.find((item) => item['platform'] === 'Drop1Nft' && item['tokenId'] === tokenId);
-    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
-};
-
-const getEcosystemTokenCount = (data: any[], platform: string) => {
-    let obj = data.find((item) => item['platform'] === platform);
-    return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
-};
-
-const getEcosystemTokenURI = (data: any[], platform: string) => {
-    let obj = data.find((item) => item['platform'] === platform);
-    if (obj === undefined || obj === null) return '';
-    else return obj['uri'] !== null ? obj['uri'] : '';
-};
 
 const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
