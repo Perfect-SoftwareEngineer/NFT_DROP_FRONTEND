@@ -58,7 +58,7 @@ const ProductDetails: React.FC<ComponentProps> = ({ id }): JSX.Element => {
 
     return (
         <Container sx={{ paddingY: 8 }}>
-            <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="center" spacing={6}>
+            {/* <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="center" spacing={6}>
                 <ImageBox>
                     <Image
                         src={categoryInfoList[categoryInfo.type].img}
@@ -110,7 +110,7 @@ const ProductDetails: React.FC<ComponentProps> = ({ id }): JSX.Element => {
                         </Stack>
                     </Stack>
                 </Stack>
-            </Stack>
+            </Stack> */}
         </Container>
     );
 };
