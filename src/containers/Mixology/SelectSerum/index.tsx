@@ -11,6 +11,11 @@ type ComponentProps = {
 const SelectSerum: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
+    let totalSelectedCount =
+        Object.keys(appState.selectedSerumCount).length > 0
+            ? Object.values(appState.selectedSerumCount).reduce((prev, cur) => prev + cur)
+            : 0;
+
     return (
         <Stack spacing={3}>
             <Stack spacing={2}>
@@ -27,11 +32,7 @@ const SelectSerum: React.FC<ComponentProps> = ({ data }): JSX.Element => {
             </Stack>
             <Stack spacing={2}>
                 <Typography fontSize={16} fontWeight={700}>
-                    Currently{' '}
-                    <Typography fontSize={16} fontWeight={700} display="inline" color="#FFCA21">
-                        {`${appState.selectedSerumId.length} Serums`}
-                    </Typography>{' '}
-                    selected.
+                    Currently <span style={{ color: '#FFCA21' }}>{`${totalSelectedCount} Serums`}</span> selected.
                 </Typography>
                 <Stack
                     direction="row"
