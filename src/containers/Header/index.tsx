@@ -19,7 +19,7 @@ import { injected, CoinbaseWallet } from '../../web3/Connector';
 
 type ComponentProps = {};
 
-const appMenuList = [
+const appMenuList: { title: string; url: string; comingSoon?: any }[] = [
     // { title: 'Home', url: '/' },
 
     // { title: 'Curry Shop', url: '', comingSoon: { rightPos: -10 } },
