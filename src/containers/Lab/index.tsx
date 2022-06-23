@@ -28,6 +28,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { connect } from '../../web3/connect';
 import Link from 'next/link';
+import { getBasketballInfo } from '../../services/thelab';
 
 export enum Categories {
     ALL,
@@ -42,22 +43,6 @@ const categoryButtonsList = ['ALL', 'NF3 BASKETBALLS', 'SERUMS', 'GENESIS CURRY 
 const getSerumTokenCount = (data: any[], tokenId: string) => {
     let obj = data.find((item) => item['platform'] === 'Serum' && item['tokenId'] === tokenId);
     return obj === undefined || obj === null ? 0 : parseInt(obj['quantity']);
-};
-
-const getBasketballInfo = async (data: any[]) => {
-    let obj = data.find((item) => item['platform'] === 'Basketball');
-    if (obj === undefined || obj === null) return { count: 0, image: '' };
-
-    let count = parseInt(obj['quantity']);
-    let uri = obj['uri'];
-    if (!uri) return { count: count, image: '' };
-
-    const response: any = await axios({
-        method: 'GET',
-        url: uri,
-    });
-    let imageUri = response.status === 200 ? response.data.image : '';
-    return { count: count, image: imageUri };
 };
 
 const getGCFTokenCount = (data: any[], tokenId?: string) => {

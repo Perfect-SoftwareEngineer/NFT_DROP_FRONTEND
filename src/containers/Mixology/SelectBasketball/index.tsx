@@ -1,15 +1,18 @@
 import React from 'react';
-import { Stack, Grid, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import BasketballBox from '../../../components/Mixology/BasketballBox';
 import { useAppContext } from '../../../context/AppContext';
+import { BasketballTokenInfoType } from '../../../types';
 
-const SelectBasketball: React.FC = (): JSX.Element => {
+type ComponentProps = {
+    data: BasketballTokenInfoType;
+};
+
+const SelectBasketball: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
-    const onItemSelect = (id: number) => {
-        let selectedId = id;
-        if (appState.selectedBasketballId === id) selectedId = -1;
-        setAppState({ ...appState, selectedBasketballId: selectedId });
+    const onItemSelect = (selected: boolean) => {
+        setAppState({ ...appState, selectedBasketball: selected });
     };
 
     return (
@@ -25,14 +28,7 @@ const SelectBasketball: React.FC = (): JSX.Element => {
                 columnGap={3}
                 rowGap={3}
             >
-                {appState.basketballsList.map((item) => (
-                    <BasketballBox
-                        item={item}
-                        selected={appState.selectedBasketballId === item.id}
-                        selectable
-                        onSelect={onItemSelect}
-                    />
-                ))}
+                <BasketballBox data={data} selected={appState.selectedBasketball} onSelect={onItemSelect} />
             </Stack>
         </Stack>
     );

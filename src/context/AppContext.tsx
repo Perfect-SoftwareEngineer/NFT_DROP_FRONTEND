@@ -4,7 +4,7 @@ import { BasketballItemType, SerumItemType, MutantItemType, WearableItemType } f
 interface AppState {
     mixologyCurStep: number;
     basketballsList: Array<BasketballItemType>;
-    selectedBasketballId: number;
+    selectedBasketball: boolean;
     serumsList: Array<SerumItemType>;
     selectedSerumId: Array<number>;
     mutantsList: Array<MutantItemType>;
@@ -21,7 +21,7 @@ const defaultState: AppState = {
         { id: 102, title: 'UA Basketball #10925', traits: [] },
     ],
 
-    selectedBasketballId: -1,
+    selectedBasketball: false,
 
     serumsList: [
         { id: 200, title: 'Serum #10923', desc: 'Sesame Street' },

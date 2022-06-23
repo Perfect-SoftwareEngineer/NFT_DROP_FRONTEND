@@ -1,39 +1,27 @@
 import React, { useState } from 'react';
 import { Stack, Box, Typography } from '@mui/material';
-import Image from 'next/image';
 import { Container } from './styles';
-import { BasketballItemType } from '../../../types';
+import { BasketballTokenInfoType } from '../../../types';
 import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
-    item?: BasketballItemType;
+    data: BasketballTokenInfoType;
     selected?: boolean;
-    selectable?: boolean;
-    onSelect?: (id: number) => void;
+    onSelect: (selected: boolean) => void;
 };
 
-const BasketballBox: React.FC<ComponentProps> = ({
-    item,
-    selected = false,
-    selectable = false,
-    onSelect,
-}): JSX.Element => {
+const BasketballBox: React.FC<ComponentProps> = ({ data, selected = false, onSelect }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     return (
-        <Container
-            spacing={2}
-            selected={selected}
-            onClick={selectable && onSelect && item ? () => onSelect(item.id) : undefined}
-            selectable={selectable}
-        >
-            <Image src="/assets/nft-items/basketball.png" width={166} height={166} alt="" className="basketball_img" />
+        <Container spacing={2} selected={selected} onClick={() => onSelect(!selected)}>
+            <img src={data.image} width={166} height={166} alt="" className="basketball_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
-                    {item?.title}
+                    {data.title}
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#979797">
-                    No traits
+                    You own {data.count}
                 </Typography>
             </Stack>
         </Container>

@@ -16,6 +16,10 @@ import FuseSuccess from './FuseSuccess';
 import { useWeb3React } from '@web3-react/core';
 import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
+import { getLocker } from '../../services/api/thelab';
+import { getBasketballInfo } from '../../services/thelab';
+import { BasketballTokenInfoType } from '../../types';
+import basketballTokenData from '../../constants/basketballTokenData';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -23,6 +27,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
     const [basketballBalance, setBasketballBalance] = useState<number>(0);
     const [serumBalance, setSerumBalance] = useState<number>(0);
+
+    const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
+    const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -55,6 +62,37 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             updateAppState();
         }
     }, [account]);
+
+    React.useEffect(() => {
+        async function updateAppState() {
+            if (account) {
+                getLocker(account)
+                    .then((response: any[]) => {
+                        // console.log('getLocker response:', response);
+                        setOwnedNFTTokensList(response);
+                    })
+                    .catch((error) => {
+                        setOwnedNFTTokensList([]);
+                    });
+            }
+        }
+
+        if (account) {
+            updateAppState();
+        }
+    }, [account]);
+
+    React.useEffect(() => {
+        async function getTokensData() {
+            let basketballInfo = await getBasketballInfo(ownedNFTTokensList);
+
+            // get basketball tokens info
+            let newBasketballToken = { ...basketballToken, count: basketballInfo.count, image: basketballInfo.image };
+            setBasketballToken(newBasketballToken);
+        }
+
+        getTokensData();
+    }, [ownedNFTTokensList]);
 
     return (
         <>
@@ -114,7 +152,11 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             </Grid>
                             <Grid item xs={12} md={8}>
                                 {appState.mixologyCurStep === 0 &&
-                                    (appState.basketballsList.length > 0 ? <SelectBasketball /> : <NotOwnBasketball />)}
+                                    (basketballToken.count > 0 ? (
+                                        <SelectBasketball data={basketballToken} />
+                                    ) : (
+                                        <NotOwnBasketball />
+                                    ))}
                                 {appState.mixologyCurStep === 1 &&
                                     (appState.serumsList.length > 0 ? <SelectSerum /> : <NotOwnSerum />)}
                                 {appState.mixologyCurStep === 2 && <FuseEvolve />}
