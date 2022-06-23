@@ -6,15 +6,19 @@ import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
     data: BasketballTokenInfoType;
-    selected?: boolean;
-    onSelect: (selected: boolean) => void;
 };
 
-const BasketballBox: React.FC<ComponentProps> = ({ data, selected = false, onSelect }): JSX.Element => {
+const BasketballBox: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
+    let selected = appState.selectedBasketball;
+
+    const onSelect = () => {
+        setAppState({ ...appState, selectedBasketball: !selected });
+    };
+
     return (
-        <Container spacing={2} selected={selected} onClick={() => onSelect(!selected)}>
+        <Container spacing={2} selected={selected} onClick={onSelect}>
             <img src={data.image} width={166} height={166} alt="" className="basketball_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import BasketballBox from '../../../components/Mixology/BasketballBox';
-import { useAppContext } from '../../../context/AppContext';
 import { BasketballTokenInfoType } from '../../../types';
 
 type ComponentProps = {
@@ -9,12 +8,6 @@ type ComponentProps = {
 };
 
 const SelectBasketball: React.FC<ComponentProps> = ({ data }): JSX.Element => {
-    const [appState, setAppState] = useAppContext();
-
-    const onItemSelect = (selected: boolean) => {
-        setAppState({ ...appState, selectedBasketball: selected });
-    };
-
     return (
         <Stack spacing={4}>
             <Typography fontSize={48} fontWeight={700}>
@@ -28,7 +21,7 @@ const SelectBasketball: React.FC<ComponentProps> = ({ data }): JSX.Element => {
                 columnGap={3}
                 rowGap={3}
             >
-                <BasketballBox data={data} selected={appState.selectedBasketball} onSelect={onItemSelect} />
+                <BasketballBox data={data} />
             </Stack>
         </Stack>
     );
