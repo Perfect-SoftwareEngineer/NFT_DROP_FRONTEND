@@ -28,7 +28,8 @@ const appMenuList = [
     // { title: 'The Lab', url: '', comingSoon: { rightPos: -10 } },
     { title: 'The Lab', url: '/lab' },
 
-    { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
+    // { title: 'Mixology Room', url: '', comingSoon: { rightPos: -10 } },
+    { title: 'Mixology Room', url: '/mixology' },
 
     { title: 'NF3 Counter', url: '/currycounter' },
 
