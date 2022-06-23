@@ -33,25 +33,25 @@ const ProductDetails: React.FC<ComponentProps> = ({ id }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     const getProductInfo = () => {
-        let index = -1;
+        // let index = -1;
 
-        index = appState.mutantsList.findIndex((item) => item.id === id);
-        if (index !== -1) return { type: Categories.MUTANTS, title: appState.mutantsList[index].title };
+        // index = appState.mutantsList.findIndex((item) => item.id === id);
+        // if (index !== -1) return { type: Categories.MUTANTS, title: appState.mutantsList[index].title };
 
-        index = appState.basketballsList.findIndex((item) => item.id === id);
-        if (index !== -1) return { type: Categories.BASKETBALLS, title: appState.basketballsList[index].title };
+        // index = appState.basketballsList.findIndex((item) => item.id === id);
+        // if (index !== -1) return { type: Categories.BASKETBALLS, title: appState.basketballsList[index].title };
 
-        index = appState.serumsList.findIndex((item) => item.id === id);
-        if (index !== -1) return { type: Categories.SERUMS, title: appState.serumsList[index].title };
+        // index = appState.serumsList.findIndex((item) => item.id === id);
+        // if (index !== -1) return { type: Categories.SERUMS, title: appState.serumsList[index].title };
 
-        index = appState.wearablesList.findIndex((item) => item.id === id);
-        if (index !== -1)
-            return {
-                type: Categories.WEARABLES + appState.wearablesList[index].type,
-                title: appState.wearablesList[index].title,
-            };
+        // index = appState.wearablesList.findIndex((item) => item.id === id);
+        // if (index !== -1)
+        //     return {
+        //         type: Categories.WEARABLES + appState.wearablesList[index].type,
+        //         title: appState.wearablesList[index].title,
+        //     };
 
-        return { type: Categories.NONE, title: '' };
+        // return { type: Categories.NONE, title: '' };
     };
 
     let categoryInfo = getProductInfo();
