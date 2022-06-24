@@ -12,26 +12,19 @@ export const Container = styled(Stack)<{ selected: boolean }>`
     }
 `;
 
-export const AddBtnBox = styled(Stack)`
+export const AddTokenBox = styled(Stack)`
     position: absolute;
     top: 8px;
     right: 20px;
     width: 28px;
     height: 28px;
-    justify-content: center;
+    overflow: hidden;
+    padding: 0 3px 0 0;
     align-items: center;
     border-radius: 24px;
     background: gray;
-    cursor: pointer;
-`;
-
-export const AddTokenBox = styled(Stack)`
-    position: absolute;
-    top: 8px;
-    right: 20px;
-    height: 28px;
-    padding: 0 8px;
-    align-items: center;
-    border-radius: 24px;
-    background: gray;
+    transition: width 200ms linear;
+    &:hover {
+        width: 96px;
+    }
 `;

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Stack, Box, Button, Typography } from '@mui/material';
-import { Container, AddBtnBox, AddTokenBox } from './styles';
+import { Container, AddTokenBox } from './styles';
 import { SerumTokenInfoType } from '../../../types';
 import { useAppContext } from '../../../context/AppContext';
 import AddIcon from '@mui/icons-material/Add';
@@ -49,20 +49,15 @@ const SerumBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
                     {item.count}
                 </Typography>
             </Stack>
-            <AddBtnBox onClick={() => setShowTokenBox(true)}>
-                <AddIcon sx={{ fontSize: 24 }} />
-            </AddBtnBox>
-            {showTokenBox && (
-                <AddTokenBox direction="row" spacing={2} ref={nodeTokenBox}>
-                    <Stack sx={{ cursor: 'pointer' }} onClick={onDeleteToken}>
-                        <DeleteIcon sx={{ color: 'white', fontSize: 20 }} />
-                    </Stack>
-                    <Typography padding="0 0 4px">{count}</Typography>
-                    <Stack sx={{ cursor: 'pointer' }} onClick={onAddToken}>
-                        <AddIcon sx={{ fontSize: 22 }} />
-                    </Stack>
-                </AddTokenBox>
-            )}
+            <AddTokenBox direction="row-reverse" spacing={2} ref={nodeTokenBox}>
+                <Stack sx={{ cursor: 'pointer' }} onClick={onAddToken}>
+                    <AddIcon sx={{ fontSize: 22 }} />
+                </Stack>
+                <Typography padding="0 0 4px">{count}</Typography>
+                <Stack sx={{ cursor: 'pointer' }} onClick={onDeleteToken}>
+                    <DeleteIcon sx={{ color: 'white', fontSize: 20 }} />
+                </Stack>
+            </AddTokenBox>
         </Container>
     );
 };
