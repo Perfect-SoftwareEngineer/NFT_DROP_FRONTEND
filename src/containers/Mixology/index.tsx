@@ -182,6 +182,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             //     .catch((error: any) => {
             //         console.log('gen3DCreate error:', error);
             //     });
+
+            setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
         }
     };
 
@@ -261,9 +263,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     <MixologyNavBar fuseEvolve={fuseEvolve} />
                 </>
             ) : (
-                // <Stack height="calc(100vh - 222px)" justifyContent="center">
-                <FuseSuccess />
-                // </Stack>
+                <Stack height="calc(100vh - 222px)" justifyContent="center">
+                    <FuseSuccess />
+                </Stack>
             )}
         </>
     );
