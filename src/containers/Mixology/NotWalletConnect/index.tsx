@@ -39,7 +39,7 @@ const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                         fontWeight={700}
                         lineHeight={1}
                         color="#FFCA21"
-                        marginTop={{ xs: 0, md: -40 }}
+                        marginTop={{ xs: 0, md: -10 }}
                         className="neueplak_condensed"
                     >
                         WELCOME TO THE...
