@@ -49,9 +49,10 @@ const SerumBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
                     {item.count}
                 </Typography>
             </Stack>
-            <AddTokenBox direction="row-reverse" spacing={2} ref={nodeTokenBox}>
+            <AddTokenBox direction="row-reverse" spacing={2} ref={nodeTokenBox} count={count}>
                 <Stack sx={{ cursor: 'pointer' }} onClick={onAddToken}>
-                    <AddIcon sx={{ fontSize: 22 }} />
+                    <AddIcon sx={{ fontSize: 22 }} className="add_icon" />
+                    <Typography className="count_label">{count}</Typography>
                 </Stack>
                 <Typography padding="0 0 4px">{count}</Typography>
                 <Stack sx={{ cursor: 'pointer' }} onClick={onDeleteToken}>

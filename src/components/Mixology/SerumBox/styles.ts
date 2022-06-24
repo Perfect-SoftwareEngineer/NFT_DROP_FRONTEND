@@ -12,7 +12,7 @@ export const Container = styled(Stack)<{ selected: boolean }>`
     }
 `;
 
-export const AddTokenBox = styled(Stack)`
+export const AddTokenBox = styled(Stack)<{ count: number }>`
     position: absolute;
     top: 8px;
     right: 20px;
@@ -24,7 +24,20 @@ export const AddTokenBox = styled(Stack)`
     border-radius: 24px;
     background: gray;
     transition: width 200ms linear;
+    .add_icon {
+        display: ${({ count }) => (count > 0 ? 'none' : 'inline-block')};
+    }
+    .count_label {
+        display: ${({ count }) => (count > 0 ? 'block' : 'none')};
+        margin: 0 6px 6px 0;
+    }
     &:hover {
         width: 96px;
+        .add_icon {
+            display: inline-block;
+        }
+        .count_label {
+            display: none;
+        }
     }
 `;
