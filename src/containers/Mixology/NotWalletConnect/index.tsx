@@ -27,7 +27,7 @@ const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                 </video>
             )}
             {!matchDownMd && (
-                <video autoPlay muted loop style={{ width: '100%', height: 900 }}>
+                <video autoPlay muted loop style={{ width: '100%' }}>
                     <source src={'/assets/mixology/background.mp4'} type="video/mp4" />
                 </video>
             )}
