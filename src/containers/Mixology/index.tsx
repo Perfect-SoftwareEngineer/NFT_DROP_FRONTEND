@@ -14,7 +14,8 @@ import SelectSerum from './SelectSerum';
 import FuseEvolve from './FuseEvolve';
 import FuseSuccess from './FuseSuccess';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../lib/ABI/BasketBall.json';
+import BasketballHeadABI from '../../lib/ABI/BasketballHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import { getLocker } from '../../services/api/thelab';
 import { getBasketballInfo, getSerumTokenCount } from '../../services/thelab';
@@ -48,7 +49,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
-                BasketballHeadABI,
+                BasketballABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
@@ -118,17 +119,64 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
-    const fuseEvolve = () => {
+    const fuseEvolve = async() => {
         if (account) {
-            console.log(account, appState.selectedSerumId);
+            console.log(appState.selectedSerumId, appState.selectedSerumId.length);
 
-            gen3DCreate(account, appState.selectedSerumId)
-                .then((response: any) => {
-                    console.log('gen3DCreate response:', response);
-                })
-                .catch((error: any) => {
-                    console.log('gen3DCreate error:', error);
+            const basketballContract = new library.eth.Contract(
+                BasketballABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
+            );
+
+            const serumContract = new library.eth.Contract(
+                SerumABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
+            );
+
+            const basketballHeadContract = new library.eth.Contract(
+                BasketballHeadABI,
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS
+            );
+
+            const basketballHeadContractAddress = process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS;
+            
+            let IsBasketballApproved = await 
+                basketballContract.methods.isApprovedForAll(account, basketballHeadContractAddress).call({ from: account });
+
+            if(!IsBasketballApproved)
+                await basketballContract.methods.setApprovalForAll(basketballHeadContractAddress, true).send({ from: account });
+            
+            let IsSerumApproved = await 
+                serumContract.methods.isApprovedForAll(account, basketballHeadContractAddress).call({ from: account });
+
+            if(!IsSerumApproved)
+                await serumContract.methods.setApprovalForAll(basketballHeadContractAddress, true).send({ from: account });
+
+            console.log(IsBasketballApproved, IsSerumApproved)
+    
+            basketballHeadContract.methods
+                .mint(1, appState.selectedSerumId , appState.selectedSerumId.length)
+                .send({ from: account, value: 0 })
+                .then(
+                )
+                .catch((e: any) => {
                 });
+    
+            // gen3DCreate(account, appState.selectedSerumId)
+            //     .then(async(response: any) => {
+            //         console.log('gen3DCreate response:', response);
+            //     })
+            //     .catch((error: any) => {
+            //         console.log('gen3DCreate error:', error);
+            //     });
         }
     };
 

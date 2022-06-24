@@ -3,7 +3,7 @@ import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/mat
 import Image from 'next/image';
 import { useWeb3React } from '@web3-react/core';
 import web3 from 'web3';
-import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../../../lib/ABI/BasketBall.json';
 import { MintBtn } from './styles';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimNF3Mintlist } from '../../../../services/api/curryshop';
@@ -43,7 +43,7 @@ const NF3MintlistMintBox: React.FC<ComponentProps> = ({
         setMintState(MintStatus.MINTING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                 : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS

@@ -42,7 +42,7 @@ import {
 } from '../../services/api/currycounter';
 import { usePrevious } from 'react-use';
 
-import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../lib/ABI/BasketBall.json';
 
 const CurryCounterPageContainer: React.FC = (): JSX.Element => {
     const theme = useTheme();
@@ -243,7 +243,7 @@ const CurryCounterPageContainer: React.FC = (): JSX.Element => {
         startClaim(unclaimedNFTInfo[0].game_id, account);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                 : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS

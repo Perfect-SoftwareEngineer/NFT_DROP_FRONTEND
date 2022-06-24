@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../../../lib/ABI/BasketBall.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
 import SupplyBox from '../../SupplyBox';
@@ -50,7 +50,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
         setMintState(MintStatus.MINTING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                 : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
@@ -85,7 +85,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
         setReserveState(ReserveStatus.RESERVING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                 : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
@@ -109,7 +109,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
-                BasketballHeadABI,
+                BasketballABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS

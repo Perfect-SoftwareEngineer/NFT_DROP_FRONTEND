@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../lib/ABI/BasketBall.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import { Stack, Box, Grid, Typography, Divider, Dialog } from '@mui/material';
 import Container from '../Container';
@@ -61,7 +61,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
-                BasketballHeadABI,
+                BasketballABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
@@ -85,7 +85,7 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
-                BasketballHeadABI,
+                BasketballABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS

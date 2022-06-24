@@ -11,7 +11,7 @@ import GCFBox from '../../components/TheLab/GCFBox';
 import WearableBox from '../../components/TheLab/WearableBox';
 import ProductDetails from './ProductDetails';
 import { useWeb3React } from '@web3-react/core';
-import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../lib/ABI/BasketBall.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
@@ -74,7 +74,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
-                BasketballHeadABI,
+                BasketballABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS

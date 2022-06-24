@@ -4,7 +4,7 @@ import web3 from 'web3';
 import { Stack, Box, Typography, Dialog, CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import { MintBtn } from './styles';
-import BasketballHeadABI from '../../../../lib/ABI/BasketBallHead.json';
+import BasketballABI from '../../../../lib/ABI/BasketBall.json';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
 import { confirmClaimNF3GCF } from '../../../../services/api/curryshop';
 import { useAppContext } from '../../../../context/AppContext';
@@ -39,7 +39,7 @@ const NF3GCFClaimBox: React.FC<ComponentProps> = ({
         setMintState(MintStatus.MINTING);
 
         const nftContract = new library.eth.Contract(
-            BasketballHeadABI,
+            BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
                 ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
                 : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
