@@ -15,7 +15,7 @@ import FuseEvolve from './FuseEvolve';
 import FuseSuccess from './FuseSuccess';
 import { useWeb3React } from '@web3-react/core';
 import BasketballABI from '../../lib/ABI/BasketBall.json';
-import BasketballHeadABI from '../../lib/ABI/BasketballHead.json';
+import BasketballHeadABI from '../../lib/ABI/BasketBallHead.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import { getLocker } from '../../services/api/thelab';
 import { getBasketballInfo, getSerumTokenCount } from '../../services/thelab';
@@ -119,7 +119,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
-    const fuseEvolve = async() => {
+    const fuseEvolve = async () => {
         if (account) {
             console.log(appState.selectedSerumId, appState.selectedSerumId.length);
 
@@ -144,32 +144,37 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS
             );
 
-            const basketballHeadContractAddress = process.env.NEXT_PUBLIC_ENV == 'production'
-                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
-                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS;
-            
-            let IsBasketballApproved = await 
-                basketballContract.methods.isApprovedForAll(account, basketballHeadContractAddress).call({ from: account });
+            const basketballHeadContractAddress =
+                process.env.NEXT_PUBLIC_ENV == 'production'
+                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
+                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS;
 
-            if(!IsBasketballApproved)
-                await basketballContract.methods.setApprovalForAll(basketballHeadContractAddress, true).send({ from: account });
-            
-            let IsSerumApproved = await 
-                serumContract.methods.isApprovedForAll(account, basketballHeadContractAddress).call({ from: account });
+            let IsBasketballApproved = await basketballContract.methods
+                .isApprovedForAll(account, basketballHeadContractAddress)
+                .call({ from: account });
 
-            if(!IsSerumApproved)
-                await serumContract.methods.setApprovalForAll(basketballHeadContractAddress, true).send({ from: account });
+            if (!IsBasketballApproved)
+                await basketballContract.methods
+                    .setApprovalForAll(basketballHeadContractAddress, true)
+                    .send({ from: account });
 
-            console.log(IsBasketballApproved, IsSerumApproved)
-    
+            let IsSerumApproved = await serumContract.methods
+                .isApprovedForAll(account, basketballHeadContractAddress)
+                .call({ from: account });
+
+            if (!IsSerumApproved)
+                await serumContract.methods
+                    .setApprovalForAll(basketballHeadContractAddress, true)
+                    .send({ from: account });
+
+            console.log(IsBasketballApproved, IsSerumApproved);
+
             basketballHeadContract.methods
-                .mint(1, appState.selectedSerumId , appState.selectedSerumId.length)
+                .mint(1, appState.selectedSerumId, appState.selectedSerumId.length)
                 .send({ from: account, value: 0 })
-                .then(
-                )
-                .catch((e: any) => {
-                });
-    
+                .then()
+                .catch((e: any) => {});
+
             // gen3DCreate(account, appState.selectedSerumId)
             //     .then(async(response: any) => {
             //         console.log('gen3DCreate response:', response);
