@@ -25,7 +25,7 @@ const SerumBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
             : 0;
 
     const onAddToken = () => {
-        if (totalSelectedCount < 3) {
+        if (count < item.count && totalSelectedCount < 3) {
             let newData = { ...appState.selectedSerumCount };
             newData[item.tokenId] = count + 1;
             setAppState({ ...appState, selectedSerumCount: newData });

@@ -35,6 +35,16 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
 
     React.useEffect(() => {
+        setAppState({
+            ...appState,
+            mixologyCurStep: 0,
+            selectedBasketball: false,
+            selectedSerumCount: {},
+            selectedSerumId: [],
+        });
+    }, []);
+
+    React.useEffect(() => {
         async function updateAppState() {
             const nftContract = new library.eth.Contract(
                 BasketballHeadABI,
