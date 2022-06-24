@@ -7,9 +7,7 @@ const MixologyNavBar: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     let showBackBtn: boolean = appState.mixologyCurStep > 0;
-    let disableNextBtn: boolean =
-        (appState.mixologyCurStep === 0 && !appState.selectedBasketball) ||
-        (appState.mixologyCurStep === 1 && appState.selectedSerumId.length === 0);
+    let disableNextBtn: boolean = appState.mixologyCurStep === 0 && !appState.selectedBasketball;
 
     const onBack = () => {
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep - 1 });

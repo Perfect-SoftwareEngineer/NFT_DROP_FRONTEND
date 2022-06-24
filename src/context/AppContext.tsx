@@ -6,7 +6,7 @@ interface AppState {
     basketballsList: Array<BasketballItemType>;
     selectedBasketball: boolean;
     serumsList: Array<SerumTokenInfoType>;
-    selectedSerumId: Array<number>;
+    selectedSerumId: Array<string>;
     selectedSerumCount: { [key: string]: number };
     mutantsList: Array<MutantItemType>;
     wearablesList: Array<WearableItemType>;

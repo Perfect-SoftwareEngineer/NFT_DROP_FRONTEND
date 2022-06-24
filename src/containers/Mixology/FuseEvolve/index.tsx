@@ -1,11 +1,20 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useAppContext } from '../../../context/AppContext';
-import BasketballBox from '../../../components/Mixology/BasketballBox';
-import SerumBox from '../../../components/Mixology/SerumBox';
+import BasketballBox from '../../../components/Mixology/FuseEvolve/BasketballBox';
+import SerumBox from '../../../components/Mixology/FuseEvolve/SerumBox';
 
 const FuseEvolve: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
+
+    React.useEffect(() => {
+        let selectedSerumId: string[] = [];
+        Object.keys(appState.selectedSerumCount).map((key) => {
+            let count = appState.selectedSerumCount[key];
+            selectedSerumId = [...selectedSerumId, ...Array(count).fill(key)];
+        });
+        setAppState({ ...appState, selectedSerumId });
+    }, []);
 
     return (
         <Stack spacing={3}>
@@ -28,15 +37,12 @@ const FuseEvolve: React.FC = (): JSX.Element => {
                 columnGap={3}
                 rowGap={3}
             >
-                {/* <BasketballBox
-                    item={appState.basketballsList.find((item) => item.id === appState.selectedBasketballId)}
-                    selected={true}
-                />
+                <BasketballBox />
                 {appState.selectedSerumId
-                    .sort((a, b) => a - b)
-                    .map((serumId) => (
-                        <SerumBox item={appState.serumsList.find((item) => item.id === serumId)} selected={true} />
-                    ))} */}
+                    // .sort((a, b) => a - b)
+                    .map((tokenId, index) => (
+                        <SerumBox tokenId={tokenId} key={`serum_box_key_${index}`} />
+                    ))}
             </Stack>
         </Stack>
     );
