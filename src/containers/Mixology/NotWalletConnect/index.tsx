@@ -6,6 +6,8 @@ import { SxProps } from '@mui/system';
 import { useWeb3React } from '@web3-react/core';
 import { connect } from '../../../web3/connect';
 import Container from '../../Container';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export interface ComponentProps {
     sx?: SxProps;
@@ -14,11 +16,21 @@ export interface ComponentProps {
 const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
+    const theme = useTheme();
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Stack position="relative">
-            <video autoPlay muted loop style={{ width: '100%' }}>
-                <source src={'/assets/mixology/background.mp4'} type="video/mp4" />
-            </video>
+            {matchDownMd && (
+                <video autoPlay muted loop style={{ width: '100%' }}>
+                    <source src={'/assets/mixology/background-mobile.mp4'} type="video/mp4" />
+                </video>
+            )}
+            {!matchDownMd && (
+                <video autoPlay muted loop style={{ width: '100%' }}>
+                    <source src={'/assets/mixology/background.mp4'} type="video/mp4" />
+                </video>
+            )}
             <GradientBox />
             <Container sx={{ position: 'absolute', inset: 0 }}>
                 <Stack width="100%" height="100%" justifyContent="center">
