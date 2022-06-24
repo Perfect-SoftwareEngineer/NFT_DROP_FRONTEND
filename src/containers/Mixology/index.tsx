@@ -21,6 +21,7 @@ import { getBasketballInfo, getSerumTokenCount } from '../../services/thelab';
 import { BasketballTokenInfoType, SerumTokenInfoType } from '../../types';
 import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
+import { gen3DCreate } from '../../services/api/mixology';
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -117,6 +118,20 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
+    const fuseEvolve = () => {
+        if (account) {
+            console.log(account, appState.selectedSerumId);
+
+            gen3DCreate(account, appState.selectedSerumId)
+                .then((response: any) => {
+                    console.log('gen3DCreate response:', response);
+                })
+                .catch((error: any) => {
+                    console.log('gen3DCreate error:', error);
+                });
+        }
+    };
+
     return (
         <>
             {!account ? (
@@ -190,7 +205,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             </Grid>
                         </Grid>
                     </Container>
-                    <MixologyNavBar />
+                    <MixologyNavBar fuseEvolve={fuseEvolve} />
                 </>
             ) : (
                 // <Stack height="calc(100vh - 222px)" justifyContent="center">

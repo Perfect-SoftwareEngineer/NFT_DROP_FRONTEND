@@ -3,18 +3,28 @@ import { Stack } from '@mui/material';
 import { BackBtn, NextBtn } from './styles';
 import { useAppContext } from '../../../context/AppContext';
 
-const MixologyNavBar: React.FC = (): JSX.Element => {
+type ComponentProps = {
+    fuseEvolve: () => void;
+};
+
+const MixologyNavBar: React.FC<ComponentProps> = ({ fuseEvolve }): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
-    let showBackBtn: boolean = appState.mixologyCurStep > 0;
-    let disableNextBtn: boolean = appState.mixologyCurStep === 0 && !appState.selectedBasketball;
+    let curStep = appState.mixologyCurStep;
+
+    let showBackBtn: boolean = curStep > 0;
+    let disableNextBtn: boolean = curStep === 0 && !appState.selectedBasketball;
 
     const onBack = () => {
-        setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep - 1 });
+        setAppState({ ...appState, mixologyCurStep: curStep - 1 });
     };
 
     const onNext = () => {
-        setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
+        if (curStep === 2) {
+            fuseEvolve();
+        } else {
+            setAppState({ ...appState, mixologyCurStep: curStep + 1 });
+        }
     };
 
     return (
