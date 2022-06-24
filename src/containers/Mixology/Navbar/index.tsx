@@ -43,7 +43,7 @@ const MixologyNavBar: React.FC<ComponentProps> = ({ fuseEvolve }): JSX.Element =
                 Back
             </BackBtn>
             <NextBtn disabled={disableNextBtn} onClick={onNext}>
-                Next
+                {curStep < 2 ? 'Next' : 'Fuse'}
             </NextBtn>
         </Stack>
     );
