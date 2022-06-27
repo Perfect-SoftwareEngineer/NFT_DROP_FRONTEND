@@ -23,6 +23,7 @@ import { BasketballTokenInfoType, SerumTokenInfoType } from '../../types';
 import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { gen3DCreate } from '../../services/api/mixology';
+import { BigNumber } from '@ethersproject/bignumber';
 
 enum FuseStatus {
     INIT,
@@ -178,7 +179,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     .setApprovalForAll(basketballHeadContractAddress, true)
                     .send({ from: account });
 
-            console.log(IsBasketballApproved, IsSerumApproved);
+            // console.log(IsBasketballApproved, IsSerumApproved);
 
             let result = await gen3DCreate(account, appState.selectedSerumId, appState.jwtToken);
             // .then(async (response: any) => {
@@ -187,10 +188,15 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             // .catch((error: any) => {
             //     console.log('gen3DCreate error:', error);
             // });
-            console.log('gen3DCreate result:', result);
+            // console.log('gen3DCreate result:', result);
 
             basketballHeadContract.methods
-                .mint(1, appState.selectedSerumId, appState.selectedSerumId.length)
+                .mint(
+                    BigNumber.from((result.tokenId as number).toString()),
+                    1,
+                    appState.selectedSerumId,
+                    appState.selectedSerumId.length
+                )
                 .send({ from: account, value: 0 })
                 .then(() => {
                     setFuseState(FuseStatus.FUSE_SUCCESS);
