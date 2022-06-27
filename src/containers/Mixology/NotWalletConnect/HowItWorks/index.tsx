@@ -9,10 +9,10 @@ export interface ComponentProps {
 }
 
 const steps = [
-    { title: 'Select an NF3 Basketball' },
-    { title: 'Choose up to 3 Serums' },
-    { title: 'Fuse' },
-    { title: 'Basketball Headz Avatar Created' },
+    { title: 'Select an NF3 Basketball', url: '/assets/mixology/howitworks/step1.mp4' },
+    { title: 'Choose up to 3 Serums', url: '/assets/mixology/howitworks/step1.mp4' },
+    { title: 'Fuse', url: '/assets/mixology/howitworks/step1.mp4' },
+    { title: 'Basketball Headz Avatar Created', url: '/assets/mixology/howitworks/step1.mp4' },
 ];
 
 const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
@@ -100,7 +100,13 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                         border="1px solid #BDBDBD"
                         borderRadius={2}
                         marginTop={8}
-                    ></Stack>
+                    >
+                        <Box width={224} height={224}>
+                            <video autoPlay muted loop style={{ width: '100%' }}>
+                                <source src={steps[curStep].url} type="video/mp4" />
+                            </video>
+                        </Box>
+                    </Stack>
                 </Stack>
             </Container>
         </Stack>

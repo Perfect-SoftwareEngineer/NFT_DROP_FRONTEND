@@ -169,21 +169,22 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
             console.log(IsBasketballApproved, IsSerumApproved);
 
+            let result = await gen3DCreate(account, appState.selectedSerumId, appState.jwtToken);
+            // .then(async (response: any) => {
+            //     console.log('gen3DCreate response:', response);
+            // })
+            // .catch((error: any) => {
+            //     console.log('gen3DCreate error:', error);
+            // });
+            console.log('gen3DCreate result:', result);
+
             basketballHeadContract.methods
                 .mint(1, appState.selectedSerumId, appState.selectedSerumId.length)
                 .send({ from: account, value: 0 })
-                .then()
+                .then(() => {
+                    setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
+                })
                 .catch((e: any) => {});
-
-            // gen3DCreate(account, appState.selectedSerumId)
-            //     .then(async(response: any) => {
-            //         console.log('gen3DCreate response:', response);
-            //     })
-            //     .catch((error: any) => {
-            //         console.log('gen3DCreate error:', error);
-            //     });
-
-            setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
         }
     };
 
