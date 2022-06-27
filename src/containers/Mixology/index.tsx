@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Stack, Box, Grid, Typography } from '@mui/material';
+import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import StepBox from '../../components/Mixology/StepBox';
@@ -24,6 +24,13 @@ import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { gen3DCreate } from '../../services/api/mixology';
 
+enum FuseStatus {
+    INIT,
+    IN_FUSE,
+    FUSE_FAILED,
+    FUSE_SUCCESS,
+}
+
 const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
     const { active, account, library, connector, activate, deactivate } = useWeb3React();
@@ -35,6 +42,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
     const [serumTokensList, setSerumTokensList] = useState<SerumTokenInfoType[]>(serumTokenInfoData);
     const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
+
+    const [fuseState, setFuseState] = useState<FuseStatus>(FuseStatus.INIT);
 
     React.useEffect(() => {
         setAppState({
@@ -121,7 +130,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
     const fuseEvolve = async () => {
         if (account) {
-            console.log(appState.selectedSerumId, appState.selectedSerumId.length);
+            setFuseState(FuseStatus.IN_FUSE);
+
+            // console.log(appState.selectedSerumId, appState.selectedSerumId.length);
 
             const basketballContract = new library.eth.Contract(
                 BasketballABI,
@@ -182,9 +193,12 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 .mint(1, appState.selectedSerumId, appState.selectedSerumId.length)
                 .send({ from: account, value: 0 })
                 .then(() => {
+                    setFuseState(FuseStatus.FUSE_SUCCESS);
                     setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
                 })
-                .catch((e: any) => {});
+                .catch((e: any) => {
+                    setFuseState(FuseStatus.FUSE_FAILED);
+                });
         }
     };
 
@@ -268,6 +282,18 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     <FuseSuccess />
                 </Stack>
             )}
+            <Dialog
+                open={fuseState === FuseStatus.IN_FUSE}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: 4,
+                        background: 'none',
+                    },
+                }}
+            >
+                <CircularProgress />
+            </Dialog>
         </>
     );
 };
