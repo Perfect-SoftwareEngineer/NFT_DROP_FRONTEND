@@ -79,6 +79,18 @@ const roadmapLists = [
         ),
     },
     {
+        img: '/assets/roadmap/physical-2974-shoes.png',
+        title: 'Q3 2022: PHYSICAL 2974 RECORD BREAKING SHOES',
+        desc: (
+            <Typography>
+                Raffled off to holders of Genesis Curry Flow and Basketball Headz collectors.
+                <br />
+                <br />
+                Quantity TBD
+            </Typography>
+        ),
+    },
+    {
         img: '/assets/roadmap/plug-and-play-digital-wearables.png',
         title: 'Q4 2022: PLUG & PLAY DIGITAL WEARABLES',
         desc: (
@@ -98,18 +110,6 @@ const roadmapLists = [
             <Typography>
                 Interoperable avatars, IRL events/programming, and more! Let us know what you want us to create. Open to
                 feedback on #suggestions in Discord.
-            </Typography>
-        ),
-    },
-    {
-        img: '/assets/roadmap/physical-2974-shoes.png',
-        title: 'Q1 2023: PHYSICAL 2974 SHOES',
-        desc: (
-            <Typography>
-                Raffled off to holders of Genesis Curry Flow and Basketball Headz collectors.
-                <br />
-                <br />
-                Quantity TBD
             </Typography>
         ),
     },

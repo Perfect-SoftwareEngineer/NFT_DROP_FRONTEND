@@ -21,7 +21,7 @@ const ItemBox: React.FC<ComponentProps> = ({ img, title, desc }): JSX.Element =>
             <Box position="relative" minWidth={{ xs: 'auto', sm: 240 }} height={144}>
                 <Image src={img} alt="" layout="fill" objectFit="cover" style={{ borderRadius: 8 }} />
             </Box>
-            <Stack spacing={1}>
+            <Stack spacing={2}>
                 <Typography
                     fontSize={{ xs: 36, md: 48 }}
                     fontWeight={800}
