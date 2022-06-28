@@ -232,7 +232,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                                             setAgreeTermsConditions(event.target.checked);
                                         }}
                                         inputProps={{ 'aria-label': 'controlled' }}
-                                        sx={{ color: '#9E9E9E' }}
+                                        sx={{ color: '#9E9E9E', marginLeft: '-12px' }}
                                     />
                                 }
                                 label={

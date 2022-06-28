@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import web3 from 'web3';
-import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
+import { Stack, Box, Grid, Typography, Dialog, CircularProgress, FormControlLabel, Checkbox } from '@mui/material';
 import Image from 'next/image';
 import { MintBtn } from './styles';
 import SerumABI from '../../../../lib/ABI/Serum.json';
@@ -11,6 +11,7 @@ import { useAppContext } from '../../../../context/AppContext';
 import { SelectItemType } from '../../../../types';
 import SerumTypeSelect from '../../SerumTypeSelect';
 import serumTokensList from '../../../../constants/serumTokenData';
+import Link from 'next/link';
 
 type ComponentProps = {
     mintData: any;
@@ -27,6 +28,8 @@ enum MintStatus {
 const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInfo }): JSX.Element => {
     const { account, library } = useWeb3React();
     const [appState, setAppState] = useAppContext();
+
+    const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
 
     const [gcfOwnedCount, setGcfOwnedCount] = useState<number>(0);
     const [gcfClaimHexProof, setGcfClaimHexProof] = useState<any[]>([]);
@@ -157,6 +160,32 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
                                     serumTypeOptions={serumTypeOptions}
                                 />
                             </Stack>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={agreeTermsConditions}
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                            setAgreeTermsConditions(event.target.checked);
+                                        }}
+                                        inputProps={{ 'aria-label': 'controlled' }}
+                                        sx={{ color: '#9E9E9E', marginLeft: '-12px' }}
+                                    />
+                                }
+                                label={
+                                    <Typography marginBottom="6px">
+                                        I agree that by checking this box, I agree to Under Armour's{' '}
+                                        <Link href="/legal/terms-and-conditions" passHref>
+                                            <a rel="noopener noreferrer" target="_blank">
+                                                <Typography color="#FFCA21" display="inline">
+                                                    {`Terms & Conditions`}
+                                                </Typography>
+                                            </a>
+                                        </Link>
+                                        .
+                                    </Typography>
+                                }
+                                sx={{ marginTop: 3 }}
+                            />
                             <Stack>
                                 <Typography fontWeight={700}>{`You have ${
                                     // mintState === MintStatus.MINT_SUCCESS ? 0 : gcfOwnedCount
@@ -164,7 +193,9 @@ const SerumGCFClaimBox: React.FC<ComponentProps> = ({ mintData, setNeedUpdateInf
                                 } Genesis Curry Flow claims`}</Typography>
                                 <MintBtn
                                     sx={{ marginTop: 1 }}
-                                    disabled={mintState === MintStatus.MINT_SUCCESS || !gcfOwnedCount}
+                                    disabled={
+                                        !agreeTermsConditions || mintState === MintStatus.MINT_SUCCESS || !gcfOwnedCount
+                                    }
                                     onClick={mint}
                                 >
                                     CLAIM
