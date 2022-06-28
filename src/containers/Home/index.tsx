@@ -8,6 +8,7 @@ import {
     GradientBox4,
     GradientBox5,
     GradientBox6,
+    GradientBox7,
     MintNowBtn,
     HowItWorksBtn,
     PartnerLogoListBox,
@@ -392,7 +393,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                             <Stack direction="row">
                                 {[...Array(3).keys()].map((item) => (
                                     <img
-                                        src="/assets/home/img4.png"
+                                        src="/assets/home/serum.png"
                                         width="33%"
                                         height="33%"
                                         alt=""
@@ -468,6 +469,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         alt=""
                     />
                     <GradientBox6 />
+                    <GradientBox7 />
                 </Stack>
                 <Container sx={{ marginTop: 20 }}>
                     <Stack spacing={8}>

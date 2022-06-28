@@ -53,6 +53,14 @@ export const GradientBox6 = styled(Box)`
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 `;
 
+export const GradientBox7 = styled(Box)`
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+`;
+
 export const MintNowBtn = styled(Button)`
     width: fit-content;
     height: 38px;

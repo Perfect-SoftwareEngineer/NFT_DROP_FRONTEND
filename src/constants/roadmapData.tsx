@@ -53,11 +53,16 @@ const roadmapLists = [
         desc: (
             <Typography>
                 Bringing together the NF3 and traits from our community partners, serums from each partner will be
-                available for purchase from our store. So buy up to three and mix them together in our high-tech lab to
-                create your very own unique and generative 'Basketball Head' avatar.
+                available for purchase from our store. Mix them together in our high-tech lab and prepare to unlock your
+                unique and generative Basketball Headz avatar.
                 <br />
                 <br />
-                Serums and NF3 Basketballs open on DATE_TIME_FOR_SHOP_OPEN.
+                <b>General Purchase for NF3 Basketballs and Serums:</b>
+                <br />
+                <br />
+                NF3 Basketball Start Date: <span style={{ color: '#FFCA21' }}>June 29th at 5:00:00 PM PST</span>
+                <br />
+                Serum Start Date: <span style={{ color: '#FFCA21' }}>June 29th at 5:00:00 PM PST</span>
             </Typography>
         ),
     },
