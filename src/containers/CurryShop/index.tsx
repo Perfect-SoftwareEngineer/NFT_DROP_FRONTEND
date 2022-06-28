@@ -235,6 +235,13 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                 GCF Serums
                             </PhaseTypo>
                         </Stack>
+                        <Divider sx={{ borderColor: '#969AA1' }} />
+                    </Stack>
+                    <Stack spacing={3}>
+                        <Typography fontSize={20} fontWeight={800} color="#969AA1">
+                            HOW IT WORKS
+                        </Typography>
+                        <WatchVideoBtn onClick={() => setWatchVideo(true)}>WATCH VIDEO</WatchVideoBtn>
                     </Stack>
                 </Stack>
             );
@@ -298,20 +305,6 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                     Curry Shop is where you get the 'goods.' Claim or purchase your NF3 Basketball, along with Serums
                     from our communities.
                 </Typography>
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    padding={3}
-                    borderRadius={2}
-                    marginTop={4}
-                    sx={{ background: '#1B1C22' }}
-                >
-                    <Typography fontSize={20} fontWeight={800} color="#969AA1" lineHeight={1}>
-                        HOW IT WORKS
-                    </Typography>
-                    <WatchVideoBtn onClick={() => setWatchVideo(true)}>WATCH VIDEO</WatchVideoBtn>
-                </Stack>
                 <Grid container columnSpacing={4} rowGap={4} marginTop={4}>
                     {account ? (
                         <>
@@ -363,6 +356,12 @@ const CurryShopPageContainer: React.FC = (): JSX.Element => {
                                             Connect Coinbase
                                         </Typography>
                                     </ConnectWalletBtn>
+                                    <Stack alignItems="center" spacing={3} marginTop={5}>
+                                        <Typography fontSize={20} fontWeight={800} color="#969AA1" lineHeight={1}>
+                                            HOW IT WORKS
+                                        </Typography>
+                                        <WatchVideoBtn onClick={() => setWatchVideo(true)}>WATCH VIDEO</WatchVideoBtn>
+                                    </Stack>
                                 </Stack>
                             </Stack>
                         </Grid>

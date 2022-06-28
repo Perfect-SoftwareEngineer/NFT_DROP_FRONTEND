@@ -41,6 +41,7 @@ export const PhaseTypo = styled(Typography)<{ selected?: boolean }>`
 `;
 
 export const WatchVideoBtn = styled(Button)`
+    width: fit-content;
     height: 36px;
     padding: 6px 12px 10px;
     background: #ffca21;
