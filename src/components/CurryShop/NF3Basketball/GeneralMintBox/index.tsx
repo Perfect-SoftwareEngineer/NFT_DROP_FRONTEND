@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
+import { Stack, Box, Grid, Typography, Dialog, CircularProgress, FormControlLabel, Checkbox } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
 import BasketballABI from '../../../../lib/ABI/BasketBall.json';
 import Image from 'next/image';
 import { AmountInputWrapper, AmountInputTextField, MaxBtn, MintBtn, ReserveBtn } from '../../styles';
 import SupplyBox from '../../SupplyBox';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
+import Link from 'next/link';
 
 type ComponentProps = {
     amountLeft: number;
@@ -35,14 +36,16 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
     setNeedUpdateInfo,
 }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
+
+    const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
+
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
     const [reservedAmount, setReservedAmount] = useState<number>(0);
+    const [claimedCount, setclaimedCount] = useState<number>(0);
 
     const [mintState, setMintState] = useState<MintStatus>(MintStatus.NOT_MINTED);
     const [reserveState, setReserveState] = useState<ReserveStatus>(ReserveStatus.NOT_RESERVED);
-
-    const [claimedCount, setclaimedCount] = useState<number>(0);
 
     const mint = async () => {
         if (!account) return;
@@ -184,6 +187,32 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                     <MaxBtn onClick={setMaxMintCount}>Max</MaxBtn>
                                 </AmountInputWrapper>
                             </Stack>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={agreeTermsConditions}
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                            setAgreeTermsConditions(event.target.checked);
+                                        }}
+                                        inputProps={{ 'aria-label': 'controlled' }}
+                                        sx={{ color: '#9E9E9E' }}
+                                    />
+                                }
+                                label={
+                                    <Typography marginBottom="6px">
+                                        I agree that by checking this box, I agree to Under Armour's{' '}
+                                        <Link href="/legal/terms-and-conditions" passHref>
+                                            <a rel="noopener noreferrer" target="_blank">
+                                                <Typography color="#FFCA21" display="inline">
+                                                    {`Terms & Conditions`}
+                                                </Typography>
+                                            </a>
+                                        </Link>
+                                        .
+                                    </Typography>
+                                }
+                                sx={{ marginTop: 3 }}
+                            />
                             <Stack spacing={1}>
                                 <Typography fontWeight={700} color="white">
                                     {disabled
@@ -194,6 +223,7 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                     <Stack direction="row" alignItems="center" spacing={1}>
                                         <MintBtn
                                             disabled={
+                                                !agreeTermsConditions ||
                                                 mintAmount === '' ||
                                                 mintAmount === '0' ||
                                                 (amountLeft === 0 && reservedAmount === 0)
@@ -203,7 +233,12 @@ const NF3GeneralMintBox: React.FC<ComponentProps> = ({
                                             MINT
                                         </MintBtn>
                                         <ReserveBtn
-                                            disabled={mintAmount === '' || mintAmount === '0' || amountLeft === 0}
+                                            disabled={
+                                                !agreeTermsConditions ||
+                                                mintAmount === '' ||
+                                                mintAmount === '0' ||
+                                                amountLeft === 0
+                                            }
                                             onClick={reserve}
                                         >
                                             RESERVE

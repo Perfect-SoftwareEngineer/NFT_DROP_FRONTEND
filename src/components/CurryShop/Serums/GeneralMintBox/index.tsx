@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, Box, Grid, Typography, Dialog, CircularProgress } from '@mui/material';
+import { Stack, Box, Grid, Typography, Dialog, CircularProgress, FormControlLabel, Checkbox } from '@mui/material';
 import { useWeb3React } from '@web3-react/core';
 import SerumABI from '../../../../lib/ABI/Serum.json';
 import Image from 'next/image';
@@ -9,6 +9,7 @@ import SerumTypeSelect from '../../SerumTypeSelect';
 import SupplyBox from '../../SupplyBox';
 import serumTokensList, { serumTokensColor } from '../../../../constants/serumTokenData';
 import CompleteIcon from '@mui/icons-material/CheckCircleOutline';
+import Link from 'next/link';
 
 type ComponentProps = {
     setNeedUpdateInfo: (value: boolean) => void;
@@ -32,6 +33,8 @@ enum ReserveStatus {
 
 const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): JSX.Element => {
     const { active, account, library, activate } = useWeb3React();
+
+    const [agreeTermsConditions, setAgreeTermsConditions] = React.useState(false);
 
     const [mintAmount, setMintAmount] = useState<string>('');
     const [mintPrice, setMintPrice] = useState<number>(0);
@@ -221,6 +224,32 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                                     </AmountInputWrapper>
                                 </Stack>
                             </Stack>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={agreeTermsConditions}
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                            setAgreeTermsConditions(event.target.checked);
+                                        }}
+                                        inputProps={{ 'aria-label': 'controlled' }}
+                                        sx={{ color: '#9E9E9E' }}
+                                    />
+                                }
+                                label={
+                                    <Typography marginBottom="6px">
+                                        I agree that by checking this box, I agree to Under Armour's{' '}
+                                        <Link href="/legal/terms-and-conditions" passHref>
+                                            <a rel="noopener noreferrer" target="_blank">
+                                                <Typography color="#FFCA21" display="inline">
+                                                    {`Terms & Conditions`}
+                                                </Typography>
+                                            </a>
+                                        </Link>
+                                        .
+                                    </Typography>
+                                }
+                                sx={{ marginTop: 3 }}
+                            />
                             <Stack spacing={1}>
                                 <Typography fontWeight={700} color="white">
                                     {`You have ${reservedAmount} reserve mints`}
@@ -229,6 +258,7 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                                     <Stack direction="row" alignItems="center" spacing={1}>
                                         <MintBtn
                                             disabled={
+                                                !agreeTermsConditions ||
                                                 mintAmount === '' ||
                                                 mintAmount === '0' ||
                                                 (supplyLeft === 0 && reservedAmount === 0)
@@ -238,7 +268,12 @@ const SerumGeneralMintBox: React.FC<ComponentProps> = ({ setNeedUpdateInfo }): J
                                             MINT
                                         </MintBtn>
                                         <ReserveBtn
-                                            disabled={mintAmount === '' || mintAmount === '0' || supplyLeft === 0}
+                                            disabled={
+                                                !agreeTermsConditions ||
+                                                mintAmount === '' ||
+                                                mintAmount === '0' ||
+                                                supplyLeft === 0
+                                            }
                                             onClick={reserve}
                                         >
                                             RESERVE
