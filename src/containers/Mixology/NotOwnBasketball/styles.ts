@@ -23,3 +23,16 @@ export const CurryCounterBtn = styled(Button)`
     border: 1px solid #ffca21;
     border-radius: 4px;
 `;
+
+export const OpenseaBtn = styled(Button)`
+    width: 96px;
+    height: 36px;
+    padding: 6px 0 10px;
+    background: #ffca21;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    &:hover {
+        background: #ffda31;
+    }
+`;

@@ -205,6 +205,11 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     visibility={showOpenseaMenuBox ? 'visible' : 'hidden'}
                                     sx={{ background: '#1B1C22' }}
                                 >
+                                    <Link href="" passHref>
+                                        <a target="_blank" rel="noopener noreferrer">
+                                            <Typography whiteSpace="nowrap">Basketball Headz</Typography>
+                                        </a>
+                                    </Link>
                                     <Link href="https://opensea.io/collection/nf3-basketball" passHref>
                                         <a target="_blank" rel="noopener noreferrer">
                                             <Typography whiteSpace="nowrap">NF3 Basketball</Typography>
@@ -304,6 +309,11 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                         visibility={showOpenseaMenuBox ? 'visible' : 'hidden'}
                                         sx={{ background: '#1B1C22' }}
                                     >
+                                        <Link href="" passHref>
+                                            <a target="_blank" rel="noopener noreferrer">
+                                                <Typography whiteSpace="nowrap">Basketball Headz</Typography>
+                                            </a>
+                                        </Link>
                                         <Link href="https://opensea.io/collection/nf3-basketball" passHref>
                                             <a target="_blank" rel="noopener noreferrer">
                                                 <Typography whiteSpace="nowrap">NF3 Basketball</Typography>

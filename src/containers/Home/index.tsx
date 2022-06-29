@@ -39,7 +39,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                     <GradientBox1 />
                 </Stack>
                 <Stack position="absolute" sx={{ inset: 0 }}>
-                    <Stack width="100%" paddingTop={2} paddingBottom={3} sx={{ background: '#FFCA21' }}>
+                    {/* <Stack width="100%" paddingTop={2} paddingBottom={3} sx={{ background: '#FFCA21' }}>
                         <Typography
                             fontSize={{ xs: 32, md: 48 }}
                             fontWeight={700}
@@ -50,7 +50,7 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                         >
                             General Mint Moved: June 29th at 5:00:00 PM PST
                         </Typography>
-                    </Stack>
+                    </Stack> */}
                     <Container>
                         <Stack justifyContent={{ xs: 'flex-start', md: 'center' }} marginTop={{ xs: 10, md: 15 }}>
                             <Typography

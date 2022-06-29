@@ -1,29 +1,30 @@
 import React from 'react';
 import { Stack, Grid, Typography } from '@mui/material';
-import { CurryShopBtn, CurryCounterBtn } from './styles';
+import { CurryShopBtn, CurryCounterBtn, OpenseaBtn } from './styles';
 import Link from 'next/link';
 
 const NotOwnBasketball: React.FC = (): JSX.Element => {
     return (
         <Stack spacing={{ xs: 3, sm: 4 }} paddingBottom={15}>
-            <Typography fontSize={48} fontWeight={700} lineHeight={1}>
-                Select a Basketball
+            <Typography
+                fontSize={48}
+                fontWeight={800}
+                lineHeight={1}
+                textTransform="uppercase"
+                className="neueplak_condensed"
+            >
+                SELECT AN NF3 BASKETBALL
             </Typography>
             <Stack spacing={2}>
                 <Typography fontSize={32} fontWeight={700} lineHeight={1.1} color="#FFCA21">
-                    You currently do not own any Basketballs.
+                    You currently do not own any NF3 Basketballs.
                 </Typography>
-                <Typography fontSize={16} fontWeight={400} width={{ xs: '100%', sm: '85%', md: '70%' }}>
-                    You cannot start the Mixology process without owning a Basketball or Serum. You can either mint a
-                    Basketball or Serum, mint after every 3 point shot Stephen Curry makes, or buy them off the
-                    secondary market in{' '}
-                    <a href="https://opensea.io/" target="_blank" style={{ color: '#FFCA21' }}>
-                        Opensea
-                    </a>
-                    .
+                <Typography width={{ xs: '100%', sm: '85%', md: '70%' }}>
+                    You cannot start the Mixology process without owning an NF3 Basketball. Purchase an NF3 Basketball
+                    from the secondary market in Opensea.
                 </Typography>
             </Stack>
-            <Stack direction="row" spacing={1}>
+            {/* <Stack direction="row" spacing={1}>
                 <Link href="/curryshop" passHref>
                     <a rel="noopener noreferrer">
                         <CurryShopBtn>Curry Shop</CurryShopBtn>
@@ -34,7 +35,12 @@ const NotOwnBasketball: React.FC = (): JSX.Element => {
                         <CurryCounterBtn>Curry Counter</CurryCounterBtn>
                     </a>
                 </Link>
-            </Stack>
+            </Stack> */}
+            <Link href="https://opensea.io/" passHref>
+                <a target="_blank" rel="noopener noreferrer">
+                    <CurryShopBtn>OpenSea</CurryShopBtn>
+                </a>
+            </Link>
         </Stack>
     );
 };
