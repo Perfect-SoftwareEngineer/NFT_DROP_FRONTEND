@@ -24,6 +24,7 @@ import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { gen3DCreate } from '../../services/api/mixology';
 import { BigNumber } from '@ethersproject/bignumber';
+import FuseConfirmBox from '../../components/Mixology/FuseConfirmBox';
 
 enum FuseStatus {
     INIT,
@@ -45,6 +46,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
 
     const [fuseState, setFuseState] = useState<FuseStatus>(FuseStatus.INIT);
+
+    const [showFuseConfirmDlg, setShowFuseConfirmDlg] = useState<boolean>(false);
 
     React.useEffect(() => {
         setAppState({
@@ -132,6 +135,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     const fuseEvolve = async () => {
         if (account) {
             setFuseState(FuseStatus.IN_FUSE);
+            setShowFuseConfirmDlg(false);
 
             // console.log(appState.selectedSerumId, appState.selectedSerumId.length);
 
@@ -281,7 +285,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             </Grid>
                         </Grid>
                     </Container>
-                    <MixologyNavBar fuseEvolve={fuseEvolve} />
+                    <MixologyNavBar fuseEvolve={() => setShowFuseConfirmDlg(true)} />
                 </>
             ) : (
                 <Stack height="calc(100vh - 222px)" justifyContent="center">
@@ -295,10 +299,25 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     sx: {
                         padding: 4,
                         background: 'none',
+                        boxShadow: 'none',
                     },
                 }}
             >
                 <CircularProgress />
+            </Dialog>
+            <Dialog
+                open={showFuseConfirmDlg}
+                onClose={() => setShowFuseConfirmDlg(false)}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: 8,
+                        background: 'none',
+                        boxShadow: 'none',
+                    },
+                }}
+            >
+                <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
             </Dialog>
         </>
     );

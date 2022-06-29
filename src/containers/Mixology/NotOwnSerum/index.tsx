@@ -43,11 +43,13 @@ const NotOwnSerum: React.FC = (): JSX.Element => {
                     </a>
                 </Link>
             </Stack> */}
-            <Link href="https://opensea.io/" passHref>
-                <a target="_blank" rel="noopener noreferrer">
-                    <CurryShopBtn>OpenSea</CurryShopBtn>
-                </a>
-            </Link>
+            <Stack width="fit-content">
+                <Link href="https://opensea.io/" passHref>
+                    <a target="_blank" rel="noopener noreferrer">
+                        <CurryShopBtn>OpenSea</CurryShopBtn>
+                    </a>
+                </Link>
+            </Stack>
         </Stack>
     );
 };
