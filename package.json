@@ -39,6 +39,7 @@
     "next": "^12.1.4",
     "next-pwa": "^5.4.4",
     "react": "latest",
+    "react-confetti": "^6.1.0",
     "react-dom": "latest",
     "react-player": "^2.10.1",
     "react-use": "^17.3.2",
