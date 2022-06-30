@@ -17,9 +17,8 @@ const NotOwnSerum: React.FC = (): JSX.Element => {
                     Select up to 3 Serums
                 </Typography>
                 <Typography width={{ xs: '100%', sm: '85%', md: '70%' }}>
-                    Select up to 3 Serums of your choice (the order in which Serums are selected does not affect the
-                    final outcome) or continue with just your NF3 Basketball.{' '}
-                    <b>Each Serum guarantees one trait, with a possibility of two.</b>
+                    <b>Note:</b> Every serum selected guarantees your avatar will have one trait from the serum type
+                    selected, with a possibility of two traits.
                 </Typography>
             </Stack>
             <Stack spacing={2}>

@@ -10,7 +10,13 @@ type ComponentProps = {
 const SelectBasketball: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     return (
         <Stack spacing={4}>
-            <Typography fontSize={48} fontWeight={700}>
+            <Typography
+                fontSize={48}
+                fontWeight={800}
+                lineHeight={1}
+                textTransform="uppercase"
+                className="neueplak_condensed"
+            >
                 Select a Basketball
             </Typography>
             <Stack

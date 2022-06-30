@@ -19,15 +19,18 @@ const SelectSerum: React.FC<ComponentProps> = ({ data }): JSX.Element => {
     return (
         <Stack spacing={3}>
             <Stack spacing={2}>
-                <Typography fontSize={48} fontWeight={700}>
+                <Typography
+                    fontSize={48}
+                    fontWeight={800}
+                    lineHeight={1}
+                    textTransform="uppercase"
+                    className="neueplak_condensed"
+                >
                     Select up to 3 Serums
                 </Typography>
-                <Typography fontSize={16} fontWeight={500} width={480}>
-                    <Typography fontSize={16} fontWeight={700} display="inline">
-                        Note:
-                    </Typography>{' '}
-                    Every Serum selected guarentees you 2 traits of the Serum Type you select. So if you select 3
-                    serums, you get 6 traits.
+                <Typography fontSize={16} fontWeight={500}>
+                    <b>Note:</b> Every serum selected guarantees your avatar will have one trait from the serum type
+                    selected, with a possibility of two traits.
                 </Typography>
             </Stack>
             <Stack spacing={2}>

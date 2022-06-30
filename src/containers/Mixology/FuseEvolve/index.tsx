@@ -19,12 +19,18 @@ const FuseEvolve: React.FC = (): JSX.Element => {
     return (
         <Stack spacing={3}>
             <Stack spacing={2}>
-                <Typography fontSize={48} fontWeight={700}>
-                    Fuse to Evolve
+                <Typography
+                    fontSize={48}
+                    fontWeight={800}
+                    lineHeight={1}
+                    textTransform="uppercase"
+                    className="neueplak_condensed"
+                >
+                    FUSE TO MUTATE
                 </Typography>
-                <Typography fontSize={16} fontWeight={500} width={{ xs: '100%', md: 480 }}>
-                    Make sure you have selected the correct components.{' '}
-                    <b>Once you fuse, you cannot unfuse your Mutant Basketball.</b>
+                <Typography fontSize={16} fontWeight={500}>
+                    Make sure you have selected the correct NF3 basketball and up to 3 serums.{' '}
+                    <b>Once you fuse, you cannot unfuse your Basketball Headz Avatar.</b>
                 </Typography>
             </Stack>
             <Stack

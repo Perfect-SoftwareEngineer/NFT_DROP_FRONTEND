@@ -239,8 +239,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             </Stack>
                         </Stack>
                         <Typography marginTop={4}>
-                            Select 1 Basketball and 3 Serums to create a new NFT. The fiinal product will look different
-                            depending on selected items.
+                            Select 1 NF3 basketball and up to 3 serums to create your unique avatar.
                         </Typography>
                         <Grid container marginTop={5} columnSpacing={8} rowGap={4}>
                             <Grid item xs={12} md={4} sx={{ overflowY: 'hidden', overflowX: 'auto' }}>

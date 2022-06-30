@@ -9,9 +9,9 @@ type ComponentProps = {
 };
 
 const stepsList = [
-    { img: '/assets/mixology/basketball.png', title: 'Select a Basketball' },
+    { img: '/assets/mixology/basketball.png', title: 'Select an NF3 Basketball' },
     { img: '/assets/mixology/serum.png', title: 'Select up to 3 Serums' },
-    { img: '/assets/mixology/mutant.png', title: 'Fuse to Evolve' },
+    { img: '/assets/mixology/mutant.png', title: 'Fuse to Mutate' },
 ];
 
 const StepBox: React.FC<ComponentProps> = ({ step }): JSX.Element => {

@@ -13,11 +13,11 @@ const steps = [
         step_title: 'Select an NF3 Basketball',
         url: '/assets/mixology/howitworks/step1.mp4',
         isImg: false,
-        title: 'SELECT AN NF3 BASKETBALL',
+        title: 'STEP 1: SELECT AN NF3 BASKETBALL',
         desc: (
             <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
-                The first step in creating your Basketball Headz avatar is selecting your NF3 Basketball. The NF3
-                Basketball does not hold any community traits, but it can still produce an avatar without any serums.
+                The NF3 basketball does not hold any community traits, but it can still produce an avatar without any
+                serums.
                 <br />
                 <br />
                 <br />
@@ -33,19 +33,19 @@ const steps = [
         step_title: 'Choose up to 3 Serums',
         url: '/assets/mixology/howitworks/step2.gif',
         isImg: true,
-        title: 'SELECT UP TO 3 SERUMS',
+        title: 'STEP 2: SELECT UP TO 3 SERUMS',
         desc: (
             <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
-                If you own Community Serums, select up to 3 types of your choice (the order in which Serums are selected
-                does not affect the final outcome). Each Serum guarantees one trait, with a possibility of two.
+                Choose up to 3 community serums to apply to your avatar - the order of Serum selection does not impact
+                final outcome. Each Serum guarantees one trait, with a possibility of two.
                 <br />
                 <br />
-                If you do not own any Serums, you can continue to the next step. Serums are not required. But if you
-                want to customize your Avatar, you can purchase the Serums through{' '}
+                If you do not own any serums, you can purchase through{' '}
                 <a href="https://opensea.io/" target="_blank" style={{ color: '#FFCA21' }}>
                     Opensea
-                </a>
-                .
+                </a>{' '}
+                to customize your avatar. You can also proceeds to the next step and build your avatar without Serums,
+                as they are not required.
             </Typography>
         ),
     },
@@ -53,11 +53,11 @@ const steps = [
         step_title: 'Fuse',
         url: '/assets/mixology/howitworks/step3.png',
         isImg: true,
-        title: 'FUSE',
+        title: 'STEP 3: FUSE',
         desc: (
             <Typography fontSize={20} fontWeight={600} lineHeight={1.2}>
-                In the final step, we display all selected NFTs. Please make sure you have chosen the correct ones.
-                Fusing is an irreversible action, and the action will burn your selected NFTs, so make sure to
+                Make sure you have selected the NF3 Basketball and community partner serums that you would like to apply
+                to your avatar. Fusing is an irreversible action that will burn your selected NFTs, so be sure to
                 double-check.
                 <br />
                 <br />
@@ -100,7 +100,7 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                         lineHeight={1}
                         className="neueplak_condensed"
                     >
-                        CREATING A BASKETBALL HEADZ AVATAR
+                        CREATE YOUR BASKETBALL HEADZ AVATAR
                     </Typography>
                     <Typography
                         fontSize={{ xs: 72, md: 128 }}
@@ -112,7 +112,8 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                         HOW IT WORKS
                     </Typography>
                     <Typography fontSize={20} fontWeight={600} lineHeight={1} marginTop={6}>
-                        Combine your NF3 Basketball with up to 3 Serums to determine how your avatar is made
+                        Combine your NF3 Basketball with up to three Serums to unlock your custom avatar's unique
+                        traits.
                     </Typography>
                     <Stack width="80%" direction="row" alignItems="center" spacing={2} marginTop={8}>
                         {steps.map((step, index) => (

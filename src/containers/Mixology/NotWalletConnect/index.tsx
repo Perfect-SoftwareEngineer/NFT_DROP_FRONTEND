@@ -62,9 +62,8 @@ const NotWalletConnect: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                             lineHeight={1.2}
                             marginTop={{ xs: 4, md: 6 }}
                         >
-                            Bringing together the NF3 and traits from our community partners, serums from each partner
-                            will be available for purchase from our store. Mix them together in our high-tech lab and
-                            prepare to unlock your unique and generative Basketball Headz avatar.
+                            Mix your NF3 Basketball and up to three community partner Serums together in our high-tech
+                            lab and prepare to unlock your unique, generative Basketball Headz avatar.
                         </Typography>
                         <ConnectWalletBtn sx={{ marginTop: 6 }} onClick={() => connect(activate)}>
                             <Image src="/assets/wallet/metamask.png" width={56} height={56} />
