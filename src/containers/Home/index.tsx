@@ -14,6 +14,7 @@ import {
     PartnerLogoListBox,
     PartnerLogoBox,
     HowItWorksBox,
+    MixologyRoomBtn,
 } from './style';
 import Link from 'next/link';
 import roadmapLists from '../../constants/roadmapData';
@@ -454,10 +455,10 @@ const HomePageContainer: React.FC = (): JSX.Element => {
                                 Once you have an NF3 Basketball, you can use up to three distinct Serums from our
                                 community partners - CyberKongz, HAPE, Chibi Dinos, and Smilesss. Come to mutate the NF3
                                 in our Lab.
-                                <br></br>
-                                <br></br>
-                                COMING SOON
                             </Typography>
+                            <Link href="/mixology" passHref>
+                                <MixologyRoomBtn sx={{ marginTop: 5 }}>Mixology Room</MixologyRoomBtn>
+                            </Link>
                         </Stack>
                     </Container>
                 </Stack>

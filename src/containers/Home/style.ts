@@ -113,3 +113,16 @@ export const HowItWorksBox = styled(Stack)<{ show: boolean }>`
     transition: width 500ms;
     overflow: hidden;
 `;
+
+export const MixologyRoomBtn = styled(Button)`
+    width: fit-content;
+    height: 38px;
+    padding: 0 16px;
+    background: #ffca21;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    &:hover {
+        background: #ffca21;
+    }
+`;
