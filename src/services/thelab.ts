@@ -1,5 +1,15 @@
 import axios from 'axios';
 
+export const getBasketballHeadzInfo = async (data: any) => {
+    let uri = data['uri'];
+    const response: any = await axios({
+        method: 'GET',
+        url: uri,
+    });
+
+    return { title: response.data.name, count: parseInt(data.quantity), image: response.data.image };
+};
+
 export const getBasketballInfo = async (data: any[]) => {
     let obj = data.find((item) => item['platform'] === 'Basketball');
     if (obj === undefined || obj === null) return { count: 0, image: '' };

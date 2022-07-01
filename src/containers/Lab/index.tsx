@@ -5,6 +5,7 @@ import CounterBox from '../../components/CounterBox';
 import { ConnectWalletBtn, CategoryBtn } from './styles';
 import { useAppContext } from '../../context/AppContext';
 import MutantBox from '../../components/MutantBox';
+import BasketballHeadzBox from '../../components/TheLab/BasketballHeadzBox';
 import BasketballBox from '../../components/TheLab/BasketballBox';
 import SerumBox from '../../components/TheLab/SerumBox';
 import GCFBox from '../../components/TheLab/GCFBox';
@@ -19,6 +20,7 @@ import { getLocker } from '../../services/api/thelab';
 import gcfTokenData from '../../constants/gcfTokenData';
 import metaverseShoesTokenData from '../../constants/metaverseShoesTokenData';
 import {
+    BasketballHeadzTokenInfoType,
     BasketballTokenInfoType,
     SerumTokenInfoType,
     GCFTokenInfoType,
@@ -29,6 +31,7 @@ import Image from 'next/image';
 import { connect } from '../../web3/connect';
 import Link from 'next/link';
 import {
+    getBasketballHeadzInfo,
     getBasketballInfo,
     getSerumTokenCount,
     getGCFTokenCount,
@@ -38,13 +41,21 @@ import {
 
 export enum Categories {
     ALL,
+    BASKETBALL_HEADZ,
     NF3_BASKETBALLS,
     SERUMS,
     GCF,
     METAVERSE_SHOES,
 }
 
-const categoryButtonsList = ['ALL', 'NF3 BASKETBALLS', 'SERUMS', 'GENESIS CURRY FLOW', 'METAVERSE SHOES'];
+const categoryButtonsList = [
+    'ALL',
+    'BASKETBALL HEADZ',
+    'NF3 BASKETBALLS',
+    'SERUMS',
+    'GENESIS CURRY FLOW',
+    'METAVERSE SHOES',
+];
 
 const LabPageContainer: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
@@ -56,6 +67,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [category, setCategory] = useState<Categories>(Categories.ALL);
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
+
+    const [basketballHeadzToken, setBasketballHeadzToken] = useState<BasketballHeadzTokenInfoType[]>([]);
 
     const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
 
@@ -124,9 +137,19 @@ const LabPageContainer: React.FC = (): JSX.Element => {
 
     React.useEffect(() => {
         async function getTokensData() {
-            let basketballInfo = await getBasketballInfo(ownedNFTTokensList);
+            //get basketballheadz tokens info
+            let basketballHeadzList: BasketballHeadzTokenInfoType[] = [];
+            for (let i = 0; i < ownedNFTTokensList.length; i++) {
+                if (ownedNFTTokensList[i].platform === 'Basketballhead') {
+                    let item = await getBasketballHeadzInfo(ownedNFTTokensList[i]);
+                    basketballHeadzList.push(item);
+                }
+            }
+            setBasketballHeadzToken(basketballHeadzList);
+            // console.log('basketballHeadzList:', basketballHeadzList);
 
             // get basketball tokens info
+            let basketballInfo = await getBasketballInfo(ownedNFTTokensList);
             let newBasketballToken = { ...basketballToken, count: basketballInfo.count, image: basketballInfo.image };
             setBasketballToken(newBasketballToken);
 
@@ -202,7 +225,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </CategoryBtn>
                             ))}
                         </Stack>
-                        {basketballToken.count +
+                        {basketballHeadzToken.length +
+                            basketballToken.count +
                             totalSerumTokensCount +
                             totalGCFTokensCount +
                             totalMetaverseTokensCount ===
@@ -224,6 +248,25 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                 </Typography>
                             </Stack>
                         )}
+                        {(category === Categories.ALL || category === Categories.BASKETBALL_HEADZ) &&
+                            basketballHeadzToken.length > 0 && (
+                                <Stack spacing={3}>
+                                    <Typography fontSize={32} fontWeight={700} color="white">
+                                        Basketball Headz
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        flexWrap="wrap"
+                                        justifyContent={{ xs: 'center', sm: 'flex-start' }}
+                                        columnGap={4}
+                                        rowGap={4}
+                                    >
+                                        {basketballHeadzToken.map((item, index) => (
+                                            <BasketballHeadzBox item={item} key={`basketballheadz_box_${index}`} />
+                                        ))}
+                                    </Stack>
+                                </Stack>
+                            )}
                         {(category === Categories.ALL || category === Categories.NF3_BASKETBALLS) &&
                             basketballToken.count > 0 && (
                                 <Stack spacing={3}>

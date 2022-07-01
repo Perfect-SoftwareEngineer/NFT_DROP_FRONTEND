@@ -16,6 +16,12 @@ export type MutantItemType = {
     desc: string;
 };
 
+export type BasketballHeadzTokenInfoType = {
+    title: string;
+    count: number;
+    image: string;
+};
+
 export type BasketballTokenInfoType = {
     title: string;
     count: number;
