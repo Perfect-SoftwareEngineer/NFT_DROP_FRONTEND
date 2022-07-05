@@ -48,6 +48,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
     const [balanceLoadedFromBE, setBalanceLoadedFromBE] = useState<boolean>(false);
 
+    const [basketballApproving, setBasketballApproving] = useState<boolean>(false);
+    const [serumApproving, setSerumApproving] = useState<boolean>(false);
+
     const [fuseState, setFuseState] = useState<FuseStatus>(FuseStatus.INIT);
 
     const [showFuseConfirmDlg, setShowFuseConfirmDlg] = useState<boolean>(false);
@@ -140,6 +143,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
     }, [ownedNFTTokensList]);
 
     const onSelectBasketballNext = async () => {
+        setBasketballApproving(true);
+
         const basketballContract = new library.eth.Contract(
             BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
@@ -161,10 +166,14 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 .setApprovalForAll(basketballHeadContractAddress, true)
                 .send({ from: account });
 
+        setBasketballApproving(false);
+
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
 
     const onSelectSerumNext = async () => {
+        setSerumApproving(true);
+
         const serumContract = new library.eth.Contract(
             SerumABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
@@ -183,6 +192,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
         if (!IsSerumApproved)
             await serumContract.methods.setApprovalForAll(basketballHeadContractAddress, true).send({ from: account });
+
+        setSerumApproving(false);
 
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
@@ -328,7 +339,14 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
             </Dialog>
             <WaitingDlg
-                open={!!account && (!balanceLoadedFromSC || !balanceLoadedFromBE || fuseState === FuseStatus.IN_FUSE)}
+                open={
+                    !!account &&
+                    (!balanceLoadedFromSC ||
+                        !balanceLoadedFromBE ||
+                        basketballApproving ||
+                        serumApproving ||
+                        fuseState === FuseStatus.IN_FUSE)
+                }
             />
         </>
     );
