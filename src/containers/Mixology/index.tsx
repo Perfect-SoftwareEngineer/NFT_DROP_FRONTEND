@@ -132,11 +132,53 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
-    const onSelectBasketballNext = () => {
+    const onSelectBasketballNext = async() => {
+        const basketballContract = new library.eth.Contract(
+            BasketballABI,
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
+        );
+
+        const basketballHeadContractAddress =
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS;
+
+        let IsBasketballApproved = await basketballContract.methods
+            .isApprovedForAll(account, basketballHeadContractAddress)
+            .call({ from: account });
+
+        if (!IsBasketballApproved)
+            await basketballContract.methods
+                .setApprovalForAll(basketballHeadContractAddress, true)
+                .send({ from: account });
+
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
 
-    const onSelectSerumNext = () => {
+    const onSelectSerumNext = async() => {
+        const serumContract = new library.eth.Contract(
+            SerumABI,
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
+        );
+
+        const basketballHeadContractAddress =
+            process.env.NEXT_PUBLIC_ENV == 'production'
+                ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
+                : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS;
+
+        let IsSerumApproved = await serumContract.methods
+            .isApprovedForAll(account, basketballHeadContractAddress)
+            .call({ from: account });
+
+        if (!IsSerumApproved)
+            await serumContract.methods
+                .setApprovalForAll(basketballHeadContractAddress, true)
+                .send({ from: account });
+
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
 
@@ -147,49 +189,12 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
             // console.log(appState.selectedSerumId, appState.selectedSerumId.length);
 
-            const basketballContract = new library.eth.Contract(
-                BasketballABI,
-                process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALL_CONTRACT_ADDRESS
-                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALL_CONTRACT_ADDRESS
-            );
-
-            const serumContract = new library.eth.Contract(
-                SerumABI,
-                process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? process.env.NEXT_PUBLIC_MAINNET_SERUM_CONTRACT_ADDRESS
-                    : process.env.NEXT_PUBLIC_TESTNET_SERUM_CONTRACT_ADDRESS
-            );
-
             const basketballHeadContract = new library.eth.Contract(
                 BasketballHeadABI,
                 process.env.NEXT_PUBLIC_ENV == 'production'
                     ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
                     : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS
             );
-
-            const basketballHeadContractAddress =
-                process.env.NEXT_PUBLIC_ENV == 'production'
-                    ? process.env.NEXT_PUBLIC_MAINNET_BASKETBALLHEAD_CONTRACT_ADDRESS
-                    : process.env.NEXT_PUBLIC_TESTNET_BASKETBALLHEAD_CONTRACT_ADDRESS;
-
-            let IsBasketballApproved = await basketballContract.methods
-                .isApprovedForAll(account, basketballHeadContractAddress)
-                .call({ from: account });
-
-            if (!IsBasketballApproved)
-                await basketballContract.methods
-                    .setApprovalForAll(basketballHeadContractAddress, true)
-                    .send({ from: account });
-
-            let IsSerumApproved = await serumContract.methods
-                .isApprovedForAll(account, basketballHeadContractAddress)
-                .call({ from: account });
-
-            if (!IsSerumApproved)
-                await serumContract.methods
-                    .setApprovalForAll(basketballHeadContractAddress, true)
-                    .send({ from: account });
 
             // console.log(IsBasketballApproved, IsSerumApproved);
 
