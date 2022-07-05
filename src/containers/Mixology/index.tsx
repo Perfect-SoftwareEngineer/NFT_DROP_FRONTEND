@@ -25,6 +25,7 @@ import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { gen3DCreate } from '../../services/api/mixology';
 import { BigNumber } from '@ethersproject/bignumber';
 import FuseConfirmBox from '../../components/Mixology/FuseConfirmBox';
+import WaitingDlg from '../../components/WaitingDlg';
 
 enum FuseStatus {
     INIT,
@@ -132,7 +133,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
-    const onSelectBasketballNext = async() => {
+    const onSelectBasketballNext = async () => {
         const basketballContract = new library.eth.Contract(
             BasketballABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
@@ -157,7 +158,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
 
-    const onSelectSerumNext = async() => {
+    const onSelectSerumNext = async () => {
         const serumContract = new library.eth.Contract(
             SerumABI,
             process.env.NEXT_PUBLIC_ENV == 'production'
@@ -175,9 +176,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             .call({ from: account });
 
         if (!IsSerumApproved)
-            await serumContract.methods
-                .setApprovalForAll(basketballHeadContractAddress, true)
-                .send({ from: account });
+            await serumContract.methods.setApprovalForAll(basketballHeadContractAddress, true).send({ from: account });
 
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
@@ -309,19 +308,6 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 </Stack>
             )}
             <Dialog
-                open={fuseState === FuseStatus.IN_FUSE}
-                maxWidth="lg"
-                PaperProps={{
-                    sx: {
-                        padding: 4,
-                        background: 'none',
-                        boxShadow: 'none',
-                    },
-                }}
-            >
-                <CircularProgress />
-            </Dialog>
-            <Dialog
                 open={showFuseConfirmDlg}
                 onClose={() => setShowFuseConfirmDlg(false)}
                 maxWidth="lg"
@@ -335,6 +321,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             >
                 <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
             </Dialog>
+            <WaitingDlg open={fuseState === FuseStatus.IN_FUSE} />
         </>
     );
 };
