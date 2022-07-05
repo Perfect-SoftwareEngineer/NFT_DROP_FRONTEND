@@ -40,11 +40,13 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
     const [basketballBalance, setBasketballBalance] = useState<number>(0);
     const [serumBalance, setSerumBalance] = useState<number>(0);
+    const [balanceLoadedFromSC, setBalanceLoadedFromSC] = useState<boolean>(false);
 
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
     const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
     const [serumTokensList, setSerumTokensList] = useState<SerumTokenInfoType[]>(serumTokenInfoData);
     const [totalSerumTokensCount, setTotalSerumTokensCount] = useState<number>(0);
+    const [balanceLoadedFromBE, setBalanceLoadedFromBE] = useState<boolean>(false);
 
     const [fuseState, setFuseState] = useState<FuseStatus>(FuseStatus.INIT);
 
@@ -85,6 +87,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 balance2 = balance2 + parseInt(temp);
             }
             setSerumBalance(balance2);
+
+            setBalanceLoadedFromSC(true);
         }
 
         if (account) {
@@ -128,6 +132,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
             let totalSerumTokenCnt = newSerumTokenList.reduce((prev, cur) => prev + cur.count, 0);
             setTotalSerumTokensCount(totalSerumTokenCnt);
+
+            setBalanceLoadedFromBE(true);
         }
 
         getTokensData();
@@ -321,7 +327,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             >
                 <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
             </Dialog>
-            <WaitingDlg open={fuseState === FuseStatus.IN_FUSE} />
+            <WaitingDlg
+                open={!!account && (!balanceLoadedFromSC || !balanceLoadedFromBE || fuseState === FuseStatus.IN_FUSE)}
+            />
         </>
     );
 };
