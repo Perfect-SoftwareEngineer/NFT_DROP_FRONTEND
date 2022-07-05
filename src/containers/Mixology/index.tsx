@@ -132,6 +132,14 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
+    const onSelectBasketballNext = () => {
+        setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
+    };
+
+    const onSelectSerumNext = () => {
+        setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
+    };
+
     const fuseEvolve = async () => {
         if (account) {
             setFuseState(FuseStatus.IN_FUSE);
@@ -284,7 +292,11 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                             </Grid>
                         </Grid>
                     </Container>
-                    <MixologyNavBar fuseEvolve={() => setShowFuseConfirmDlg(true)} />
+                    <MixologyNavBar
+                        onSelectBasketballNext={onSelectBasketballNext}
+                        onSelectSerumNext={onSelectSerumNext}
+                        onFuseEvolve={() => setShowFuseConfirmDlg(true)}
+                    />
                 </>
             ) : (
                 <Stack height="calc(100vh - 222px)" justifyContent="center">

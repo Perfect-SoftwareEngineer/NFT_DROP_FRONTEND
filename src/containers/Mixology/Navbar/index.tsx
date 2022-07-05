@@ -4,10 +4,16 @@ import { BackBtn, NextBtn } from './styles';
 import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
-    fuseEvolve: () => void;
+    onSelectBasketballNext: () => void;
+    onSelectSerumNext: () => void;
+    onFuseEvolve: () => void;
 };
 
-const MixologyNavBar: React.FC<ComponentProps> = ({ fuseEvolve }): JSX.Element => {
+const MixologyNavBar: React.FC<ComponentProps> = ({
+    onSelectBasketballNext,
+    onSelectSerumNext,
+    onFuseEvolve,
+}): JSX.Element => {
     const [appState, setAppState] = useAppContext();
 
     let curStep = appState.mixologyCurStep;
@@ -20,10 +26,12 @@ const MixologyNavBar: React.FC<ComponentProps> = ({ fuseEvolve }): JSX.Element =
     };
 
     const onNext = () => {
-        if (curStep === 2) {
-            fuseEvolve();
-        } else {
-            setAppState({ ...appState, mixologyCurStep: curStep + 1 });
+        if (curStep === 0) {
+            onSelectBasketballNext();
+        } else if (curStep === 1) {
+            onSelectSerumNext();
+        } else if (curStep === 2) {
+            onFuseEvolve();
         }
     };
 
