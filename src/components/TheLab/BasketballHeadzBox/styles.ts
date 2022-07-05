@@ -1,6 +1,7 @@
 import { styled, Stack, Button } from '@mui/material';
 
 export const Container = styled(Stack)<{ selected?: boolean; selectable?: boolean }>`
+    position: relative;
     padding: 16px;
     background: #1b1c22;
     border-radius: 8px;
@@ -10,4 +11,11 @@ export const Container = styled(Stack)<{ selected?: boolean; selectable?: boolea
     .img {
         border-radius: 8px;
     }
+`;
+
+export const MenuBtn = styled(Button)`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: white;
 `;

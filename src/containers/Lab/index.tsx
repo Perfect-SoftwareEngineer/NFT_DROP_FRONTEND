@@ -71,6 +71,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const [ownedNFTTokensList, setOwnedNFTTokensList] = useState<any[]>([]);
 
     const [basketballHeadzToken, setBasketballHeadzToken] = useState<BasketballHeadzTokenInfoType[]>([]);
+    const [selectedBasketballHeadzTokenId, setSelectedBasketballHeadzTokenId] = useState<string>('');
 
     const [basketballToken, setBasketballToken] = useState<BasketballTokenInfoType>(basketballTokenData);
 
@@ -152,7 +153,6 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                 }
             }
             setBasketballHeadzToken(basketballHeadzList);
-            // console.log('basketballHeadzList:', basketballHeadzList);
 
             // get basketball tokens info
             let basketballInfo = await getBasketballInfo(ownedNFTTokensList);
@@ -271,7 +271,14 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                             rowGap={4}
                                         >
                                             {basketballHeadzToken.map((item, index) => (
-                                                <BasketballHeadzBox item={item} key={`basketballheadz_box_${index}`} />
+                                                <BasketballHeadzBox
+                                                    item={item}
+                                                    selectedBasketballHeadzTokenId={selectedBasketballHeadzTokenId}
+                                                    setSelectedBasketballHeadzTokenId={
+                                                        setSelectedBasketballHeadzTokenId
+                                                    }
+                                                    key={`basketballheadz_box_${index}`}
+                                                />
                                             ))}
                                         </Stack>
                                     </Stack>

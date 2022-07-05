@@ -7,7 +7,12 @@ export const getBasketballHeadzInfo = async (data: any) => {
         url: uri,
     });
 
-    return { title: response.data.name, count: parseInt(data.quantity), image: response.data.image };
+    return {
+        tokenId: data.tokenId,
+        title: response.data.name,
+        count: parseInt(data.quantity),
+        image: response.data.image,
+    };
 };
 
 export const getBasketballInfo = async (data: any[]) => {

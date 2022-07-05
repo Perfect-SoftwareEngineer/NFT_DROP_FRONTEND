@@ -17,6 +17,7 @@ export type MutantItemType = {
 };
 
 export type BasketballHeadzTokenInfoType = {
+    tokenId: string;
     title: string;
     count: number;
     image: string;
