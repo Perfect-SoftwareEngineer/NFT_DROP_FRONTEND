@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export const getBasketballHeadzInfo = async (data: any) => {
-    let uri = data['uri'];
+    // let uri = data['uri'];
+    let uri = `https://staging.backend.lunamarket.io/api/metadata/basketballhead/get/${data.tokenId}`;
+
     if (!!uri) {
         const response: any = await axios({
             method: 'GET',
