@@ -4,19 +4,23 @@ import { Container } from './styles';
 import { BasketballTokenInfoType } from '../../../types';
 
 type ComponentProps = {
-    data: BasketballTokenInfoType;
+    item: BasketballTokenInfoType;
 };
 
-const BasketballBox: React.FC<ComponentProps> = ({ data }): JSX.Element => {
+const BasketballBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
     return (
-        <Container spacing={2}>
-            <img src={data.image} width={166} height={166} alt="" className="basketball_img" />
+        <Container
+            selectable
+            spacing={2}
+            onClick={() => window.open('https://opensea.io/collection/nf3-basketball', '_blank', 'noopener,noreferrer')}
+        >
+            <img src={item.image} width={166} height={166} alt="" className="basketball_img" />
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
-                    {data.title}
+                    {item.title}
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#979797">
-                    {data.count}
+                    {item.count}
                 </Typography>
             </Stack>
         </Container>

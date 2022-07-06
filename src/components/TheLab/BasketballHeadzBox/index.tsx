@@ -68,7 +68,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                 >
                     <Link href="https://opensea.io/collection/basketball-headz-serums" passHref>
                         <a target="_blank" rel="noopener noreferrer">
-                            <MenuBtn>
+                            <MenuBtn sx={{ width: '100%' }}>
                                 <Icon icon="ic:baseline-discord" fontSize={24} />
                                 <Typography fontSize={14} fontWeight={600} marginLeft={1} padding="0 0 4px">
                                     OpenSea

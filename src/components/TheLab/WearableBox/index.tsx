@@ -5,25 +5,25 @@ import { MetaverseShoesTokenInfoType } from '../../../types';
 import ModelViewer from '../../ModelViewer';
 
 type ComponentProps = {
-    data: MetaverseShoesTokenInfoType;
+    item: MetaverseShoesTokenInfoType;
 };
 
-const WearableBox: React.FC<ComponentProps> = ({ data }): JSX.Element => {
+const WearableBox: React.FC<ComponentProps> = ({ item }): JSX.Element => {
     return (
-        <Container spacing={2}>
+        <Container selectable spacing={2} onClick={() => window.open(item.url, '_blank', 'noopener,noreferrer')}>
             <Stack width={166} height={166} justifyContent="center" alignItems="center">
-                {data.image.endsWith('.gltf') ? (
-                    <ModelViewer src={data.image} />
+                {item.image.endsWith('.gltf') ? (
+                    <ModelViewer src={item.image} />
                 ) : (
-                    <img src={data.image} width={166} height={166} alt="" className="wearable_img" />
+                    <img src={item.image} width={166} height={166} alt="" className="wearable_img" />
                 )}
             </Stack>
             <Stack width={166} spacing={1}>
                 <Typography fontSize={16} fontWeight={700} lineHeight={1.1}>
-                    {data.title}
+                    {item.title}
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#979797">
-                    {data.count}
+                    {item.count}
                 </Typography>
             </Stack>
         </Container>

@@ -296,7 +296,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                             columnGap={4}
                                             rowGap={4}
                                         >
-                                            <BasketballBox data={basketballToken} />
+                                            <BasketballBox item={basketballToken} />
                                         </Stack>
                                     </Stack>
                                 )}
@@ -336,7 +336,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                         rowGap={4}
                                     >
                                         {gcfTokensList.map((item, index) => {
-                                            return item.count > 0 && <GCFBox data={item} key={`gcf_box_${index}`} />;
+                                            return item.count > 0 && <GCFBox item={item} key={`gcf_box_${index}`} />;
                                         })}
                                     </Stack>
                                 </Stack>
@@ -357,7 +357,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                             {metaverseShoesTokenList.map((item, index) => {
                                                 return (
                                                     item.count > 0 && (
-                                                        <WearableBox data={item} key={`wearable_box_${index}`} />
+                                                        <WearableBox item={item} key={`wearable_box_${index}`} />
                                                     )
                                                 );
                                             })}

@@ -48,6 +48,7 @@ export type MetaverseShoesTokenInfoType = {
     platform: string;
     image: string;
     count: number;
+    url: string;
 };
 
 export type WearableItemType = {
