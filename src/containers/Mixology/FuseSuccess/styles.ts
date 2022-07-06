@@ -1,4 +1,4 @@
-import { styled, Stack, Button } from '@mui/material';
+import { styled, Stack, Button, TextField } from '@mui/material';
 
 export const MutantImgBox = styled(Stack)`
     padding: 32px;
@@ -30,4 +30,31 @@ export const BackToMixRoom = styled(Button)`
     font-weight: 600;
     color: #ffca21;
     border: 1px solid #ffca21;
+`;
+
+export const EmailTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+        height: 40,
+        border: '1px solid #979797',
+        '& input': {
+            color: 'white',
+            paddingTop: 0,
+            paddingBottom: 2,
+        },
+        '& fieldset': {
+            borderWidth: 0,
+        },
+        '&.Mui-focused fieldset': {
+            borderWidth: 0,
+        },
+    },
+});
+
+export const SubmitBtn = styled(Button)`
+    height: 40px;
+    padding: 6px 16px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #ffca21;
+    color: black;
 `;

@@ -320,7 +320,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                     />
                 </>
             ) : (
-                <Stack height="calc(100vh - 222px)" justifyContent="center">
+                <Stack height="calc(100vh - 72px)">
                     <FuseSuccess />
                 </Stack>
             )}
