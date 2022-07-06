@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Box, Typography } from '@mui/material';
 import { Container } from './styles';
 import { BasketballHeadzTokenInfoType } from '../../../types';
 import { Icon } from '@iconify/react';
@@ -53,7 +53,9 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
             selected={selectedBasketballHeadzTokenId === item.tokenId}
             onClick={onClickItem}
         >
-            <img src={item.image} width={166} height={210} alt="" className="img" />
+            <Box width={166} height={210}>
+                {item.image && <img src={item.image} width="100%" height="100%" alt="" className="img" />}
+            </Box>
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
                     {item.title}

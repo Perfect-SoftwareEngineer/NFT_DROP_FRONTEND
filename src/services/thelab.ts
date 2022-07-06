@@ -2,17 +2,26 @@ import axios from 'axios';
 
 export const getBasketballHeadzInfo = async (data: any) => {
     let uri = data['uri'];
-    const response: any = await axios({
-        method: 'GET',
-        url: uri,
-    });
+    if (!!uri) {
+        const response: any = await axios({
+            method: 'GET',
+            url: uri,
+        });
 
-    return {
-        tokenId: data.tokenId,
-        title: response.data.name,
-        count: parseInt(data.quantity),
-        image: response.data.image,
-    };
+        return {
+            tokenId: data.tokenId,
+            title: response.data.name,
+            count: parseInt(data.quantity),
+            image: response.data.image,
+        };
+    } else {
+        return {
+            tokenId: data.tokenId,
+            title: 'Basketball Headz',
+            count: parseInt(data.quantity),
+            image: '',
+        };
+    }
 };
 
 export const getBasketballInfo = async (data: any[]) => {
