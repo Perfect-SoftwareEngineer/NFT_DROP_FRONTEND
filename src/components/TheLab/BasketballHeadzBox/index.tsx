@@ -50,7 +50,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
         let fileName = url.split('/').pop() || '';
 
         var s3 = new AWS.S3({ params: { Bucket: 'luna-bucket' } });
-        s3.getObject({ Bucket: 'luna-bucket', Key: `3d-avatar-dev/${fileName}` }, function(error: any, data: any) {
+        s3.getObject({ Bucket: 'luna-bucket', Key: `3d-avatar-dev/${fileName}` }, function (error: any, data: any) {
             if (error != null) {
                 console.log('Failed to retrieve an object: ' + error);
             } else {
