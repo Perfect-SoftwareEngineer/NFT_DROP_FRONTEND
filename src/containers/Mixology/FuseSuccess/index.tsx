@@ -13,7 +13,7 @@ enum RegisterStatus {
     INIT,
     INPROGRESS,
     SUCCESS,
-    FAILED,
+    FAILED
 }
 
 const FuseSuccess: React.FC = (): JSX.Element => {
@@ -32,7 +32,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
             mixologyCurStep: 0,
             selectedBasketball: false,
             selectedSerumCount: {},
-            selectedSerumId: [],
+            selectedSerumId: []
         });
     };
 
@@ -68,9 +68,9 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                 {/* <MutantImgBox marginTop={6}>
                     <Image src="/assets/nft-items/mutant.png" width={320} height={320} alt="" className="mutant_img" />
                 </MutantImgBox> */}
-                <Typography width={{ xs: '90%', md: '30%' }} textAlign="center" lineHeight={1.2}>
-                    Please wait up to 24 hours for your Basketball Headz to reveal. Go to the Lab to see all your Under
-                    Armour and Steph Curry goods!
+                <Typography width={{ xs: '90%', md: '40%' }} textAlign="center" lineHeight={1.2}>
+                    Avatar generation is done on a First-come-First Serve basis. Your avatar will be created anywhere
+                    within 48 hours. Go to the Lab to see all your Under Armour and Steph Curry goods!
                 </Typography>
                 <Stack direction="row" spacing={2}>
                     <Link href="/lab" passHref>

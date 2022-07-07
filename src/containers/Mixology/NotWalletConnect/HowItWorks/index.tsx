@@ -75,7 +75,7 @@ const steps = [
                 You have created a Basketball Headz Avatar!
                 <br />
                 <br />
-                You will not see your Basketball Headz Avatar immediately. Please wait up to 24 hours for the metadata
+                You will not see your Basketball Headz Avatar immediately. Please wait up to 48 hours for the metadata
                 to load.
             </Typography>
         ),
