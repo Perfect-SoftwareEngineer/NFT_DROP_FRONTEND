@@ -54,6 +54,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
     const [fuseState, setFuseState] = useState<FuseStatus>(FuseStatus.INIT);
 
+    const [nf3Approved, setNf3Approved] = useState<boolean>(false);
+    const [serumApproved, setSerumApproved] = useState<boolean>(false);
+
     const [showNF3OneTimeApproval, setShowNF3OneTimeApproval] = useState<boolean>(false);
     const [showSerumOneTimeApproval, setShowSerumOneTimeApproval] = useState<boolean>(false);
     const [showFuseConfirmDlg, setShowFuseConfirmDlg] = useState<boolean>(false);
@@ -95,6 +98,9 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             setSerumBalance(balance2);
 
             setBalanceLoadedFromSC(true);
+
+            setNf3Approved(JSON.parse(localStorage.getItem(`${account}_nf3_one_time_approved`)!));
+            setSerumApproved(JSON.parse(localStorage.getItem(`${account}_serum_one_time_approved`)!));
         }
 
         if (account) {
@@ -145,7 +151,15 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
-    const onSelectBasketballNext = async () => {
+    const onNF3Approve = () => {
+        localStorage.setItem(`${account}_nf3_one_time_approved`, JSON.stringify(true));
+        setNf3Approved(true);
+
+        setShowNF3OneTimeApproval(false);
+        onSelectNF3Basketball();
+    };
+
+    const onSelectNF3Basketball = async () => {
         setBasketballApproving(true);
 
         const basketballContract = new library.eth.Contract(
@@ -174,7 +188,15 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
         setAppState({ ...appState, mixologyCurStep: appState.mixologyCurStep + 1 });
     };
 
-    const onSelectSerumNext = async () => {
+    const onSerumApprove = () => {
+        localStorage.setItem(`${account}_serum_one_time_approved`, JSON.stringify(true));
+        setSerumApproved(true);
+
+        setShowSerumOneTimeApproval(false);
+        onSelectSerum();
+    };
+
+    const onSelectSerum = async () => {
         setSerumApproving(true);
 
         const serumContract = new library.eth.Contract(
@@ -317,8 +339,12 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                         </Grid>
                     </Container>
                     <MixologyNavBar
-                        onSelectBasketballNext={() => setShowNF3OneTimeApproval(true)}
-                        onSelectSerumNext={() => setShowSerumOneTimeApproval(true)}
+                        onSelectNF3BasketballNext={() => {
+                            nf3Approved ? onSelectNF3Basketball() : setShowNF3OneTimeApproval(true);
+                        }}
+                        onSelectSerumNext={() => {
+                            serumApproved ? onSelectSerum() : setShowSerumOneTimeApproval(true);
+                        }}
                         onFuseEvolve={() => setShowFuseConfirmDlg(true)}
                     />
                 </>
@@ -342,7 +368,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
             </Dialog>
             <Dialog
-                open={showNF3OneTimeApproval}
+                open={!nf3Approved && showNF3OneTimeApproval}
                 onClose={() => setShowNF3OneTimeApproval(false)}
                 maxWidth="lg"
                 PaperProps={{
@@ -355,15 +381,12 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             >
                 <OneTimeApprovalBox
                     type={0}
-                    onContinue={() => {
-                        setShowNF3OneTimeApproval(false);
-                        onSelectBasketballNext();
-                    }}
+                    onContinue={onNF3Approve}
                     onClose={() => setShowNF3OneTimeApproval(false)}
                 />
             </Dialog>
             <Dialog
-                open={showSerumOneTimeApproval}
+                open={!serumApproved && showSerumOneTimeApproval}
                 onClose={() => setShowSerumOneTimeApproval(false)}
                 maxWidth="lg"
                 PaperProps={{
@@ -376,10 +399,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             >
                 <OneTimeApprovalBox
                     type={1}
-                    onContinue={() => {
-                        setShowSerumOneTimeApproval(false);
-                        onSelectSerumNext();
-                    }}
+                    onContinue={onSerumApprove}
                     onClose={() => setShowSerumOneTimeApproval(false)}
                 />
             </Dialog>

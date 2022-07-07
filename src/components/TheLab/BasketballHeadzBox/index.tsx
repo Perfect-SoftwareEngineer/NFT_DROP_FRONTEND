@@ -22,6 +22,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
     sx,
 }): JSX.Element => {
     const handleDownload = (url: string) => {
+        console.log('download image: ', url);
         var AWS = require('aws-sdk');
         AWS.config.update({
             accessKeyId: 'AKIATRYTS26Z4ZJK5DFK',
