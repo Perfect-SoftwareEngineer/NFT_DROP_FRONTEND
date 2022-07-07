@@ -25,6 +25,7 @@ import { serumTokenInfoData } from '../../constants/serumTokenData';
 import { gen3DCreate } from '../../services/api/mixology';
 import { BigNumber } from '@ethersproject/bignumber';
 import FuseConfirmBox from '../../components/Mixology/FuseConfirmBox';
+import OneTimeApprovalBox from '../../components/Mixology/OneTimeApprovalBox';
 import WaitingDlg from '../../components/WaitingDlg';
 
 enum FuseStatus {
@@ -53,6 +54,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
 
     const [fuseState, setFuseState] = useState<FuseStatus>(FuseStatus.INIT);
 
+    const [showNF3OneTimeApproval, setShowNF3OneTimeApproval] = useState<boolean>(false);
+    const [showSerumOneTimeApproval, setShowSerumOneTimeApproval] = useState<boolean>(false);
     const [showFuseConfirmDlg, setShowFuseConfirmDlg] = useState<boolean>(false);
 
     React.useEffect(() => {
@@ -314,8 +317,8 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                         </Grid>
                     </Container>
                     <MixologyNavBar
-                        onSelectBasketballNext={onSelectBasketballNext}
-                        onSelectSerumNext={onSelectSerumNext}
+                        onSelectBasketballNext={() => setShowNF3OneTimeApproval(true)}
+                        onSelectSerumNext={() => setShowSerumOneTimeApproval(true)}
                         onFuseEvolve={() => setShowFuseConfirmDlg(true)}
                     />
                 </>
@@ -337,6 +340,48 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 }}
             >
                 <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
+            </Dialog>
+            <Dialog
+                open={showNF3OneTimeApproval}
+                onClose={() => setShowNF3OneTimeApproval(false)}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: 8,
+                        background: 'none',
+                        boxShadow: 'none',
+                    },
+                }}
+            >
+                <OneTimeApprovalBox
+                    type={0}
+                    onContinue={() => {
+                        setShowNF3OneTimeApproval(false);
+                        onSelectBasketballNext();
+                    }}
+                    onClose={() => setShowNF3OneTimeApproval(false)}
+                />
+            </Dialog>
+            <Dialog
+                open={showSerumOneTimeApproval}
+                onClose={() => setShowSerumOneTimeApproval(false)}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: 8,
+                        background: 'none',
+                        boxShadow: 'none',
+                    },
+                }}
+            >
+                <OneTimeApprovalBox
+                    type={1}
+                    onContinue={() => {
+                        setShowSerumOneTimeApproval(false);
+                        onSelectSerumNext();
+                    }}
+                    onClose={() => setShowSerumOneTimeApproval(false)}
+                />
             </Dialog>
             <WaitingDlg
                 open={
