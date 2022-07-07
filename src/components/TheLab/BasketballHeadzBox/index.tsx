@@ -19,23 +19,46 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
     item,
     selectedBasketballHeadzTokenId,
     setSelectedBasketballHeadzTokenId,
-    sx,
+    sx
 }): JSX.Element => {
+    function downloadBlob(blob: any, name: string) {
+        // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
+        const blobUrl = URL.createObjectURL(blob);
+        // Create a link element
+        const link = document.createElement('a');
+        // Set link's href to point to the Blob URL
+        link.href = blobUrl;
+        link.setAttribute('download', name);
+
+        // Append link to the body
+        document.body.appendChild(link);
+        // Dispatch click event on the link
+        // This is necessary as link.click() does not work on the latest firefox
+        link.click();
+
+        // Remove link from body
+        document.body.removeChild(link);
+    }
     const handleDownload = (url: string) => {
         var AWS = require('aws-sdk');
         AWS.config.update({
-            accessKeyId: 'AKIATRYTS26Z4ZJK5DFK',
-            secretAccessKey: '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',
-            region: 'us-east-2',
+            accessKeyId: 'AKIATRYTS26ZZZTWY6O7',
+            secretAccessKey: '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',
+            region: 'us-east-1'
         });
-        let fileName = url.split('/').pop();
+        let fileName = url.split('/').pop() || '';
 
         var s3 = new AWS.S3({ params: { Bucket: 'luna-bucket' } });
-        s3.getObject({ Bucket: 'luna-bucket', Key: `3d-avatar-dev/${fileName}` }, function (error: any, data: any) {
+        s3.getObject({ Bucket: 'luna-bucket', Key: `3d-avatar-dev/${fileName}` }, function(error: any, data: any) {
             if (error != null) {
                 console.log('Failed to retrieve an object: ' + error);
             } else {
                 console.log('Loaded ' + data.ContentLength + ' bytes');
+                if (data.ContentLength) {
+                    const imageBlob = new Blob([data.Body]);
+                    downloadBlob(imageBlob, fileName);
+                }
+
                 // do something with data.Body
             }
         });
