@@ -21,6 +21,7 @@ export type BasketballHeadzTokenInfoType = {
     title: string;
     count: number;
     image: string;
+    animation: string;
 };
 
 export type BasketballTokenInfoType = {

@@ -6,17 +6,20 @@ import { Icon } from '@iconify/react';
 import { MenuBtn } from './styles';
 import Link from 'next/link';
 import AWS from 'aws-sdk';
+import { SxProps } from '@mui/system';
 
 type ComponentProps = {
     item: BasketballHeadzTokenInfoType;
     selectedBasketballHeadzTokenId: string;
     setSelectedBasketballHeadzTokenId: (value: string) => void;
+    sx?: SxProps;
 };
 
 const BasketballHeadzBox: React.FC<ComponentProps> = ({
     item,
     selectedBasketballHeadzTokenId,
     setSelectedBasketballHeadzTokenId,
+    sx,
 }): JSX.Element => {
     const handleDownload = (url: string) => {
         var AWS = require('aws-sdk');
@@ -52,13 +55,22 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
             selectable
             selected={selectedBasketballHeadzTokenId === item.tokenId}
             onClick={onClickItem}
+            sx={{ ...sx }}
         >
             <Box width={166} height={210}>
-                {item.image && <img src={item.image} width="100%" height="100%" alt="" className="img" />}
+                {(!!item.image || !!item.animation) && (
+                    <img
+                        src={!!item.image ? item.image : item.animation}
+                        width="100%"
+                        height="100%"
+                        alt=""
+                        className="img"
+                    />
+                )}
             </Box>
             <Stack spacing={1}>
                 <Typography fontSize={16} fontWeight={700}>
-                    {item.title}
+                    Basketball Headz
                 </Typography>
                 {/* <Typography fontSize={16} fontWeight={400} color="#979797">
                     {item.count}
@@ -74,16 +86,22 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                     borderRadius={2}
                     sx={{ background: '#1B1C22' }}
                 >
-                    <Link href="https://opensea.io/collection/basketball-headz-serums" passHref>
-                        <a target="_blank" rel="noopener noreferrer">
-                            <MenuBtn sx={{ width: '100%' }}>
-                                <Icon icon="ic:baseline-discord" fontSize={24} />
-                                <Typography fontSize={14} fontWeight={600} marginLeft={1} padding="0 0 4px">
-                                    OpenSea
-                                </Typography>
-                            </MenuBtn>
-                        </a>
-                    </Link>
+                    <MenuBtn
+                        onClick={() =>
+                            window.open(
+                                !!item.image
+                                    ? `https://testnets.opensea.io/assets/rinkeby/0x75893670f873fdee8bce2ef5399f6ba07b48fb21/${item.tokenId}`
+                                    : 'https://opensea.io/collection/basketball-headz-official',
+                                '_blank',
+                                'noopener,noreferrer'
+                            )
+                        }
+                    >
+                        <Icon icon="ic:baseline-discord" fontSize={24} />
+                        <Typography fontSize={14} fontWeight={600} marginLeft={1} padding="0 0 4px">
+                            OpenSea
+                        </Typography>
+                    </MenuBtn>
                     {/* <a href="" download={item.image}> */}
                     <MenuBtn onClick={() => handleDownload(item.image)}>
                         <Icon icon="ic:outline-file-download" fontSize={24} />

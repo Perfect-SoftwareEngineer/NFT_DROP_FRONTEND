@@ -15,6 +15,7 @@ export const getBasketballHeadzInfo = async (data: any) => {
             title: response.data.name,
             count: parseInt(data.quantity),
             image: response.data.image,
+            animation: response.data.animation_url,
         };
     } else {
         return {
@@ -22,6 +23,7 @@ export const getBasketballHeadzInfo = async (data: any) => {
             title: 'Basketball Headz',
             count: parseInt(data.quantity),
             image: '',
+            animation: '',
         };
     }
 };

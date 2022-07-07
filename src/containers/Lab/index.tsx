@@ -277,6 +277,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                                     setSelectedBasketballHeadzTokenId={
                                                         setSelectedBasketballHeadzTokenId
                                                     }
+                                                    sx={{ zIndex: basketballHeadzToken.length - index }}
                                                     key={`basketballheadz_box_${index}`}
                                                 />
                                             ))}
