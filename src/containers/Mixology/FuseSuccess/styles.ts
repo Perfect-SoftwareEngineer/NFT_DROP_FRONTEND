@@ -57,4 +57,7 @@ export const SubmitBtn = styled(Button)`
     font-weight: 600;
     background: #ffca21;
     color: black;
+    &:hover {
+        background: #ffca21;
+    }
 `;

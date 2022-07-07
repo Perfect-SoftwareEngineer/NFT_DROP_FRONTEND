@@ -4,13 +4,13 @@ import { BackBtn, NextBtn } from './styles';
 import { useAppContext } from '../../../context/AppContext';
 
 type ComponentProps = {
-    onSelectBasketballNext: () => void;
+    onSelectNF3BasketballNext: () => void;
     onSelectSerumNext: () => void;
     onFuseEvolve: () => void;
 };
 
 const MixologyNavBar: React.FC<ComponentProps> = ({
-    onSelectBasketballNext,
+    onSelectNF3BasketballNext,
     onSelectSerumNext,
     onFuseEvolve,
 }): JSX.Element => {
@@ -27,7 +27,7 @@ const MixologyNavBar: React.FC<ComponentProps> = ({
 
     const onNext = () => {
         if (curStep === 0) {
-            onSelectBasketballNext();
+            onSelectNF3BasketballNext();
         } else if (curStep === 1) {
             onSelectSerumNext();
         } else if (curStep === 2) {

@@ -40,6 +40,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
         document.body.removeChild(link);
     }
     const handleDownload = (url: string) => {
+        console.log('download image: ', url);
         var AWS = require('aws-sdk');
         AWS.config.update({
             accessKeyId: 'AKIATRYTS26ZZZTWY6O7',

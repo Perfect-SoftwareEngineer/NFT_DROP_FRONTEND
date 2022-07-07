@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useAppContext } from '../../../context/AppContext';
 import { MutantImgBox, GotoLabBtn, BackToMixRoom, EmailTextField, SubmitBtn } from './styles';
-import Image from 'next/image';
 import Link from 'next/link';
 import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
+import { registerEmail } from '../../../services/api/email';
+import { validEmail } from '../../../services/common';
+import { useWeb3React } from '@web3-react/core';
+
+enum RegisterStatus {
+    INIT,
+    INPROGRESS,
+    SUCCESS,
+    FAILED,
+}
 
 const FuseSuccess: React.FC = (): JSX.Element => {
     const [appState, setAppState] = useAppContext();
+    const { account } = useWeb3React();
 
     const { width, height } = useWindowSize();
+
+    const [email, setEmail] = useState<string>('');
+    const [emailError, setEmailError] = useState<boolean>(false);
+    const [regState, setRegState] = useState<RegisterStatus>(RegisterStatus.INIT);
 
     const onBackToMixologyRoom = () => {
         setAppState({
@@ -20,6 +34,27 @@ const FuseSuccess: React.FC = (): JSX.Element => {
             selectedSerumCount: {},
             selectedSerumId: [],
         });
+    };
+
+    const onRegisterEmail = () => {
+        setRegState(RegisterStatus.INIT);
+
+        let isEmailValid = validEmail(email);
+        setEmailError(!isEmailValid);
+
+        if (isEmailValid) {
+            setRegState(RegisterStatus.INPROGRESS);
+
+            registerEmail(account!, email, appState.jwtToken)
+                .then(async (response: any) => {
+                    console.log('registerEmail response:', response);
+                    setRegState(RegisterStatus.SUCCESS);
+                })
+                .catch((error: any) => {
+                    console.log('registerEmail error:', error);
+                    setRegState(RegisterStatus.FAILED);
+                });
+        }
     };
 
     return (
@@ -68,9 +103,25 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                         notify you of this specific transaction.
                     </Typography>
                     <Stack direction="row" spacing={2} marginTop={3}>
-                        <EmailTextField fullWidth />
-                        <SubmitBtn>SUBMIT</SubmitBtn>
+                        <EmailTextField
+                            fullWidth
+                            value={email}
+                            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                setEmail(event.target.value);
+                            }}
+                        />
+                        <SubmitBtn onClick={onRegisterEmail}>SUBMIT</SubmitBtn>
                     </Stack>
+                    {emailError && (
+                        <Typography textAlign="center" color="#EB5757" marginTop={1}>
+                            Email address is not valid format.
+                        </Typography>
+                    )}
+                    {regState === RegisterStatus.SUCCESS && (
+                        <Typography textAlign="center" color="#4CAF50" marginTop={1}>
+                            Email is registered successfully.
+                        </Typography>
+                    )}
                 </Stack>
             </Stack>
             <Confetti width={width - 32} height={height - 100} />
