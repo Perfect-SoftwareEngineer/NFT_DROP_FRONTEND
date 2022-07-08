@@ -93,8 +93,13 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                 )}
             </Box>
             <Stack spacing={1}>
-                <Typography fontSize={16} fontWeight={700}>
+                <Typography fontSize={16} fontWeight={700} lineHeight={1.3}>
                     Basketball Headz
+                    <br />
+                    {`#${item.tokenId.substring(0, 3)}...${item.tokenId.substring(
+                        item.tokenId.length - 3,
+                        item.tokenId.length
+                    )}`}
                 </Typography>
                 {/* <Typography fontSize={16} fontWeight={400} color="#979797">
                     {item.count}
@@ -121,15 +126,15 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                             )
                         }
                     >
-                        <Icon icon="ic:baseline-discord" fontSize={24} />
-                        <Typography fontSize={14} fontWeight={600} marginLeft={1} padding="0 0 4px">
+                        <img src="/assets/thelab/opensea.svg" width={20} height={20} alt="" />
+                        <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
                             OpenSea
                         </Typography>
                     </MenuBtn>
                     {/* <a href="" download={item.image}> */}
                     <MenuBtn onClick={() => handleDownload(item.image)}>
-                        <Icon icon="ic:outline-file-download" fontSize={24} />
-                        <Typography fontSize={14} fontWeight={600} marginLeft={1} padding="0 0 4px">
+                        <img src="/assets/thelab/download.svg" width={18} height={18} alt="" />
+                        <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
                             Download
                         </Typography>
                     </MenuBtn>
