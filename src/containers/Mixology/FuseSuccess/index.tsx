@@ -81,7 +81,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                     <BackToMixRoom onClick={onBackToMixologyRoom}>Back to the Mixology Room</BackToMixRoom>
                 </Stack>
             </Stack>
-            <Stack
+            {/* <Stack
                 position="absolute"
                 bottom={40}
                 left={{ xs: 20, md: 0 }}
@@ -123,7 +123,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                         </Typography>
                     )}
                 </Stack>
-            </Stack>
+            </Stack> */}
             <Confetti width={width - 32} height={height - 100} />
         </Stack>
     );
