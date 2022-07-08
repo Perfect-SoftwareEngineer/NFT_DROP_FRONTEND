@@ -206,7 +206,11 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     sx={{ background: '#1B1C22' }}
                                 >
                                     <Link
-                                        href="https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER"
+                                        href={
+                                            process.env.NEXT_PUBLIC_ENV == 'production'
+                                                ? 'https://opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER'
+                                                : 'https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER'
+                                        }
                                         passHref
                                     >
                                         <a target="_blank" rel="noopener noreferrer">
@@ -313,7 +317,11 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                         sx={{ background: '#1B1C22' }}
                                     >
                                         <Link
-                                            href="https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER"
+                                            href={
+                                                process.env.NEXT_PUBLIC_ENV == 'production'
+                                                    ? 'https://opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER'
+                                                    : 'https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER'
+                                            }
                                             passHref
                                         >
                                             <a target="_blank" rel="noopener noreferrer">
