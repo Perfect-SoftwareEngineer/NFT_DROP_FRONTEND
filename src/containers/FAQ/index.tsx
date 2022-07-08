@@ -23,6 +23,43 @@ const FAQPageContainer: React.FC = (): JSX.Element => {
                 .
             </Typography>
             <Stack spacing={2} marginTop={6}>
+                <FAQItem title="How does the Mixology Room work?">
+                    <Typography lineHeight={1.3}>
+                        STEP 1: SELECT AN NF3 BASKETBALL
+                        <br />
+                        <br />
+                        The NF3 basketball does not hold any community traits, but it can still produce an avatar
+                        without any serums.
+                        <br />
+                        <br />
+                        STEP 2: SELECT UP TO 3 SERUMS
+                        <br />
+                        <br />
+                        Choose up to 3 community serums to apply to your avatar - the order of Serum selection does not
+                        impact final outcome. Each Serum guarantees one trait, with a possibility of two.
+                        <br />
+                        <br />
+                        STEP 3: FUSE
+                        <br />
+                        <br />
+                        Make sure you have selected the NF3 Basketball and community partner serums that you would like
+                        to apply to your avatar. Fusing is an irreversible action that will burn your selected NFTs, so
+                        be sure to double-check. When you are ready, click Fuse.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What happens to my NF3 Basketball and Serums after I fuse them?">
+                    <Typography>
+                        You have created a Basketball Headz Avatar! You will not see your Basketball Headz Avatar
+                        immediately. Please wait up to 48 hours for the metadata to load.
+                    </Typography>
+                </FAQItem>
+                <FAQItem title="What is the one-time approval for?">
+                    <Typography>
+                        You must approve this smart contract interaction to use the Mixology Room. It is a one-time
+                        approval that confirms the interaction between the smart contract and the token. There will be a
+                        gas fee.
+                    </Typography>
+                </FAQItem>
                 <FAQItem title="What are Serums?">
                     <Typography>
                         With the launch of Curry partner Serums, we go from changing the game to mutating the game. Our

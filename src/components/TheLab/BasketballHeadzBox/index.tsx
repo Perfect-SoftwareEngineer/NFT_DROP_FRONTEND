@@ -126,7 +126,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                             window.open(
                                 !!item.image
                                     ? `https://testnets.opensea.io/assets/rinkeby/0x75893670f873fdee8bce2ef5399f6ba07b48fb21/${item.tokenId}`
-                                    : 'https://opensea.io/collection/basketball-headz-official',
+                                    : 'https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER',
                                 '_blank',
                                 'noopener,noreferrer'
                             )
