@@ -51,7 +51,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
         let fileName = url.split('/').pop() || '';
 
         var s3 = new AWS.S3({ params: { Bucket: 'luna-bucket' } });
-        s3.getObject({ Bucket: 'luna-bucket', Key: `3d-avatar-dev/${fileName}` }, function (error: any, data: any) {
+        s3.getObject({ Bucket: 'luna-bucket', Key: `3d-avatar-dev/${fileName}` }, function(error: any, data: any) {
             if (error != null) {
                 console.log('Failed to retrieve an object: ' + error);
             } else {
@@ -124,17 +124,11 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                     <MenuBtn
                         onClick={() =>
                             window.open(
-                                !!item.image
-                                    ? `${
-                                          process.env.NEXT_PUBLIC_ENV == 'production'
-                                              ? 'https://opensea.io/assets/ethereum/0xf1ac459201d6a2be148f1a28ae78f9c19e8b5f26'
-                                              : 'https://testnets.opensea.io/assets/rinkeby/0x75893670f873fdee8bce2ef5399f6ba07b48fb21'
-                                      }/${item.tokenId}`
-                                    : `${
-                                          process.env.NEXT_PUBLIC_ENV == 'production'
-                                              ? 'https://opensea.io'
-                                              : 'https://testnets.opensea.io'
-                                      }/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER`,
+                                `${
+                                    process.env.NEXT_PUBLIC_ENV == 'production'
+                                        ? 'https://opensea.io/assets/ethereum/0xf1ac459201d6a2be148f1a28ae78f9c19e8b5f26'
+                                        : 'https://testnets.opensea.io/assets/rinkeby/0x75893670f873fdee8bce2ef5399f6ba07b48fb21'
+                                }/${item.tokenId}`,
                                 '_blank',
                                 'noopener,noreferrer'
                             )
