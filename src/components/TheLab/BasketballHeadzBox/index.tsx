@@ -127,9 +127,9 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                                 !!item.image
                                     ? `${
                                           process.env.NEXT_PUBLIC_ENV == 'production'
-                                              ? 'https://opensea.io'
-                                              : 'https://testnets.opensea.io'
-                                      }/assets/rinkeby/0x75893670f873fdee8bce2ef5399f6ba07b48fb21/${item.tokenId}`
+                                              ? 'https://opensea.io/assets/ethereum/0xf1ac459201d6a2be148f1a28ae78f9c19e8b5f26'
+                                              : 'https://testnets.opensea.io/assets/rinkeby/0x75893670f873fdee8bce2ef5399f6ba07b48fb21'
+                                      }/${item.tokenId}`
                                     : `${
                                           process.env.NEXT_PUBLIC_ENV == 'production'
                                               ? 'https://opensea.io'
