@@ -7,6 +7,7 @@ import { MenuBtn } from './styles';
 import Link from 'next/link';
 import AWS from 'aws-sdk';
 import { SxProps } from '@mui/system';
+import { saveAs } from 'file-saver';
 
 type ComponentProps = {
     item: BasketballHeadzTokenInfoType;
@@ -63,6 +64,11 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                 // do something with data.Body
             }
         });
+    };
+
+    const saveFile = (image: string) => {
+        let fileName = image.split('/').pop();
+        saveAs(image, fileName);
     };
 
     const onClickItem = () => {
@@ -131,14 +137,16 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                             OpenSea
                         </Typography>
                     </MenuBtn>
-                    {/* <a href="" download={item.image}> */}
-                    <MenuBtn onClick={() => handleDownload(item.image)}>
+                    <MenuBtn
+                        onClick={() => {
+                            saveFile(item.image);
+                        }}
+                    >
                         <img src="/assets/thelab/download.svg" width={18} height={18} alt="" />
                         <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
                             Download
                         </Typography>
                     </MenuBtn>
-                    {/* </a> */}
                 </Stack>
             )}
         </Container>
