@@ -1,13 +1,14 @@
 import axios from 'axios';
+import SERVER_URL from '../constants/server';
 
 export const getBasketballHeadzInfo = async (data: any) => {
     // let uri = data['uri'];
-    let uri = `https://staging.backend.lunamarket.io/api/metadata/basketballhead/get/${data.tokenId}`;
+    let uri = `${SERVER_URL}/api/metadata/basketballhead/get/${data.tokenId}`;
 
     if (!!uri) {
         const response: any = await axios({
             method: 'GET',
-            url: uri,
+            url: uri
         });
 
         return {
@@ -15,7 +16,7 @@ export const getBasketballHeadzInfo = async (data: any) => {
             title: response.data.name,
             count: parseInt(data.quantity),
             image: response.data.image,
-            animation: response.data.animation_url,
+            animation: response.data.animation_url
         };
     } else {
         return {
@@ -23,7 +24,7 @@ export const getBasketballHeadzInfo = async (data: any) => {
             title: 'Basketball Headz',
             count: parseInt(data.quantity),
             image: '',
-            animation: '',
+            animation: ''
         };
     }
 };
@@ -38,7 +39,7 @@ export const getBasketballInfo = async (data: any[]) => {
 
     const response: any = await axios({
         method: 'GET',
-        url: uri,
+        url: uri
     });
     let imageUri = response.status === 200 ? response.data.image : '';
     return { count: count, image: imageUri };

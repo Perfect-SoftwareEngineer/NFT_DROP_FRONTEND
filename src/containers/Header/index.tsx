@@ -36,7 +36,7 @@ const appMenuList: { title: string; url: string; comingSoon?: any }[] = [
     // { title: 'Roadmap', url: '', comingSoon: { rightPos: -10 } },
     { title: 'Roadmap', url: '/roadmap' },
 
-    { title: 'FAQ', url: '/faq' },
+    { title: 'FAQ', url: '/faq' }
 
     // { title: 'FTX Holders', url: '/ftxholders' },
     // { title: 'FTX Holders', url: '', comingSoon: { rightPos: -10 } },
@@ -45,7 +45,7 @@ const appMenuList: { title: string; url: string; comingSoon?: any }[] = [
 const socialLinksList = [
     { title: 'Discord', url: 'https://discord.gg/currybrand', icon: <DiscordIcon /> },
     { title: 'Twitter', url: 'https://twitter.com/bball_headz', icon: <TwitterIcon /> },
-    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> },
+    { title: 'Instagram', url: 'https://www.instagram.com/currybrand/', icon: <InstagramIcon /> }
     // { title: 'Opensea', url: 'https://opensea.io/collection/nf3-basketball', icon: <OpenseaIcon /> },
 ];
 
@@ -205,7 +205,10 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                     visibility={showOpenseaMenuBox ? 'visible' : 'hidden'}
                                     sx={{ background: '#1B1C22' }}
                                 >
-                                    <Link href="" passHref>
+                                    <Link
+                                        href="https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER"
+                                        passHref
+                                    >
                                         <a target="_blank" rel="noopener noreferrer">
                                             <Typography whiteSpace="nowrap">Basketball Headz</Typography>
                                         </a>
@@ -309,7 +312,10 @@ const Header: React.FC<ComponentProps> = ({}) => {
                                         visibility={showOpenseaMenuBox ? 'visible' : 'hidden'}
                                         sx={{ background: '#1B1C22' }}
                                     >
-                                        <Link href="" passHref>
+                                        <Link
+                                            href="https://testnets.opensea.io/collection/nf3-basketballhead-v4/activity?search[isSingleCollection]=true&search[eventTypes][0]=ASSET_TRANSFER"
+                                            passHref
+                                        >
                                             <a target="_blank" rel="noopener noreferrer">
                                                 <Typography whiteSpace="nowrap">Basketball Headz</Typography>
                                             </a>
