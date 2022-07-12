@@ -32,7 +32,7 @@ enum FuseStatus {
     INIT,
     IN_FUSE,
     FUSE_FAILED,
-    FUSE_SUCCESS,
+    FUSE_SUCCESS
 }
 
 const MixologyPageContainer: React.FC = (): JSX.Element => {
@@ -67,7 +67,7 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
             mixologyCurStep: 0,
             selectedBasketball: false,
             selectedSerumCount: {},
-            selectedSerumId: [],
+            selectedSerumId: []
         });
     }, []);
 
@@ -359,10 +359,10 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 maxWidth="lg"
                 PaperProps={{
                     sx: {
-                        padding: 8,
+                        padding: { xs: 2, md: 8 },
                         background: 'none',
-                        boxShadow: 'none',
-                    },
+                        boxShadow: 'none'
+                    }
                 }}
             >
                 <FuseConfirmBox onFuse={fuseEvolve} onClose={() => setShowFuseConfirmDlg(false)} />
@@ -373,10 +373,10 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 maxWidth="lg"
                 PaperProps={{
                     sx: {
-                        padding: 8,
+                        padding: { xs: 2, md: 8 },
                         background: 'none',
-                        boxShadow: 'none',
-                    },
+                        boxShadow: 'none'
+                    }
                 }}
             >
                 <OneTimeApprovalBox
@@ -391,10 +391,10 @@ const MixologyPageContainer: React.FC = (): JSX.Element => {
                 maxWidth="lg"
                 PaperProps={{
                     sx: {
-                        padding: 8,
+                        padding: { xs: 2, md: 8 },
                         background: 'none',
-                        boxShadow: 'none',
-                    },
+                        boxShadow: 'none'
+                    }
                 }}
             >
                 <OneTimeApprovalBox
