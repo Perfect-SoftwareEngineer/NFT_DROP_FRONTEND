@@ -115,7 +115,15 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                         Combine your NF3 Basketball with up to three Serums to unlock your custom avatar's unique
                         traits.
                     </Typography>
-                    <Stack width="80%" direction="row" alignItems="center" spacing={2} marginTop={8}>
+                    <Stack
+                        width="80%"
+                        direction="row"
+                        alignItems="center"
+                        spacing={2}
+                        marginTop={8}
+                        paddingBottom={2}
+                        sx={{ overflowY: 'hidden', overflowX: 'auto' }}
+                    >
                         {steps.map((step, index) => (
                             <>
                                 <Stack
@@ -152,6 +160,7 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                                     </Typography>
                                 </Stack>
                                 <Box
+                                    minWidth={100}
                                     flexGrow={1}
                                     height="1px"
                                     display={index === steps.length - 1 ? 'none' : 'block'}
