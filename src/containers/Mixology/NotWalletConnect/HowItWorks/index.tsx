@@ -27,7 +27,7 @@ const steps = [
                 </a>
                 .
             </Typography>
-        ),
+        )
     },
     {
         step_title: 'Choose up to 3 Serums',
@@ -47,7 +47,7 @@ const steps = [
                 to customize your avatar. You can also proceeds to the next step and build your avatar without Serums,
                 as they are not required.
             </Typography>
-        ),
+        )
     },
     {
         step_title: 'Fuse',
@@ -63,7 +63,7 @@ const steps = [
                 <br />
                 When you are ready, click Fuse.
             </Typography>
-        ),
+        )
     },
     {
         step_title: 'Basketball Headz Avatar Created',
@@ -78,8 +78,8 @@ const steps = [
                 You will not see your Basketball Headz Avatar immediately. Please wait up to 48 hours for the metadata
                 to load.
             </Typography>
-        ),
-    },
+        )
+    }
 ];
 
 const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
@@ -87,7 +87,7 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
 
     return (
         <Stack position="relative">
-            <Box width="100%" height={720}></Box>
+            <Box width="100%" height={{ xs: 1440, md: 720 }}></Box>
             <Stack position="relative">
                 <img src="/assets/mixology/background1.png" width="100%" />
                 <GradientBox />
@@ -162,7 +162,7 @@ const HowItWorks: React.FC<ComponentProps> = ({ sx }): JSX.Element => {
                     </Stack>
                     <Stack
                         width="80%"
-                        direction="row"
+                        direction={{ xs: 'column', md: 'row' }}
                         spacing={6}
                         padding={4}
                         border="1px solid #BDBDBD"
