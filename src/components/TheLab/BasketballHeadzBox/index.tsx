@@ -14,13 +14,15 @@ type ComponentProps = {
     selectedBasketballHeadzTokenId: string;
     setSelectedBasketballHeadzTokenId: (value: string) => void;
     sx?: SxProps;
+    onChangeName: (item: BasketballHeadzTokenInfoType) => void;
 };
 
 const BasketballHeadzBox: React.FC<ComponentProps> = ({
     item,
     selectedBasketballHeadzTokenId,
     setSelectedBasketballHeadzTokenId,
-    sx
+    sx,
+    onChangeName
 }): JSX.Element => {
     function downloadBlob(blob: any, name: string) {
         // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
@@ -137,6 +139,12 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                         <img src="/assets/thelab/opensea.svg" width={20} height={20} alt="" />
                         <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
                             OpenSea
+                        </Typography>
+                    </MenuBtn>
+                    <MenuBtn onClick={() => onChangeName(item)}>
+                        <img src="/assets/thelab/change-name.svg" width={18} height={18} alt="" />
+                        <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
+                            Change Name
                         </Typography>
                     </MenuBtn>
                     <MenuBtn
