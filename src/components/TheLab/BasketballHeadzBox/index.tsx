@@ -141,12 +141,12 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                             OpenSea
                         </Typography>
                     </MenuBtn>
-                    <MenuBtn onClick={() => onChangeName(item)}>
+                    {/* <MenuBtn onClick={() => onChangeName(item)}>
                         <img src="/assets/thelab/change-name.svg" width={18} height={18} alt="" />
                         <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
                             Change Name
                         </Typography>
-                    </MenuBtn>
+                    </MenuBtn> */}
                     <MenuBtn
                         onClick={() => {
                             saveFile(item.image);
