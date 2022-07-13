@@ -16,7 +16,7 @@ import BasketballABI from '../../lib/ABI/BasketBall.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
-import { getLocker } from '../../services/api/thelab';
+import { getLocker, changeBBHName } from '../../services/api/thelab';
 import gcfTokenData from '../../constants/gcfTokenData';
 import metaverseShoesTokenData from '../../constants/metaverseShoesTokenData';
 import {
@@ -201,6 +201,24 @@ const LabPageContainer: React.FC = (): JSX.Element => {
     const onChangeName = (item: BasketballHeadzTokenInfoType) => {
         setChangeNameBBH(item);
         setShowChangeNameDlg(true);
+    };
+
+    const saveBBHName = async (newName: string) => {
+        changeBBHName(newName, account!, changeNameBBH!.tokenId!, appState.jwtToken)
+            .then((response: any) => {
+                // console.log('changeBBHName response:', response);
+
+                let newData = basketballHeadzToken.map((item) => {
+                    if (item.tokenId === response.tokenId) {
+                        return { ...item, title: response.name };
+                    } else {
+                        return item;
+                    }
+                });
+                setBasketballHeadzToken(newData);
+            })
+            .catch((error) => {})
+            .finally(() => setShowChangeNameDlg(false));
     };
 
     return (
@@ -432,7 +450,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                     }
                 }}
             >
-                <ChangeNameBox item={changeNameBBH} onSave={() => {}} onCancel={() => setShowChangeNameDlg(false)} />
+                <ChangeNameBox item={changeNameBBH} onSave={saveBBHName} onCancel={() => setShowChangeNameDlg(false)} />
             </Dialog>
         </>
     );

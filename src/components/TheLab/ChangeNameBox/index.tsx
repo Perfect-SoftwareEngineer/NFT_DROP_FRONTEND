@@ -5,7 +5,7 @@ import { BasketballHeadzTokenInfoType } from '../../../types';
 
 type ComponentProps = {
     item?: BasketballHeadzTokenInfoType;
-    onSave: () => void;
+    onSave: (value: string) => void;
     onCancel: () => void;
 };
 
@@ -61,7 +61,9 @@ const ChangeNameBox: React.FC<ComponentProps> = ({ item, onSave, onCancel }): JS
                 />
                 <Stack direction="row" justifyContent="flex-end" spacing={2} marginTop={5}>
                     <CancelBtn onClick={onCancel}>CANCEL</CancelBtn>
-                    <SaveBtn onClick={onSave}>SAVE</SaveBtn>
+                    <SaveBtn disabled={!name} onClick={() => onSave(name)}>
+                        SAVE
+                    </SaveBtn>
                 </Stack>
             </Stack>
         </Stack>

@@ -23,6 +23,10 @@ export const SaveBtn = styled(Button)`
     &:hover {
         background: #ffca21;
     }
+    &:disabled {
+        background: #969aa1;
+        color: black;
+    }
 `;
 
 export const NameTextField = styled(TextField)({

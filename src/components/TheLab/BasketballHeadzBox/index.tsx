@@ -42,6 +42,7 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
         // Remove link from body
         document.body.removeChild(link);
     }
+
     const handleDownload = (url: string) => {
         console.log('download image: ', url);
         var AWS = require('aws-sdk');
@@ -81,6 +82,12 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
         }
     };
 
+    let bbhName: string = item.title;
+    if (bbhName.startsWith('Basketball Headz #')) {
+        let id: string = bbhName.split('#').pop() || '';
+        bbhName = `Basketball Headz #${id.substring(0, 3)}...${id.substring(id.length - 3, id.length)}`;
+    }
+
     return (
         <Container
             rowGap={2}
@@ -101,13 +108,8 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                 )}
             </Box>
             <Stack spacing={1}>
-                <Typography fontSize={16} fontWeight={700} lineHeight={1.3}>
-                    Basketball Headz
-                    <br />
-                    {`#${item.tokenId.substring(0, 3)}...${item.tokenId.substring(
-                        item.tokenId.length - 3,
-                        item.tokenId.length
-                    )}`}
+                <Typography width={140} fontSize={16} fontWeight={700} lineHeight={1.3}>
+                    {bbhName}
                 </Typography>
                 {/* <Typography fontSize={16} fontWeight={400} color="#979797">
                     {item.count}
@@ -141,12 +143,12 @@ const BasketballHeadzBox: React.FC<ComponentProps> = ({
                             OpenSea
                         </Typography>
                     </MenuBtn>
-                    {/* <MenuBtn onClick={() => onChangeName(item)}>
+                    <MenuBtn onClick={() => onChangeName(item)}>
                         <img src="/assets/thelab/change-name.svg" width={18} height={18} alt="" />
                         <Typography fontSize={14} fontWeight={600} marginLeft={1.5} padding="0 0 4px">
                             Change Name
                         </Typography>
-                    </MenuBtn> */}
+                    </MenuBtn>
                     <MenuBtn
                         onClick={() => {
                             saveFile(item.image);
