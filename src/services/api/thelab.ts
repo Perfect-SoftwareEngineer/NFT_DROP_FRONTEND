@@ -15,3 +15,27 @@ export const getLocker = async (wallet: string) =>
                 reject(error);
             });
     });
+
+export const changeBBHName = (name: string, address: string, bbhId: string, token: string) =>
+    new Promise((resolve: (value: any) => void, reject: (value: any) => void) => {
+        let reqUrl = `${SERVER_URL}/api/metadata/basketballhead/change_name`;
+        // console.log('reqUrl:', reqUrl);
+
+        const body = { name: name, tokenId: bbhId, wallet: address };
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token
+            }
+        };
+
+        axios
+            .post(reqUrl, body, config)
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });

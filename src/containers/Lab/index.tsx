@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Dialog } from '@mui/material';
 import Container from '../Container';
 import CounterBox from '../../components/CounterBox';
 import { ConnectWalletBtn, CategoryBtn } from './styles';
@@ -16,7 +16,7 @@ import BasketballABI from '../../lib/ABI/BasketBall.json';
 import SerumABI from '../../lib/ABI/Serum.json';
 import basketballTokenData from '../../constants/basketballTokenData';
 import { serumTokenInfoData } from '../../constants/serumTokenData';
-import { getLocker } from '../../services/api/thelab';
+import { getLocker, changeBBHName } from '../../services/api/thelab';
 import gcfTokenData from '../../constants/gcfTokenData';
 import metaverseShoesTokenData from '../../constants/metaverseShoesTokenData';
 import {
@@ -24,7 +24,7 @@ import {
     BasketballTokenInfoType,
     SerumTokenInfoType,
     GCFTokenInfoType,
-    MetaverseShoesTokenInfoType,
+    MetaverseShoesTokenInfoType
 } from '../../types';
 import axios from 'axios';
 import Image from 'next/image';
@@ -36,9 +36,10 @@ import {
     getSerumTokenCount,
     getGCFTokenCount,
     getEcosystemTokenCount,
-    getEcosystemTokenURI,
+    getEcosystemTokenURI
 } from '../../services/thelab';
 import WaitingDlg from '../../components/WaitingDlg';
+import ChangeNameBox from '../../components/TheLab/ChangeNameBox';
 
 export enum Categories {
     ALL,
@@ -46,7 +47,7 @@ export enum Categories {
     NF3_BASKETBALLS,
     SERUMS,
     GCF,
-    METAVERSE_SHOES,
+    METAVERSE_SHOES
 }
 
 const categoryButtonsList = [
@@ -55,7 +56,7 @@ const categoryButtonsList = [
     'NF3 BASKETBALLS',
     'SERUMS',
     'GENESIS CURRY FLOW',
-    'METAVERSE SHOES',
+    'METAVERSE SHOES'
 ];
 
 const LabPageContainer: React.FC = (): JSX.Element => {
@@ -87,7 +88,8 @@ const LabPageContainer: React.FC = (): JSX.Element => {
 
     const [balanceLoadedFromBE, setBalanceLoadedFromBE] = useState<boolean>(false);
 
-    const [selectedProductId, setSelectedProductId] = useState<number>(-1);
+    const [showChangeNameDlg, setShowChangeNameDlg] = useState<boolean>(false);
+    const [changeNameBBH, setChangeNameBBH] = useState<BasketballHeadzTokenInfoType>();
 
     React.useEffect(() => {
         async function updateAppState() {
@@ -196,6 +198,29 @@ const LabPageContainer: React.FC = (): JSX.Element => {
         getTokensData();
     }, [ownedNFTTokensList]);
 
+    const onChangeName = (item: BasketballHeadzTokenInfoType) => {
+        setChangeNameBBH(item);
+        setShowChangeNameDlg(true);
+    };
+
+    const saveBBHName = async (newName: string) => {
+        changeBBHName(newName, account!, changeNameBBH!.tokenId!, appState.jwtToken)
+            .then((response: any) => {
+                // console.log('changeBBHName response:', response);
+
+                let newData = basketballHeadzToken.map((item) => {
+                    if (item.tokenId === response.tokenId) {
+                        return { ...item, title: response.name };
+                    } else {
+                        return item;
+                    }
+                });
+                setBasketballHeadzToken(newData);
+            })
+            .catch((error) => {})
+            .finally(() => setShowChangeNameDlg(false));
+    };
+
     return (
         <>
             <Container sx={{ paddingY: 8, overflow: 'visible' }}>
@@ -279,6 +304,7 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                                                     }
                                                     sx={{ zIndex: basketballHeadzToken.length - index }}
                                                     key={`basketballheadz_box_${index}`}
+                                                    onChangeName={onChangeName}
                                                 />
                                             ))}
                                         </Stack>
@@ -412,6 +438,20 @@ const LabPageContainer: React.FC = (): JSX.Element => {
                 </Stack>
             </Container>
             <WaitingDlg open={!!account && (!balanceLoadedFromSC || !balanceLoadedFromBE)} />
+            <Dialog
+                open={showChangeNameDlg}
+                onClose={() => setShowChangeNameDlg(false)}
+                maxWidth="lg"
+                PaperProps={{
+                    sx: {
+                        padding: { xs: 2, md: 8 },
+                        background: 'none',
+                        boxShadow: 'none'
+                    }
+                }}
+            >
+                <ChangeNameBox item={changeNameBBH} onSave={saveBBHName} onCancel={() => setShowChangeNameDlg(false)} />
+            </Dialog>
         </>
     );
 };

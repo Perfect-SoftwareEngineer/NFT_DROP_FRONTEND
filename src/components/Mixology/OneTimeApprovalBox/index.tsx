@@ -11,8 +11,8 @@ type ComponentProps = {
 const OneTimeApprovalBox: React.FC<ComponentProps> = ({ type, onContinue, onClose }): JSX.Element => {
     return (
         <Stack
-            width={680}
-            padding={5}
+            width={{ xs: 'auto', md: 680 }}
+            padding={{ xs: 3, md: 5 }}
             border="1px solid #FFCA21"
             borderRadius={2}
             boxShadow="0px 0px 16px rgba(255, 202, 33, 0.5)"

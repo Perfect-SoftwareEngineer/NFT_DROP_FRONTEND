@@ -59,7 +59,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
 
     return (
         <Stack height="100%" justifyContent="center">
-            <Stack alignItems="center" spacing={{ xs: 3, md: 6 }} marginX={4} marginTop={{ xs: -40, md: -30 }}>
+            <Stack alignItems="center" spacing={{ xs: 3, md: 6 }} marginX={4} marginTop={{ xs: -34, md: -30 }}>
                 <Typography fontSize={48} fontWeight={700} lineHeight={1} textAlign="center">
                     You have successfully minted your
                     <br />
@@ -68,7 +68,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                 {/* <MutantImgBox marginTop={6}>
                     <Image src="/assets/nft-items/mutant.png" width={320} height={320} alt="" className="mutant_img" />
                 </MutantImgBox> */}
-                <Typography width={{ xs: '90%', md: '40%' }} textAlign="center" lineHeight={1.2}>
+                <Typography width={{ xs: '100%', md: '40%' }} textAlign="center" lineHeight={1.2}>
                     Avatar generation is done on a First-come-First Serve basis. Your avatar will be created anywhere
                     within 48 hours. Go to the Lab to see all your Under Armour and Steph Curry goods!
                 </Typography>
@@ -81,14 +81,14 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                     <BackToMixRoom onClick={onBackToMixologyRoom}>Back to the Mixology Room</BackToMixRoom>
                 </Stack>
             </Stack>
-            {/* <Stack
+            <Stack
                 position="absolute"
-                bottom={40}
+                bottom={{ xs: 20, md: 40 }}
                 left={{ xs: 20, md: 0 }}
                 right={{ xs: 20, md: 0 }}
                 alignItems="center"
             >
-                <Stack padding={4} borderRadius={2} sx={{ background: '#1B1C22' }}>
+                <Stack padding={{ xs: 2, md: 4 }} borderRadius={2} sx={{ background: '#1B1C22' }}>
                     <Typography
                         fontSize={{ xs: 32, md: 48 }}
                         fontWeight={800}
@@ -123,7 +123,7 @@ const FuseSuccess: React.FC = (): JSX.Element => {
                         </Typography>
                     )}
                 </Stack>
-            </Stack> */}
+            </Stack>
             <Confetti width={width - 32} height={height - 100} />
         </Stack>
     );
